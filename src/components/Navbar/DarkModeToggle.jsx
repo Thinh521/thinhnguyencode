@@ -7,7 +7,7 @@ const DarkModeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="nav-item flex items-center justify-center rounded-lg transition-all duration-300 shadow-md hover:scale-105 dark:bg-gray-700"
+      className="w-11 h-11 bg-gray-200 first-line:flex items-center justify-center rounded-lg transition-all duration-300 shadow-md hover:scale-105 dark:bg-gray-700"
     >
       {theme === "dark" ? "🌙" : "☀️"}
     </button>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ProjectData from "../../data/ProjectData";
+import Footer from "../../components/Footer/Footer";
 
 const Project = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,7 +17,7 @@ const Project = () => {
     <>
       <article>
         <header>
-          <h1 className="text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Dự án
           </h1>
           <p className="text-gray-800 dark:text-white font-medium">
@@ -110,11 +111,7 @@ const Project = () => {
           </div>
         </section>
         <div className="border-t border-dashed border-gray-300 w-auto my-4"></div>
-        <footer className="text-gray-800 mb-36 dark:text-white space-y-1 mt-4">
-          <p>Dùng máy tính để có trải nghiệm tốt nhất nhé</p>
-          <p>Nguyễn Phúc Thịnh</p>
-          <p>© 2025 Nguyễn Phúc Thịnh. All rights reserved!</p>
-        </footer>
+        <Footer />
       </article>
     </>
   );

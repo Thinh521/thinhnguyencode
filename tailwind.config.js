@@ -7,6 +7,9 @@ export default {
       colors: {
         bodyColor: "#f42c37",
       },
+      fontFamily: {
+        playfair: ["PlayfairDisplay", "serif"],
+      },
     },
   },
   plugins: [

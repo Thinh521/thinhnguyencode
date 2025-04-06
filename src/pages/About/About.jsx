@@ -6,6 +6,7 @@ import {
   InstagramIcon,
   TiktokIcon,
 } from "../../components/Icons/Icons";
+import Footer from "../../components/Footer/Footer";
 
 const socialLinks = [
   { Icon: FacebookIcon, link: "https://facebook.com" },
@@ -19,7 +20,7 @@ const About = () => {
     <>
       <article>
         <header>
-          <h1 className="text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Giới thiệu
           </h1>
           <p className="text-gray-800 dark:text-white font-medium">
@@ -34,7 +35,7 @@ const About = () => {
               alt=""
               className="w-60 h-w-60 mx-auto mb-4 rounded-full"
             />
-            <h1 className="text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+            <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
               Nguyễn Phúc Thịnh
             </h1>
             <p className="text-gray-800 mb-4 dark:text-white font-medium">
@@ -81,11 +82,7 @@ const About = () => {
           </p>
         </section>
         <div className="border-t border-dashed border-gray-300 w-auto my-4"></div>
-        <footer className="text-gray-800 mb-36 dark:text-white space-y-1 mt-4">
-          <p>Dùng máy tính để có trải nghiệm tốt nhất nhé</p>
-          <p>Nguyễn Phúc Thịnh</p>
-          <p>© 2025 Nguyễn Phúc Thịnh. All rights reserved!</p>
-        </footer>
+        <Footer />
       </article>
     </>
   );

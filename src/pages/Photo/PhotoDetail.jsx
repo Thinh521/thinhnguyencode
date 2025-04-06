@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import PhotoData from "../../data/PhotoData";
+import Footer from "../../components/Footer/Footer";
 
 const PhotoDetail = () => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const PhotoDetail = () => {
     <>
       <article>
         <header>
-          <h1 className="text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             {photoItem.title}
           </h1>
           <p className="text-sm text-gray-500 mb-2">{photoItem.date}</p>
@@ -46,11 +47,7 @@ const PhotoDetail = () => {
         <div className="border-t border-gray-300 w-auto my-4"></div>
         <p>Những bức ảnh do tớ tự chụp</p>
         <div className="border-t border-gray-300 w-auto my-8"></div>
-        <footer className="text-gray-800 dark:text-white space-y-1 mt-4 mb-36">
-          <p>Dùng máy tính để có trải nghiệm tốt nhất nhé</p>
-          <p>Nguyễn Phúc Thịnh</p>
-          <p>© 2025 Nguyễn Phúc Thịnh. All rights reserved!</p>
-        </footer>
+        <Footer />
       </article>
     </>
   );

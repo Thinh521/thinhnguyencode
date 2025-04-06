@@ -1,14 +1,7 @@
-.nav-item {
-    width: 46px;
-    height: 46px;
-    background-color: #e8e8e8;
-}
-
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
 
-/* Ẩn scrollbar cho IE, Edge và Firefox */
 .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;

@@ -7,7 +7,7 @@ const CustomerLayout = () => {
     <>
       <Navbar />
       <main
-        className="min-h-screen mx-auto pt-20 px-5"
+        className="min-h-screen mx-auto pt-10 lg:pt-20 px-5"
         style={{ maxWidth: "720px" }}
       >
         <Outlet />

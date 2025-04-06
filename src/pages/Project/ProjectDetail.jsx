@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import ProjectData from "../../data/ProjectData";
+import Footer from "../../components/Footer/Footer";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -34,7 +35,7 @@ const ProjectDetail = () => {
         <div>
           <div className="shadow rounded-lg">
             <img
-              src={`/images/${projectItem.imgae}`}
+              src={`/thinhnguyencode/images/${projectItem.imgae}`}
               className="rounded-lg"
               alt=""
             />
@@ -47,8 +48,13 @@ const ProjectDetail = () => {
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 rounded-full"></div>
                   <p className="pl-5 text-sm text-gray-700 dark:text-gray-300">
                     Truy cập trang:{" "}
-                    <span className="underline text-blue-600 hover:text-blue-800 transition">
-                      {projectItem.linkPage}
+                    <span className="inline-block max-w-full">
+                      <a
+                        href={projectItem.linkPage}
+                        className="underline text-blue-600 hover:text-blue-800 transition break-all [text-decoration-skip-ink:none]"
+                      >
+                        {projectItem.linkPage}
+                      </a>
                     </span>
                   </p>
                 </Link>
@@ -59,7 +65,7 @@ const ProjectDetail = () => {
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 rounded-full"></div>
                   <p className="pl-5 text-sm text-gray-700 dark:text-gray-300">
                     Link github:{" "}
-                    <span className="underline text-blue-600 hover:text-blue-800 transition">
+                    <span className="underline text-blue-600 hover:text-blue-800 transition break-all [text-decoration-skip-ink:none]">
                       {projectItem.linkPage}
                     </span>
                   </p>
@@ -110,11 +116,7 @@ const ProjectDetail = () => {
 
       <div className="border-t border-dashed border-gray-300 w-auto my-4 mt-6"></div>
       <p>Những dự án cá nhân mà tớ tự làm</p>
-      <footer className="text-gray-800 dark:text-white space-y-1 mt-10 mb-36">
-        <p>Dùng máy tính để có trải nghiệm tốt nhất nhé</p>
-        <p>Nguyễn Phúc Thịnh</p>
-        <p>© 2025 Nguyễn Phúc Thịnh. All rights reserved!</p>
-      </footer>
+      <Footer />
     </article>
   );
 };
