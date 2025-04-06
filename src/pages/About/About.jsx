@@ -20,43 +20,47 @@ const About = () => {
     <>
       <article>
         <header>
-          <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Giới thiệu
           </h1>
-          <p className="text-gray-800 dark:text-white font-medium">
+          <p className="text-gray-600 dark:text-neutral-400 text-lg font-normal">
             Một chút thú vị về tôi và những điều lớn lao
           </p>
-          <div className="border-t border-dashed border-gray-300 w-auto my-4"></div>
+          <div className="border-t border-dashed border-gray-400 dark:border-neutral-400 w-auto my-4"></div>
         </header>
         <section className="flex justify-center">
-          <div className="text-center">
+          <div className="text-center my-4">
             <img
               src="/thinhnguyencode/images/avatar_2.jpg"
               alt=""
-              className="w-60 h-w-60 mx-auto mb-4 rounded-full"
+              className="w-48 h-w-48 mx-auto mb-4 rounded-full"
             />
-            <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+            <h1 className="font-playfair text-4xl font-bold mb-3 text-gray-800 dark:text-white">
               Nguyễn Phúc Thịnh
             </h1>
-            <p className="text-gray-800 mb-4 dark:text-white font-medium">
+            <p className="text-gray-600 dark:text-neutral-400 text-lg font-normal mb-5">
               Website desgin
             </p>
-            <div>
-              <button className="px-6 py-3 bg-gradient-to-r from-gray-500 to-gray-600 text-white font-medium rounded-lg shadow-md hover:from-gray-600 hover:to-gray-700 transition-all transform focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">
+            <div className="flex justify-center items-center">
+              <a
+                href=""
+                className="border max-w-max border-neutral-400 hover:border-gray-800 hover:text-gray-800 dark:hover:text-neutral-200 dark:hover:border-neutral-200 block px-4 py-2 text-base text-gray-600 dark:text-neutral-400 font-medium rounded-lg transition-colors duration-200"
+              >
                 CV của tôi
-              </button>
-              <div className="mt-3">
-                <ul className="flex justify-center space-x-2">
+              </a>
+              <div className="border-r border-gray-400 w-1 h-10 mx-4"></div>
+              <div className="">
+                <ul className="flex space-x-2">
                   {socialLinks.map(({ Icon, link }, index) => (
                     <li key={index}>
-                      <Link
+                      <a
                         href={link}
-                        className="block p-2 text-gray-600 hover:text-gray-800 transition-colors"
+                        className="block p-2 border border-neutral-400 hover:border-gray-800 dark:hover:border-neutral-200 text-gray-600 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors duration-200 rounded-lg"
                       >
                         <div className="w-6 h-6">
                           <Icon />
                         </div>
-                      </Link>
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -64,24 +68,25 @@ const About = () => {
             </div>
           </div>
         </section>
-        <div className="border-t border-dashed border-gray-300 w-auto my-4"></div>
+        <div className="border-t border-dashed border-gray-400 dark:border-neutral-400 w-auto my-4"></div>
         <section>
-          <p className="text-gray-800 dark:text-white text-justify ">
-            Tớ xin phép được giới thiệu nhiều hơn về bản thân nhé. Tớ hiện đang
-            sống và làm việc tại TP.HCM. Lí do tớ chọn ngành này là vì lúc trước
-            tớ rất thích việc code và thiết kế luôn. Nên không tránh khỏi việc
-            phân vân lựa chọn 1 trong 2. Khi tớ tìm hiểu kĩ các ngày thì đây là
-            ngành vừa tích hợp được 2 thứ luôn ấy. Hiện tại tớ đang là sinh viên
-            năm cuối của trường nên tớ thực hiện. Và đây website này cũng là
-            những dự án mà tớ tâm huyết nhất. Nếu nó có gì sai sót mọi ngưới
-            thông cảm cho tớ nhé. Ngoài ra, tớ siêu thích quay phim, chụp ảnh và
-            chụp linh tinh luôn í. kiểu như tớ muốn lưu lại những khoản khắc
-            đáng nhớ, đẹp nhất của tớ cùng với gia đình, bạn bè và bản thân. tớ
-            muốn truyền tải với mọi nguòi những gì tớ thấy và những thứ đẹp nhất
-            đang yêu nhất qua góc kính nhiệm màu nhiệm màu của tớ.
+          <p className="text-base text-gray-600 font-normal dark:text-neutral-400 text-justify">
+            Tôi xin phép được giới thiệu nhiều hơn về bản thân nhé. tôi hiện
+            đang sống và làm việc tại TP.HCM. Lí do tôi chọn ngành này là vì lúc
+            trước tôi rất thích việc code và thiết kế luôn. Nên không tránh khỏi
+            việc phân vân lựa chọn 1 trong 2. Khi tôi tìm hiểu kĩ các ngày thì
+            đây là ngành vừa tích hợp được 2 thứ luôn ấy. Hiện tại tôi đang là
+            sinh viên năm cuối của trường nên tôi thực hiện. Và đây website này
+            cũng là những dự án mà tôi tâm huyết nhất. Nếu nó có gì sai sót mọi
+            ngưới thông cảm cho tôi nhé. Ngoài ra, tôi siêu thích quay phim,
+            chụp ảnh và chụp linh tinh luôn í. kiểu như tôi muốn lưu lại những
+            khoản khắc đáng nhớ, đẹp nhất của tôi cùng với gia đình, bạn bè và
+            bản thân. tôi muốn truyền tải với mọi nguòi những gì tôi thấy và
+            những thứ đẹp nhất đang yêu nhất qua góc kính nhiệm màu nhiệm màu
+            của tôi.
           </p>
         </section>
-        <div className="border-t border-dashed border-gray-300 w-auto my-4"></div>
+        <div className="border-t border-dashed border-gray-400 dark:border-neutral-400 w-auto my-4"></div>
         <Footer />
       </article>
     </>

@@ -3,7 +3,7 @@ import "./Hero.css";
 
 const Hero = () => {
   return (
-    <div className="hero-container flex justify-center">
+    <div className="hero-container flex justify-center my-10">
       <svg
         id="svg-global"
         xmlns="http://www.w3.org/2000/svg"
