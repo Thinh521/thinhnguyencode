@@ -6,7 +6,7 @@ import { DarkModeProvider } from "./context/DarkModeContext";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter basename="/thinhnguyencode">
+  <BrowserRouter basename="/thinhnguyencode/">
     <DarkModeProvider>
       <App />
     </DarkModeProvider>

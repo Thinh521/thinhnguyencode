@@ -19,7 +19,7 @@ const Home = () => {
       <article>
         <header>
           <h1 className="text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-            Nguyễn Phúc Thịnh Nguyễn Phúc Thịnh
+            Nguyễn Phúc Thịnh
           </h1>
           <p className="text-gray-800 dark:text-white font-medium">
             Web desgin
