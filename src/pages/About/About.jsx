@@ -30,7 +30,7 @@ const About = () => {
         <section className="flex justify-center">
           <div className="text-center">
             <img
-              src="/images/avatar_2.jpg"
+              src="/thinhnguyencode/images/avatar_2.jpg"
               alt=""
               className="w-60 h-w-60 mx-auto mb-4 rounded-full"
             />
