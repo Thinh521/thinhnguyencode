@@ -21,18 +21,18 @@ const Writing = () => {
           {StorytData.map((item) => (
             <div
               key={item.id}
-              className="group dark:bg-neutral-800/80 bg-white shadow rounded-xl hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-600"
+              className="group dark:bg-neutral-800/80 bg-white shadow rounded-xl hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-600 mb-5"
             >
               <Link to={`writing-detail/${item.id}`}>
                 <img
                   src={`/thinhnguyencode/images/${item.imgae}`}
                   alt=""
-                  className="rounded-lg"
+                  className="rounded-lg w-full h-48 object-cover"
                 />
                 <div className="p-4">
                   <div className="flex  items-center mb-2">
                     <div className="flex flex-wrap lg:flex-nowrap">
-                      <p className="whitespace-nowrap lg:pe-4 font-bold text-black text-lg">
+                      <p className="whitespace-nowrap lg:pe-4 font-bold text-black dark:text-white text-lg">
                         {item.title}
                       </p>
                       <p className="whitespace-nowrap">{item.title_2}</p>
@@ -50,7 +50,7 @@ const Writing = () => {
                   </p>
                   <div className="flex items-center">
                     <p className="whitespace-nowrap me-4">
-                      <strong>Author:</strong> <span>{item.author}</span>
+                      <strong>Tác giả:</strong> <span>{item.author}</span>
                     </p>
                     <div className="border-t border-dashed border-gray-400 dark:border-neutral-400 w-full"></div>
                   </div>
