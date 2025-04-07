@@ -1,7 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PhotoData from "../../data/PhotoData";
 import Footer from "../../components/Footer/Footer";
+import Border from "../../components/Border/Border";
 
 const PhotoDetail = () => {
   const { id } = useParams();
@@ -22,13 +23,12 @@ const PhotoDetail = () => {
           <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             {photoItem.title}
           </h1>
-          <p className="text-sm text-gray-500 mb-2">{photoItem.date}</p>
-          <p className="text-gray-800 dark:text-white font-medium mb-4">
+          <p className="dark:text-white font-medium mb-2">
             {photoItem.description}
           </p>
-          <div className="border-t border-gray-300 w-auto my-4"></div>
+          <p className="text-sm mb-4">{photoItem.date}</p>
+          <Border />
         </header>
-
         <section>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
             {photoItem.images.map((img) => (
@@ -41,10 +41,14 @@ const PhotoDetail = () => {
             ))}
           </div>
         </section>
-
-        <div className="border-t border-gray-300 w-auto my-4"></div>
-        <p>Những bức ảnh do tớ tự chụp</p>
-        <div className="border-t border-gray-300 w-auto my-8"></div>
+        <Border />
+        <p className="mb-4">Những bức ảnh do tớ tự chụp</p>
+        <Link
+          to="/photo"
+          className="border border-neutral-400 dark:hover:border-neutral-200 dark:hover:text-neutral-200 hover:text-gray-800 hover:border-gray-800 duration-200 rounded-lg px-4 py-1 text-center inline-block"
+        >
+          Quay lại
+        </Link>
         <Footer />
       </article>
     </>

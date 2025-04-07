@@ -1,42 +1,31 @@
 import React from "react";
 import Footer from "../../components/Footer/Footer";
-
-const songsData = [
-  {
-    id: 1,
-    name: "Beat Saber Theme",
-    description: "Bài hát từ trò chơi Beat Saber với thể loại EDM.",
-    youtubeLink: "https://www.youtube.com/embed/WCm2elbTEZQ",
-  },
-];
+import Border from "../../components/Border/Border";
+import MusicData from "../../data/MusicData";
 
 const Music = () => {
   return (
     <>
       <article>
         <header>
-          <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Nghe Nhạc
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 font-medium">
+          <p className="dark:text-white font-medium mb-2">
             Các bản nhạc yêu thích của tôi
           </p>
-          <div className="border-t border-gray-300 dark:border-gray-700 w-auto my-4"></div>
+          <Border />
         </header>
-
         <section>
           <ul>
-            {songsData.map((song) => (
+            {MusicData.map((song) => (
               <li
                 key={song.id}
-                className="mb-4 p-4 bg-white dark:bg-gray-800 border-b border-gray-300 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-lg transition-all"
+                className="mb-4 p-4 dark:bg-neutral-800 bg-white border-b border-gray-300 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-lg transition-all"
               >
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-1 truncate">
                   {song.name}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {song.description}
-                </p>
                 <iframe
                   width="100%"
                   height="315"
@@ -45,14 +34,13 @@ const Music = () => {
                   frameBorder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  className="mt-2"
+                  className="mt-3"
                 ></iframe>
               </li>
             ))}
           </ul>
         </section>
-
-        <div className="border-t border-gray-300 dark:border-gray-700 w-auto my-4"></div>
+        <Border />
         <Footer />
       </article>
     </>

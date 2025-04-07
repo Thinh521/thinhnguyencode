@@ -21,7 +21,9 @@ const ProjectDetail = () => {
         <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
           {projectItem.title}
         </h1>
-        <p className="text-base mb-2">{projectItem.description}</p>
+        <p className="text-gray-800 dark:text-white font-medium mb-2">
+          {projectItem.description}
+        </p>
         <p className="text-base mb-2">
           Ngày thực hiện: <span>{projectItem.date}</span>
         </p>
