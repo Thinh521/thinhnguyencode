@@ -23,7 +23,7 @@ const Writing = () => {
               key={item.id}
               className="group dark:bg-neutral-800/80 bg-white shadow rounded-xl hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-600"
             >
-              <Link to={`writing/${item.id}`}>
+              <Link to={`writing-detail/${item.id}`}>
                 <img
                   src={`/thinhnguyencode/images/${item.imgae}`}
                   alt=""
