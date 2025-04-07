@@ -7,6 +7,7 @@ import {
 } from "../../components/Icons/Icons";
 import Hero from "../../components/Hero/Hero";
 import Footer from "../../components/Footer/Footer";
+import Border from "../../components/Border/Border";
 
 const socialLinks = [
   { Icon: FacebookIcon, link: "https://www.facebook.com/share/1L94WW4Qsx/" },
@@ -20,16 +21,14 @@ const Home = () => {
     <>
       <article>
         <header>
-          <h1 className="font-playfair text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Nguyễn Phúc Thịnh
           </h1>
-          <p className="text-gray-600 dark:text-neutral-400 text-lg font-normal">
-            Web desgin
-          </p>
-          <div className="border-t border-dashed border-gray-400 dark:border-neutral-400 w-auto my-4"></div>
+          <p className="text-base">Web desgin</p>
+          <Border />
         </header>
         <section>
-          <p className="text-base text-gray-600 font-normal dark:text-neutral-400 text-justify">
+          <p className="text-base text-justify">
             Xin chào, tôi là Nguyễn Phúc Thịnh. Hiện tại tôi đang là sinh viên
             chuyên ngành Thiết kế trang Web tại Trường Cao Đẳng Công Nghệ Thông
             Tin TP.HCM (ITC). Với niềm đam mê sâu sắc với lập trình và sáng tạo
@@ -39,14 +38,14 @@ const Home = () => {
             to lớn và đóng góp giá trị cho các dự án công nghệ trong tương lai.
           </p>
         </section>
-        <div className="border-t border-dashed border-gray-400 dark:border-neutral-400  w-auto my-4"></div>
+        <Border />
         <Hero />
         <div className="flex mb-6">
           <a
             href=""
             className="border max-w-max border-neutral-400 hover:border-gray-800 hover:text-gray-800 dark:hover:text-neutral-200 dark:hover:border-neutral-200 block px-4 py-2 text-base text-gray-600 dark:text-neutral-400 font-medium rounded-lg transition-colors duration-200"
           >
-            CV của tôi
+            CV
           </a>
           <div className="border-r border-gray-400 w-1 h-10 mx-4"></div>
           <div className="">

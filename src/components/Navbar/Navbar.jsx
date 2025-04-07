@@ -2,7 +2,7 @@ import React from "react";
 import {
   ContactIcon,
   HomeIcon,
-  LibraryIcon,
+  EducationIcon,
   MusicIcon,
   PhotoIcon,
   ProjectIcon,
@@ -17,7 +17,7 @@ const navItems = [
   { to: "/", title: "Home", icon: <HomeIcon /> },
   { to: "/about", title: "About", icon: <UserIcon /> },
   { to: "/project", title: "Project", icon: <ProjectIcon /> },
-  { to: "/library", title: "Library", icon: <LibraryIcon /> },
+  { to: "/education", title: "Education", icon: <EducationIcon /> },
   { to: "/photo", title: "Photo", icon: <PhotoIcon /> },
   { to: "/music", title: "Music", icon: <MusicIcon /> },
   { to: "/writing", title: "Writing", icon: <WritingIcon /> },

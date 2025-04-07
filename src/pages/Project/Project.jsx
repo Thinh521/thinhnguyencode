@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ProjectData from "../../data/ProjectData";
 import Footer from "../../components/Footer/Footer";
+import Border from "../../components/Border/Border";
 
 const Project = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,13 +18,13 @@ const Project = () => {
     <>
       <article>
         <header>
-          <h1 className="font-playfair text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Dự án
           </h1>
-          <p className="text-gray-600 dark:text-neutral-400 text-lg font-normal">
+          <p className="text-base">
             Những dự án lập trình cá nhân/pet projects của tôi từ Github
           </p>
-          <div className="border-t border-dashed border-gray-400 dark:border-neutral-400 w-auto my-4"></div>
+          <Border />
         </header>
         <section className="">
           <form class="flex max-w-xs ml-auto my-5">
@@ -34,7 +35,7 @@ const Project = () => {
               <input
                 type="text"
                 id="simple-search"
-                class="bg-gray-50 border border-neutral-400 hover:border-gray-800 text-gray-600 text-sm rounded-tl-lg rounded-bl-lg block w-full ps-4 p-2.5 dark:bg-neutral-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-neutral-400 "
+                class="bg-gray-50 border border-gray-400 text-gray-600 text-sm rounded-tl-lg rounded-bl-lg block w-full ps-4 p-2.5 dark:bg-neutral-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-neutral-400"
                 placeholder="Tìm kiếm dự án"
                 required
                 value={searchTerm}
@@ -72,12 +73,10 @@ const Project = () => {
                 <Link to={`project-detail/${item.id}`}>
                   <div>
                     <h1 className="text-xl font-medium mb-1">{item.title}</h1>
-                    <p className="text-base text-gray-600 font-normal dark:text-neutral-400 text-justify mb-3">
-                      {item.description}
-                    </p>
+                    <p className="text-base mb-3">{item.description}</p>
                     <div className="flex justify-between items-center gap-x-2">
                       <div
-                        className={`flex border px-2 rounded-md ${
+                        className={`inline-block text-center max-w-max border px-2 rounded-md ${
                           item.workPosition.includes("Full Stack")
                             ? "border-green-500"
                             : item.workPosition.includes("Front end")
@@ -113,7 +112,7 @@ const Project = () => {
             ))}
           </div>
         </section>
-        <div className="border-t border-dashed border-gray-400 dark:border-neutral-400 w-auto my-4"></div>
+        <Border />
         <Footer />
       </article>
     </>

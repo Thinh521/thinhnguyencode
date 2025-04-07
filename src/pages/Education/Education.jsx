@@ -1,12 +1,12 @@
 import React from "react";
 import Footer from "../../components/Footer/Footer";
 
-const Library = () => {
+const Education = () => {
   return (
     <>
       <article>
         <header>
-          <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Học vấn
           </h1>
           <p className="text-gray-800 dark:text-white font-medium">
@@ -22,4 +22,4 @@ const Library = () => {
   );
 };
 
-export default Library;
+export default Education;

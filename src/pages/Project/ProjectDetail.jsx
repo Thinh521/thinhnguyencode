@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import ProjectData from "../../data/ProjectData";
 import Footer from "../../components/Footer/Footer";
+import Border from "../../components/Border/Border";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -10,30 +11,25 @@ const ProjectDetail = () => {
   if (!projectItem) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <h2 className="text-2xl text-red-500">
-          Không tìm thấy ảnh với ID này!
-        </h2>
+        <h2 className="text-2xl text-red-500">Không tìm thấy dự án</h2>
       </div>
     );
   }
   return (
     <article>
       <header>
-        <h1 className="text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+        <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
           {projectItem.title}
         </h1>
-        <p className="text-sm text-gray-500 mb-2">
+        <p className="text-base mb-2">{projectItem.description}</p>
+        <p className="text-base mb-2">
           Ngày thực hiện: <span>{projectItem.date}</span>
         </p>
-        <p className="text-sm text-gray-700 dark:text-white font-medium mb-4">
-          {projectItem.description}
-        </p>
-        <div className="border-t border-dashed border-gray-300 w-auto my-4"></div>
+        <Border />
       </header>
-
       <section>
         <div>
-          <div className="shadow rounded-lg">
+          <div className="shadow rounded-lg dark:bg-neutral-800">
             <img
               src={`/thinhnguyencode/images/${projectItem.imgae}`}
               className="rounded-lg"
@@ -46,7 +42,7 @@ const ProjectDetail = () => {
                   className="group block relative rounded-lg mb-2"
                 >
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 rounded-full"></div>
-                  <p className="pl-5 text-sm text-gray-700 dark:text-gray-300">
+                  <p className="pl-5 text-sm">
                     Truy cập trang:{" "}
                     <span className="inline-block max-w-full">
                       <a
@@ -63,7 +59,7 @@ const ProjectDetail = () => {
                   className="group block relative rounded-lg mb-2"
                 >
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 rounded-full"></div>
-                  <p className="pl-5 text-sm text-gray-700 dark:text-gray-300">
+                  <p className="pl-5 text-sm">
                     Link github:{" "}
                     <span className="underline text-blue-600 hover:text-blue-800 transition break-all [text-decoration-skip-ink:none]">
                       {projectItem.linkPage}
@@ -72,14 +68,14 @@ const ProjectDetail = () => {
                 </Link>
                 <p className="group block relative rounded-lg">
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 rounded-full"></div>
-                  <p className="pl-5 text-sm text-gray-700 dark:text-gray-300">
+                  <p className="pl-5 text-sm">
                     Ngôn ngữ sử dụng: <span>{projectItem.language}</span>
                   </p>
                 </p>
               </div>
               <div className="flex justify-between items-center gap-x-2">
                 <div
-                  className={`flex border px-2 rounded-md ${
+                  className={`inline-block text-center max-w-max border px-2 rounded-md ${
                     projectItem.workPosition.includes("Full Stack")
                       ? "border-green-500"
                       : projectItem.workPosition.includes("Front end")
@@ -113,9 +109,14 @@ const ProjectDetail = () => {
           </div>
         </div>
       </section>
-
-      <div className="border-t border-dashed border-gray-300 w-auto my-4 mt-6"></div>
-      <p>Những dự án cá nhân mà tớ tự làm</p>
+      <Border />
+      <p className="mb-4">Những dự án cá nhân mà tôi tự làm</p>
+      <Link
+        to="/project"
+        className="border border-neutral-400 dark:hover:border-neutral-200 dark:hover:text-neutral-200 hover:text-gray-800 hover:border-gray-800 duration-200 rounded-lg px-4 py-1 text-center inline-block"
+      >
+        Quay lại
+      </Link>
       <Footer />
     </article>
   );

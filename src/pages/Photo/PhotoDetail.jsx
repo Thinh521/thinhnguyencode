@@ -10,9 +10,7 @@ const PhotoDetail = () => {
   if (!photoItem) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <h2 className="text-2xl text-red-500">
-          Không tìm thấy ảnh với ID này!
-        </h2>
+        <h2 className="text-2xl text-red-500">Không tìm thấy dự án</h2>
       </div>
     );
   }
@@ -21,7 +19,7 @@ const PhotoDetail = () => {
     <>
       <article>
         <header>
-          <h1 className="font-playfair text-2xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             {photoItem.title}
           </h1>
           <p className="text-sm text-gray-500 mb-2">{photoItem.date}</p>
