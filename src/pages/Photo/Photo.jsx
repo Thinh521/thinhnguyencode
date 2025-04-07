@@ -22,7 +22,7 @@ const Photo = () => {
             {PhotoData.map((item) => (
               <div
                 key={item.id}
-                className="group overflow-hidden rounded shadow hover:shadow-lg transition dark:bg-neutral-800 bg-white"
+                className="group overflow-hidden rounded shadow hover:shadow-lg transition dark:bg-neutral-800 bg-white border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-600"
               >
                 <Link to={`photo-detail/${item.id}`}>
                   <img

@@ -54,6 +54,8 @@ const About = () => {
                     <li key={index}>
                       <a
                         href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="block p-2 border border-neutral-400 hover:border-gray-800 dark:hover:border-neutral-200 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors duration-200 rounded-lg"
                       >
                         <div className="w-6 h-6">
@@ -71,18 +73,14 @@ const About = () => {
         <section>
           <p className="text-base text-justify">
             Tôi xin phép được giới thiệu nhiều hơn về bản thân nhé. tôi hiện
-            đang sống và làm việc tại TP.HCM. Lí do tôi chọn ngành này là vì lúc
-            trước tôi rất thích việc code và thiết kế luôn. Nên không tránh khỏi
-            việc phân vân lựa chọn 1 trong 2. Khi tôi tìm hiểu kĩ các ngày thì
-            đây là ngành vừa tích hợp được 2 thứ luôn ấy. Hiện tại tôi đang là
-            sinh viên năm cuối của trường nên tôi thực hiện. Và đây website này
-            cũng là những dự án mà tôi tâm huyết nhất. Nếu nó có gì sai sót mọi
-            ngưới thông cảm cho tôi nhé. Ngoài ra, tôi siêu thích quay phim,
-            chụp ảnh và chụp linh tinh luôn í. kiểu như tôi muốn lưu lại những
-            khoản khắc đáng nhớ, đẹp nhất của tôi cùng với gia đình, bạn bè và
-            bản thân. tôi muốn truyền tải với mọi nguòi những gì tôi thấy và
-            những thứ đẹp nhất đang yêu nhất qua góc kính nhiệm màu nhiệm màu
-            của tôi.
+            đang sống và làm việc tại TP.HCM. Hiện tại tôi đang là sinh viên năm
+            cuối của trường nên tôi thực hiện và làm những dự án để tốt nghiệp.
+            Và đây website này cũng là những dự án mà tôi tâm huyết nhất. Ngoài
+            ra, tôi siêu thích quay phim, chụp ảnh và chụp linh tinh luôn í.
+            kiểu như tôi muốn lưu lại những khoản khắc đáng nhớ, đẹp nhất của
+            tôi cùng với gia đình, bạn bè và bản thân. tôi muốn truyền tải với
+            mọi nguòi những gì tôi thấy và những thứ đẹp nhất đang yêu nhất qua
+            góc kính nhiệm màu nhiệm màu của tôi.
           </p>
         </section>
         <Border />

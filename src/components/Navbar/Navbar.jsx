@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ContactIcon,
   HomeIcon,
@@ -25,10 +25,19 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
-    <nav className="fixed rounded-xl bottom-3 sm:bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-100 dark:bg-neutral-900 border border-gray-400 p-3 shadow-md z-50 max-w-[calc(100vw-20px)] sm:max-w-[90vw] overflow-x-auto scrollbar-hide scroll-smooth overscroll-x-contain">
+    <nav
+      className={`fixed rounded-xl bottom-3 sm:bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-100 dark:bg-neutral-900 border border-gray-400 p-3 shadow-md z-50 max-w-[calc(100vw-20px)] sm:max-w-[90vw] overflow-x-auto scrollbar-hide scroll-smooth overscroll-x-contain transition-all duration-700 ease-out ${
+        isMounted ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+      }`}
+    >
       <ul className="flex items-center justify-center gap-x-3 sm:gap-x-3 w-max mx-auto px-1">
         {navItems.map((item, index) => (
           <li key={index} className="flex-shrink-0 relative">

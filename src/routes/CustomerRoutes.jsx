@@ -11,6 +11,7 @@ import Contact from "../pages/Contact/Contact";
 import PhotoDetail from "../pages/Photo/PhotoDetail";
 import ProjectDetail from "../pages/Project/ProjectDetail";
 import Education from "../pages/Education/Education";
+import WritingDetail from "../pages/Writing/WritingDetail";
 
 const CustomerRoutes = () => {
   return (
@@ -25,6 +26,7 @@ const CustomerRoutes = () => {
         <Route path="photo/photo-detail/:id" element={<PhotoDetail />} />
         <Route path="music" element={<Music />} />
         <Route path="writing" element={<Writing />} />
+        <Route path="writing/writing-detail/:id" element={<WritingDetail />} />
         <Route path="contact" element={<Contact />} />
       </Route>
     </Routes>

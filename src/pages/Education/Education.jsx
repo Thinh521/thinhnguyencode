@@ -29,7 +29,7 @@ const Education = () => {
               className="w-28 h-28 mx-auto"
             />
           </div>
-          <p className="my-10">
+          <p className="my-10 text-justify">
             Hiện tại tôi là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
             tại{" "}
             <a
@@ -55,8 +55,8 @@ const Education = () => {
               <li>GPA: 3.6/4.0 </li>
               <li>Đồ án tốt nghiệp:</li>
               <li>
-                Kỹ năng đạt được: HTML5, CSS3, JavaScript, Bootstrap, React, Tailwind CSS,
-                Nodejs, MongoDB, Postman, Figma, UX/UI Design,...
+                Kỹ năng đạt được: HTML5, CSS3, JavaScript, Bootstrap, React,
+                Tailwind CSS, Nodejs, MongoDB, Postman, Figma, UX/UI Design,...
               </li>
             </ul>
           </div>

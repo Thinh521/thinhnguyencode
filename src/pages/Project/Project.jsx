@@ -68,43 +68,60 @@ const Project = () => {
             {filteredProjects.map((item) => (
               <div
                 key={item.id}
-                className="dark:bg-neutral-800 p-5 shadow mb-5 rounded-lg"
+                className="group dark:bg-neutral-800/80 bg-white p-6 shadow mb-6 rounded-xl hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-600"
               >
-                <Link to={`project-detail/${item.id}`}>
-                  <div>
-                    <h1 className="text-xl font-medium mb-1">{item.title}</h1>
-                    <p className="text-base mb-3">{item.description}</p>
-                    <div className="flex justify-between items-center gap-x-2">
-                      <div
-                        className={`inline-block text-center max-w-max border px-2 rounded-md ${
+                <Link to={`project-detail/${item.id}`} className="block">
+                  <div className="space-y-3">
+                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white transition-colors">
+                      {item.title}
+                    </h3>
+
+                    <div className="relative">
+                      <p className="text-gray-600 dark:text-gray-300 line-clamp-3 text-base leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap justify-between items-center gap-3">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-md text-xs font-medium ${
                           item.workPosition.includes("Full Stack")
-                            ? "border-green-500"
+                            ? "bg-green-100 text-green-800  dark:bg-green-900/30 dark:text-green-400"
                             : item.workPosition.includes("Front end")
-                            ? "border-yellow-500"
+                            ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"
                             : item.workPosition.includes("Back end")
-                            ? "border-red-500"
-                            : "border-gray-500"
+                            ? "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"
+                            : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
                         }`}
                       >
-                        <span
-                          className={`text-sm font-medium ${
-                            item.workPosition.includes("Full Stack")
-                              ? "text-green-500"
-                              : item.workPosition.includes("Front end")
-                              ? "text-yellow-500"
-                              : item.workPosition.includes("Back end")
-                              ? "text-red-500"
-                              : "text-gray-500"
-                          }`}
+                        {item.workPosition}
+                      </span>
+
+                      {/* Date */}
+                      <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                        {item.date}
+                      </span>
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="pt-2">
+                      <button className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-neutral-600 rounded-lg text-sm font-medium 0 hover:bg-gray-50 dark:hover:bg-neutral-700/50 transition-colors duration-200">
+                        Xem chi tiết
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="ml-1 h-4 w-4  transition-opacity"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
                         >
-                          {item.workPosition}
-                        </span>
-                      </div>
-                      <div className="flex justify-center items-center bg-gray-200 px-2 rounded-md">
-                        <span className="text-xs font-medium text-gray-500">
-                          {item.date}
-                        </span>
-                      </div>
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </button>
                     </div>
                   </div>
                 </Link>

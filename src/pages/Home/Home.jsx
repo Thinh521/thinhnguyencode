@@ -34,8 +34,8 @@ const Home = () => {
             Tin TP.HCM (ITC). Với niềm đam mê sâu sắc với lập trình và sáng tạo
             giao diện, tôi không ngừng học hỏi và phát triển kỹ năng mỗi ngày.
             Hiện tại, tôi đang từng bước chinh phục hành trình và trở thành một
-            Fullstack Developer chuyên nghiệp, sẵn sàng hiện thực những ước mơ
-            to lớn và đóng góp giá trị cho các dự án công nghệ trong tương lai.
+            Fullstack Developer chuyên nghiệp, thực hiện những ước mơ to lớn và
+            đóng góp giá trị cho các dự án công nghệ trong tương lai.
           </p>
         </section>
         <Border />
@@ -43,6 +43,7 @@ const Home = () => {
         <div className="flex mb-6">
           <a
             href=""
+            rel="noopener noreferrer"
             className="border max-w-max border-neutral-400 hover:border-gray-800 hover:text-gray-800 dark:hover:text-neutral-200 dark:hover:border-neutral-200 block px-4 py-2 text-base text-gray-600 dark:text-neutral-400 font-medium rounded-lg transition-colors duration-200"
           >
             CV
@@ -54,6 +55,8 @@ const Home = () => {
                 <li key={index}>
                   <a
                     href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block p-2 border border-neutral-400 hover:border-gray-800 dark:hover:border-neutral-200 text-gray-600 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors duration-200 rounded-lg"
                   >
                     <div className="w-6 h-6">
