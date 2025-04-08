@@ -12,6 +12,7 @@ import PhotoDetail from "../pages/Photo/PhotoDetail";
 import ProjectDetail from "../pages/Project/ProjectDetail";
 import Education from "../pages/Education/Education";
 import WritingDetail from "../pages/Writing/WritingDetail";
+import Cv from "../pages/Cv/Cv";
 
 const CustomerRoutes = () => {
   return (
@@ -28,6 +29,7 @@ const CustomerRoutes = () => {
         <Route path="writing" element={<Writing />} />
         <Route path="writing/writing-detail/:id" element={<WritingDetail />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="cv" element={<Cv />} />
       </Route>
     </Routes>
   );

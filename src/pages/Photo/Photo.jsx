@@ -12,7 +12,7 @@ const Photo = () => {
           <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Ảnh chụp
           </h1>
-          <p className="dark:text-white font-medium">
+          <p className="text-base">
             Những bức ảnh mà tôi tự chụp qua ống kính nhiệm màu.
           </p>
           <Border />

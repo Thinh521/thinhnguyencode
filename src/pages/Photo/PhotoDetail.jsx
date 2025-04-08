@@ -23,9 +23,7 @@ const PhotoDetail = () => {
           <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             {photoItem.title}
           </h1>
-          <p className="dark:text-white font-medium mb-2">
-            {photoItem.description}
-          </p>
+          <p className="text-base mb-2">{photoItem.description}</p>
           <p className="text-sm mb-4">{photoItem.date}</p>
           <Border />
         </header>

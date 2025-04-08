@@ -11,7 +11,7 @@ const Writing = () => {
         <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
           Câu chuyện
         </h1>
-        <p className="dark:text-white font-medium mb-2">
+        <p className="text-base">
           Những câu chuyện mà tớ đã trải qua trong cuộc sống.
         </p>
         <Border />

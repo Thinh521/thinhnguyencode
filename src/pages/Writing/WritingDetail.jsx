@@ -36,7 +36,7 @@ const WritingDetail = () => {
           </div>
         </section>
         <Border />
-        <p className="mb-4">Những dự án cá nhân mà tôi tự làm</p>
+        <p className="mb-4">Những câu chuyện của tớ</p>
         <Link
           to="/writing"
           className="border border-neutral-400 dark:hover:border-neutral-200 dark:hover:text-neutral-200 hover:text-gray-800 hover:border-gray-800 duration-200 rounded-lg px-4 py-1 text-center inline-block"

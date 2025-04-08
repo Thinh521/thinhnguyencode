@@ -23,13 +23,13 @@ const Contact = () => {
           <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Liên hệ
           </h1>
-          <p className="dark:text-white font-medium mb-2">
+          <p className="text-base">
             Mọi người hãy liên hệ với tớ qua form này nhé.
           </p>
           <Border />
         </header>
         <section>
-          <div class="flex flex-col md:ml-auto w-full mb-10">
+          <div class="flex flex-col md:ml-auto w-full mb-4">
             <div className="flex">
               <div class="relative w-1/2 mb-4 mr-4">
                 <label for="name" class="leading-7 text-sm">
@@ -79,7 +79,7 @@ const Contact = () => {
               Gửi
             </button>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center my-8">
             <a
               href=""
               className="border max-w-max border-neutral-400 hover:border-gray-800 hover:text-gray-800 dark:hover:text-neutral-200 dark:hover:border-neutral-200 block px-4 py-2 text-base text-gray-600 dark:text-neutral-400 font-medium rounded-lg transition-colors duration-200"

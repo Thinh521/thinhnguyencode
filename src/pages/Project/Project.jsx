@@ -22,7 +22,7 @@ const Project = () => {
             Dự án
           </h1>
           <p className="text-base">
-            Những dự án lập trình cá nhân/pet projects của tôi từ Github
+            Những dự án lập trình cá nhân/pet projects của tớ từ Github
           </p>
           <Border />
         </header>

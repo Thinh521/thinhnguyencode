@@ -21,9 +21,7 @@ const ProjectDetail = () => {
         <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
           {projectItem.title}
         </h1>
-        <p className="text-gray-800 dark:text-white font-medium mb-2">
-          {projectItem.description}
-        </p>
+        <p className="text-base mb-2">{projectItem.description}</p>
         <p className="text-base mb-2">
           Ngày thực hiện: <span>{projectItem.date}</span>
         </p>
@@ -112,7 +110,7 @@ const ProjectDetail = () => {
         </div>
       </section>
       <Border />
-      <p className="mb-4">Những dự án cá nhân mà tôi tự làm</p>
+      <p className="mb-4">Những dự án cá nhân mà tớ tự làm</p>
       <Link
         to="/project"
         className="border border-neutral-400 dark:hover:border-neutral-200 dark:hover:text-neutral-200 hover:text-gray-800 hover:border-gray-800 duration-200 rounded-lg px-4 py-1 text-center inline-block"

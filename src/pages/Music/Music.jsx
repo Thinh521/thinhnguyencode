@@ -11,9 +11,7 @@ const Music = () => {
           <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Nghe Nhạc
           </h1>
-          <p className="dark:text-white font-medium mb-2">
-            Các bản nhạc yêu thích của tôi
-          </p>
+          <p className="text-base">Các bản nhạc yêu thích của tôi</p>
           <Border />
         </header>
         <section>

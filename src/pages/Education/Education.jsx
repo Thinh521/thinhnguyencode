@@ -10,9 +10,7 @@ const Education = () => {
           <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Học vấn
           </h1>
-          <p className="text-gray-800 dark:text-white font-medium">
-            Trình độ học vấn của tôi
-          </p>
+          <p className="text-base">Trình độ học vấn của tớ</p>
           <Border />
         </header>
         <section>
@@ -30,7 +28,7 @@ const Education = () => {
             />
           </div>
           <p className="my-10 text-justify">
-            Hiện tại tôi là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
+            Hiện tại tớ là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
             tại{" "}
             <a
               href="https://itc.edu.vn/"
@@ -40,7 +38,7 @@ const Education = () => {
               Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC)
             </a>
             . Với kiến thức chuyên môn về front-end development, UI/UX design và
-            các framework hiện đại, tôi mong muốn ứng dụng những kỹ năng đã học
+            các framework hiện đại, tớ mong muốn ứng dụng những kỹ năng đã học
             vào thực tế công việc.
           </p>
           <div class="education grid gap-y-2 mb-2">
@@ -52,8 +50,8 @@ const Education = () => {
               <br />
             </p>
             <ul>
-              <li>GPA: 3.6/4.0 </li>
-              <li>Đồ án tốt nghiệp:</li>
+              {/* <li>GPA: 3.6/4.0 </li>
+              <li>Đồ án tốt nghiệp:</li> */}
               <li>
                 Kỹ năng đạt được: HTML5, CSS3, JavaScript, Bootstrap, React,
                 Tailwind CSS, Nodejs, MongoDB, Postman, Figma, UX/UI Design,...
