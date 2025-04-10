@@ -1,10 +1,10 @@
 import React from "react";
-import AnimatedRoutes from "./components/AnimatedRoutes";
+import CustomerRoutes from "./routes/CustomerRoutes";
 
 function App() {
   return (
     <div className="bg-white text-black dark:bg-neutral-900 dark:text-white min-h-screen duration-200 overflow-hidden">
-      <AnimatedRoutes />
+      <CustomerRoutes />
     </div>
   );
 }
