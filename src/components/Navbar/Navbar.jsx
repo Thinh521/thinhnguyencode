@@ -77,7 +77,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `w-11 h-11 flex items-center justify-center rounded-lg transition-all duration-300 shadow-md bg-gray-200 dark:bg-neutral-700 px-3 py-2 hover:scale-105 active:scale-95 ${
                     isActive || targetPath === item.to
-                      ? "bg-gray-300 dark:bg-neutral-600 scale-110"
+                      ? "bg-gray-300 dark:bg-neutral-300 scale-110"
                       : ""
                   }`
                 }
