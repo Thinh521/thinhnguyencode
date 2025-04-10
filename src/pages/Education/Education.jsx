@@ -52,9 +52,47 @@ const Education = () => {
             <ul>
               {/* <li>GPA: 3.6/4.0 </li>
               <li>Đồ án tốt nghiệp:</li> */}
-              <li>
-                Kỹ năng đạt được: HTML5, CSS3, JavaScript, Bootstrap, React,
-                Tailwind CSS, Nodejs, MongoDB, Postman, Figma, UX/UI Design,...
+              <li className="group block relative rounded-lg mb-2">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 transform rotate-45 transition-transform duration-300 "></div>
+                <div className="pl-5">
+                  <p className="whitespace-nowrap">
+                    <strong className="whitespace-nowrap">
+                      Front-End: {""}
+                    </strong>
+                    HTML5, CSS3, JavaScript, Bootstrap, React, Tailwind CSS
+                  </p>
+                </div>
+              </li>
+              <li className="group block relative rounded-lg mb-2">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 transform rotate-45 transition-transform duration-300 "></div>
+                <div className="pl-5">
+                  <p className="whitespace-nowrap">
+                    <strong className="whitespace-nowrap">
+                      Back-End: {""}
+                    </strong>
+                    Nodejs, PHP
+                  </p>
+                </div>
+              </li>
+              <li className="group block relative rounded-lg mb-2">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 transform rotate-45 transition-transform duration-300 "></div>
+                <div className="pl-5">
+                  <p className="whitespace-nowrap">
+                    <strong className="whitespace-nowrap">
+                      Database: {""}
+                    </strong>
+                    MongoDB, SQL
+                  </p>
+                </div>
+              </li>
+              <li className="group block relative rounded-lg mb-2">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 transform rotate-45 transition-transform duration-300 "></div>
+                <div className="pl-5">
+                  <p className="whitespace-nowrap">
+                    <strong className="whitespace-nowrap">Công cụ: {""}</strong>
+                    Postman, GitHub
+                  </p>
+                </div>
               </li>
             </ul>
           </div>
