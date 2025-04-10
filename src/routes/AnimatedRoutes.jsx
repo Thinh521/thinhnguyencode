@@ -1,51 +1,49 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocation, Routes, Route } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const pageVariants = {
   initial: {
     opacity: 0,
-    y: 50,
+    y: 20,
   },
-  in: {
+  animate: {
     opacity: 1,
     y: 0,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
   },
-  out: {
+  exit: {
     opacity: 0,
-    y: -50,
+    y: -20,
+    transition: {
+      duration: 0.2,
+      ease: "easeIn",
+    },
   },
 };
 
-const pageTransition = {
-  type: "spring",
-  damping: 20,
-  stiffness: 100,
-  duration: 0.3,
-};
-
-export const AnimatedRoutes = ({ children }) => {
-  const location = useLocation();
-
-  return (
-    <AnimatePresence mode="wait">
-      <Routes
-        location={location}
-        key={location.pathname.split("/")[1] || "home"}
-      >
-        {children}
-      </Routes>
-    </AnimatePresence>
-  );
-};
-
-export const PageAnimation = ({ children }) => (
+export const AnimatedRoute = ({ children }) => (
   <motion.div
     initial="initial"
-    animate="in"
-    exit="out"
+    animate="animate"
+    exit="exit"
     variants={pageVariants}
-    transition={pageTransition}
+    style={{ height: "100%" }}
   >
     {children}
   </motion.div>
 );
+
+export const PageTransitionWrapper = ({ children }) => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div key={location.pathname} style={{ height: "100%" }}>
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  );
+};

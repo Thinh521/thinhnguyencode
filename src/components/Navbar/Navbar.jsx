@@ -27,8 +27,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [targetPath, setTargetPath] = useState(null);
+  const [loadingItem, setLoadingItem] = useState(null); // mục đang loading
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -37,71 +36,69 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (isLoading && targetPath) {
+    if (loadingItem) {
       const timeout = setTimeout(() => {
-        navigate(targetPath);
-        setIsLoading(false);
-        setTargetPath(null);
-      }, 600); // Thời gian loading trước khi chuyển trang
+        navigate(loadingItem);
+        setLoadingItem(null);
+      }, 600); // delay chuyển trang
 
       return () => clearTimeout(timeout);
     }
-  }, [isLoading, targetPath, navigate]);
+  }, [loadingItem, navigate]);
 
   const handleNavigation = (to) => {
     if (location.pathname !== to) {
-      setIsLoading(true);
-      setTargetPath(to); // lưu lại path để chuyển sau loading
+      setLoadingItem(to);
     }
   };
 
   return (
-    <>
-      {isLoading && <Loading />}
-      <nav
-        className={`fixed rounded-xl bottom-3 sm:bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-100 dark:bg-neutral-900 border border-gray-300 dark:border-neutral-700 p-3 shadow-md z-40 max-w-[calc(100vw-20px)] sm:max-w-[90vw] overflow-x-auto scrollbar-hide scroll-smooth overscroll-x-contain transition-all duration-700 ease-out ${
-          isMounted ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-        }`}
-      >
-        <ul className="flex items-center justify-center gap-x-3 sm:gap-x-4 w-max mx-auto px-1">
-          {navItems.map((item, index) => (
+    <nav
+      className={`fixed rounded-xl bottom-3 sm:bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-100 dark:bg-neutral-900 border border-gray-300 dark:border-neutral-700 p-3 shadow-md z-40 max-w-[calc(100vw-20px)] sm:max-w-[90vw] overflow-x-auto scrollbar-hide scroll-smooth overscroll-x-contain transition-all duration-700 ease-out ${
+        isMounted ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+      }`}
+    >
+      <ul className="flex items-center justify-center gap-x-3 sm:gap-x-4 w-max mx-auto px-1">
+        {navItems.map((item, index) => {
+          const isActive = location.pathname === item.to;
+          const isLoading = loadingItem === item.to;
+
+          return (
             <li key={index} className="flex-shrink-0 relative">
               <NavLink
-                to={location.pathname === item.to ? "#" : item.to}
+                to={isActive ? "#" : item.to}
                 onClick={(e) => {
                   e.preventDefault();
-                  if (location.pathname !== item.to) {
+                  if (!isActive) {
                     handleNavigation(item.to);
                   }
                 }}
-                className={({ isActive }) =>
-                  `w-11 h-11 flex items-center justify-center rounded-lg transition-all duration-300 shadow-md bg-gray-200 dark:bg-neutral-700 px-3 py-2 hover:scale-105 active:scale-95 ${
-                    isActive || targetPath === item.to
-                      ? "bg-gray-300 dark:bg-neutral-300 scale-110"
-                      : ""
-                  }`
-                }
+                className={`w-11 h-11 flex items-center justify-center rounded-lg transition-all duration-300 shadow-md bg-gray-200 dark:bg-neutral-700 px-3 py-2 hover:scale-105 active:scale-95 ${
+                  isActive || isLoading
+                    ? "bg-gray-300 dark:bg-neutral-200 scale-110"
+                    : ""
+                }`}
                 aria-label={item.title}
               >
                 <div className="flex items-center justify-center cursor-pointer">
-                  {item.icon}
+                  {isLoading ? <Loading /> : item.icon}
                 </div>
                 <span
                   className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full transition-all duration-300 ${
-                    location.pathname === item.to || targetPath === item.to
+                    isActive || isLoading
                       ? "bg-gray-500 dark:bg-neutral-400 opacity-100"
                       : "opacity-0"
                   }`}
                 />
               </NavLink>
             </li>
-          ))}
-          <li className="flex-shrink-0">
-            <DarkModeToggle />
-          </li>
-        </ul>
-      </nav>
-    </>
+          );
+        })}
+        <li className="flex-shrink-0">
+          <DarkModeToggle />
+        </li>
+      </ul>
+    </nav>
   );
 };
 
