@@ -42,7 +42,7 @@ const Education = () => {
                 href="https://itc.edu.vn/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-justify"
               >
                 Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC)
               </a>
@@ -53,7 +53,7 @@ const Education = () => {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="font-bold text-lg mb-3 dark:text-white border-b pb-2">
+                <h3 className="font-bold text-lg mb-3 dark:text-white border-b border-dashed border-gray-400 dark:border-neutral-400 pb-2">
                   Thông tin học tập
                 </h3>
                 <ul className="space-y-3">
@@ -66,7 +66,7 @@ const Education = () => {
                   <li className="flex items-start">
                     <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
                     <span className="text-gray-700 dark:text-gray-300">
-                      <strong>Chuyên ngành: </strong>Thiết kế Website
+                      <strong>Chuyên ngành: </strong>Thiết Kế Trang Web
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -75,11 +75,31 @@ const Education = () => {
                       <strong>Loại hình đào tạo: </strong>Chính quy
                     </span>
                   </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      <strong>Bằng cấp: </strong>Cử nhân Cao đẳng (dự kiến
+                      7/2025)
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      <strong>Tình trạng: </strong>Đang theo học
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      <strong>Điểm trung bình (GPA) hiện tại: </strong>3.34 /
+                      4.0
+                    </span>
+                  </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-bold text-lg mb-3 dark:text-white border-b pb-2">
+                <h3 className="font-bold text-lg mb-3 dark:text-white border-b border-dashed border-gray-400 dark:border-neutral-400 pb-2">
                   Liên kết
                 </h3>
                 <ul className="space-y-3">
@@ -97,7 +117,9 @@ const Education = () => {
                   <li className="flex items-start">
                     <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
                     <a
-                      href="#"
+                      href="https://itc.edu.vn"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-blue-600 dark:text-blue-400 hover:underline"
                     >
                       Chương trình đào tạo
@@ -109,7 +131,7 @@ const Education = () => {
           </div>
 
           <div className="mb-12">
-            <h2 className="text-xl font-bold mb-4 dark:text-white border-b pb-2">
+            <h2 className="text-xl font-bold mb-4 dark:text-white border-b  border-dashed pb-2">
               Kỹ năng đã học
             </h2>
 
@@ -141,7 +163,7 @@ const Education = () => {
                   Back-End & Database
                 </h3>
                 <ul className="space-y-2">
-                  {["Node.js", "Express.js", "PHP", "MongoDB", "MySQL"].map(
+                  {["Node.js", "Express.js", "MongoDB", "MySQL"].map(
                     (skill) => (
                       <li key={skill} className="flex items-center">
                         <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -176,7 +198,7 @@ const Education = () => {
                 </ul>
               </div>
 
-              <div>
+              {/* <div>
                 <h3 className="font-semibold text-lg mb-3 dark:text-white">
                   Kiến thức bổ trợ
                 </h3>
@@ -196,13 +218,13 @@ const Education = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 dark:text-white border-b pb-2">
+          <h2 className="text-2xl font-bold mb-6 dark:text-white border-b border-dashed border-gray-400 dark:border-neutral-400 pb-2">
             Chứng chỉ & Khóa học
           </h2>
 

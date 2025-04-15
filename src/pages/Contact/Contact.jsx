@@ -62,7 +62,6 @@ const Contact = () => {
           </p>
           <Border />
         </header>
-
         <section>
           <form
             onSubmit={handleSubmit}
@@ -81,7 +80,7 @@ const Contact = () => {
                   id="name"
                   name="name"
                   required
-                  className="w-full bg-white dark:bg-neutral-800 border border-neutral-400 dark:border-none rounded-lg focus:ring-2 focus:ring-indigo-200 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-neutral-100 dark:bg-neutral-800 rounded-lg focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
               <div className="relative w-full md:w-1/2 mb-4">
@@ -95,7 +94,7 @@ const Contact = () => {
                   type="tel"
                   id="phone"
                   name="phone"
-                  className="w-full bg-white dark:bg-neutral-800 border border-neutral-400 dark:border-none rounded-lg focus:ring-2 focus:ring-indigo-200 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-neutral-100 dark:bg-neutral-800 rounded-lg focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
             </div>
@@ -109,7 +108,7 @@ const Contact = () => {
                 id="email"
                 name="email"
                 required
-                className="w-full bg-white dark:bg-neutral-800 border border-neutral-400 dark:border-none rounded-lg focus:ring-2 focus:ring-indigo-200 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                className="w-full bg-neutral-100 dark:bg-neutral-800 rounded-lg focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
 
@@ -124,7 +123,7 @@ const Contact = () => {
                 id="message"
                 name="message"
                 required
-                className="w-full bg-white dark:bg-neutral-800 rounded-lg border border-neutral-400 dark:border-none focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none py-2 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                className="w-full bg-neutral-100 dark:bg-neutral-800 rounded-lg focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 h-32 text-base outline-none py-2 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
               ></textarea>
             </div>
 

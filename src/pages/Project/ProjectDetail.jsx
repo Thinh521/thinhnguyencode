@@ -47,6 +47,8 @@ const ProjectDetail = () => {
                     <span className="inline-block max-w-full">
                       <a
                         href={projectItem.linkPage}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="underline text-blue-600 hover:text-blue-800 transition break-all [text-decoration-skip-ink:none]"
                       >
                         {projectItem.linkPage}
@@ -54,25 +56,32 @@ const ProjectDetail = () => {
                     </span>
                   </p>
                 </Link>
-                <Link
-                  to={projectItem.linkPage}
-                  className="group block relative rounded-lg mb-2"
-                >
+
+                <div className="group block relative rounded-lg mb-2">
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 rounded-full"></div>
                   <p className="pl-5 text-sm">
-                    Link github:{" "}
-                    <span className="underline text-blue-600 hover:text-blue-800 transition break-all [text-decoration-skip-ink:none]">
-                      {projectItem.linkPage}
+                    Link GitHub:{" "}
+                    <span className="inline-block max-w-full">
+                      <a
+                        href={projectItem.linkGithub}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline text-blue-600 hover:text-blue-800 transition break-all [text-decoration-skip-ink:none]"
+                      >
+                        {projectItem.linkGithub}
+                      </a>
                     </span>
                   </p>
-                </Link>
-                <p className="group block relative rounded-lg">
+                </div>
+
+                <div className="group block relative rounded-lg">
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 rounded-full"></div>
                   <p className="pl-5 text-sm">
                     Ngôn ngữ sử dụng: <span>{projectItem.language}</span>
                   </p>
-                </p>
+                </div>
               </div>
+
               <div className="flex justify-between items-center gap-x-2">
                 <div
                   className={`inline-block text-center max-w-max border px-2 rounded-md ${

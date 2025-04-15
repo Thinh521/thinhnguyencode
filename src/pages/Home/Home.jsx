@@ -70,7 +70,7 @@ const Home = () => {
             </ul>
           </div>
         </div>
-        <div className="border-t border-dashed border-gray-300 dark:border-neutral-400  w-auto my-4"></div>
+        <Border />
         <Footer />
       </article>
     </>
