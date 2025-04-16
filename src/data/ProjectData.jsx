@@ -1,7 +1,7 @@
 const ProjectData = [
   {
     id: 1,
-    title: "Restaurant_Frontend",
+    title: "Restaurant",
     imgae: "project_2.png",
     description:
       "Website này được tớ xây dựng theo thiết kế của thầy gửi vào lúc tớ còn học tập tại trường. Tớ học cũng siêu giỏi môn này luôn í. đỉnh điểm là điểm full 10đ",
@@ -13,7 +13,7 @@ const ProjectData = [
   },
   {
     id: 2,
-    title: "Book a homestay",
+    title: "Book A Homestay",
     imgae: "project_1.png",
     description:
       "Website này được tớ xây dựng theo thiết kế của thầy gửi vào lúc tớ còn học tập tại trường. Tớ học cũng siêu giỏi môn này luôn í. đỉnh điểm là điểm full 10đ",
@@ -25,7 +25,7 @@ const ProjectData = [
   },
   {
     id: 3,
-    title: "Shoe_npt",
+    title: "Shoe npt",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
     date: "04-03-2025",
@@ -34,7 +34,7 @@ const ProjectData = [
   },
   {
     id: 4,
-    title: "Store_npt",
+    title: "Store npt",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
     date: "04-03-2025",
