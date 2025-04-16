@@ -87,7 +87,7 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
         {story.type === "video" || story.video ? (
           <video
             ref={videoRef}
-            src={`/thinhnguyencode/images/${story.video}`}
+            src={`/thinhnguyencode/videos/${story.video}`}
             className="w-full h-full object-cover"
             autoPlay
             playsInline
