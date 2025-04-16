@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { CloseIcon, VolumeCloseIcon, VolumeOpenIcon } from "../Icons/Icons";
 
 const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
@@ -9,7 +10,6 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
 
   const story = storyList[currentIndex];
 
-  // ❌ Không cho scroll khi modal mở
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
     return () => {
@@ -17,7 +17,6 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
     };
   }, []);
 
-  // ⏱ Xử lý tiến trình và chuyển story
   useEffect(() => {
     if (currentIndex >= storyList.length) {
       onClose();
@@ -26,7 +25,6 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
 
     setProgress(0);
 
-    // Dọn sạch interval cũ nếu có
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
@@ -49,11 +47,15 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
     if (story.type === "video" || story.video) {
       const video = videoRef.current;
       if (video) {
-        video.muted = isMuted;
+        video.muted = true;
+        video.load();
 
         const handleLoadedMetadata = () => {
           const durationMs = video.duration * 1000;
           startProgress(durationMs);
+          video.play().catch((err) => {
+            console.warn("Không thể tự phát video:", err);
+          });
         };
 
         video.addEventListener("loadedmetadata", handleLoadedMetadata);
@@ -67,21 +69,27 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
     }
 
     return () => clearInterval(intervalRef.current);
-  }, [currentIndex, isMuted]);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = isMuted;
+    }
+  }, [isMuted]);
 
   if (currentIndex >= storyList.length) return null;
 
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black/90 flex items-center justify-center z-50">
-      <div className="relative w-[400px] h-[680px] bg-white rounded-xl overflow-hidden">
-        {/* Ảnh hoặc Video */}
+      <div className="relative w-[95vw] max-w-[400px] h-[90vh] bg-white overflow-hidden">
+        {/* Video hoặc Ảnh */}
         {story.type === "video" || story.video ? (
           <video
             ref={videoRef}
             src={`/thinhnguyencode/images/${story.video}`}
             className="w-full h-full object-cover"
             autoPlay
-            muted={isMuted}
             playsInline
             controls={false}
           />
@@ -94,77 +102,33 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
         )}
 
         {/* Tên người dùng */}
-        <div className="absolute top-2 left-2 text-white font-bold">
+        <div className="absolute top-2 left-2 text-white font-semibold">
           {story.username}
         </div>
 
         {/* Thanh tiến trình */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gray-300">
           <div
-            className="bg-white h-full transition-all"
+            className="bg-white h-full transition-[width] duration-500 ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>
 
         {/* Nút đóng */}
         <button
-          className="absolute top-2 right-2 bg-white text-black rounded-full p-1"
+          className="absolute top-2 right-2 text-white rounded-full p-1"
           onClick={onClose}
         >
-          ✕
+          <CloseIcon />
         </button>
 
         {/* Nút bật/tắt âm thanh */}
         {(story.type === "video" || story.video) && (
           <button
-            className="absolute top-2 right-10 bg-white text-black rounded-full p-1"
-            onClick={() => setIsMuted(!isMuted)}
+            className="absolute top-2 right-10 text-white rounded-full p-1"
+            onClick={() => setIsMuted((prev) => !prev)}
           >
-            {isMuted ? (
-              // Biểu tượng mute
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-                />
-              </svg>
-            ) : (
-              // Biểu tượng unmute
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                />
-              </svg>
-            )}
+            {isMuted ? <VolumeCloseIcon /> : <VolumeOpenIcon />}
           </button>
         )}
       </div>
