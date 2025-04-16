@@ -88,7 +88,7 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
           <video
             ref={videoRef}
             src={`/thinhnguyencode/videos/${story.video}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain bg-black"
             autoPlay
             playsInline
             controls={false}
@@ -97,7 +97,7 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
           <img
             src={`/thinhnguyencode/images/${story.image}`}
             alt="story"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain bg-black"
           />
         )}
 

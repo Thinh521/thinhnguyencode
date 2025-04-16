@@ -44,7 +44,9 @@ const Photo = () => {
 
         <section>
           <div>
-            <h1 className="text-white text-lg font-semibold">Tin nổi bật</h1>
+            <h1 className="dark:text-white text-black text-lg font-semibold">
+              Tin nổi bật
+            </h1>
             <div className="flex gap-4 py-4">
               {stories.map((s, idx) => (
                 <div
@@ -72,7 +74,9 @@ const Photo = () => {
           </div>
 
           <div>
-            <h1 className="text-white text-lg font-semibold mb-4">Ảnh chụp</h1>
+            <h1 className="dark:text-white text-black text-lg font-semibold mb-4">
+              Ảnh chụp
+            </h1>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {PhotoData.map((item) => (
                 <div
