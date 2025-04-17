@@ -39,7 +39,7 @@ const About = () => {
             <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-3 text-gray-800 dark:text-white">
               Nguyễn Phúc Thịnh
             </h1>
-            <p className="text-lg mb-5">Front-End / Freelance</p>
+            <p className="text-lg mb-5">Front-End Developer / Freelance</p>
             <div className="flex justify-center items-center">
               <Link
                 to="/cv"

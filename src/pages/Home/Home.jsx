@@ -25,7 +25,7 @@ const Home = () => {
           <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Nguyễn Phúc Thịnh
           </h1>
-          <p className="text-base">Front-End / Freelance</p>
+          <p className="text-base">Front-End Developer / Freelance</p>
           <Border />
         </header>
         <section>
