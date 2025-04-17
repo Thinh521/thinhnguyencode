@@ -223,7 +223,7 @@ const Education = () => {
           </div>
         </section>
 
-        <section className="mb-12">
+        {/* <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 dark:text-white border-b border-dashed border-gray-400 dark:border-neutral-400 pb-2">
             Chứng chỉ & Khóa học
           </h2>
@@ -268,7 +268,7 @@ const Education = () => {
               </li>
             </ul>
           </div>
-        </section>
+        </section> */}
 
         <Border />
         <Footer />

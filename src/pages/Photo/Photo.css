@@ -58,3 +58,21 @@
 .group:hover .story-circle {
     animation: pulse 1.5s infinite;
 }
+
+/* Đảm bảo video không hiển thị controls */
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+/* Fallback khi video không tải được */
+video::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--fallback-url);
+    background-size: cover;
+    background-position: center;
+}
