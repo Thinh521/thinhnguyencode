@@ -52,8 +52,16 @@ const Photo = () => {
                         <video
                           src={`/thinhnguyencode/videos/${story.video}`}
                           className="w-full h-full object-cover rounded-full"
+                          muted
+                          playsInline
                           controls={false}
                           disablePictureInPicture
+                          preload="metadata"
+                          onLoadedMetadata={(e) => {
+                            // Dừng ngay tại frame đầu tiên
+                            e.target.currentTime = 0.001;
+                            e.target.pause();
+                          }}
                         />
                       </div>
                     </div>
