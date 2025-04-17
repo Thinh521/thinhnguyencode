@@ -47,7 +47,8 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
     if (story.type === "video" || story.video) {
       const video = videoRef.current;
       if (video) {
-        video.muted = true;
+        // Giữ nguyên trạng thái mute khi chuyển video
+        video.muted = isMuted;
         video.load();
 
         const handleLoadedMetadata = () => {
@@ -58,9 +59,16 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
           });
         };
 
+        const handleEnded = () => {
+          setCurrentIndex((prevIndex) => prevIndex + 1);
+        };
+
         video.addEventListener("loadedmetadata", handleLoadedMetadata);
+        video.addEventListener("ended", handleEnded);
+
         return () => {
           video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+          video.removeEventListener("ended", handleEnded);
           clearInterval(intervalRef.current);
         };
       }
@@ -87,11 +95,12 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
         {story.type === "video" || story.video ? (
           <video
             ref={videoRef}
+            key={`video-${currentIndex}`} // Thêm key để force re-render khi chuyển story
             src={`/thinhnguyencode/videos/${story.video}`}
             className="w-full h-full object-contain bg-black"
             autoPlay
             playsInline
-            controls={false}
+            muted={isMuted}
           />
         ) : (
           <img

@@ -5,7 +5,7 @@ import Border from "../../components/Border/Border";
 const Education = () => {
   return (
     <>
-      <article className="max-w-4xl mx-auto px-4 py-8">
+      <article>
         <header className="mb-8">
           <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
             Học vấn & Đào tạo

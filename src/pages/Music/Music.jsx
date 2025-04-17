@@ -11,7 +11,7 @@ const Music = () => {
           Nhạc yêu thích
         </h1>
         <p className="text-base">
-          Những bức ảnh mà tôi tự chụp qua ống kính nhiệm màu.
+          Những giai điệu truyền cảm hứng.
         </p>
         <Border />
       </header>
@@ -20,7 +20,7 @@ const Music = () => {
           {MusicData.map((song) => (
             <div
               key={song.id}
-              className="group relative overflow-hidden rounded-xl bg-white dark:bg-neutral-800 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+              className="group relative overflow-hidden rounded-lg bg-white dark:bg-neutral-800 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
             >
               <div className="p-5">
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2 line-clamp-2">

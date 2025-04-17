@@ -4,21 +4,8 @@ import PhotoData from "../../data/PhotoData";
 import Footer from "../../components/Footer/Footer";
 import Border from "../../components/Border/Border";
 import StoryViewer from "../../components/StoryViewer/StoryViewer";
-
-const stories = [
-  {
-    id: 1,
-    username: "Nguyễn Phúc Thịnh",
-    avatar: "/photo_1.1.jpg",
-    image: "photo_1.1.jpg",
-  },
-  {
-    id: 2,
-    username: "Nguyễn Phúc Thịnh",
-    avatar: "/photo_1.2.jpg",
-    video: "story_1.mp4",
-  },
-];
+import storiesData from "../../data/StoriesData";
+import "./Photo.css";
 
 const Photo = () => {
   const [open, setOpen] = useState(false);
@@ -30,82 +17,101 @@ const Photo = () => {
   };
 
   return (
-    <>
-      <article>
-        <header>
-          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-            Ảnh chụp và tin
-          </h1>
-          <p className="text-base">
-            Những bức ảnh mà tôi tự chụp qua ống kính nhiệm màu.
-          </p>
-          <Border />
-        </header>
+    <article>
+      <header className="mb-6">
+        <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
+          Ảnh chụp và tin
+        </h1>
+        <p className="text-gray-600 dark:text-gray-300 text-base">
+          Những bức ảnh mà tôi tự chụp qua ống kính nhiệm màu.
+        </p>
+        <Border className="my-4" />
+      </header>
 
-        <section>
-          <div>
-            <h1 className="dark:text-white text-black text-lg font-semibold">
-              Tin nổi bật
-            </h1>
-            <div className="flex gap-4 py-4">
-              {stories.map((s, idx) => (
-                <div
-                  key={s.id}
-                  onClick={() => handleStoryClick(idx)}
-                  className="cursor-pointer"
-                >
-                  <img
-                    src={`/thinhnguyencode/images/${s.avatar}`}
-                    alt="avatar"
-                    className="w-16 h-16 rounded-full border-2 border-gray-400 dark:border-neutral-400"
-                  />
-                  {/* <p className="text-center text-sm">{s.username}</p> */}
-                </div>
-              ))}
-            </div>
-
-            {open && (
-              <StoryViewer
-                storyList={stories}
-                onClose={() => setOpen(false)}
-                initialIndex={startIndex}
-              />
-            )}
-          </div>
-
-          <div>
-            <h1 className="dark:text-white text-black text-lg font-semibold mb-4">
-              Ảnh chụp
-            </h1>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {PhotoData.map((item) => (
-                <div
-                  key={item.id}
-                  className="group overflow-hidden rounded shadow hover:shadow-lg transition dark:bg-neutral-800 bg-white border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-600"
-                >
-                  <Link to={`photo-detail/${item.id}`}>
-                    <img
-                      src={`images/${item.images[0]}`}
-                      alt={item.title}
-                      className="rounded w-full h-auto object-cover transition-transform duration-300"
-                    />
-                    <div className="p-4 grid gap-y-1">
-                      <h2 className="text-base font-semibold dark:text-white truncate">
-                        {item.title}
-                      </h2>
-                      <p className="text-sm truncate">{item.date}</p>
+      <section className="space-y-4">
+        {/* Stories Section */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4 dark:text-white text-gray-800">
+            Tin nổi bật
+          </h2>
+          <div className="relative">
+            <div className="overflow-x-auto pb-2 scrollbar-hide">
+              <div
+                className="flex space-x-4"
+                style={{ minWidth: "max-content" }}
+              >
+                {storiesData.map((story, index) => (
+                  <div
+                    key={story.id}
+                    onClick={() => handleStoryClick(index)}
+                    className="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0"
+                    style={{ width: "80px" }}
+                  >
+                    <div className="relative">
+                      <div className="w-16 h-16 rounded-full border-2 border-gray-400 dark:border-neutral-400 p-0.5 overflow-hidden group">
+                        <video
+                          src={`/thinhnguyencode/videos/${story.video}`}
+                          className="w-full h-full object-cover rounded-full"
+                          controls={false}
+                          disablePictureInPicture
+                        />
+                      </div>
                     </div>
-                  </Link>
-                </div>
-              ))}
+                    <p className="text-xs text-center text-gray-600 dark:text-gray-300 w-full truncate">
+                      {story.username}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <Border />
-        <Footer />
-      </article>
-    </>
+        {/* Photos Section */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4 dark:text-white text-gray-800">
+            Ảnh chụp
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {PhotoData.map((photo) => (
+              <Link
+                key={photo.id}
+                to={`photo-detail/${photo.id}`}
+                className="group block overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 dark:bg-neutral-800 bg-white border border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-600"
+              >
+                <div className="aspect-square overflow-hidden">
+                  <img
+                    src={`/thinhnguyencode/images/${photo.images[0]}`}
+                    alt={photo.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-3">
+                  <h3 className="font-medium text-gray-800 dark:text-gray-100 truncate">
+                    {photo.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                    {photo.date}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Border className="my-8" />
+      <Footer />
+
+      {open && (
+        <StoryViewer
+          storyList={storiesData}
+          onClose={() => setOpen(false)}
+          initialIndex={startIndex}
+          key={startIndex}
+        />
+      )}
+    </article>
   );
 };
 
