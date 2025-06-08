@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="text-base space-y-8 mt-10 mb-36">
+    <footer className="text-sm space-y-8 mt-10 mb-36">
       <p>Dùng máy tính để có trải nghiệm tốt nhất nhé</p>
       <div>
         <p>Nguyễn Phúc Thịnh</p>

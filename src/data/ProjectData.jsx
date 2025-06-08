@@ -25,21 +25,63 @@ const ProjectData = [
   },
   {
     id: 3,
-    title: "Shoe npt",
+    title: "Fruit React",
+    imgae: "project_3.png",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
     date: "04-03-2025",
-    linkGithub: "https://github.com/Thinh521/501230263_CD_BACKEND",
-    workPosition: "Back end",
+    linkGithub: "https://github.com/Thinh521/Fruit_React",
+    linkPage: "https://thinh521.github.io/Fruit_React",
+    language: "HTML, CSS, JavaScript, React, Bootstrap",
+    workPosition: "Front end",
   },
   {
     id: 4,
-    title: "Store npt",
+    title: "Shoe npt",
+    imgae: "project_4.png",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
     date: "04-03-2025",
     linkGithub: "https://github.com/Thinh521/501230263_CD_BACKEND",
+    linkPage: "https://thinh521.github.io/501230263_CD_BACKEND",
+    language: "HTML, CSS, JavaScript, Bootstrap, Nodejs, MongoDB",
+    workPosition: "Back end",
+  },
+  {
+    id: 5,
+    title: "Store npt",
+    imgae: "project_5.png",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
+    date: "04-03-2025",
+    linkGithub: "https://github.com/Thinh521/Store-npt",
+    linkPage: "https://thinh521.github.io/501230263_CD_BACKEND",
+    language: "HTML, CSS, JavaScript, React, Tailwind CSS, Nodejs, MongoDB",
     workPosition: "Full Stack",
+  },
+  {
+    id: 6,
+    title: "TuHoc.CC clone",
+    imgae: "project_7.png",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
+    date: "04-03-2025",
+    linkGithub: "https://github.com/Thinh521/TuHocCC_Clone-",
+    linkPage: "https://thinh521.github.io/TuHocCC_Clone-",
+    language: "HTML, CSS, JavaScript",
+    workPosition: "Front end",
+  },
+  {
+    id: 7,
+    title: "Store npt",
+    imgae: "project_6.png",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
+    date: "04-03-2025",
+    linkGithub: "https://github.com/Thinh521/Ban_Hang",
+    linkPage: "https://thinh521.github.io/Ban_Hang/",
+    language: "HTML, CSS, JavaScript",
+    workPosition: "Front end",
   },
 ];
 
