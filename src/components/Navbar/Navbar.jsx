@@ -68,7 +68,7 @@ const Navbar = () => {
     <nav
       className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 
                   rounded-xl backdrop-blur-md border border-gray-200 dark:border-neutral-700 p-3 shadow-md 
-                  z-40 max-w-[calc(90vw-20px)] overflow-x-auto transition-all duration-500 ease-out hide-scrollbar
+                  z-40 max-w-[calc(90vw)] overflow-x-auto transition-all duration-500 ease-out hide-scrollbar
                   ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
                 `}
     >
