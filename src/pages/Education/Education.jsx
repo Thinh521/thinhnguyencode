@@ -1,20 +1,13 @@
-import React from "react";
-import Footer from "../../components/Footer/Footer";
-import Border from "../../components/Border/Border";
+import Header from "../../components/Header/Header";
 
 const Education = () => {
   return (
     <>
       <article>
-        <header className="mb-8">
-          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-            Học vấn & Đào tạo
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            Quá trình học tập và các chứng chỉ đã đạt được
-          </p>
-          <Border />
-        </header>
+        <Header
+          title="Học vấn & Đào tạo"
+          subtitle="Quá trình học tập và các chứng chỉ đã đạt được"
+        />
 
         <section className="mb-12">
           <div className="text-center mb-8">
@@ -269,9 +262,6 @@ const Education = () => {
             </ul>
           </div>
         </section> */}
-
-        <Border />
-        <Footer />
       </article>
     </>
   );

@@ -7,8 +7,8 @@ import {
 } from "../../components/Icons/Icons";
 import { Link } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
-import Footer from "../../components/Footer/Footer";
-import Border from "../../components/Border/Border";
+import Header from "../../components/Header/Header";
+import Divider from "../../components/Divider/Divider";
 
 const SOCIAL_LINKS = [
   {
@@ -43,17 +43,11 @@ const SOCIAL_LINKS = [
 
 const Home = () => {
   return (
-    <article className="max-w-4xl mx-auto lg:px-8 py-8">
-      <header className="text-center mb-5">
-        <h1 className="font-playfair text-3xl font-bold mb-2 text-gray-900 dark:text-white tracking-tight text-left">
-          Nguyễn Phúc Thịnh
-        </h1>
-        <p className="text-sm text-left">Mobile App Developer • Freelancer</p>
-      </header>
-
-      <section className="mb-5">
-        <Border />
-      </section>
+    <article>
+      <Header
+        title="Nguyễn Phúc Thịnh"
+        subtitle="Mobile App Developer • Freelancer"
+      />
 
       <section className="mb-5">
         <h1 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white flex items-center gap-2">
@@ -72,7 +66,7 @@ const Home = () => {
         </p>
       </section>
 
-      <Border />
+      <Divider />
 
       <section>
         <Hero />
@@ -142,9 +136,7 @@ const Home = () => {
         </div>
       </section>
 
-      <Border />
-
-      <Footer />
+      <Divider />
     </article>
   );
 };

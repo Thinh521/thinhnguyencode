@@ -1,8 +1,7 @@
-import React from "react";
-import Border from "../../components/Border/Border";
-import Footer from "../../components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 import StorytData from "../../data/StoryData";
+import Header from "../../components/Header/Header";
+import Divider from "../../components/Divider/Divider";
 
 const WritingDetail = () => {
   const { id } = useParams();
@@ -10,13 +9,8 @@ const WritingDetail = () => {
   return (
     <>
       <article>
-        <header>
-          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-            {storyItem.title}
-          </h1>
-          <p className="text-base">{storyItem.date}</p>
-          <Border />
-        </header>
+        <Header title={storyItem.title} subtitle={storyItem.date} />
+
         <section>
           <div>
             <div className="mb-4">
@@ -35,15 +29,17 @@ const WritingDetail = () => {
             <p className="text-justify">{storyItem.description}</p>
           </div>
         </section>
-        <Border />
+
+        <Divider />
+
         <p className="mb-4">Những câu chuyện của tớ</p>
+
         <Link
           to="/writing"
           className="border border-neutral-400 dark:hover:border-neutral-200 dark:hover:text-neutral-200 hover:text-gray-800 hover:border-gray-800 duration-200 rounded-lg px-4 py-1 text-center inline-block"
         >
           Quay lại
         </Link>
-        <Footer />
       </article>
     </>
   );

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import Footer from "../../components/Footer/Footer";
-import Border from "../../components/Border/Border";
+import { useState } from "react";
+import Header from "../../components/Header/Header";
 import {
   FacebookIcon,
   GithubIcon,
@@ -52,15 +51,10 @@ const Contact = () => {
 
   return (
     <article className="space-y-8">
-      <header className="space-y-4">
-        <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-          Liên hệ
-        </h1>
-        <p className="text-base">
-          Mọi người liên hệ công việc với tớ qua form này nhé.
-        </p>
-        <Border />
-      </header>
+      <Header
+        title="Liên hệ"
+        subtitle="Mọi người liên hệ công việc với tớ qua form này nhé"
+      />
       <section>
         <form
           onSubmit={handleSubmit}
@@ -165,9 +159,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      <Border />
-      <Footer />
     </article>
   );
 };

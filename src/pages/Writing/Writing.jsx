@@ -1,21 +1,15 @@
-import React from "react";
-import Footer from "../../components/Footer/Footer";
-import Border from "../../components/Border/Border";
 import StorytData from "../../data/StoryData";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 const Writing = () => {
   return (
     <article>
-      <header>
-        <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-          Câu chuyện
-        </h1>
-        <p className="text-base">
-          Những câu chuyện mà tớ đã trải qua trong cuộc sống.
-        </p>
-        <Border />
-      </header>
+      <Header
+        title="Câu chuyện"
+        subtitle="Những câu chuyện mà tớ đã trải qua trong cuộc sống"
+      />
+
       <section>
         <div>
           {StorytData.map((item) => (
@@ -60,8 +54,6 @@ const Writing = () => {
           ))}
         </div>
       </section>
-      <Border />
-      <Footer />
     </article>
   );
 };

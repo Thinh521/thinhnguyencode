@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import PhotoData from "../../data/PhotoData";
-import Footer from "../../components/Footer/Footer";
-import Border from "../../components/Border/Border";
 import StoryViewer from "../../components/StoryViewer/StoryViewer";
 import storiesData from "../../data/StoriesData";
+import Header from "../../components/Header/Header";
 import "./Photo.css";
 
 const Photo = () => {
@@ -18,18 +17,12 @@ const Photo = () => {
 
   return (
     <article>
-      <header className="mb-6">
-        <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-          Ảnh chụp và tin
-        </h1>
-        <p className="text-gray-600 dark:text-gray-300 text-base">
-          Những bức ảnh mà tôi tự chụp qua ống kính nhiệm màu.
-        </p>
-        <Border className="my-4" />
-      </header>
+      <Header
+        title="Ảnh chụp & tin nổi bật"
+        subtitle="Những bức ảnh mà tôi tự chụp qua ống kính nhiệm màu"
+      />
 
       <section className="space-y-4">
-        {/* Stories Section */}
         <div>
           <h2 className="text-xl font-semibold mb-4 dark:text-white text-gray-800">
             Tin nổi bật
@@ -107,9 +100,6 @@ const Photo = () => {
           </div>
         </div>
       </section>
-
-      <Border className="my-8" />
-      <Footer />
 
       {open && (
         <StoryViewer

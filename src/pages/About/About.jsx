@@ -6,8 +6,8 @@ import {
   InstagramIcon,
   TiktokIcon,
 } from "../../components/Icons/Icons";
-import Footer from "../../components/Footer/Footer";
-import Border from "../../components/Border/Border";
+import Divider from "../../components/Divider/Divider";
+import Header from "../../components/Header/Header";
 
 const SOCIAL_LINKS = [
   {
@@ -43,19 +43,11 @@ const SOCIAL_LINKS = [
 const About = () => {
   return (
     <>
-      <article className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8 py-8">
-        <header className="text-center mb-5">
-          <h1 className="font-playfair text-3xl font-bold mb-3 text-gray-900 dark:text-white tracking-tight text-left">
-            Giới thiệu
-          </h1>
-          <p className="text-sm text-left">
-            Một chút thú vị về tớ và những điều lớn lao
-          </p>
-        </header>
-
-        <section className="mb-5">
-          <Border />
-        </section>
+      <article>
+        <Header
+          title="Giới thiệu"
+          subtitle="Một chút thú vị về tớ và những điều lớn lao"
+        />
 
         <section className="flex justify-center">
           <div className="text-center my-2">
@@ -139,7 +131,7 @@ const About = () => {
         </section>
 
         <section className="mb-5">
-          <Border />
+          <Divider />
         </section>
 
         <section>
@@ -168,7 +160,7 @@ const About = () => {
         </section>
 
         <section className="my-5">
-          <Border />
+          <Divider />
         </section>
 
         <div className="mt-4 dark:border-gray-700">
@@ -203,8 +195,6 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        <Footer />
       </article>
     </>
   );

@@ -1,20 +1,14 @@
-import React from "react";
-import Footer from "../../components/Footer/Footer";
-import Border from "../../components/Border/Border";
 import MusicData from "../../data/MusicData";
+import Header from "../../components/Header/Header";
 
 const Music = () => {
   return (
     <article>
-      <header>
-        <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-          Nhạc yêu thích
-        </h1>
-        <p className="text-base">
-          Những giai điệu truyền cảm hứng.
-        </p>
-        <Border />
-      </header>
+      <Header
+        title="Nhạc yêu thích"
+        subtitle="Những giai điệu truyền cảm hứng"
+      />
+
       <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {MusicData.map((song) => (
@@ -47,9 +41,6 @@ const Music = () => {
           ))}
         </div>
       </section>
-
-      <Border />
-      <Footer />
     </article>
   );
 };

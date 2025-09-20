@@ -1,8 +1,7 @@
-import React from "react";
 import { Link, useParams } from "react-router-dom";
+import Header from "../../components/Header/Header";
 import PhotoData from "../../data/PhotoData";
-import Footer from "../../components/Footer/Footer";
-import Border from "../../components/Border/Border";
+import Divider from "../../components/Divider/Divider";
 
 const PhotoDetail = () => {
   const { id } = useParams();
@@ -19,14 +18,8 @@ const PhotoDetail = () => {
   return (
     <>
       <article>
-        <header>
-          <h1 className="font-playfair text-3xl lg:text-4xl font-bold mb-2 text-gray-800 dark:text-white">
-            {photoItem.title}
-          </h1>
-          <p className="text-base mb-2">{photoItem.description}</p>
-          <p className="text-sm mb-4">{photoItem.date}</p>
-          <Border />
-        </header>
+        <Header title={photoItem.title} subtitle={photoItem.description} />
+
         <section>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
             {photoItem.images.map((img) => (
@@ -39,7 +32,7 @@ const PhotoDetail = () => {
             ))}
           </div>
         </section>
-        <Border />
+        <Divider />
         <p className="mb-4">Những bức ảnh do tớ tự chụp</p>
         <Link
           to="/photo"
@@ -47,7 +40,6 @@ const PhotoDetail = () => {
         >
           Quay lại
         </Link>
-        <Footer />
       </article>
     </>
   );
