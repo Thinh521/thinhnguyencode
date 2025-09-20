@@ -43,20 +43,23 @@ const SOCIAL_LINKS = [
 
 const Home = () => {
   return (
-    <article className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8 py-8">
-      <header className="text-center mb-4">
-        <h1 className="font-playfair text-4xl font-bold mb-3 text-gray-900 dark:text-white tracking-tight text-left">
+    <article className="max-w-4xl mx-auto lg:px-8 py-8">
+      <header className="text-center mb-5">
+        <h1 className="font-playfair text-3xl font-bold mb-2 text-gray-900 dark:text-white tracking-tight text-left">
           Nguyễn Phúc Thịnh
         </h1>
         <p className="text-sm text-left">Mobile App Developer • Freelancer</p>
-        <Border />
       </header>
 
-      <section className="mb-4">
-        <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white flex items-center gap-2">
-          <span className="w-1 h-6 bg-gradient-to-b from-blue-500 to-indigo-500 rounded-full"></span>
+      <section className="mb-5">
+        <Border />
+      </section>
+
+      <section className="mb-5">
+        <h1 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white flex items-center gap-2">
+          <span className="w-1 h-5 bg-gradient-to-b from-gray-700 to-gray-500  rounded-full"></span>
           Giới thiệu
-        </h2>
+        </h1>
         <p className="text-sm text-justify leading-relaxed">
           Xin chào, tớ là Nguyễn Phúc Thịnh. Hiện tại tớ đang là sinh viên
           chuyên ngành Thiết Kế Trang Web tại Trường Cao Đẳng Công Nghệ Thông
@@ -76,47 +79,34 @@ const Home = () => {
       </section>
 
       <section className="mb-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div className="flex flex-col gap-6">
           <Link
             to="/cv"
             state={{ from: "home" }}
-            className="group relative inline-flex items-center gap-2 
+            className="group w-max relative inline-flex items-center gap-2 
                  bg-gradient-to-r from-gray-800 to-gray-700 
                  hover:from-gray-700 hover:to-gray-600
                  dark:from-gray-100 dark:to-gray-200
                  dark:hover:from-white dark:hover:to-gray-100
                  text-white dark:text-gray-800 
                  px-6 py-2.5 rounded-xl font-medium
-                 transition-all duration-300 ease-in-out
+                 transition-all duration-300 ease-in-out text-base
                  transform hover:scale-105 hover:shadow-lg
                  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             aria-label="Xem CV của tôi"
           >
-            <span>Xem CV</span>
-            <svg
-              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
+            <span className="text-sm">Resume</span>
           </Link>
 
           {/* Divider */}
-          <div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
-          <div className="sm:hidden w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600"></div>
 
           {/* Mạng xã hội */}
           <div className="flex-1">
-            <h3 className="text-sm font-medium text-gray-800 dark:text-white mb-3">
-              Kết nối với tôi
-            </h3>
+            <h1 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white flex items-center gap-2">
+              <span className="w-1 h-5 bg-gradient-to-b from-gray-700 to-gray-500  rounded-full"></span>
+              Kết nối với tớ
+            </h1>
             <ul className="flex flex-wrap gap-3" role="list">
               {SOCIAL_LINKS.map(({ Icon, link, label, color }, index) => (
                 <li key={`${label}-${index}`}>

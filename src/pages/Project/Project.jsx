@@ -329,7 +329,7 @@ const Project = () => {
       }`}
     >
       <header className="text-center mb-4">
-        <h1 className="font-playfair text-4xl font-bold mb-3 text-gray-900 dark:text-white tracking-tight text-left">
+        <h1 className="font-playfair text-3xl font-bold mb-3 text-gray-900 dark:text-white tracking-tight text-left">
           Dự án
         </h1>
         <p className="text-sm text-left">
