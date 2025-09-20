@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FacebookIcon,
   GithubIcon,
@@ -6,9 +5,9 @@ import {
   TiktokIcon,
 } from "../../components/Icons/Icons";
 import { Link } from "react-router-dom";
-import Hero from "../../components/Hero/Hero";
 import Header from "../../components/Header/Header";
 import Divider from "../../components/Divider/Divider";
+import Macbook from "../../components/Macbook/Macbook";
 
 const SOCIAL_LINKS = [
   {
@@ -68,9 +67,9 @@ const Home = () => {
 
       <Divider />
 
-      <section>
-        <Hero />
-      </section>
+      <div className="my-10">
+        <Macbook />
+      </div>
 
       <section className="mb-6">
         <div className="flex flex-col gap-6">
