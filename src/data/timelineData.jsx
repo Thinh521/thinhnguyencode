@@ -17,7 +17,7 @@ export const timelineData = [
     skills: ["HTML, CSS", "JavaScript"],
     links: [
       {
-        label: "Xem Github",
+        label: "Xem Thêm",
         url: "https://github.com/Thinh521/Restaurant_Frontend",
       },
       {
@@ -41,7 +41,7 @@ export const timelineData = [
     ],
     skills: ["HTML, CSS", "JavaScript", "Figma"],
     links: [
-      { label: "Xem Github", url: "https://github.com/Thinh521/TuHoc_Clone" },
+      { label: "Xem Thêm", url: "https://github.com/Thinh521/TuHoc_Clone" },
       { label: "Xem Dự án", url: "https://thinh521.github.io/TuHoc_Clone/" },
     ],
   },
@@ -51,7 +51,7 @@ export const timelineData = [
     title: "Ứng dụng thống kê, quản lý và cập nhật thị trường nông sản",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: "project_1.png",
+    images: "project_3.png",
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng di động thống kê và quản lý thị trường nông sản bằng React Native.",
@@ -71,7 +71,7 @@ export const timelineData = [
       "MongoDB",
     ],
     links: [
-      { label: "Xem Github", url: "https://github.com/Thinh521/Pione_Farm" },
+      { label: "Xem Thêm", url: "https://github.com/Thinh521/Pione_Farm" },
       { label: "Xem Dự án", url: "https://github.com/Thinh521/Pione_Farm" },
     ],
   },
@@ -102,7 +102,7 @@ export const timelineData = [
     ],
     links: [
       {
-        label: "Xem Github",
+        label: "Xem Thêm",
         url: "https://github.com/Thinh521/Blockchain_Farm",
       },
       {
@@ -137,7 +137,7 @@ export const timelineData = [
     ],
     links: [
       {
-        label: "Xem Github",
+        label: "Xem Thêm",
         url: "https://github.com/Thinh521/Fashion_Shop_App",
       },
       {

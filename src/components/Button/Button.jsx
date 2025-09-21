@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const Button = ({
   href,
   children,
@@ -8,17 +6,14 @@ const Button = ({
   leftIcon,
   rightIcon,
   className = "",
-  external = false,
+  newTab = false,
 }) => {
   const baseClasses = `
     group relative flex items-center justify-center gap-2
     bg-gradient-to-r from-gray-800 to-gray-700
-    hover:from-gray-700 hover:to-gray-600
-    dark:from-gray-100 dark:to-gray-200
-    dark:hover:from-white dark:hover:to-gray-100
-    text-white dark:text-gray-800
-    px-6 py-2 rounded-xl font-medium
-    transition-all duration-300 ease-in-out text-base
+    hover:from-gray-700 hover:to-gray-600 dark:from-gray-100 dark:to-gray-200
+    dark:hover:from-white dark:hover:to-gray-100 text-white dark:text-gray-800
+    px-6 lg:py-2 py-3 rounded-xl transition-all duration-300 ease-in-out text-base
     transform hover:scale-105 hover:shadow-lg
     focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
   `;
@@ -26,34 +21,22 @@ const Button = ({
   const content = (
     <>
       {leftIcon && <span className="text-lg">{leftIcon}</span>}
-      <span className="text-sm">{children}</span>
+      <span className="lg:text-sm text-xs font-bold">{children}</span>
       {rightIcon && <span className="text-lg">{rightIcon}</span>}
     </>
   );
 
-  if (href && external) {
+  if (href) {
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={newTab ? "_blank" : "_self"}
+        rel={newTab ? "noopener noreferrer" : undefined}
         className={`${baseClasses} ${className}`}
         aria-label={ariaLabel}
       >
         {content}
       </a>
-    );
-  }
-
-  if (href) {
-    return (
-      <Link
-        to={href}
-        className={`${baseClasses} ${className}`}
-        aria-label={ariaLabel}
-      >
-        {content}
-      </Link>
     );
   }
 

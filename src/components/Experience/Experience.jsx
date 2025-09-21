@@ -26,20 +26,20 @@ const Badge = ({ children, className = "", variant = "default", ...props }) => {
 
 // --- ITEM CONTENT ---
 const TimelineItemContent = memo(({ item }) => (
-  <div className="mt-6 space-y-6 animate-in slide-in-from-top-1 duration-200">
+  <div className="mt-4 lg:mt-6 space-y-4 lg:space-y-6 animate-in slide-in-from-top-1 duration-200">
     {/* Images */}
     <img
       src={`/thinhnguyencode/images/${item.images}`}
       alt={item.role}
-      className="object-contain w-full h-auto"
+      className="object-contain w-full h-auto rounded-lg border border-slate-200 dark:border-slate-800"
     />
 
-    <p className="text-base font-semibold text-slate-900 dark:text-slate-50">
+    <p className="text-base font-bold text-slate-900 dark:text-slate-50">
       {item.title}
     </p>
 
     {/* Responsibilities */}
-    <div className="space-y-3">
+    {/* <div className="space-y-3">
       {item.responsibilities.map((resp, idx) => (
         <div
           key={`${item.id}-resp-${idx}`}
@@ -51,24 +51,27 @@ const TimelineItemContent = memo(({ item }) => (
           </p>
         </div>
       ))}
-    </div>
+    </div> */}
 
     {/* Skills */}
-    <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+    {/* <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
       {item.skills.map((skill, idx) => (
         <Badge key={`${item.id}-skill-${idx}`} variant="secondary">
           {skill}
         </Badge>
       ))}
-    </div>
+    </div> */}
+
+    <div className="border-t border-slate-200 dark:border-slate-800" />
 
     {/* Links */}
     {item.links?.length ? (
-      <div className="flex gap-4">
+      <div className="flex gap-2">
         {item.links.map((link, idx) => (
           <Button
             key={`${item.id}-link-${idx}`}
             href={link.url}
+            newTab
             className="flex-1 text-center"
           >
             {link.label}
@@ -89,15 +92,15 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
   return (
     <div className="relative group">
       {/* Line */}
-      <div className="absolute left-6 top-14 bottom-0 w-[2px] bg-gradient-to-b from-black via-gray-500 to-white dark:from-white dark:via-gray-400 dark:to-black" />
+      <div className="absolute left-1.5 lg:left-6 top-14 bottom-0 w-[2px] bg-gradient-to-b from-black via-gray-500 to-white dark:from-white dark:via-gray-400 dark:to-black" />
 
       {/* Node */}
-      <div className="absolute left-4 top-6 w-4 h-4 bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center z-10">
+      <div className="absolute lg:left-4 top-6 w-4 h-4 bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center z-10">
         <div className="w-2 h-2 bg-slate-900 dark:bg-slate-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
 
       {/* Card */}
-      <div className="ml-12 mb-8">
+      <div className="ml-7 lg:ml-12 mb-8">
         <div
           className={`bg-white dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-800 transition-all ${
             expanded ? "shadow-sm" : "shadow-none hover:shadow-sm"
@@ -106,7 +109,7 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
           {/* Header */}
           <button
             id={headerId}
-            className="w-full text-left p-6 cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors rounded-t-lg"
+            className="w-full text-left p-4 lg:p-6 cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors rounded-t-lg"
             onClick={() => onToggle(item.id)}
             aria-expanded={expanded}
             aria-controls={contentId}
@@ -122,7 +125,7 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-3 ml-11">
+                <div className="flex items-center gap-3 ml-0 lg:ml-11">
                   <Badge variant="outline" className="text-xs">
                     {item.type}
                   </Badge>
@@ -146,7 +149,7 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
               id={contentId}
               role="region"
               aria-labelledby={headerId}
-              className="px-6 pb-6 border-t border-slate-100 dark:border-slate-900"
+              className="px-4 lg:px-6 pb-4 lg:pb-6 border-t border-slate-100 dark:border-slate-900"
             >
               <TimelineItemContent item={item} />
             </div>
