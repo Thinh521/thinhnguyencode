@@ -68,17 +68,16 @@ const Photo = () => {
           </div>
         </div>
 
-        {/* Photos Section */}
         <div>
           <h2 className="text-xl font-semibold mb-4 dark:text-white text-gray-800">
             Ảnh chụp
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
             {PhotoData.map((photo) => (
               <Link
                 key={photo.id}
-                to={`photo-detail/${photo.id}`}
-                className="group block overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 dark:bg-neutral-800 bg-white border border-gray-200 dark:border-neutral-700 hover:border-gray-300 dark:hover:border-neutral-600"
+                to={`/photo-detail/${photo.id}`}
+                className="relative group block overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-shadow duration-300 hover:border-gray-300 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-600"
               >
                 <div className="aspect-square overflow-hidden">
                   <img
@@ -87,12 +86,10 @@ const Photo = () => {
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <div className="p-3">
-                  <h3 className="font-medium text-gray-800 dark:text-gray-100 truncate">
+
+                <div className="absolute bottom-0 left-0 right-0 z-10 p-2 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                  <p className="truncate font-medium text-xs text-white">
                     {photo.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
-                    {photo.date}
                   </p>
                 </div>
               </Link>
