@@ -1,0 +1,200 @@
+import { memo, useCallback, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { timelineData } from "../../data/timelineData";
+import Button from "../../components/Button/Button";
+
+// --- BADGE COMPONENT ---
+const Badge = ({ children, className = "", variant = "default", ...props }) => {
+  const variants = {
+    default:
+      "bg-slate-900 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90",
+    secondary:
+      "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
+    outline:
+      "border border-slate-200 bg-transparent hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-800",
+  };
+
+  return (
+    <span
+      className={`inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold transition-colors ${variants[variant]} ${className}`}
+      {...props}
+    >
+      {children}
+    </span>
+  );
+};
+
+// --- ITEM CONTENT ---
+const TimelineItemContent = memo(({ item }) => (
+  <div className="mt-6 space-y-6 animate-in slide-in-from-top-1 duration-200">
+    {/* Images */}
+    <img
+      src={`/thinhnguyencode/images/${item.images}`}
+      alt={item.role}
+      className="object-contain w-full h-auto"
+    />
+
+    <p className="text-base font-semibold text-slate-900 dark:text-slate-50">
+      {item.title}
+    </p>
+
+    {/* Responsibilities */}
+    <div className="space-y-3">
+      {item.responsibilities.map((resp, idx) => (
+        <div
+          key={`${item.id}-resp-${idx}`}
+          className="flex items-start gap-3 group"
+        >
+          <div className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0 group-hover:bg-slate-600 dark:bg-slate-500 dark:group-hover:bg-slate-400 transition-colors duration-200" />
+          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            {resp}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/* Skills */}
+    <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+      {item.skills.map((skill, idx) => (
+        <Badge key={`${item.id}-skill-${idx}`} variant="secondary">
+          {skill}
+        </Badge>
+      ))}
+    </div>
+
+    {/* Links */}
+    {item.links?.length ? (
+      <div className="flex gap-4">
+        {item.links.map((link, idx) => (
+          <Button
+            key={`${item.id}-link-${idx}`}
+            href={link.url}
+            className="flex-1 text-center"
+          >
+            {link.label}
+          </Button>
+        ))}
+      </div>
+    ) : null}
+  </div>
+));
+TimelineItemContent.displayName = "TimelineItemContent";
+
+// --- TIMELINE ITEM ---
+const TimelineItem = memo(({ item, expanded, onToggle }) => {
+  const Icon = item.icon;
+  const headerId = `timeline-header-${item.id}`;
+  const contentId = `timeline-content-${item.id}`;
+
+  return (
+    <div className="relative group">
+      {/* Line */}
+      <div className="absolute left-6 top-14 bottom-0 w-[2px] bg-gradient-to-b from-black via-gray-500 to-white dark:from-white dark:via-gray-400 dark:to-black" />
+
+      {/* Node */}
+      <div className="absolute left-4 top-6 w-4 h-4 bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center z-10">
+        <div className="w-2 h-2 bg-slate-900 dark:bg-slate-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+      </div>
+
+      {/* Card */}
+      <div className="ml-12 mb-8">
+        <div
+          className={`bg-white dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-800 transition-all ${
+            expanded ? "shadow-sm" : "shadow-none hover:shadow-sm"
+          }`}
+        >
+          {/* Header */}
+          <button
+            id={headerId}
+            className="w-full text-left p-6 cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors rounded-t-lg"
+            onClick={() => onToggle(item.id)}
+            aria-expanded={expanded}
+            aria-controls={contentId}
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-2 flex-1">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-slate-100 dark:bg-slate-900 rounded-md">
+                    <Icon className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                  </div>
+                  <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
+                    {item.role}
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-3 ml-11">
+                  <Badge variant="outline" className="text-xs">
+                    {item.type}
+                  </Badge>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                    {item.duration}
+                  </span>
+                </div>
+              </div>
+
+              <ChevronDown
+                className={`w-4 h-4 text-slate-400 dark:text-slate-600 transition-transform ${
+                  expanded ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+          </button>
+
+          {/* Content */}
+          {expanded && (
+            <div
+              id={contentId}
+              role="region"
+              aria-labelledby={headerId}
+              className="px-6 pb-6 border-t border-slate-100 dark:border-slate-900"
+            >
+              <TimelineItemContent item={item} />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+});
+TimelineItem.displayName = "TimelineItem";
+
+// --- MAIN TIMELINE ---
+export function ProfessionalTimeline({
+  data,
+  defaultExpandedIds,
+  expandMode = "multi",
+}) {
+  const initial = defaultExpandedIds ?? data.map((item) => item.id);
+  const [expanded, setExpanded] = useState(new Set(initial));
+
+  const onToggle = useCallback(
+    (id) => {
+      setExpanded((prev) => {
+        if (expandMode === "single") {
+          return prev.has(id) ? new Set() : new Set([id]);
+        }
+        const next = new Set(prev);
+        next.has(id) ? next.delete(id) : next.add(id);
+        return next;
+      });
+    },
+    [expandMode]
+  );
+
+  return (
+    <div className="relative">
+      {data.map((item) => (
+        <TimelineItem
+          key={item.id}
+          item={item}
+          expanded={expanded.has(item.id)}
+          onToggle={onToggle}
+        />
+      ))}
+    </div>
+  );
+}
+
+export default function TimelinePage2() {
+  return <ProfessionalTimeline data={timelineData} expandMode="multi" />;
+}
