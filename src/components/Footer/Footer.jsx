@@ -50,14 +50,35 @@ const Footer = () => {
       }`}
     >
       <div className="py-16">
-        {/* Thông báo hiển thị tốt nhất trên PC */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-gray-100/80 to-gray-200/80 dark:from-gray-800/80 dark:to-gray-700/80 backdrop-blur-sm border border-gray-300/50 dark:border-gray-600/50 rounded-full mb-4">
-            <Monitor className="w-4 h-4 text-gray-700 dark:text-gray-300" />
-            <span className="text-sm text-gray-800 dark:text-gray-200 font-medium">
-              Dùng máy tính để có trải nghiệm tốt nhất nhé
-            </span>
-            <Sparkles className="w-4 h-4 text-gray-600 dark:text-gray-400 animate-pulse" />
+          <div className="relative inline-flex rounded-full p-[2px] overflow-hidden">
+            <style>
+              {`
+                @property --angle {
+                  syntax: '<angle>';
+                  initial-value: 0deg;
+                  inherits: false;
+                }
+                @keyframes shimmer-spin {
+                  to {
+                    --angle: 360deg;
+                  }
+                }
+              `}
+            </style>
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{
+                background:
+                  "conic-gradient(from var(--angle), transparent 70%, #60a5fa 80%, transparent 100%)",
+                animation: "shimmer-spin 4s linear infinite",
+              }}
+            />
+            <div className="relative flex flex-col items-center text-center lg:inline-flex lg:flex-row lg:items-center lg:gap-3 px-6 py-3 bg-gradient-to-r from-gray-100/80 to-gray-200/80 dark:from-gray-800/80 dark:to-gray-700/80 backdrop-blur-sm rounded-full">
+              <span className="text-sm text-gray-800 dark:text-gray-200 font-medium">
+                Dùng máy tính để có trải nghiệm tốt nhất nhé
+              </span>
+            </div>
           </div>
         </div>
 
