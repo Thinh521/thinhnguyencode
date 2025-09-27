@@ -1,13 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Monitor,
-  Heart,
-  Sparkles,
-  User,
-} from "lucide-react";
+import { Phone, Mail, MapPin, Heart, User } from "lucide-react";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,7 +37,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={`relative overflow-hidden transition-all duration-1000 mb-16 ${
+      className={`relative overflow-hidden transition-all duration-1000 mb-28 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
@@ -76,7 +68,7 @@ const Footer = () => {
             />
             <div className="relative flex flex-col items-center text-center lg:inline-flex lg:flex-row lg:items-center lg:gap-3 px-6 py-3 bg-gradient-to-r from-gray-100/80 to-gray-200/80 dark:from-gray-800/80 dark:to-gray-700/80 backdrop-blur-sm rounded-full">
               <span className="text-sm text-gray-800 dark:text-gray-200 font-medium">
-                Dùng máy tính để có trải nghiệm tốt nhất nhé
+                Dùng máy tính để có trải nghiệm tốt nhất
               </span>
             </div>
           </div>
@@ -94,7 +86,7 @@ const Footer = () => {
               <a
                 key={index}
                 href={item.href}
-                className="group flex items-center gap-4 p-5 mb-4 rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:border-gray-400/50 dark:hover:border-gray-500/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-gray-500/10 dark:hover:shadow-gray-400/10"
+                className="group flex items-center gap-4 p-5 mb-4 rounded-2xl bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 backdrop-blur-sm hover:border-gray-400/50 dark:hover:border-gray-500/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-gray-500/10 dark:hover:shadow-gray-400/10"
               >
                 <div className="p-3 rounded-xl bg-gradient-to-br from-gray-200/60 to-gray-300/60 dark:from-gray-700/60 dark:to-gray-600/60 group-hover:from-gray-300/80 group-hover:to-gray-400/80 dark:group-hover:from-gray-600/80 dark:group-hover:to-gray-500/80 transition-all duration-300">
                   <item.icon className="w-4 h-4 text-gray-700 dark:text-gray-300" />

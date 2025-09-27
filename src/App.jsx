@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <div className="bg-white text-black dark:bg-neutral-900 dark:text-white min-h-screen duration-200 overflow-hidden">
+    <div className="bg-white dark:bg-neutral-900 text-black dark:text-white min-h-screen duration-200 overflow-hidden">
       <CustomerRoutes />
     </div>
   );

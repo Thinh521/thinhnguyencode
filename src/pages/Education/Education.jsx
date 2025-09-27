@@ -1,4 +1,5 @@
 import Header from "../../components/Header/Header";
+import { ScrollTimeline } from "../../components/scroll-timeline";
 
 const Education = () => {
   return (
@@ -25,9 +26,10 @@ const Education = () => {
           </div>
 
           <div className="mb-8">
-            <h2 className="text-xl font-bold mb-4 dark:text-white">
+            <h1 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white flex items-center gap-2">
+              <span className="w-1 h-5 bg-gradient-to-b from-gray-700 to-gray-500  rounded-full"></span>
               Tổng quan
-            </h2>
+            </h1>
             <p className="text-gray-700 dark:text-gray-300 mb-6">
               Hiện tại tôi là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
               tại{" "}
@@ -262,6 +264,8 @@ const Education = () => {
             </ul>
           </div>
         </section> */}
+
+        <ScrollTimeline />
       </article>
     </>
   );

@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 const Button = ({
   href,
+  to,
   children,
   ariaLabel,
   onClick,
@@ -37,6 +40,18 @@ const Button = ({
       >
         {content}
       </a>
+    );
+  }
+
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className={`${baseClasses} ${className}`}
+        aria-label={ariaLabel}
+      >
+        {content}
+      </Link>
     );
   }
 
