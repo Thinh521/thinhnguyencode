@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CloseIcon, VolumeCloseIcon, VolumeOpenIcon } from "../Icons/Icons";
 
 const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef(null);
   const intervalRef = useRef(null);
 
@@ -60,6 +61,7 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
     }
 
     setProgress(0);
+    setIsLoading(true);
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     const duration = story.type === "video" || story.video ? null : 10000;
@@ -84,6 +86,7 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
         video.load();
 
         const handleLoadedMetadata = () => {
+          setIsLoading(false);
           const durationMs = video.duration * 1000;
           startProgress(durationMs);
           video
@@ -136,6 +139,44 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}
       >
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center z-30">
+            <div className="w-10 h-10 relative transform rotate-45 -top-12">
+              <div
+                className="absolute bg-white w-4 h-4 animate-ping"
+                style={{ top: 0, left: 0, animationDuration: "1.2s" }}
+              />
+              <div
+                className="absolute bg-white w-4 h-4 animate-ping"
+                style={{
+                  top: 0,
+                  right: 0,
+                  animationDuration: "1.2s",
+                  animationDelay: "0.15s",
+                }}
+              />
+              <div
+                className="absolute bg-white w-4 h-4 animate-ping"
+                style={{
+                  bottom: 0,
+                  right: 0,
+                  animationDuration: "1.2s",
+                  animationDelay: "0.3s",
+                }}
+              />
+              <div
+                className="absolute bg-white w-4 h-4 animate-ping"
+                style={{
+                  bottom: 0,
+                  left: 0,
+                  animationDuration: "1.2s",
+                  animationDelay: "0.45s",
+                }}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Video hoặc Hình ảnh */}
         {story.type === "video" || story.video ? (
           <video
