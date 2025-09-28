@@ -81,12 +81,12 @@ const Footer = () => {
             Thông tin liên hệ
           </h1>
 
-          <div className="mx-4">
+          <div>
             {contactItems.map((item, index) => (
               <a
                 key={index}
                 href={item.href}
-                className="group flex items-center gap-4 p-5 mb-4 rounded-2xl bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 backdrop-blur-sm hover:border-gray-400/50 dark:hover:border-gray-500/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-gray-500/10 dark:hover:shadow-gray-400/10"
+                className="group flex items-center gap-4 mb-8 rounded-2xl "
               >
                 <div className="p-3 rounded-xl bg-gradient-to-br from-gray-200/60 to-gray-300/60 dark:from-gray-700/60 dark:to-gray-600/60 group-hover:from-gray-300/80 group-hover:to-gray-400/80 dark:group-hover:from-gray-600/80 dark:group-hover:to-gray-500/80 transition-all duration-300">
                   <item.icon className="w-4 h-4 text-gray-700 dark:text-gray-300" />

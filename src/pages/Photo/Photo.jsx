@@ -13,7 +13,7 @@ const StoryAvatar = ({ story, index, onClick }) => {
     <div
       onClick={() => onClick(index)}
       className="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0"
-      style={{ width: "80px" }}
+      style={{ width: "90px" }}
     >
       <div className="relative">
         {/* Loading spinner */}

@@ -31,7 +31,14 @@ const PhotoData = [
     id: 5,
     title: "Đi làm PG + PB",
     images: ["photo_5.1.jpg", "photo_5.2.jpg"],
-    date: "Tiền Giang, ngày 04-03-2025",
+    date: "TP.HCM, ngày 04-03-2025",
+    description: "Lúc này đi làm được tặng tịt.",
+  },
+  {
+    id: 6,
+    title: "Siêu chill",
+    images: ["photo_6.1.png", "photo_6.2.png", "photo_6.3.png"],
+    date: "TP.HCM, ngày 04-09-2025",
     description: "Lúc này đi làm được tặng tịt.",
   },
 ];

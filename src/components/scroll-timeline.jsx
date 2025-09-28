@@ -37,8 +37,8 @@ const DEFAULT_EVENTS = [
 
 export const ScrollTimeline = ({
   events = DEFAULT_EVENTS,
-  title = "Hành trình",
-  subtitle = "Một vài cột mốc đáng nhớ trên con đường của tôi",
+  title = "Nhìn lại và bước tiếp",
+  subtitle = "Mỗi bước đi là một bài học, mỗi trải nghiệm là một hành trang quý giá",
   animationOrder = "sequential",
   cardAlignment = "alternating",
   lineColor = "bg-primary/30",
@@ -199,8 +199,10 @@ export const ScrollTimeline = ({
       )}
     >
       <div className="text-center py-16 px-4">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">{title}</h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+          {title}
+        </h2>
+        <p className="text-sm text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           {subtitle}
         </p>
       </div>
@@ -367,7 +369,7 @@ export const ScrollTimeline = ({
                             {event.subtitle}
                           </p>
                         )}
-                        <p className="text-sm text-gray-700 dark:text-gray-300">
+                        <p className="text-sm text-gray-700 dark:text-gray-300 text-justify leading-relaxed">
                           {event.description}
                         </p>
                       </CardContent>

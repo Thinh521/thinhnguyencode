@@ -5,11 +5,11 @@ import {
   ContactIcon,
   HomeIcon,
   EducationIcon,
-  MusicIcon,
   PhotoIcon,
   ProjectIcon,
   UserIcon,
   WritingIcon,
+  TimelineIcon,
 } from "../Icons/Icons";
 import DarkModeToggle from "./DarkModeToggle";
 import Loading from "../../components/Loading/Loading";
@@ -18,9 +18,9 @@ const navItems = [
   { to: "/", title: "Home", icon: HomeIcon },
   { to: "/about", title: "About", icon: UserIcon },
   { to: "/project", title: "Project", icon: ProjectIcon },
+  { to: "/timeline", title: "Timeline", icon: TimelineIcon },
   { to: "/education", title: "Education", icon: EducationIcon },
   { to: "/photo", title: "Photo", icon: PhotoIcon },
-  { to: "/music", title: "Music", icon: MusicIcon },
   { to: "/writing", title: "Writing", icon: WritingIcon },
   { to: "/contact", title: "Contact", icon: ContactIcon },
 ];
@@ -69,7 +69,11 @@ const Navbar = () => {
       className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 
                   rounded-xl backdrop-blur-md border border-gray-200 dark:border-neutral-700 p-3 shadow-md 
                   z-40 max-w-[calc(90vw)] overflow-x-auto transition-all duration-500 ease-out hide-scrollbar
-                  ${isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+                  ${
+                    isMounted
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-10"
+                  }
                 `}
     >
       <ul className="flex items-center justify-center gap-3 w-max mx-auto px-1">

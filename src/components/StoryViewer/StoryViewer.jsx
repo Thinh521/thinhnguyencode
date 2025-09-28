@@ -1,11 +1,28 @@
 import { useEffect, useRef, useState } from "react";
-import { CloseIcon, VolumeCloseIcon, VolumeOpenIcon } from "../Icons/Icons";
+import { X, Volume2, VolumeX, Heart } from "lucide-react";
+
+const STORAGE_KEY = "storyLikes";
+
+// Helper: đọc/ghi localStorage
+const readStore = () => {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  } catch {
+    return {};
+  }
+};
+
+const writeStore = (data) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+};
 
 const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [liked, setLiked] = useState(false);
+
   const videoRef = useRef(null);
   const intervalRef = useRef(null);
 
@@ -16,6 +33,7 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
 
   const story = storyList[currentIndex];
 
+  // Khóa scroll background
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
     return () => {
@@ -23,6 +41,21 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
     };
   }, []);
 
+  // Load trạng thái like từ localStorage
+  useEffect(() => {
+    if (!story) return;
+    const store = readStore();
+    if (!store[story.id]) {
+      store[story.id] = {
+        liked: false,
+        count: Math.floor(Math.random() * 200) + 5,
+      };
+      writeStore(store);
+    }
+    setLiked(store[story.id].liked);
+  }, [currentIndex, story]);
+
+  // Swipe xử lý next/prev/close
   const handleTouchStart = (e) => {
     const touch = e.changedTouches[0];
     touchStartX.current = touch.clientX;
@@ -54,6 +87,7 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
     }
   };
 
+  // Quản lý tiến trình story
   useEffect(() => {
     if (currentIndex >= storyList.length) {
       onClose();
@@ -89,9 +123,7 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
           setIsLoading(false);
           const durationMs = video.duration * 1000;
           startProgress(durationMs);
-          video
-            .play()
-            .catch((err) => console.warn("Không thể tự phát video:", err));
+          video.play().catch(() => {});
         };
 
         const handleEnded = () => {
@@ -131,6 +163,26 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
     }
   };
 
+  const handleLike = (e) => {
+    e.stopPropagation();
+    if (!story) return;
+    const store = readStore();
+
+    const entry = store[story.id] || { liked: false, count: 0 };
+    if (entry.liked) {
+      entry.liked = false;
+      entry.count = Math.max(0, entry.count - 1);
+    } else {
+      entry.liked = true;
+      entry.count += 1;
+    }
+
+    store[story.id] = entry;
+    writeStore(store);
+
+    setLiked(entry.liked);
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black/90 flex items-center justify-center z-50">
       <div
@@ -142,42 +194,12 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center z-30">
             <div className="w-10 h-10 relative transform rotate-45 -top-12">
-              <div
-                className="absolute bg-white w-4 h-4 animate-ping"
-                style={{ top: 0, left: 0, animationDuration: "1.2s" }}
-              />
-              <div
-                className="absolute bg-white w-4 h-4 animate-ping"
-                style={{
-                  top: 0,
-                  right: 0,
-                  animationDuration: "1.2s",
-                  animationDelay: "0.15s",
-                }}
-              />
-              <div
-                className="absolute bg-white w-4 h-4 animate-ping"
-                style={{
-                  bottom: 0,
-                  right: 0,
-                  animationDuration: "1.2s",
-                  animationDelay: "0.3s",
-                }}
-              />
-              <div
-                className="absolute bg-white w-4 h-4 animate-ping"
-                style={{
-                  bottom: 0,
-                  left: 0,
-                  animationDuration: "1.2s",
-                  animationDelay: "0.45s",
-                }}
-              />
+              <div className="absolute bg-white w-4 h-4 animate-ping" />
             </div>
           </div>
         )}
 
-        {/* Video hoặc Hình ảnh */}
+        {/* Video hoặc ảnh */}
         {story.type === "video" || story.video ? (
           <video
             ref={videoRef}
@@ -196,11 +218,6 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
           />
         )}
 
-        {/* Tên người đăng */}
-        <div className="absolute top-3 left-3 text-white font-semibold text-sm z-20">
-          {story.username}
-        </div>
-
         {/* Progress bar */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gray-400/50 z-20">
           <div
@@ -209,29 +226,51 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
           />
         </div>
 
-        {/* Nút đóng */}
-        <button
-          className="absolute top-2 right-2 text-white rounded-full p-1 z-20"
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose();
-          }}
-        >
-          <CloseIcon />
-        </button>
+        {/* Username */}
+        <div className="absolute top-4 left-4 text-white font-semibold text-sm z-20">
+          {story.username}
+        </div>
 
-        {/* Nút âm thanh */}
-        {(story.type === "video" || story.video) && (
+        {/* Cột nút bên phải */}
+        <div className="absolute top-2 right-2 flex flex-col gap-4 items-center z-20">
+          {/* Close */}
           <button
-            className="absolute top-2 right-12 text-white rounded-full p-1 z-20"
+            className="text-white rounded-full p-2 bg-black/30 hover:bg-black/50"
             onClick={(e) => {
               e.stopPropagation();
-              setIsMuted((prev) => !prev);
+              onClose();
             }}
           >
-            {isMuted ? <VolumeCloseIcon /> : <VolumeOpenIcon />}
+            <X size={22} />
           </button>
-        )}
+
+          {/* Volume */}
+          {(story.type === "video" || story.video) && (
+            <button
+              className="text-white rounded-full p-2 bg-black/30 hover:bg-black/50"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsMuted((prev) => !prev);
+              }}
+            >
+              {isMuted ? <VolumeX size={22} /> : <Volume2 size={22} />}
+            </button>
+          )}
+
+          {/* Heart */}
+          <div className="flex flex-col items-center">
+            <button
+              className="text-white rounded-full p-2 bg-black/30 hover:bg-black/50 active:scale-90 transition"
+              onClick={handleLike}
+            >
+              <Heart
+                className={`w-5 h-5 ${
+                  liked ? "text-red-500 fill-red-500" : ""
+                }`}
+              />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

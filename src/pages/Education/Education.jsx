@@ -92,36 +92,6 @@ const Education = () => {
                   </li>
                 </ul>
               </div>
-
-              <div>
-                <h3 className="font-bold text-lg mb-3 dark:text-white border-b border-dashed border-gray-400 dark:border-neutral-400 pb-2">
-                  Liên kết
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                    <a
-                      href="https://itc.edu.vn"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      Trang chủ trường ITC
-                    </a>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                    <a
-                      href="https://itc.edu.vn"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      Chương trình đào tạo
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
 
@@ -193,7 +163,7 @@ const Education = () => {
                 </ul>
               </div>
 
-              {/* <div>
+              <div>
                 <h3 className="font-semibold text-lg mb-3 dark:text-white">
                   Kiến thức bổ trợ
                 </h3>
@@ -213,59 +183,10 @@ const Education = () => {
                     </li>
                   ))}
                 </ul>
-              </div> */}
+              </div>
             </div>
           </div>
         </section>
-
-        {/* <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 dark:text-white border-b border-dashed border-gray-400 dark:border-neutral-400 pb-2">
-            Chứng chỉ & Khóa học
-          </h2>
-
-          <div className="mb-6">
-            <h3 className="font-semibold text-lg mb-2 dark:text-white">
-              Chứng chỉ Tin học
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-1">
-              Đạt loại Giỏi - 2023
-            </p>
-            <p className="text-gray-700 dark:text-gray-300">
-              Chứng chỉ tin học văn phòng nâng cao với các kỹ năng Word, Excel,
-              PowerPoint.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-lg mb-3 dark:text-white">
-              Khóa học trực tuyến
-            </h3>
-            <ul className="space-y-4">
-              <li>
-                <p className="font-medium dark:text-white">
-                  The Complete Web Developer in 2024: Zero to Mastery
-                </p>
-                <p className="text-gray-600 dark:text-gray-300">Udemy - 2024</p>
-              </li>
-              <li>
-                <p className="font-medium dark:text-white">
-                  React - The Complete Guide
-                </p>
-                <p className="text-gray-600 dark:text-gray-300">Udemy - 2023</p>
-              </li>
-              <li>
-                <p className="font-medium dark:text-white">
-                  JavaScript Algorithms and Data Structures
-                </p>
-                <p className="text-gray-600 dark:text-gray-300">
-                  freeCodeCamp - 2023
-                </p>
-              </li>
-            </ul>
-          </div>
-        </section> */}
-
-        <ScrollTimeline />
       </article>
     </>
   );

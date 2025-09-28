@@ -81,7 +81,7 @@ export const timelineData = [
     title: "Ứng dụng truy xuất nguồn gốc nông sản",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: "project_2.png",
+    images: "project_4.png",
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng di động truy xuất nguồn gốc nông sản bằng React Native.",
@@ -117,7 +117,7 @@ export const timelineData = [
     title: "Ứng dụng mua sắm quần áo",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: "project_1.png",
+    images: "project_5.png",
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng mua sắm quần áo bằng React Native, giao diện trực quan và thân thiện với người dùng.",
