@@ -37,7 +37,7 @@ const SOCIAL_LINKS = [
 ];
 const SocialLinks = () => {
   return (
-    <div className="flex-1">
+    <div>
       <ul className="flex flex-wrap gap-3" role="list">
         {SOCIAL_LINKS.map(({ Icon, link, label, color }, index) => (
           <li key={`${label}-${index}`}>
