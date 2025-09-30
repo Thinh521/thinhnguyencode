@@ -4,6 +4,7 @@ import PhotoData from "../../data/PhotoData";
 import StoryViewer from "../../components/StoryViewer/StoryViewer";
 import storiesData from "../../data/StoriesData";
 import Header from "../../components/Header/Header";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import "./Photo.css";
 
 const StoryAvatar = ({ story, index, onClick }) => {
@@ -13,7 +14,7 @@ const StoryAvatar = ({ story, index, onClick }) => {
     <div
       onClick={() => onClick(index)}
       className="flex flex-col items-center space-y-2 cursor-pointer flex-shrink-0"
-      style={{ width: "90px" }}
+      style={{ width: "80px" }}
     >
       <div className="relative">
         {/* Loading spinner */}
@@ -101,9 +102,7 @@ const Photo = () => {
       <section className="space-y-4">
         {/* Stories */}
         <div>
-          <h2 className="text-xl font-semibold mb-4 dark:text-white text-gray-800">
-            Tin nổi bật
-          </h2>
+          <SectionTitle>Tin nổi bật</SectionTitle>
           <div className="relative">
             <div className="overflow-x-auto pb-2 scrollbar-hide">
               <div
@@ -125,9 +124,7 @@ const Photo = () => {
 
         {/* Photos */}
         <div>
-          <h2 className="text-xl font-semibold mb-4 dark:text-white text-gray-800">
-            Ảnh chụp
-          </h2>
+          <SectionTitle>Ảnh chụp</SectionTitle>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
             {PhotoData.map((photo) => (
               <Link

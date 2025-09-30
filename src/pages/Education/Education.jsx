@@ -1,5 +1,5 @@
 import Header from "../../components/Header/Header";
-import { ScrollTimeline } from "../../components/scroll-timeline";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 const Education = () => {
   return (
@@ -26,79 +26,60 @@ const Education = () => {
           </div>
 
           <div className="mb-8">
-            <h1 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white flex items-center gap-2">
-              <span className="w-1 h-5 bg-gradient-to-b from-gray-700 to-gray-500  rounded-full"></span>
-              Tổng quan
-            </h1>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">
+            <SectionTitle>Tổng quan</SectionTitle>
+            <p className=" mb-6 text-sm text-justify leading-relaxed">
               Hiện tại tôi là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
-              tại{" "}
-              <a
-                href="https://itc.edu.vn/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-justify"
-              >
-                Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC)
-              </a>
-              . Với kiến thức chuyên môn về lập trình full-stack và thiết kế
-              giao diện, tôi đang không ngừng nâng cao kỹ năng để sẵn sàng cho
-              môi trường làm việc chuyên nghiệp.
+              tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC) . Với kiến
+              thức chuyên môn về lập trình full-stack và thiết kế giao diện, tôi
+              đang không ngừng nâng cao kỹ năng để sẵn sàng cho môi trường làm
+              việc chuyên nghiệp.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-bold text-lg mb-3 dark:text-white border-b border-dashed border-gray-400 dark:border-neutral-400 pb-2">
-                  Thông tin học tập
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                    <span className="text-gray-700 dark:text-gray-300">
-                      <strong>Thời gian: </strong>2023 - 2025
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                    <span className="text-gray-700 dark:text-gray-300">
-                      <strong>Chuyên ngành: </strong>Thiết Kế Trang Web
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                    <span className="text-gray-700 dark:text-gray-300">
-                      <strong>Loại hình đào tạo: </strong>Chính quy
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                    <span className="text-gray-700 dark:text-gray-300">
-                      <strong>Bằng cấp: </strong>Cử nhân Cao đẳng (dự kiến
-                      7/2025)
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                    <span className="text-gray-700 dark:text-gray-300">
-                      <strong>Tình trạng: </strong>Đang theo học
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                    <span className="text-gray-700 dark:text-gray-300">
-                      <strong>Điểm trung bình (GPA) hiện tại: </strong>3.34 /
-                      4.0
-                    </span>
-                  </li>
-                </ul>
-              </div>
+            <div>
+              <SectionTitle>Thông tin học tập</SectionTitle>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>Thời gian: </strong>2023 - 2025
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>Chuyên ngành: </strong>Thiết Kế Trang Web
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>Loại hình đào tạo: </strong>Chính quy
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>Bằng cấp: </strong>Cử nhân Cao đẳng (dự kiến 7/2025)
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>Tình trạng: </strong>Đang theo học
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>Điểm trung bình (GPA) hiện tại: </strong>3.34 / 4.0
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
 
           <div className="mb-12">
-            <h2 className="text-xl font-bold mb-4 dark:text-white border-b  border-dashed pb-2">
-              Kỹ năng đã học
-            </h2>
+            <SectionTitle>Kỹ năng</SectionTitle>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>

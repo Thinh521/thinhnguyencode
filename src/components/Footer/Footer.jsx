@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Phone, Mail, MapPin, Heart, User } from "lucide-react";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -76,10 +77,7 @@ const Footer = () => {
 
         {/* Thông tin liên hệ */}
         <div className="mb-12">
-          <h1 className="text-lg font-semibold mb-6 text-gray-800 dark:text-white flex items-center gap-2">
-            <span className="w-1 h-5 bg-gradient-to-b from-gray-700 to-gray-500 rounded-full"></span>
-            Thông tin liên hệ
-          </h1>
+          <SectionTitle>Thông tin liên hệ</SectionTitle>
 
           <div>
             {contactItems.map((item, index) => (
@@ -112,7 +110,7 @@ const Footer = () => {
           <div className="flex items-center gap-3 justify-center mb-6">
             <Heart className="w-5 h-5 text-gray-700 dark:text-gray-300 animate-pulse" />
             <span className="text-sm text-gray-600 dark:text-gray-400">
-              Made with love in Ho Chi Minh City
+              Sản phẩm được làm ra bằng cả tâm huyết
             </span>
           </div>
 

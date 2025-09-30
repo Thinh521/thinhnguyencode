@@ -3,6 +3,7 @@ import Divider from "../../components/Divider/Divider";
 import Header from "../../components/Header/Header";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import Button from "../../components/Button/Button";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 const interestingFacts = [
   { icon: "💻", text: "Đam mê lập trình & thiết kế UI/UX" },
@@ -49,10 +50,7 @@ const About = () => {
         </section>
 
         <section className="my-6">
-          <h1 className="text-lg font-semibold mb-4 text-gray-800 dark:text-white flex items-center gap-2">
-            <span className="w-1 h-5 bg-gradient-to-b from-gray-700 to-gray-500 rounded-full"></span>
-            Kết nối với tớ
-          </h1>
+          <SectionTitle>Kết nối</SectionTitle>
           <div className="flex flex-col gap-6">
             <Button className="w-[40%]" to="/cv">
               Resume
@@ -66,10 +64,7 @@ const About = () => {
         </section>
 
         <section>
-          <h1 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white flex items-center gap-2">
-            <span className="w-1 h-5 bg-gradient-to-b from-gray-700 to-gray-500  rounded-full"></span>
-            Câu chuyện của tớ
-          </h1>
+          <SectionTitle>Câu chuyện</SectionTitle>
           <p className="text-sm text-justify">
             Tớ xin phép được giới thiệu nhiều hơn về bản thân nhé. Tớ hiện đang
             sống và làm việc tại TP.HCM. Tớ đang là sinh viên năm cuối của
@@ -95,10 +90,7 @@ const About = () => {
         </section>
 
         <div>
-          <h1 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white flex items-center gap-2">
-            <span className="w-1 h-5 bg-gradient-to-b from-gray-700 to-gray-500  rounded-full"></span>
-            Những thú vị về tớ
-          </h1>
+          <SectionTitle>Những điều thú vị</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {interestingFacts.map((fact, index) => (
               <div
