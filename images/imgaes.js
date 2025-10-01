@@ -1,6 +1,7 @@
 import avatar from "./avatar.jpg";
 import logoSchool from "./logo_school.png";
 import logoVscode from "./Logo_Vscode.png";
+import logoGithub from "./Logo_Github.png";
 
 import photo1_1 from "./photo_1.1.jpg";
 import photo1_2 from "./photo_1.2.jpg";
@@ -32,6 +33,7 @@ export const IMAGES = {
   avatar,
   logoSchool,
   logoVscode,
+  logoGithub,
 
   photo1_1,
   photo1_2,
