@@ -193,8 +193,38 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
       >
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center z-30">
-            <div className="w-10 h-10 relative transform rotate-45 -top-12">
-              <div className="absolute bg-white w-4 h-4 animate-ping" />
+            <div className="w-12 h-12 relative transform rotate-45">
+              <div
+                className="absolute bg-white w-5 h-5 animate-ping"
+                style={{ top: 0, left: 0, animationDuration: "1.2s" }}
+              />
+              <div
+                className="absolute bg-white w-5 h-5 animate-ping"
+                style={{
+                  top: 0,
+                  right: 0,
+                  animationDuration: "1.2s",
+                  animationDelay: "0.15s",
+                }}
+              />
+              <div
+                className="absolute bg-white w-5 h-5 animate-ping"
+                style={{
+                  bottom: 0,
+                  right: 0,
+                  animationDuration: "1.2s",
+                  animationDelay: "0.3s",
+                }}
+              />
+              <div
+                className="absolute bg-white w-5 h-5 animate-ping"
+                style={{
+                  bottom: 0,
+                  left: 0,
+                  animationDuration: "1.2s",
+                  animationDelay: "0.45s",
+                }}
+              />
             </div>
           </div>
         )}
