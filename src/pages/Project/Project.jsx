@@ -6,7 +6,7 @@ const Project = () => {
     <article>
       <Header
         title="Dự án"
-        subtitle="Những dự án lập trình cá nhân / pet projects của tớ từ Github"
+        subtitle="Những dự án lập trình cá nhân / pet projects của mình từ Github"
       />
 
       <TimelinePage2 />

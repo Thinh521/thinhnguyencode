@@ -71,7 +71,7 @@ const Contact = () => {
     <article className="space-y-8">
       <Header
         title="Liên hệ"
-        subtitle="Mọi người liên hệ công việc với tớ qua form này nhé"
+        subtitle="Mọi người liên hệ với mình qua form này nhé"
       />
 
       {/* Form liên hệ */}

@@ -1,6 +1,17 @@
+import { IMAGES } from "../../../public/images/imgaes";
 import Header from "../../components/Header/Header";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import OrbitCarousel from "../../components/SkillCarousel/orbit-carousel";
+
+const studyInfo = [
+  { label: "Thời gian", value: "2023 - 2025" },
+  { label: "Chuyên ngành", value: "Thiết Kế Trang Web" },
+  { label: "Loại hình đào tạo", value: "Chính quy" },
+  { label: "Bằng cấp", value: "Cử nhân Cao đẳng" },
+  { label: "Tình trạng", value: "Chuẩn bị tốt nghiệp (đang chờ xét)" },
+  { label: "Điểm trung bình (GPA)", value: "3.35 / 4.0" },
+  { label: "Tốt nghiệp loại", value: "Giỏi" },
+];
 
 const Education = () => {
   return (
@@ -8,19 +19,19 @@ const Education = () => {
       <article>
         <Header
           title="Học vấn & Đào tạo"
-          subtitle="Quá trình học tập và các chứng chỉ đã đạt được"
+          subtitle="Quá trình học tập và các kĩ năng của mình"
         />
 
-        <section className="mb-12">
-          <div className="text-center mb-8">
-            <h1 className="font-playfair font-semibold text-2xl dark:text-white mb-2">
+        <section className="mb-8">
+          <div className="text-center mb-10">
+            <h1 className="font-playfair font-semibold text-xl dark:text-white mb-2 uppercase">
               TRƯỜNG CAO ĐẲNG CÔNG NGHỆ THÔNG TIN TP. HỒ CHÍ MINH
             </h1>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-600 dark:text-gray-300 mb-6 text-base font-semibold uppercase">
               Information Technology College HoChiMinh City
             </p>
             <img
-              src="/thinhnguyencode/images/logo_school.png"
+              src={IMAGES.logoSchool}
               alt="ITC Logo"
               className="w-32 h-32 mx-auto object-contain"
             />
@@ -29,52 +40,31 @@ const Education = () => {
           <div className="mb-8">
             <SectionTitle>Tổng quan</SectionTitle>
             <p className=" mb-6 text-sm text-justify leading-relaxed">
-              Hiện tại tôi là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
-              tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC) . Với kiến
-              thức chuyên môn về lập trình full-stack và thiết kế giao diện, tôi
-              đang không ngừng nâng cao kỹ năng để sẵn sàng cho môi trường làm
-              việc chuyên nghiệp.
+              Trải qua 24 năm đào tạo, đã có hơn 23 khóa sinh viên tốt nghiệp ra
+              trường. Hiện nay, trường Cao đẳng Công nghệ thông tin TP.HCM (ITC)
+              đang đào tạo 18 ngành, nghề cao đẳng và 7 ngành, nghề trung cấp
+              bao gồm nhiều lĩnh vực như sau: Công nghệ thông tin; Thiết kế đồ
+              họa; Truyền thông và mạng máy tính; Hệ thống thông tin; Thương mại
+              điện tử; Lập trình máy tính; Công nghệ kỹ thuật điện tử, truyền
+              thông; Công nghệ kỹ thuật điều khiển và tự động hóa; Quản trị kinh
+              doanh (Quản trị Digital Marketing); Kỹ thuật sửa chữa, lắp ráp máy
+              tính; Kế toán, Tài chính - Ngân hàng, Logistics,… Hàng năm, số
+              lượng cử nhân, kỹ sư tốt nghiệp ra trường có việc làm đạt tỷ lệ
+              lên đến 95%.
             </p>
 
             <div>
               <SectionTitle>Thông tin học tập</SectionTitle>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
-                    <strong>Thời gian: </strong>2023 - 2025
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
-                    <strong>Chuyên ngành: </strong>Thiết Kế Trang Web
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
-                    <strong>Loại hình đào tạo: </strong>Chính quy
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
-                    <strong>Bằng cấp: </strong>Cử nhân Cao đẳng (dự kiến 7/2025)
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
-                    <strong>Tình trạng: </strong>Đang theo học
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
-                    <strong>Điểm trung bình (GPA) hiện tại: </strong>3.34 / 4.0
-                  </span>
-                </li>
+              <ul className="space-y-4">
+                {studyInfo.map((item, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span className="inline-block w-2 h-2 bg-gray-400 mr-3 rotate-45 self-center" />
+                    <span className="text-gray-700 dark:text-gray-300 text-sm">
+                      <strong>{item.label}: </strong>
+                      {item.value}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

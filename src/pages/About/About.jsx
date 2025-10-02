@@ -9,7 +9,7 @@ import { IMAGES } from "../../../public/images/imgaes";
 const interestingFacts = [
   { icon: "💻", text: "Đam mê lập trình & thiết kế UI/UX" },
   { icon: "📸", text: "Yêu thích nhiếp ảnh & quay phim" },
-  { icon: "🎓", text: "Sinh viên Thiết kế Web tại ITC" },
+  { icon: "🎓", text: "Sinh viên Thiết Kế Trang Web tại ITC" },
   { icon: "🏙️", text: "Sống và làm việc tại TP.HCM" },
 ];
 
@@ -19,7 +19,7 @@ const About = () => {
       <article>
         <Header
           title="Giới thiệu"
-          subtitle="Một chút thú vị về tớ và những điều lớn lao"
+          subtitle="Một chút thú vị về mình và những điều lớn lao"
         />
 
         <section className="flex justify-center">
@@ -53,7 +53,7 @@ const About = () => {
         <section className="my-6">
           <SectionTitle>Kết nối</SectionTitle>
           <div className="flex flex-col gap-6">
-            <Button className="w-[40%]" to="/cv">
+            <Button className="w-[150px]" to="/cv">
               Resume
             </Button>
             <SocialLinks />
@@ -67,22 +67,33 @@ const About = () => {
         <section>
           <SectionTitle>Câu chuyện</SectionTitle>
           <p className="text-sm text-justify">
-            Tớ xin phép được giới thiệu nhiều hơn về bản thân nhé. Tớ hiện đang
-            sống và làm việc tại TP.HCM. Tớ đang là sinh viên năm cuối của
-            trường nên tớ thực hiện và làm những dự án để tốt nghiệp. Website
-            này cũng là những dự án mà tớ tâm huyết nhất. Mục đích của nó dùng
-            để giới thiệu bản thân của tớ, giới thiệu về các dự án và xem dự án.
-            Học vấn của tớ. Cùng với đó là những hình ảnh âm nhạc và những câu
-            chuyện của tớ đã trải qua và những thứ tớ đạt được trong cuộc sống.
-            Tớ rất thích với việc lập trình giao diện và tớ cũng đang tự học
-            thêm nhiều ngôn ngữ lập trình để làm được những website hoàn chỉnh
-            và hiện đại, độc đáo hơn. Tớ muốn và hướng đên việc trở thành một
-            Fullstack Developer chuyên nghiệp. Ngoài ra, tớ siêu thích quay
-            phim, chụp ảnh luôn í. Kiểu như tớ muốn lưu lại những khoảnh khắc
-            đáng nhớ, đẹp nhất, dễ thương nhất của tớ cùng với gia đình, người
-            iu, bạn bè và bản thân tớ. Tớ muốn truyền tải với mọi nguòi những gì
-            mà tớ thấy và những thứ đẹp nhất đáng yêu nhất qua góc kính nhiệm
-            màu nhiệm màu của tớ.
+            Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của
+            mình. Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết
+            Kế Trang Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC).
+            Hiện tại mình đang sinh sống và làm việc tại TP.HCM. Đây là giai
+            đoạn mình đang dồn hết tâm huyết của mình cho các dự án tốt nghiệp,
+            mà Website cá nhân này chính là một trong những dự án tâm đắc nhất
+            của mình. Mục tiêu của website này là một không gian toàn diện hiện
+            đại, thân thiện và đẹp mắt để: giới thiệu bản thân, trưng bày các dự
+            án đã thực hiện, chia sẻ học vấn, và đặc biệt là nơi lưu giữ những
+            hình ảnh, âm nhạc, những câu chuyện, thành tựu cá nhân mình đã trải
+            qua và có được trong hành trình của mình. Mình có niềm yêu thích đặc
+            biệt với lập trình giao diện (Frontend) và đang không ngừng tự học
+            thêm các ngôn ngữ lập trình chuyên sâu hơn để có thể xây dựng những
+            ứng dụng (App), website hoàn chỉnh, hiện đại và độc đáo. Cùng với
+            khát vọng trở thành một Frontend Developer chuyên nghiệp trong tương
+            lai. Bên cạnh kiến thức lập trình. Nhà trường cũng đã trang bị thêm
+            kiến thức nền tảng cho mình về thiết kế và sáng tạo. Mình cũng học
+            được các kỹ năng đủ để thiết kế được các Poster. Tuy nhiên, Mình
+            không ngừng tự thử thách bản thân. Mình đang trên hành trình học hỏi
+            không ngừng để hoàn thiện sâu hơn nữa kỹ năng chuyên môn và tư duy
+            thiết kế, nhằm tạo ra những sản phẩm không chỉ đẹp mà còn mang tính
+            ứng dụng cao và đột phá. Ngoài ra, mình cực kỳ đam mê quay phim và
+            chụp ảnh. Sở thích này không chỉ là giải trí mà còn là cách mình lưu
+            giữ trọn vẹn những khoảnh khắc đáng nhớ nhất của bản thân, gia đình,
+            bạn bè và người yêu của mình. Mình muốn dùng "góc kính nhiệm màu"
+            của mình để truyền tải đến mọi người những gì mình thấy là đẹp đẽ,
+            đáng yêu và ý nghĩa nhất trong cuộc sống của mình.
           </p>
         </section>
 

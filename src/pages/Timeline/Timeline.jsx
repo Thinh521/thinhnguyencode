@@ -7,7 +7,7 @@ const Timeline = () => {
       <article>
         <Header
           title="Hành trình"
-          subtitle="Những dấu mốc và trải nghiệm trên hành trình của tôi"
+          subtitle="Những dấu mốc và trải nghiệm trên hành trình của mình"
         />
         
         <ScrollTimeline />

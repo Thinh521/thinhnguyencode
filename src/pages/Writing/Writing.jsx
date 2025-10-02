@@ -7,7 +7,7 @@ const Writing = () => {
     <article>
       <Header
         title="Câu chuyện"
-        subtitle="Những câu chuyện mà tớ đã trải qua trong cuộc sống"
+        subtitle="Những câu chuyện mà mình đã trải qua trong cuộc sống"
       />
 
       <section>

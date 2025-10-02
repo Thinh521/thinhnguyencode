@@ -17,14 +17,18 @@ const Home = () => {
       <section className="mb-5">
         <SectionTitle>Giới thiệu</SectionTitle>
         <p className="text-sm text-justify leading-relaxed">
-          Xin chào, tớ là Nguyễn Phúc Thịnh. Hiện tại tớ đang là sinh viên
-          chuyên ngành Thiết Kế Trang Web tại Trường Cao Đẳng Công Nghệ Thông
-          Tin TP.HCM (ITC). Với niềm đam mê sâu sắc với lập trình và sáng tạo
-          giao diện, tớ không ngừng học hỏi và phát triển kỹ năng mỗi ngày. Tớ
-          còn tự học thêm về Editor và thiết kế nữa. Hiện tại, tớ đang từng bước
-          chinh phục hành trình để trở thành một Mobile App Developer chuyên
-          nghiệp, thực hiện những ước mơ lớn và đóng góp giá trị cho các dự án
-          công nghệ trong tương lai.
+          Xin chào, mình là Nguyễn Phúc Thịnh, sinh viên chuyên ngành Thiết Kế
+          Trang Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Với
+          niềm đam mê sâu sắc dành cho lập trình và sáng tạo giao diện người
+          dùng (UI/UX), mình không ngừng học hỏi và phát triển kỹ năng mỗi ngày.
+          Lập trình là nền tảng, nhưng mình còn có sở thích đặc biệt với thiết
+          kế, chụp ảnh và quay dựng (Video Editing). Chính những sở thích này đã
+          thúc đẩy mình tự trau dồi thêm các kỹ năng về thiết kế đồ họa và biên
+          tập nội dung, tạo nên một lợi thế toàn diện. Hiện tại, mình đang từng
+          bước chinh phục mục tiêu trở thành một Frontend Developer chuyên
+          nghiệp. Tôi tin rằng sự kết hợp giữa kiến thức chuyên ngành và các kỹ
+          năng sáng tạo sẽ giúp tôi thực hiện những dự án lớn, đóng góp giá trị
+          thiết thực vào ngành công nghệ trong tương lai.
         </p>
       </section>
 
@@ -39,7 +43,7 @@ const Home = () => {
       <section className="my-6">
         <SectionTitle>Kết nối</SectionTitle>
         <div className="flex flex-col gap-6">
-          <Button className="w-[40%]" to="/cv">
+          <Button className="w-[150px]" to="/cv">
             Resume
           </Button>
           <SocialLinks />

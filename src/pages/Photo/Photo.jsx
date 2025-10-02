@@ -96,7 +96,7 @@ const Photo = () => {
     <article>
       <Header
         title="Ảnh chụp & tin nổi bật"
-        subtitle="Những bức ảnh mà tôi tự chụp qua ống kính nhiệm màu"
+        subtitle="Những bức ảnh mà mình tự chụp qua ống kính nhiệm màu"
       />
 
       <section className="space-y-4">
