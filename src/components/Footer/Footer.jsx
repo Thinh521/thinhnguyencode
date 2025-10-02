@@ -63,7 +63,7 @@ const Footer = () => {
               className="absolute inset-0 rounded-full"
               style={{
                 background:
-                  "conic-gradient(from var(--angle), transparent 70%, #60a5fa 80%, transparent 100%)",
+                  "conic-gradient(from var(--angle), transparent 25%, #ef4444, transparent 50%)",
                 animation: "shimmer-spin 4s linear infinite",
               }}
             />

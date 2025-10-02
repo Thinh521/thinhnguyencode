@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import Button from "../../components/Button/Button";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import { IMAGES } from "../../../public/images/imgaes";
 
 const interestingFacts = [
   { icon: "💻", text: "Đam mê lập trình & thiết kế UI/UX" },
@@ -25,7 +26,7 @@ const About = () => {
           <div className="text-center my-2">
             <div className="relative w-48 h-48 mx-auto mb-4">
               <img
-                src="/thinhnguyencode/images/avatar_2.jpg"
+                src={IMAGES.avatar}
                 alt="avatar"
                 className="w-full h-full rounded-full object-cover border border-gray-200"
               />

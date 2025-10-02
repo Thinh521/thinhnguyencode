@@ -1,5 +1,6 @@
 import Header from "../../components/Header/Header";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import OrbitCarousel from "../../components/SkillCarousel/orbit-carousel";
 
 const Education = () => {
   return (
@@ -77,96 +78,11 @@ const Education = () => {
               </ul>
             </div>
           </div>
+        </section>
 
-          <div className="mb-12">
-            <SectionTitle>Kỹ năng</SectionTitle>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-semibold text-lg mb-3 dark:text-white">
-                  Front-End Development
-                </h3>
-                <ul className="space-y-2">
-                  {[
-                    "HTML5 & CSS3",
-                    "JavaScript (ES6+)",
-                    "React.js",
-                    "Bootstrap",
-                    "Tailwind CSS",
-                  ].map((skill) => (
-                    <li key={skill} className="flex items-center">
-                      <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {skill}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg mb-3 dark:text-white">
-                  Back-End & Database
-                </h3>
-                <ul className="space-y-2">
-                  {["Node.js", "Express.js", "MongoDB", "MySQL"].map(
-                    (skill) => (
-                      <li key={skill} className="flex items-center">
-                        <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                        <span className="text-gray-700 dark:text-gray-300">
-                          {skill}
-                        </span>
-                      </li>
-                    )
-                  )}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg mb-3 dark:text-white">
-                  Công cụ & Khác
-                </h3>
-                <ul className="space-y-2">
-                  {[
-                    "Git & GitHub",
-                    "Postman",
-                    "Figma",
-                    "VS Code",
-                    "Responsive Design",
-                  ].map((skill) => (
-                    <li key={skill} className="flex items-center">
-                      <span className="inline-block w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {skill}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg mb-3 dark:text-white">
-                  Kiến thức bổ trợ
-                </h3>
-                <ul className="space-y-2">
-                  {[
-                    "UI/UX Design",
-                    "SEO cơ bản",
-                    "Agile Methodology",
-                    "RESTful APIs",
-                    "Authentication",
-                  ].map((skill) => (
-                    <li key={skill} className="flex items-center">
-                      <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {skill}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+        <section>
+          <SectionTitle>Kỹ năng</SectionTitle>
+          <OrbitCarousel />
         </section>
       </article>
     </>

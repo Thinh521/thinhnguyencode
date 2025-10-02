@@ -31,7 +31,7 @@ export default function ShimmerButton({
             className="absolute inset-0"
             style={{
               background:
-                "conic-gradient(from var(--angle), transparent 25%, #06b6d4, transparent 50%)",
+                "conic-gradient(from var(--angle), transparent 25%, #ef4444, transparent 50%)",
               animation: "shimmer-spin 2.5s linear infinite",
             }}
           />
