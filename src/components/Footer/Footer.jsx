@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Phone, Mail, MapPin, Heart, User } from "lucide-react";
 import SectionTitle from "../SectionTitle/SectionTitle";
+import styles from "./Footer.module.css";
+import Divider from "../Divider/Divider";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,7 +40,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={`relative overflow-hidden transition-all duration-1000 mb-28 ${
+      className={`relative overflow-hidden transition-all duration-1000 mb-36 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
@@ -75,7 +77,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Thông tin liên hệ */}
         <div className="mb-12">
           <SectionTitle>Thông tin liên hệ</SectionTitle>
 
@@ -105,8 +106,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer bottom */}
-        <div className="border-t border-gray-200/50 dark:border-gray-700/50 pt-8">
+        <Divider width="100%" />
+
+        <div className="py-10">
           <div className="flex items-center gap-3 justify-center mb-6">
             <Heart className="w-5 h-5 text-gray-700 dark:text-gray-300 animate-pulse" />
             <span className="text-sm text-gray-600 dark:text-gray-400">
@@ -124,21 +126,33 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Quote + chấm nhấp nháy */}
-        <div className="text-center mt-8 pt-8 border-t border-gray-200/30 dark:border-gray-700/30">
+        <Divider width="80%" />
+
+        <div className="text-center mt-8 pt-8">
           <p className="text-sm font-medium text-gray-700 dark:text-gray-300 italic">
             Mã là thơ ca, thiết kế là nghệ thuật và cùng nhau tạo nên điều kỳ
             diệu.
           </p>
-          <div className="flex justify-center mt-4">
-            <div className="flex gap-1">
-              {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-2 h-2 bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-400 dark:to-gray-200 rounded-full animate-pulse"
-                  style={{ animationDelay: `${i * 0.2}s` }}
-                ></div>
-              ))}
+          <div className="flex justify-center mt-8">
+            <div className={styles.typing_indicator}>
+              <div
+                className={`${styles.typing_circle} bg-black dark:bg-white`}
+              />
+              <div
+                className={`${styles.typing_circle} bg-black dark:bg-white`}
+              />
+              <div
+                className={`${styles.typing_circle} bg-black dark:bg-white`}
+              />
+              <div
+                className={`${styles.typing_shadow} bg-black/20 dark:bg-white/30`}
+              />
+              <div
+                className={`${styles.typing_shadow} bg-black/20 dark:bg-white/30`}
+              />
+              <div
+                className={`${styles.typing_shadow} bg-black/20 dark:bg-white/30`}
+              />
             </div>
           </div>
         </div>

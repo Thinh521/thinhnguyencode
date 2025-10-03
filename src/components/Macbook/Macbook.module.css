@@ -1,16 +1,19 @@
-/* From Uiverse.io by Ashon-G */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .macbook {
     position: relative;
     width: 228px;
     height: 260px;
+    z-index: 1;
+    animation: float 4s ease-in-out infinite;
 }
 
 .macbook__topBord {
@@ -62,12 +65,13 @@
     width: calc(100% - 12px);
     height: calc(100% - 18px);
     background: linear-gradient(45deg, #3ba9ff, #c82aff);
+    overflow: hidden;
 }
 
 .macbook__display::before {
     content: "";
     position: absolute;
-    z-index: 5;
+    z-index: -1;
     top: -9px;
     left: -6px;
     width: calc(100% + 12px);
@@ -490,5 +494,67 @@
     100% {
         transform: translate(0px, 0px);
         opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    inset: 0;
+    z-index: 0;
+}
+
+.stars::before,
+.stars::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: transparent;
+    background-image: radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 40px 70px, white, transparent),
+        radial-gradient(2px 2px at 90px 40px, white, transparent),
+        radial-gradient(2px 2px at 130px 80px, white, transparent),
+        radial-gradient(2px 2px at 160px 120px, white, transparent),
+        radial-gradient(2px 2px at 200px 20px, white, transparent),
+        radial-gradient(2px 2px at 250px 100px, white, transparent),
+        radial-gradient(2px 2px at 300px 60px, white, transparent),
+        radial-gradient(2px 2px at 350px 150px, white, transparent);
+    animation: twinkle 6s linear infinite;
+}
+
+.stars::after {
+    animation-delay: 3s;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: translateY(0px);
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: translateY(-10px);
     }
 }

@@ -80,7 +80,7 @@ const useIsMobile = (breakpoint = 768) => {
   return isMobile;
 };
 
-export default function OrbitCarousel() {
+export default function SkillCarousel() {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const isMobile = useIsMobile();
   const containerRadius = isMobile ? 130 : 200;

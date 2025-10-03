@@ -1,7 +1,7 @@
 import { IMAGES } from "../../../public/images/imgaes";
+import SkillCarousel from "../../components/Carousel/SkillCarousel";
 import Header from "../../components/Header/Header";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import OrbitCarousel from "../../components/SkillCarousel/orbit-carousel";
 
 const studyInfo = [
   { label: "Thời gian", value: "2023 - 2025" },
@@ -72,7 +72,7 @@ const Education = () => {
 
         <section>
           <SectionTitle>Kỹ năng</SectionTitle>
-          <OrbitCarousel />
+          <SkillCarousel />
         </section>
       </article>
     </>

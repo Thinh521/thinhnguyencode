@@ -4,6 +4,7 @@ import Macbook from "../../components/Macbook/Macbook";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import Button from "../../components/Button/Button";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import SliderCarousel from "../../components/Carousel/SliderCarousel";
 
 const Home = () => {
   return (
@@ -34,9 +35,22 @@ const Home = () => {
 
       <Divider />
 
-      <div className="my-10">
+      <section className="flex justify-center items-center w-full h-full">
         <Macbook />
-      </div>
+      </section>
+
+      <Divider width="70%" />
+
+      <section className="my-10 flex justify-center items-center w-full h-full">
+        <SliderCarousel
+          baseWidth={300}
+          autoplay={true}
+          autoplayDelay={3000}
+          pauseOnHover={true}
+          loop={true}
+          round={false}
+        />
+      </section>
 
       <Divider />
 

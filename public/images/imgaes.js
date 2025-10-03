@@ -9,6 +9,8 @@ import Bootstrap from "./Bootstrap.png";
 import HTML5 from "./HTML5.png";
 import CSS3 from "./CSS3.png";
 import JavaScript from "./JavaScript.png";
+import hinhnenLight from "./hinhnen.png";
+import hinhnenDark from "./hinhnendark.png";
 
 import photo1_1 from "./photo_1.1.jpg";
 import photo1_2 from "./photo_1.2.jpg";
@@ -48,6 +50,8 @@ export const IMAGES = {
   HTML5,
   CSS3,
   JavaScript,
+  hinhnenLight,
+  hinhnenDark,
 
   photo1_1,
   photo1_2,
