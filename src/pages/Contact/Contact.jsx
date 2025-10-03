@@ -1,9 +1,9 @@
-import Header from "../../components/Header/Header";
-import { Link } from "react-router-dom";
-import ShimmerButton from "../../components/ShimmerButton/ShimmerButton";
-import { toast } from "sonner";
 import { useState } from "react";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import ShimmerButton from "../../components/ShimmerButton/ShimmerButton";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 
 const testimonials = [
@@ -26,6 +26,40 @@ const testimonials = [
     img: "https://randomuser.me/api/portraits/women/65.jpg",
   },
 ];
+
+const animations = [
+  "animate-marquee",
+  "animate-marquee-reverse",
+];
+
+const MarqueeRow = ({ animation, testimonials }) => (
+  <div className={`flex gap-6 ${animation}`}>
+    {[...testimonials, ...testimonials].map((item, index) => (
+      <div
+        key={index}
+        className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 
+                   text-gray-200 rounded-2xl p-4 shadow-md w-[320px]"
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <img
+            src={item.img}
+            alt={item.name}
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <div>
+            <h4 className="text-base font-semibold dark:text-white text-black">
+              {item.name}
+            </h4>
+            <p className="text-xs text-gray-400">{item.role}</p>
+          </div>
+        </div>
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm line-clamp-3">
+          {item.text}
+        </p>
+      </div>
+    ))}
+  </div>
+);
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -74,7 +108,6 @@ const Contact = () => {
         subtitle="Mọi người liên hệ với mình qua form này nhé"
       />
 
-      {/* Form liên hệ */}
       <section>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -191,86 +224,13 @@ const Contact = () => {
       </section>
 
       <section className="overflow-hidden relative py-10 space-y-6">
-        {/* Hàng 1 (trái -> phải) */}
-        <div className="flex gap-6 animate-marquee">
-          {[...testimonials, ...testimonials].map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 text-gray-200 rounded-2xl p-6 shadow-lg w-[320px]"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold dark:text-white text-black">
-                    {item.name}
-                  </h4>
-                  <p className="text-sm text-gray-400">{item.role}</p>
-                </div>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm line-clamp-3">
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Hàng 2 (phải -> trái) */}
-        <div className="flex gap-6 animate-marquee-reverse">
-          {[...testimonials, ...testimonials].map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 text-gray-200 rounded-2xl p-6 shadow-lg w-[320px]"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold dark:text-white text-black">
-                    {item.name}
-                  </h4>
-                  <p className="text-sm text-gray-400">{item.role}</p>
-                </div>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm line-clamp-3">
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Hàng 3 (trái -> phải) */}
-        <div className="flex gap-6 animate-marquee">
-          {[...testimonials, ...testimonials].map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 text-gray-200 rounded-2xl p-6 shadow-lg w-[320px]"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold dark:text-white text-black">
-                    {item.name}
-                  </h4>
-                  <p className="text-sm text-gray-400">{item.role}</p>
-                </div>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm line-clamp-3">
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </div>
+        {animations.map((animation, idx) => (
+          <MarqueeRow
+            key={idx}
+            animation={animation}
+            testimonials={testimonials}
+          />
+        ))}
       </section>
     </article>
   );

@@ -38,35 +38,11 @@ const TimelineItemContent = memo(({ item }) => (
       {item.title}
     </p>
 
-    {/* Responsibilities */}
-    {/* <div className="space-y-3">
-      {item.responsibilities.map((resp, idx) => (
-        <div
-          key={`${item.id}-resp-${idx}`}
-          className="flex items-start gap-3 group"
-        >
-          <div className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0 group-hover:bg-slate-600 dark:bg-slate-500 dark:group-hover:bg-slate-400 transition-colors duration-200" />
-          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            {resp}
-          </p>
-        </div>
-      ))}
-    </div> */}
-
-    {/* Skills */}
-    {/* <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
-      {item.skills.map((skill, idx) => (
-        <Badge key={`${item.id}-skill-${idx}`} variant="secondary">
-          {skill}
-        </Badge>
-      ))}
-    </div> */}
-
-    <div className="border-t border-slate-200 dark:border-slate-800" />
+    <div className="border-t border-gray-200 dark:border-neutral-700/50" />
 
     {/* Links */}
     {item.links?.length ? (
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         {item.links.map((link, idx) => (
           <Button
             key={`${item.id}-link-${idx}`}
@@ -95,21 +71,21 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
       <div className="absolute left-1.5 lg:left-6 top-14 bottom-0 w-[2px] bg-gradient-to-b from-black via-gray-500 to-white dark:from-white dark:via-gray-400 dark:to-black" />
 
       {/* Node */}
-      <div className="absolute lg:left-4 top-6 w-4 h-4 bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center z-10">
+      <div className="absolute lg:left-4 top-6 w-4 h-4 bg-white dark:bg-[#060010] border-2 border-slate-300 dark:border-slate-800 rounded-full flex items-center justify-center z-10">
         <div className="w-2 h-2 bg-slate-900 dark:bg-slate-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
 
       {/* Card */}
       <div className="ml-7 lg:ml-12 mb-8">
         <div
-          className={`bg-white dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-800 transition-all ${
+          className={`bg-gray-100 dark:bg-neutral-800 rounded-lg border border-gray-200 dark:border-neutral-700/50 transition-all ${
             expanded ? "shadow-sm" : "shadow-none hover:shadow-sm"
           }`}
         >
           {/* Header */}
           <button
             id={headerId}
-            className="w-full text-left p-4 lg:p-6 cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors rounded-t-lg"
+            className="w-full text-left p-4 lg:p-6 cursor-pointer hover:bg-gray-200 dark:hover:bg-neutral-700/50 transition-colors rounded-t-lg"
             onClick={() => onToggle(item.id)}
             aria-expanded={expanded}
             aria-controls={contentId}
@@ -117,8 +93,8 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-2 flex-1">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-100 dark:bg-slate-900 rounded-md">
-                    <Icon className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                  <div className="p-2 bg-[#060010] rounded-md">
+                    <Icon className="w-4 h-4 text-white" />
                   </div>
                   <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
                     {item.role}
@@ -129,14 +105,14 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
                   <Badge variant="outline" className="text-xs">
                     {item.type}
                   </Badge>
-                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                  <span className="text-xs">
                     {item.duration}
                   </span>
                 </div>
               </div>
 
               <ChevronDown
-                className={`w-4 h-4 text-slate-400 dark:text-slate-600 transition-transform ${
+                className={`w-4 h-4 text-white transition-transform ${
                   expanded ? "rotate-180" : ""
                 }`}
               />
@@ -149,7 +125,7 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
               id={contentId}
               role="region"
               aria-labelledby={headerId}
-              className="px-4 lg:px-6 pb-4 lg:pb-6 border-t border-slate-100 dark:border-slate-900"
+              className="px-4 lg:px-6 pb-4 lg:pb-6 border-t border-gray-200 dark:border-neutral-700/50"
             >
               <TimelineItemContent item={item} />
             </div>

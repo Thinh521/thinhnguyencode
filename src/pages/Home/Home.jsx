@@ -39,7 +39,7 @@ const Home = () => {
         <Macbook />
       </section>
 
-      <Divider width="70%" />
+      <Divider className="w-full lg:w-[70%]" />
 
       <section className="my-10 flex justify-center items-center w-full h-full">
         <SliderCarousel

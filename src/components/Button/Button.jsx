@@ -16,7 +16,7 @@ const Button = ({
     bg-gradient-to-r from-gray-800 to-gray-700
     hover:from-gray-700 hover:to-gray-600 dark:from-gray-100 dark:to-gray-200
     dark:hover:from-white dark:hover:to-gray-100 text-white dark:text-gray-800
-    px-6 lg:py-2 py-3 rounded-xl transition-all duration-300 ease-in-out text-base
+    px-6 lg:py-2 py-3 rounded-full transition-all duration-300 ease-in-out text-base
     transform hover:scale-105 hover:shadow-lg
     focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
   `;

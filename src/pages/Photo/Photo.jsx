@@ -76,7 +76,7 @@ const StoryAvatar = ({ story, index, onClick }) => {
           />
         </div>
       </div>
-      <p className="text-xs text-center text-gray-600 dark:text-gray-300 w-full truncate">
+      <p className="text-xs text-center text-black dark:text-white w-full truncate">
         {story.username}
       </p>
     </div>
@@ -99,7 +99,7 @@ const Photo = () => {
         subtitle="Những bức ảnh mà mình tự chụp qua ống kính nhiệm màu"
       />
 
-      <section className="space-y-4">
+      <section className="space-y-8">
         {/* Stories */}
         <div>
           <SectionTitle>Tin nổi bật</SectionTitle>

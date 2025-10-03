@@ -123,14 +123,22 @@ const Macbook = () => {
     };
   }, []);
 
-  // Loading màn hình laptop
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3900);
-    return () => clearTimeout(timer);
-  }, []);
-
   const backgroundImage =
     theme === "dark" ? IMAGES.hinhnenDark : IMAGES.hinhnenLight;
+
+  useEffect(() => {
+    let timer;
+    const img = new Image();
+    img.src = backgroundImage;
+
+    img.onload = () => {
+      timer = setTimeout(() => setLoading(false), 3900);
+    };
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [backgroundImage]);
 
   return (
     <div className="w-full h-[400px] relative overflow-hidden">

@@ -27,8 +27,8 @@ const Education = () => {
             <h1 className="font-playfair font-semibold text-xl dark:text-white mb-2 uppercase">
               TRƯỜNG CAO ĐẲNG CÔNG NGHỆ THÔNG TIN TP. HỒ CHÍ MINH
             </h1>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 text-base font-semibold uppercase">
-              Information Technology College HoChiMinh City
+            <p className="mb-6 text-base font-semibold uppercase">
+              Information Technology College HCM City
             </p>
             <img
               src={IMAGES.logoSchool}
@@ -59,8 +59,8 @@ const Education = () => {
                 {studyInfo.map((item, idx) => (
                   <li key={idx} className="flex items-start">
                     <span className="inline-block w-2 h-2 bg-gray-400 mr-3 rotate-45 self-center" />
-                    <span className="text-gray-700 dark:text-gray-300 text-sm">
-                      <strong>{item.label}: </strong>
+                    <span className="text-sm">
+                      <strong className="text-black dark:text-white font-bold">{item.label}: </strong>
                       {item.value}
                     </span>
                   </li>

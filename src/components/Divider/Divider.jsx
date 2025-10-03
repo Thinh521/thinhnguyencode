@@ -1,4 +1,4 @@
-const Divider = ({ width = "100%", align = "center" }) => {
+const Divider = ({ width, align = "center", className = "" }) => {
   let marginStyle =
     align === "left"
       ? { marginLeft: 0, marginRight: "auto" }
@@ -6,11 +6,13 @@ const Divider = ({ width = "100%", align = "center" }) => {
       ? { marginLeft: "auto", marginRight: 0 }
       : { marginLeft: "auto", marginRight: "auto" };
 
+  const hasWidthClass = /\bw-/.test(className);
+
   return (
     <div
-      className="border-t border-dashed border-gray-200 dark:border-neutral-700"
-      style={{ width, ...marginStyle }}
-    ></div>
+      className={`border-t border-dashed border-gray-200 dark:border-neutral-700 ${className}`}
+      style={!hasWidthClass && width ? { width, ...marginStyle } : marginStyle}
+    />
   );
 };
 

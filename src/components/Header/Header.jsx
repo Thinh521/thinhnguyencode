@@ -19,7 +19,7 @@ const Header = ({ title, subtitle, verified = false }) => {
             {title}
           </h1>
         )}
-        <p className="text-sm text-left text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-left">
           {subtitle}
         </p>
       </header>

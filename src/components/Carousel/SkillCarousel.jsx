@@ -152,7 +152,7 @@ export default function SkillCarousel() {
               duration: 0.3,
               ease: "easeInOut",
             }}
-            className="z-10 bg-white dark:bg-neutral-800 backdrop-blur-sm shadow-xl dark:shadow-2xl dark:shadow-gray-900/50 rounded-xl p-3 md:p-4 w-44 md:w-48 text-center border border-gray-100 dark:border-gray-800"
+            className="z-10 bg-white dark:bg-neutral-800 backdrop-blur-sm shadow-xl dark:shadow-2xl dark:shadow-gray-900/50 rounded-xl p-3 md:p-4 w-44 md:w-48 text-center border border-gray-200 dark:border-neutral-700/50 "
           >
             <motion.img
               initial={{

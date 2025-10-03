@@ -70,7 +70,7 @@ const Footer = () => {
               }}
             />
             <div className="relative flex flex-col items-center text-center lg:inline-flex lg:flex-row lg:items-center lg:gap-3 px-6 py-3 bg-gradient-to-r from-gray-100/80 to-gray-200/80 dark:from-gray-800/80 dark:to-gray-700/80 backdrop-blur-sm rounded-full">
-              <span className="text-sm text-gray-800 dark:text-gray-200 font-medium">
+              <span className="text-sm text-black dark:text-white font-medium">
                 Dùng máy tính để có trải nghiệm tốt nhất
               </span>
             </div>
@@ -92,10 +92,10 @@ const Footer = () => {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                  <p className="text-sm font-medium text-black dark:text-white mb-1">
                     {item.label}
                   </p>
-                  <p className="text-sm text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors break-all">
+                  <p className="text-sm group-hover:text-gray-900 dark:group-hover:text-white transition-colors break-all">
                     {item.value}
                   </p>
                 </div>
@@ -109,28 +109,26 @@ const Footer = () => {
         <Divider width="100%" />
 
         <div className="py-10">
-          <div className="flex items-center gap-3 justify-center mb-6">
+          <div className="flex items-center gap-3 justify-center mb-7">
             <Heart className="w-5 h-5 text-gray-700 dark:text-gray-300 animate-pulse" />
-            <span className="text-sm text-gray-600 dark:text-gray-400">
+            <span className="text-sm text-black dark:text-white">
               Sản phẩm được làm ra bằng cả tâm huyết
             </span>
           </div>
 
           <div className="text-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+            <p className="text-sm text-black dark:text-white mb-2">
               © {new Date().getFullYear()} Nguyễn Phúc Thịnh
             </p>
-            <p className="text-xs text-gray-400 dark:text-gray-500">
-              All rights reserved! ✨
-            </p>
+            <p className="text-xs">All rights reserved! ✨</p>
           </div>
         </div>
 
-        <Divider width="80%" />
+        <Divider className="w-full lg:w-[80%]" />
 
         <div className="text-center mt-8 pt-8">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 italic">
-            Mã là thơ ca, thiết kế là nghệ thuật và cùng nhau tạo nên điều kỳ
+          <p className="text-sm font-medium text-black dark:text-white italic">
+            Mã là thơ ca, thiết kế là nghệ thuật cùng nhau tạo nên điều kỳ
             diệu.
           </p>
           <div className="flex justify-center mt-8">

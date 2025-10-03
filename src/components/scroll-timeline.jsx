@@ -1,48 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { cn } from "../lib/utils";
-import { Card, CardContent } from "./card";
+import { Card, CardContent } from "../components/card";
 import { Calendar } from "lucide-react";
 
-const DEFAULT_EVENTS = [
-  {
-    year: "2023",
-    title: "Bắt đầu học tập",
-    subtitle: "Cao đẳng Công Nghệ Thông Tin TP.HCM",
-    description:
-      "Chính thức nhập học, bắt đầu chương trình với chuyên ngành Thiết Kế Trang Web tại trường.",
-  },
-  {
-    year: "2024",
-    title: "Tiếp tục học tập",
-    subtitle: "Cao đẳng Công Nghệ Thông Tin TP.HCM",
-    description:
-      "Hoàn thành các môn chuyên ngành, rèn luyện kỹ năng lập trình và phát triển phần mềm.",
-  },
-  {
-    year: "03/2025",
-    title: "Thực tập & Tốt nghiệp",
-    subtitle: "Công ty CP Pione Group",
-    description:
-      "Bắt đầu thực tập từ tháng 3/2025 tại Pione Group, mình chuyển hướng sang phát triển ứng dụng di động với React Native, đồng thời tiếp cận thêm kiến thức về Smart Contract và Blockchain để mở rộng nền tảng công nghệ của bản thân.",
-  },
-  {
-    year: "06/2025",
-    title: "Thực tập & Tham gia cuộc thi",
-    subtitle: "Pione Dream Hackathon AI & BLOCKCHAIN 2025",
-    description:
-      "Ứng dụng công nghệ Blockchain trong các mảng chiến lược như: tài sản số, tiền số – tiền mã hoá, hạ tầng mạng Blockchain và hệ thống truy xuất nguồn gốc. Song song đó, ứng dụng Trí tuệ nhân tạo (AI) vào các sản phẩm chiến lược như Trợ lý ảo và AI phân tích dữ liệu, góp phần mang đến giải pháp công nghệ hiện đại và thực tiễn.",
-  },
-];
-
 export const ScrollTimeline = ({
-  events = DEFAULT_EVENTS,
-  title = "Nhìn lại và bước tiếp",
-  subtitle = "Mỗi bước đi là một bài học, mỗi trải nghiệm là một hành trang quý giá",
+  events,
+  title,
+  subtitle,
   animationOrder = "sequential",
   cardAlignment = "alternating",
   lineColor = "bg-primary/30",
-  activeColor = "bg-primary",
   progressIndicator = true,
   cardVariant = "default",
   cardEffect = "none",
@@ -55,7 +23,6 @@ export const ScrollTimeline = ({
   connectorStyle = "line",
   perspective = false,
   darkMode = false,
-  smoothScroll = true,
 }) => {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -199,10 +166,10 @@ export const ScrollTimeline = ({
       )}
     >
       <div className="text-center py-16 px-4">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+        <h2 className="text-xl font-bold text-black dark:text-white mb-2">
           {title}
         </h2>
-        <p className="text-sm text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="text-sm text-center max-w-2xl mx-auto">
           {subtitle}
         </p>
       </div>
@@ -336,7 +303,7 @@ export const ScrollTimeline = ({
                     <Card
                       className={cn(
                         "border",
-                        darkMode ? "bg-black/40" : "bg-white/60"
+                        darkMode ? "bg-black/40 " : "bg-white/60 "
                       )}
                     >
                       <CardContent className="p-6">
