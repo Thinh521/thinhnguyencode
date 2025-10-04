@@ -29,7 +29,7 @@ const TimelineItemContent = memo(({ item }) => (
   <div className="mt-4 lg:mt-6 space-y-4 lg:space-y-6 animate-in slide-in-from-top-1 duration-200">
     {/* Images */}
     <img
-      src={`/thinhnguyencode/images/${item.images}`}
+      src={item.images}
       alt={item.role}
       className="object-contain w-full h-auto rounded-lg border border-slate-200 dark:border-slate-800"
     />
@@ -112,7 +112,7 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
               </div>
 
               <ChevronDown
-                className={`w-4 h-4 text-white transition-transform ${
+                className={`w-4 h-4 text-black dark:text-white transition-transform ${
                   expanded ? "rotate-180" : ""
                 }`}
               />

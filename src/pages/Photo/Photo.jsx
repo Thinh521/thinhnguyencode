@@ -17,7 +17,6 @@ const StoryAvatar = ({ story, index, onClick }) => {
       style={{ width: "80px" }}
     >
       <div className="relative">
-        {/* Loading spinner */}
         {!isLoaded && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-4 h-4 relative transform rotate-45">

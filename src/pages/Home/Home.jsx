@@ -27,8 +27,8 @@ const Home = () => {
           thúc đẩy mình tự trau dồi thêm các kỹ năng về thiết kế đồ họa và biên
           tập nội dung, tạo nên một lợi thế toàn diện. Hiện tại, mình đang từng
           bước chinh phục mục tiêu trở thành một Frontend Developer chuyên
-          nghiệp. Tôi tin rằng sự kết hợp giữa kiến thức chuyên ngành và các kỹ
-          năng sáng tạo sẽ giúp tôi thực hiện những dự án lớn, đóng góp giá trị
+          nghiệp. Mình tin rằng sự kết hợp giữa kiến thức chuyên ngành và các kỹ
+          năng sáng tạo sẽ giúp mình thực hiện những dự án lớn, đóng góp giá trị
           thiết thực vào ngành công nghệ trong tương lai.
         </p>
       </section>

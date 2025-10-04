@@ -1,4 +1,5 @@
 import { Code, Palette } from "lucide-react";
+import { IMAGES } from "../../public/images/imgaes";
 
 export const timelineData = [
   {
@@ -7,7 +8,7 @@ export const timelineData = [
     title: "Website giới thiệu nhà hàng",
     type: "Full-time",
     duration: "10.2024—Present",
-    images: "project_1.png",
+    images: IMAGES.project1,
     icon: Code,
     responsibilities: [
       "Xây dựng website giới thiệu nhà hàng với HTML, CSS và JavaScript, tập trung vào giao diện trực quan và thân thiện với người dùng.",
@@ -32,7 +33,7 @@ export const timelineData = [
     title: "Website giới thiệu các khóa học (TuHoc.CC Clone)",
     type: "Full-time",
     duration: "10.2022—Present",
-    images: "project_2.png",
+    images: IMAGES.project2,
     icon: Palette,
     responsibilities: [
       "Xây dựng website giới thiệu các khóa học trực tuyến bằng HTML, CSS và JavaScript, giao diện dễ tiếp cận cho người học.",
@@ -51,7 +52,7 @@ export const timelineData = [
     title: "Ứng dụng thống kê, quản lý và cập nhật thị trường nông sản",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: "project_3.png",
+    images: IMAGES.project3,
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng di động thống kê và quản lý thị trường nông sản bằng React Native.",
@@ -81,7 +82,7 @@ export const timelineData = [
     title: "Ứng dụng truy xuất nguồn gốc nông sản",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: "project_4.png",
+    images: IMAGES.project4,
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng di động truy xuất nguồn gốc nông sản bằng React Native.",
@@ -117,7 +118,7 @@ export const timelineData = [
     title: "Ứng dụng mua sắm quần áo",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: "project_5.png",
+    images: IMAGES.project5,
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng mua sắm quần áo bằng React Native, giao diện trực quan và thân thiện với người dùng.",

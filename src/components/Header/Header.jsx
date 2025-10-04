@@ -6,8 +6,8 @@ const Header = ({ title, subtitle, verified = false }) => {
     <>
       <header className="text-center mb-5">
         {verified ? (
-          <div className="flex items-center gap-1.5 mb-2">
-            <h1 className="font-playfair text-3xl font-bold mb-3 text-gray-900 dark:text-white tracking-tight text-left">
+          <div className="flex items-center gap-1.5">
+            <h1 className="font-playfair text-3xl font-bold mb-3 text-black dark:text-white tracking-tight text-left">
               {title}
             </h1>
             <div className="-mt-3">
@@ -15,7 +15,7 @@ const Header = ({ title, subtitle, verified = false }) => {
             </div>
           </div>
         ) : (
-          <h1 className="font-playfair text-3xl font-bold mb-3 text-gray-900 dark:text-white tracking-tight text-left">
+          <h1 className="font-playfair text-3xl font-bold mb-3 text-black dark:text-white tracking-tight text-left">
             {title}
           </h1>
         )}
