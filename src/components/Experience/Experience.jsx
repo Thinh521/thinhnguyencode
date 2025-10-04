@@ -29,7 +29,7 @@ const TimelineItemContent = memo(({ item }) => (
   <div className="mt-4 lg:mt-6 space-y-4 lg:space-y-6 animate-in slide-in-from-top-1 duration-200">
     {/* Images */}
     <img
-      src={item.images}
+      src={item.images[0]}
       alt={item.role}
       className="object-contain w-full h-auto rounded-lg border border-slate-200 dark:border-slate-800"
     />
@@ -41,20 +41,28 @@ const TimelineItemContent = memo(({ item }) => (
     <div className="border-t border-gray-200 dark:border-neutral-700/50" />
 
     {/* Links */}
-    {item.links?.length ? (
-      <div className="flex gap-4">
-        {item.links.map((link, idx) => (
-          <Button
-            key={`${item.id}-link-${idx}`}
-            href={link.url}
-            newTab
-            className="flex-1 text-center"
-          >
-            {link.label}
-          </Button>
-        ))}
-      </div>
-    ) : null}
+    <div className="flex gap-4 flex-wrap">
+      {item.links
+        ?.filter(
+          (link) => link.label === "Chi tiết" || link.label === "Xem Dự án"
+        )
+        .map((link, idx) =>
+          link.internal ? (
+            <Button key={idx} to={link.url} className="flex-1 text-center">
+              {link.label}
+            </Button>
+          ) : (
+            <Button
+              key={idx}
+              href={link.url}
+              newTab
+              className="flex-1 text-center"
+            >
+              {link.label}
+            </Button>
+          )
+        )}
+    </div>
   </div>
 ));
 TimelineItemContent.displayName = "TimelineItemContent";
@@ -105,9 +113,7 @@ const TimelineItem = memo(({ item, expanded, onToggle }) => {
                   <Badge variant="outline" className="text-xs">
                     {item.type}
                   </Badge>
-                  <span className="text-xs">
-                    {item.duration}
-                  </span>
+                  <span className="text-xs">{item.duration}</span>
                 </div>
               </div>
 

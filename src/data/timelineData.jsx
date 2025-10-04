@@ -8,7 +8,7 @@ export const timelineData = [
     title: "Website giới thiệu nhà hàng",
     type: "Full-time",
     duration: "10.2024—Present",
-    images: IMAGES.project1,
+    images: [IMAGES.project1, IMAGES.project1, IMAGES.project1],
     icon: Code,
     responsibilities: [
       "Xây dựng website giới thiệu nhà hàng với HTML, CSS và JavaScript, tập trung vào giao diện trực quan và thân thiện với người dùng.",
@@ -18,8 +18,13 @@ export const timelineData = [
     skills: ["HTML, CSS", "JavaScript"],
     links: [
       {
-        label: "Xem Thêm",
-        url: "https://github.com/Thinh521/Restaurant_Frontend",
+        label: "Chi tiết",
+        url: "/projects/1",
+        internal: true,
+      },
+      {
+        label: "Xem Github",
+        url: "https://github.com/Thinh521/Decora_Frontend",
       },
       {
         label: "Xem Dự án",
@@ -33,7 +38,7 @@ export const timelineData = [
     title: "Website giới thiệu các khóa học (TuHoc.CC Clone)",
     type: "Full-time",
     duration: "10.2022—Present",
-    images: IMAGES.project2,
+    images: [IMAGES.project2, IMAGES.project2, IMAGES.project2],
     icon: Palette,
     responsibilities: [
       "Xây dựng website giới thiệu các khóa học trực tuyến bằng HTML, CSS và JavaScript, giao diện dễ tiếp cận cho người học.",
@@ -42,7 +47,15 @@ export const timelineData = [
     ],
     skills: ["HTML, CSS", "JavaScript", "Figma"],
     links: [
-      { label: "Xem Thêm", url: "https://github.com/Thinh521/TuHoc_Clone" },
+      {
+        label: "Chi tiết",
+        url: "/projects/2",
+        internal: true,
+      },
+      {
+        label: "Xem Github",
+        url: "https://github.com/Thinh521/TuHoc_Clone",
+      },
       { label: "Xem Dự án", url: "https://thinh521.github.io/TuHoc_Clone/" },
     ],
   },
@@ -52,7 +65,7 @@ export const timelineData = [
     title: "Ứng dụng thống kê, quản lý và cập nhật thị trường nông sản",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: IMAGES.project3,
+    images: [IMAGES.project3, IMAGES.project3, IMAGES.project3],
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng di động thống kê và quản lý thị trường nông sản bằng React Native.",
@@ -72,7 +85,15 @@ export const timelineData = [
       "MongoDB",
     ],
     links: [
-      { label: "Xem Thêm", url: "https://github.com/Thinh521/Pione_Farm" },
+      {
+        label: "Chi tiết",
+        url: "/projects/3",
+        internal: true,
+      },
+      {
+        label: "Xem Github",
+        url: "https://github.com/Thinh521/Pione_Farm",
+      },
       { label: "Xem Dự án", url: "https://github.com/Thinh521/Pione_Farm" },
     ],
   },
@@ -82,7 +103,7 @@ export const timelineData = [
     title: "Ứng dụng truy xuất nguồn gốc nông sản",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: IMAGES.project4,
+    images: [IMAGES.project4, IMAGES.project4, IMAGES.project4],
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng di động truy xuất nguồn gốc nông sản bằng React Native.",
@@ -103,7 +124,12 @@ export const timelineData = [
     ],
     links: [
       {
-        label: "Xem Thêm",
+        label: "Chi tiết",
+        url: "/projects/4",
+        internal: true,
+      },
+      {
+        label: "Xem Github",
         url: "https://github.com/Thinh521/Blockchain_Farm",
       },
       {
@@ -118,7 +144,7 @@ export const timelineData = [
     title: "Ứng dụng mua sắm quần áo",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: IMAGES.project5,
+    images: [IMAGES.project5, IMAGES.project5, IMAGES.project5],
     icon: Code,
     responsibilities: [
       "Phát triển ứng dụng mua sắm quần áo bằng React Native, giao diện trực quan và thân thiện với người dùng.",
@@ -138,7 +164,12 @@ export const timelineData = [
     ],
     links: [
       {
-        label: "Xem Thêm",
+        label: "Chi tiết",
+        url: "/projects/5",
+        internal: true,
+      },
+      {
+        label: "Xem Github",
         url: "https://github.com/Thinh521/Fashion_Shop_App",
       },
       {

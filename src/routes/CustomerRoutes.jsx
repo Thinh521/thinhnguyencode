@@ -11,6 +11,7 @@ import Education from "../pages/Education/Education";
 import WritingDetail from "../pages/Writing/WritingDetail";
 import Timeline from "../pages/Timeline/Timeline";
 import Cv from "../pages/Cv/Cv";
+import ProjectDetail from "../pages/Project/ProjectDetail";
 
 const CustomerRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const CustomerRoutes = () => {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="project" element={<Project />} />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="timeline" element={<Timeline />} />
         <Route path="education" element={<Education />} />
         <Route path="photo" element={<Photo />} />
