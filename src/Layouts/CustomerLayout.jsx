@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 const CustomerLayout = () => {
   const location = useLocation();
 
-  const hideNavbarPaths = ["/projects/", "/photo/"];
+  const hideNavbarPaths = ["/projects/", "/photos/"];
 
   const shouldHideNavbar = hideNavbarPaths.some((path) =>
     location.pathname.startsWith(path)

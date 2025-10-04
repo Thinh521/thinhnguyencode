@@ -17,10 +17,10 @@ import Loading from "../../components/Loading/Loading";
 const navItems = [
   { to: "/", title: "Home", icon: HomeIcon },
   { to: "/about", title: "About", icon: UserIcon },
-  { to: "/project", title: "Project", icon: ProjectIcon },
+  { to: "/projects", title: "Projects", icon: ProjectIcon },
   { to: "/timeline", title: "Timeline", icon: TimelineIcon },
   { to: "/education", title: "Education", icon: EducationIcon },
-  { to: "/photo", title: "Photo", icon: PhotoIcon },
+  { to: "/photos", title: "Photos", icon: PhotoIcon },
   { to: "/writing", title: "Writing", icon: WritingIcon },
   { to: "/contact", title: "Contact", icon: ContactIcon },
 ];

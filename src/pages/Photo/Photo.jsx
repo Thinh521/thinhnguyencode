@@ -128,7 +128,7 @@ const Photo = () => {
             {PhotoData.map((photo) => (
               <Link
                 key={photo.id}
-                to={`/photo-detail/${photo.id}`}
+                to={`/photos/${photo.id}`}
                 className="relative group block overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-shadow duration-300 hover:border-gray-300 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-600"
               >
                 <div className="aspect-square overflow-hidden">

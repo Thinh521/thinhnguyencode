@@ -19,12 +19,12 @@ const CustomerRoutes = () => {
       <Route path="/" element={<CustomerLayout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
-        <Route path="project" element={<Project />} />
+        <Route path="projects" element={<Project />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="timeline" element={<Timeline />} />
         <Route path="education" element={<Education />} />
-        <Route path="photo" element={<Photo />} />
-        <Route path="photo/photo-detail/:id" element={<PhotoDetail />} />
+        <Route path="photos" element={<Photo />} />
+        <Route path="/photos/:id" element={<PhotoDetail />} />
         <Route path="writing" element={<Writing />} />
         <Route path="writing/writing-detail/:id" element={<WritingDetail />} />
         <Route path="contact" element={<Contact />} />

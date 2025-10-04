@@ -36,11 +36,11 @@ const StickyHeader = ({
       <div className="w-full mx-auto flex items-center justify-between gap-4 py-4 px-4">
         <button
           onClick={handleGoBack}
-          className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 dark:hover:text-neutral-200 hover:text-gray-800 hover:border-gray-800 duration-200 rounded-full p-2 text-sm"
+          className="flex-shrink-0 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 dark:hover:text-neutral-200 hover:text-gray-800 hover:border-gray-800 duration-200 rounded-full p-2 text-sm"
         >
           <ChevronLeft size={20} />
         </button>
-        <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate text-center">
+        <p className="flex-1 text-sm font-semibold text-gray-900 dark:text-gray-100 truncate text-left">
           {title}
         </p>
       </div>

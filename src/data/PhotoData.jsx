@@ -8,14 +8,14 @@ const PhotoData = [
   },
   {
     id: 2,
-    title: "Cờ phơ cùng bạn bè",
+    title: "Coffee",
     images: ["photo_2.1.jpg", "photo_2.2.jpg"],
     date: "Tiền Giang, ngày 04-03-2025",
     description: "Một buổi cờ phơ không biết trước.",
   },
   {
     id: 3,
-    title: "Tạo ảnh theo phong cách snoopy",
+    title: "Tạo ảnh",
     images: ["photo_3.1.jpg", "photo_3.2.jpg"],
     date: "Tiền Giang, ngày 04-03-2025",
     description: "Tạo ảnh theo phong cách snoopy.",
@@ -29,7 +29,7 @@ const PhotoData = [
   },
   {
     id: 5,
-    title: "Đi làm PG + PB",
+    title: "Đi làm",
     images: ["photo_5.1.jpg", "photo_5.2.jpg"],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Lúc này đi làm được tặng tịt.",
