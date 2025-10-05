@@ -43,7 +43,7 @@ import resume1 from "./resume_1.jpg";
 import resume2 from "./resume_2.jpg";
 import resume22 from "./resume_22.jpg";
 
-import story1 from "./story_1.png";
+import story1_1 from "./story_1.png";
 
 export const IMAGES = {
   avatar,
@@ -91,5 +91,5 @@ export const IMAGES = {
   resume2,
   resume22,
 
-  story1,
+  story1_1,
 };
