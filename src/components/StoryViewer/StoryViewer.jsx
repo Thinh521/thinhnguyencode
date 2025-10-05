@@ -3,7 +3,6 @@ import { X, Volume2, VolumeX, Heart } from "lucide-react";
 
 const STORAGE_KEY = "storyLikes";
 
-// Helper: đọc/ghi localStorage
 const readStore = () => {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};

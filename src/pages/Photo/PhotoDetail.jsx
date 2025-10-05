@@ -28,7 +28,7 @@ const PhotoDetail = () => {
             {photo.images.map((img) => (
               <img
                 key={img}
-                src={`/thinhnguyencode/images/${img}`}
+                src={img}
                 alt={img}
                 className="rounded shadow-md"
               />

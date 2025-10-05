@@ -33,7 +33,7 @@ const StickyHeader = ({
         visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}
     >
-      <div className="w-full mx-auto flex items-center justify-between gap-4 py-4 px-4">
+      <div className="max-w-[720px] mx-auto w-full mx-auto flex items-center justify-between gap-4 py-4 px-4">
         <button
           onClick={handleGoBack}
           className="flex-shrink-0 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 dark:hover:text-neutral-200 hover:text-gray-800 hover:border-gray-800 duration-200 rounded-full p-2 text-sm"

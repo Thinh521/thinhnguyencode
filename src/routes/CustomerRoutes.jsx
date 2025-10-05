@@ -12,25 +12,30 @@ import WritingDetail from "../pages/Writing/WritingDetail";
 import Timeline from "../pages/Timeline/Timeline";
 import Cv from "../pages/Cv/Cv";
 import ProjectDetail from "../pages/Project/ProjectDetail";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 
 const CustomerRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<CustomerLayout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="projects" element={<Project />} />
-        <Route path="/projects/:id" element={<ProjectDetail />} />
-        <Route path="timeline" element={<Timeline />} />
-        <Route path="education" element={<Education />} />
-        <Route path="photos" element={<Photo />} />
-        <Route path="/photos/:id" element={<PhotoDetail />} />
-        <Route path="writing" element={<Writing />} />
-        <Route path="writing/writing-detail/:id" element={<WritingDetail />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="cv" element={<Cv />} />
-      </Route>
-    </Routes>
+    <>
+      <ScrollToTop />
+
+      <Routes>
+        <Route path="/" element={<CustomerLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="projects" element={<Project />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
+          <Route path="timeline" element={<Timeline />} />
+          <Route path="education" element={<Education />} />
+          <Route path="photos" element={<Photo />} />
+          <Route path="/photos/:id" element={<PhotoDetail />} />
+          <Route path="writing" element={<Writing />} />
+          <Route path="/writing/:id" element={<WritingDetail />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="cv" element={<Cv />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 

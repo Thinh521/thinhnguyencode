@@ -133,7 +133,7 @@ const Photo = () => {
               >
                 <div className="aspect-square overflow-hidden">
                   <img
-                    src={`/thinhnguyencode/images/${photo.images[0]}`}
+                    src={photo.images[0]}
                     alt={photo.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
