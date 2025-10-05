@@ -1,8 +1,10 @@
+import { IMAGES } from "../../public/images/imgaes";
+
 const StorytData = [
   {
     id: 1,
     title: "Tính bảo thủ",
-    imgae: "story_1.png",
+    imgae: IMAGES.story1_1,
     title_2: "Viết về học tập",
     date: "07-04-2025",
     description:
@@ -12,7 +14,7 @@ const StorytData = [
   {
     id: 2,
     title: "Tính bảo thủ",
-    imgae: "story_1.png",
+    imgae: IMAGES.story1_1,
     title_2: "Viết về học tập",
     date: "07-04-2025",
     description:

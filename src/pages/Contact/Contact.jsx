@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import ShimmerButton from "../../components/ShimmerButton/ShimmerButton";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 const testimonials = [
   {
@@ -27,10 +28,7 @@ const testimonials = [
   },
 ];
 
-const animations = [
-  "animate-marquee",
-  "animate-marquee-reverse",
-];
+const animations = ["animate-marquee", "animate-marquee-reverse"];
 
 const MarqueeRow = ({ animation, testimonials }) => (
   <div className={`flex gap-6 ${animation}`}>
@@ -211,16 +209,15 @@ const Contact = () => {
           </ShimmerButton>
         </form>
 
-        <div className="flex my-10 justify-center item-center">
-          <Link
-            to="/cv"
-            className="border max-w-max border-neutral-400 hover:border-gray-800 hover:text-gray-800 dark:hover:text-neutral-200 dark:hover:border-neutral-200 block px-4 py-2 text-base text-gray-600 dark:text-neutral-400 font-medium rounded-lg transition-colors duration-200"
-          >
-            CV
-          </Link>
-          <div className="border-r border-gray-400 w-1 h-8 mx-4 my-auto"></div>
-          <SocialLinks />
-        </div>
+        <section className="my-10">
+          <SectionTitle>Kết nối</SectionTitle>
+          <div className="flex flex-col gap-6">
+            <Button className="w-[150px]" to="/cv">
+              Resume
+            </Button>
+            <SocialLinks />
+          </div>
+        </section>
       </section>
 
       <section className="overflow-hidden relative py-10 space-y-6">

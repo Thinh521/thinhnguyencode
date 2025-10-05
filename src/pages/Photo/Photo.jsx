@@ -94,7 +94,7 @@ const Photo = () => {
   return (
     <article>
       <Header
-        title="Ảnh chụp & tin nổi bật"
+        title="Ảnh & tin"
         subtitle="Những bức ảnh mà mình tự chụp qua ống kính nhiệm màu"
       />
 
@@ -123,7 +123,7 @@ const Photo = () => {
 
         {/* Photos */}
         <div>
-          <SectionTitle>Ảnh chụp</SectionTitle>
+          <SectionTitle>Ống kính nhiệm màu</SectionTitle>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
             {PhotoData.map((photo) => (
               <Link

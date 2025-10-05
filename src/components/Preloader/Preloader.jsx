@@ -19,7 +19,7 @@ const Preloader = ({ loading = true, text = "Grilli" }) => {
         isLoaded ? "loaded" : ""
       }`}
     >
-      <div className="w-12 h-12 relative transform rotate-45 -top-12">
+      <div className="w-12 h-12 relative transform rotate-45 -top-14">
         <div
           className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping"
           style={{ top: 0, left: 0, animationDuration: "1.2s" }}

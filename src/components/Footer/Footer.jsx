@@ -112,7 +112,7 @@ const Footer = () => {
           <div className="flex items-center gap-3 justify-center mb-7">
             <Heart className="w-5 h-5 text-gray-700 dark:text-gray-300 animate-pulse" />
             <span className="text-sm text-black dark:text-white">
-              Sản phẩm được làm ra bằng cả tâm huyết
+              Sản phẩm được tạo ra bằng cả tâm huyết
             </span>
           </div>
 

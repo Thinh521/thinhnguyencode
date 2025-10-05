@@ -21,17 +21,22 @@ const PhotoDetail = () => {
       <article>
         <StickyHeader title={photo.title} />
 
-        <Header title={photo.title} subtitle={photo.description} />
+        <Header
+          title={photo.title}
+          subtitle="Những bức ảnh mà mình tự chụp qua ống kính nhiệm màu"
+        />
 
         <section className="mb-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+          <div className="columns-1 sm:columns-2 md:columns-2 gap-4">
             {photo.images.map((img) => (
-              <img
-                key={img}
-                src={img}
-                alt={img}
-                className="rounded shadow-md"
-              />
+              <div key={img} className="mb-4 break-inside-avoid">
+                <img
+                  key={img}
+                  src={img}
+                  alt={img}
+                  className="rounded-lg shadow-md"
+                />
+              </div>
             ))}
           </div>
         </section>

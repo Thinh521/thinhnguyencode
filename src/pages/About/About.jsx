@@ -33,7 +33,7 @@ const About = () => {
 
       <section className="flex justify-center">
         <div className="text-center my-2">
-          <div className="relative w-48 h-48 mx-auto mb-4">
+          <div className="relative w-44 h-44 mx-auto mb-4">
             {/* Skeleton */}
             {!imgLoaded && (
               <div className="w-full h-full rounded-full bg-gray-200 dark:bg-neutral-700 animate-pulse" />
@@ -42,7 +42,7 @@ const About = () => {
             <img
               src={IMAGES.avatar}
               alt="avatar"
-              className={`w-full h-full rounded-full object-cover border border-gray-200 absolute inset-0 transition-opacity duration-500 ${
+              className={`w-full h-full rounded-full object-cover border border-gray-200 dark:border-neutral-700/50 absolute inset-0 transition-opacity duration-500 ${
                 imgLoaded ? "opacity-100" : "opacity-0"
               }`}
               onLoad={handleImageLoad}
@@ -84,7 +84,7 @@ const About = () => {
 
       <section>
         <SectionTitle>Câu chuyện</SectionTitle>
-        <p className="text-sm text-justify">
+        <p className="text-sm text-justify leading-relaxed">
           Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của mình.
           Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang
           Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Hiện tại

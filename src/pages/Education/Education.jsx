@@ -27,14 +27,20 @@ const Education = () => {
             <h1 className="font-playfair font-semibold text-xl dark:text-white mb-2 uppercase">
               TRƯỜNG CAO ĐẲNG CÔNG NGHỆ THÔNG TIN TP. HỒ CHÍ MINH
             </h1>
-            <p className="mb-6 text-base font-semibold uppercase">
+            <p className="mb-6 mx-4 text-base font-semibold uppercase">
               Information Technology College HCM City
             </p>
-            <img
-              src={IMAGES.logoSchool}
-              alt="ITC Logo"
-              className="w-32 h-32 mx-auto object-contain"
-            />
+            <a
+              href="https://itc.edu.vn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={IMAGES.logoSchool}
+                alt="ITC Logo"
+                className="w-32 h-32 mx-auto object-contain border border-gray-200 dark:border-neutral-700/50 rounded-full"
+              />
+            </a>
           </div>
 
           <div className="mb-8">
@@ -60,7 +66,9 @@ const Education = () => {
                   <li key={idx} className="flex items-start">
                     <span className="inline-block w-2 h-2 bg-gray-400 mr-3 rotate-45 self-center" />
                     <span className="text-sm">
-                      <strong className="text-black dark:text-white font-bold">{item.label}: </strong>
+                      <strong className="text-black dark:text-white font-bold">
+                        {item.label}:{" "}
+                      </strong>
                       {item.value}
                     </span>
                   </li>

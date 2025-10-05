@@ -25,6 +25,13 @@ import photo5_2 from "./photo_5.2.jpg";
 import photo6_1 from "./photo_6.1.png";
 import photo6_2 from "./photo_6.2.png";
 import photo6_3 from "./photo_6.3.png";
+import photo7_1 from "./photo_7.1.jpg";
+import photo7_2 from "./photo_7.2.jpg";
+import photo8_1 from "./photo_8.1.jpg";
+import photo8_2 from "./photo_8.2.jpg";
+import photo8_3 from "./photo_8.3.jpg";
+import photo8_4 from "./photo_8.4.jpg";
+import photo9_1 from "./photo_9.1.jpg";
 
 import project1 from "./project_1.png";
 import project2 from "./project_2.png";
@@ -36,7 +43,7 @@ import resume1 from "./resume_1.jpg";
 import resume2 from "./resume_2.jpg";
 import resume22 from "./resume_22.jpg";
 
-import story1 from "./story_1.png";
+import story1_1 from "./story_1.png";
 
 export const IMAGES = {
   avatar,
@@ -66,6 +73,13 @@ export const IMAGES = {
   photo6_1,
   photo6_2,
   photo6_3,
+  photo7_1,
+  photo7_2,
+  photo8_1,
+  photo8_2,
+  photo8_3,
+  photo8_4,
+  photo9_1,
 
   project1,
   project2,
@@ -77,5 +91,5 @@ export const IMAGES = {
   resume2,
   resume22,
 
-  story1,
+  story1_1,
 };

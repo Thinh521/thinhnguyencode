@@ -5,7 +5,7 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const detailRoutes = ["/photos/", "/projects/", "/writing/"];
+    const detailRoutes = ["/photos/", "/projects/", "/writing/", "/cv/"];
 
     const shouldScroll = detailRoutes.some(
       (route) => pathname.startsWith(route) && pathname !== route
