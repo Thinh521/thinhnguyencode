@@ -2,6 +2,7 @@ import {
   FacebookIcon,
   GithubIcon,
   InstagramIcon,
+  LocketIcon,
   TiktokIcon,
 } from "../../components/Icons/Icons";
 
@@ -26,6 +27,13 @@ const SOCIAL_LINKS = [
     label: "TikTok",
     color:
       "hover:bg-slate-50 hover:border-slate-700 hover:text-slate-800 dark:hover:bg-slate-800/20 dark:hover:border-slate-400",
+  },
+  {
+    Icon: LocketIcon,
+    link: "https://locket.camera/links/cR2EHusq1NF5WH68A",
+    label: "Locket",
+    color:
+      "hover:bg-yellow-50 hover:border-yellow-400 hover:text-yellow-600 dark:hover:bg-yellow-900/20 dark:hover:border-yellow-400",
   },
   {
     Icon: GithubIcon,

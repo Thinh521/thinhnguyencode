@@ -23,7 +23,7 @@ const Writing = () => {
                 animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
               }}
             >
-              <div className="h-full bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800 rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-neutral-700 hover:border-blue-200 dark:hover:border-blue-800 hover:-translate-y-2">
+              <div className="h-full bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-neutral-700 hover:border-blue-200 dark:hover:border-blue-800 hover:-translate-y-2">
                 <div className="relative overflow-hidden h-56">
                   <img
                     src={item.imgae}

@@ -4,13 +4,14 @@ import Header from "../../components/Header/Header";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 const studyInfo = [
-  { label: "Thời gian", value: "2023 - 2025" },
+  { label: "Họ và tên", value: "Nguyễn Phúc Thịnh" },
   { label: "Chuyên ngành", value: "Thiết Kế Trang Web" },
   { label: "Loại hình đào tạo", value: "Chính quy" },
   { label: "Bằng cấp", value: "Cử nhân Cao đẳng" },
   { label: "Tình trạng", value: "Chuẩn bị tốt nghiệp (đang chờ xét)" },
   { label: "Điểm trung bình (GPA)", value: "3.35 / 4.0" },
   { label: "Tốt nghiệp loại", value: "Giỏi" },
+  { label: "Thời gian", value: "2023 - 2025" },
 ];
 
 const Education = () => {

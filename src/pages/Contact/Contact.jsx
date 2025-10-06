@@ -35,8 +35,7 @@ const MarqueeRow = ({ animation, testimonials }) => (
     {[...testimonials, ...testimonials].map((item, index) => (
       <div
         key={index}
-        className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 
-                   text-gray-200 rounded-2xl p-4 shadow-md w-[320px]"
+        className="bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-neutral-700/50 p-4 w-[320px]"
       >
         <div className="flex items-center gap-3 mb-3">
           <img
@@ -45,13 +44,13 @@ const MarqueeRow = ({ animation, testimonials }) => (
             className="w-10 h-10 rounded-full object-cover"
           />
           <div>
-            <h4 className="text-base font-semibold dark:text-white text-black">
+            <h4 className="text-base font-semibold dark:text-white text-black mb-1">
               {item.name}
             </h4>
             <p className="text-xs text-gray-400">{item.role}</p>
           </div>
         </div>
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm line-clamp-3">
+        <p className="leading-relaxed text-sm line-clamp-3">
           {item.text}
         </p>
       </div>

@@ -249,10 +249,10 @@ export default function SliderCarousel({
                 currentIndex % items.length === index
                   ? round
                     ? "bg-white"
-                    : "bg-[#333333]"
+                    : "bg-neutral-600 dark:bg-neutral-300"
                   : round
-                  ? "bg-[#555]"
-                  : "bg-[rgba(51,51,51,0.4)]"
+                  ? "bg-neutral-600 dark:bg-neutral-300"
+                  : "bg-gray-200 dark:bg-neutral-500"
               }`}
               animate={{
                 scale: currentIndex % items.length === index ? 1.2 : 1,

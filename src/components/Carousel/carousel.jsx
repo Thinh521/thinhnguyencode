@@ -18,11 +18,11 @@ const Carousel = React.forwardRef(
     {
       orientation = "horizontal",
       opts,
-      plugins = [], // 👈 cho phép nhận thêm plugin
+      plugins = [],
       className,
       children,
-      autoplay = true, // 👈 thêm props điều khiển autoplay
-      delay = 3000, // 👈 thời gian chờ giữa các slide
+      autoplay = true,
+      delay = 3000,
       ...props
     },
     ref
@@ -41,7 +41,7 @@ const Carousel = React.forwardRef(
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
       },
-      autoplay ? [autoplayPlugin, ...plugins] : plugins // 👈 dùng autoplay nếu bật
+      autoplay ? [autoplayPlugin, ...plugins] : plugins
     );
 
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -130,7 +130,7 @@ const CarouselDots = () => {
           className={cn(
             "h-2 w-2 rounded-full transition-all",
             idx === selectedIndex
-              ? "bg-neutral-600 dark:bg-neutral-400 scale-125"
+              ? "bg-neutral-600 dark:bg-neutral-300 scale-125"
               : "bg-gray-200 dark:bg-neutral-500"
           )}
         />
