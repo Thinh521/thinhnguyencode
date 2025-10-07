@@ -40,7 +40,7 @@ const Writing = () => {
                 </div>
 
                 <div className="p-4 md:p-6 lg:p-6">
-                  <h3 className="font-bold text-xl text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                  <h3 className="font-playfair font-bold text-xl text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                     {item.title}
                   </h3>
 

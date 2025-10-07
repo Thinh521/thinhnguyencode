@@ -1,4 +1,4 @@
-import { Code, Palette } from "lucide-react";
+import { BarChart3, GraduationCap, QrCode, ShoppingBag, UtensilsCrossed } from "lucide-react";
 import { IMAGES } from "../../public/images/imgaes";
 
 export const timelineData = [
@@ -8,8 +8,14 @@ export const timelineData = [
     title: "Website giới thiệu nhà hàng",
     type: "Full-time",
     duration: "10.2024—Present",
-    images: [IMAGES.project1, IMAGES.project1, IMAGES.project1],
-    icon: Code,
+    images: [
+      IMAGES.project1,
+      IMAGES.project1_2,
+      IMAGES.project1_3,
+      IMAGES.project1_4,
+      IMAGES.project1_5,
+    ],
+    icon: UtensilsCrossed,
     responsibilities: [
       "Xây dựng website giới thiệu nhà hàng với HTML, CSS và JavaScript, tập trung vào giao diện trực quan và thân thiện với người dùng.",
       "Thiết kế giao diện responsive, đảm bảo trải nghiệm tốt trên cả máy tính và thiết bị di động.",
@@ -38,8 +44,8 @@ export const timelineData = [
     title: "Website giới thiệu các khóa học (TuHoc.CC Clone)",
     type: "Full-time",
     duration: "10.2022—Present",
-    images: [IMAGES.project2, IMAGES.project2, IMAGES.project2],
-    icon: Palette,
+    images: [IMAGES.project2, IMAGES.project2_2, IMAGES.project2_3],
+    icon: GraduationCap,
     responsibilities: [
       "Xây dựng website giới thiệu các khóa học trực tuyến bằng HTML, CSS và JavaScript, giao diện dễ tiếp cận cho người học.",
       "Thiết kế responsive, hiển thị tốt trên máy tính và thiết bị di động.",
@@ -66,7 +72,7 @@ export const timelineData = [
     type: "Full-time",
     duration: "03.2021—09.2022",
     images: [IMAGES.project3, IMAGES.project3, IMAGES.project3],
-    icon: Code,
+    icon: BarChart3,
     responsibilities: [
       "Phát triển ứng dụng di động thống kê và quản lý thị trường nông sản bằng React Native.",
       "Tích hợp AI phân tích dữ liệu thị trường, dự đoán xu hướng cung cầu và giá cả.",
@@ -104,7 +110,7 @@ export const timelineData = [
     type: "Full-time",
     duration: "03.2021—09.2022",
     images: [IMAGES.project4, IMAGES.project4, IMAGES.project4],
-    icon: Code,
+    icon: QrCode,
     responsibilities: [
       "Phát triển ứng dụng di động truy xuất nguồn gốc nông sản bằng React Native.",
       "Tích hợp Blockchain để lưu trữ dữ liệu nguồn gốc, đảm bảo minh bạch và không thay đổi.",
@@ -145,7 +151,7 @@ export const timelineData = [
     type: "Full-time",
     duration: "03.2021—09.2022",
     images: [IMAGES.project5, IMAGES.project5, IMAGES.project5],
-    icon: Code,
+    icon: ShoppingBag,
     responsibilities: [
       "Phát triển ứng dụng mua sắm quần áo bằng React Native, giao diện trực quan và thân thiện với người dùng.",
       "Xây dựng các tính năng: danh mục sản phẩm, tìm kiếm, giỏ hàng, thanh toán, quản lý đơn hàng.",

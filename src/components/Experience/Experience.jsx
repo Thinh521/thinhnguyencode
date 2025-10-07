@@ -34,9 +34,9 @@ const TimelineItemContent = memo(({ item }) => (
       className="object-contain w-full h-auto rounded-lg border border-slate-200 dark:border-slate-800"
     />
 
-    <p className="text-base font-bold text-slate-900 dark:text-slate-50">
+    <h3 className="font-playfair font-bold text-xl text-gray-900 dark:text-white mb-2 line-clamp-2">
       {item.title}
-    </p>
+    </h3>
 
     <div className="border-t border-gray-200 dark:border-neutral-700/50" />
 

@@ -11,6 +11,9 @@ import {
   CarouselItem,
 } from "../../components/Carousel/carousel";
 import StickyHeader from "../../components/Header/StickyHeader";
+import { Code2 } from "lucide-react";
+import { skillIcons } from "../../data/skillIcons";
+import BackButton from "../../components/Button/BackButton";
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -58,16 +61,19 @@ export default function ProjectDetail() {
           <CarouselDots />
         </Carousel>
 
-        <p className="text-base font-bold text-slate-900 dark:text-slate-50">
+        <h3 className="font-playfair font-bold text-xl text-gray-900 dark:text-white mb-2 line-clamp-2">
           {project.title}
-        </p>
+        </h3>
 
         <section>
           <SectionTitle>Mô tả dự án</SectionTitle>
-          <ul className="list-disc pl-5 space-y-2">
+          <ul className="space-y-3">
             {project.responsibilities?.map((task, idx) => (
-              <li key={idx} className="text-sm text-justify leading-relaxed">
-                {task}
+              <li key={idx} className="flex items-start">
+                <span className="inline-block w-1.5 h-1.5 bg-gray-400 mr-3 rotate-45 self-center" />
+                <span className="text-sm text-justify leading-relaxed">
+                  {task}
+                </span>
               </li>
             ))}
           </ul>
@@ -77,14 +83,19 @@ export default function ProjectDetail() {
         <section>
           <SectionTitle>Kỹ năng sử dụng</SectionTitle>
           <div className="flex flex-wrap gap-2">
-            {project.skills?.map((skill, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 text-xs font-medium bg-slate-200 dark:bg-[#2C2C31] text-black dark:text-white rounded-full"
-              >
-                {skill}
-              </span>
-            ))}
+            {project.skills?.map((skill, idx) => {
+              const Icon = skillIcons[skill] || Code2;
+              return (
+                <div key={idx} className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 px-4 py-2 rounded-full shadow-sm">
+                    <Icon size={16} className="text-gray-700 dark:text-white" />
+                    <span className="text-xs text-gray-700 dark:text-white">
+                      {skill}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -114,6 +125,10 @@ export default function ProjectDetail() {
               )
             )}
         </section>
+
+        <Divider />
+
+        <BackButton className="mt-5" />
       </div>
     </article>
   );
