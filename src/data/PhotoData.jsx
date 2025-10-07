@@ -69,6 +69,13 @@ const PhotoData = [
     date: "TP.HCM, ngày 04-09-2025",
     description: "Lúc này đi làm được tặng tịt.",
   },
+  {
+    id: 10,
+    title: "Chil code",
+    images: [IMAGES.photo10_1],
+    date: "TP.HCM, ngày 04-09-2025",
+    description: "Lập trình",
+  },
 ];
 
 export default PhotoData;
