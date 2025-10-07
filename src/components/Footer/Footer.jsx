@@ -65,8 +65,8 @@ const Footer = () => {
               className="absolute inset-0 rounded-full"
               style={{
                 background:
-                  "conic-gradient(from var(--angle), transparent 25%, #ef4444, transparent 50%)",
-                animation: "shimmer-spin 4s linear infinite",
+                  "conic-gradient(from var(--angle), transparent 25%, #0ea5e9, transparent 50%)",
+                animation: "shimmer-spin 3s linear infinite",
               }}
             />
             <div className="relative flex flex-col items-center text-center lg:inline-flex lg:flex-row lg:items-center lg:gap-3 px-6 py-3 bg-gradient-to-r from-gray-100/80 to-gray-200/80 dark:from-gray-800/80 dark:to-gray-700/80 backdrop-blur-sm rounded-full">
@@ -128,8 +128,7 @@ const Footer = () => {
 
         <div className="text-center mt-8 pt-8">
           <p className="text-sm font-medium text-black dark:text-white italic">
-            Mã là thơ ca, thiết kế là nghệ thuật cùng nhau tạo nên điều kỳ
-            diệu.
+            Mã là thơ ca, thiết kế là nghệ thuật cùng nhau tạo nên điều kỳ diệu.
           </p>
           <div className="flex justify-center mt-8">
             <div className={styles.typing_indicator}>

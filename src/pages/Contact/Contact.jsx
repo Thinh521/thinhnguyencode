@@ -3,9 +3,9 @@ import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
-import ShimmerButton from "../../components/ShimmerButton/ShimmerButton";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import ShimmerButton from "../../components/Button/ShimmerButton";
 
 const testimonials = [
   {
@@ -50,9 +50,7 @@ const MarqueeRow = ({ animation, testimonials }) => (
             <p className="text-xs text-gray-400">{item.role}</p>
           </div>
         </div>
-        <p className="leading-relaxed text-sm line-clamp-3">
-          {item.text}
-        </p>
+        <p className="leading-relaxed text-sm line-clamp-3">{item.text}</p>
       </div>
     ))}
   </div>
