@@ -1,3 +1,4 @@
+import Divider from "../../components/Divider/Divider";
 import Header from "../../components/Header/Header";
 import { ScrollTimeline } from "../../components/scroll-timeline";
 
@@ -49,6 +50,8 @@ const Timeline = () => {
           cardAlignment="alternating"
           revealAnimation="fade"
         />
+
+        <Divider />
       </article>
     </>
   );

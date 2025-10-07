@@ -86,6 +86,10 @@ const Writing = () => {
         </div>
       </section>
 
+      <section className="mt-5">
+        <Divider />
+      </section>
+
       <style jsx>{`
         @keyframes fadeInUp {
           from {

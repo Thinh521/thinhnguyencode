@@ -1,5 +1,6 @@
 import Header from "../../components/Header/Header";
 import TimelinePage2 from "../../components/Experience/Experience";
+import Divider from "../../components/Divider/Divider";
 
 const Project = () => {
   return (
@@ -10,6 +11,8 @@ const Project = () => {
       />
 
       <TimelinePage2 />
+
+      <Divider />
     </article>
   );
 };

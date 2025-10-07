@@ -119,7 +119,7 @@ const About = () => {
         <Divider />
       </section>
 
-      <div>
+      <section className="mb-5">
         <SectionTitle>Những điều thú vị</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {interestingFacts.map((fact, index) => (
@@ -134,7 +134,9 @@ const About = () => {
             </div>
           ))}
         </div>
-      </div>
+      </section>
+
+      <Divider />
     </article>
   );
 };

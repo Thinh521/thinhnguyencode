@@ -6,6 +6,7 @@ import Header from "../../components/Header/Header";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import ShimmerButton from "../../components/Button/ShimmerButton";
+import Divider from "../../components/Divider/Divider";
 
 const testimonials = [
   {
@@ -217,7 +218,7 @@ const Contact = () => {
         </section>
       </section>
 
-      <section className="overflow-hidden relative py-10 space-y-6">
+      <section className="overflow-hidden relative pt-8 space-y-6">
         {animations.map((animation, idx) => (
           <MarqueeRow
             key={idx}
@@ -225,6 +226,10 @@ const Contact = () => {
             testimonials={testimonials}
           />
         ))}
+      </section>
+
+      <section className="mt-5">
+        <Divider />
       </section>
     </article>
   );
