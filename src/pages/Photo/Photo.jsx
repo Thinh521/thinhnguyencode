@@ -14,6 +14,7 @@ import {
   Smile,
   MapPin,
   Sparkles,
+  ArrowRight,
 } from "lucide-react";
 import "./Photo.css";
 import { removeVietnameseTones } from "../../utils/stringUtils";
@@ -228,10 +229,11 @@ const Photo = () => {
                     />
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 z-10 p-2 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 z-10 p-2 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-center justify-between">
                     <p className="truncate font-medium text-xs text-white">
                       {photo.title}
                     </p>
+                    <ArrowRight className="w-4 h-4 text-white group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300" />
                   </div>
                 </Link>
               ))}
