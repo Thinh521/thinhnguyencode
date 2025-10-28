@@ -39,7 +39,7 @@ const StoryAvatar = ({ story, index, onClick, viewed }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="flex flex-col items-center space-y-2.5 cursor-pointer flex-shrink-0 group"
-      style={{ width: "90px" }}
+      style={{ width: "80px" }}
     >
       <div className="relative">
         {!isLoaded && (
@@ -49,7 +49,7 @@ const StoryAvatar = ({ story, index, onClick, viewed }) => {
         )}
 
         <div
-          className={`relative w-[72px] h-[72px] rounded-full ${borderClass}`}
+          className={`relative w-[64px] h-[64px] rounded-full ${borderClass}`}
         >
           <div className="w-full h-full rounded-full p-1 overflow-hidden bg-gray-200 dark:bg-neutral-700">
             <video
@@ -191,10 +191,6 @@ export default function Photo() {
                 ))}
               </div>
             </div>
-
-            {/* Edge fade */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-neutral-900 to-transparent pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-neutral-900 to-transparent pointer-events-none" />
           </div>
         </div>
 
