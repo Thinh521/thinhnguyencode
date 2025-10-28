@@ -303,18 +303,18 @@ export default function Photo() {
                     />
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 z-10 p-3 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 z-10 py-2 px-3 bg-gradient-to-t from-black/70 via-black/50 to-transparent">
                     <div className="flex items-center justify-between">
                       <p className="truncate font-semibold text-sm text-white drop-shadow-lg">
                         {photo.title}
                       </p>
-                      <div className="flex-shrink-0 ml-2 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <div className="flex-shrink-0 ml-2 w-7 h-7 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center">
                         <ArrowRight className="w-4 h-4 text-white" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="absolute top-3 right-3 z-10 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1">
+                  <div className="absolute top-3 right-3 z-10 bg-black/20 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1">
                     <ImageIcon className="w-3 h-3" />
                     {photo.images.length}
                   </div>

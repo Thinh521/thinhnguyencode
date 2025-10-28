@@ -80,7 +80,7 @@ const PhotoData = [
   },
   {
     id: 10,
-    title: "Chil code",
+    title: "Chill code",
     category: ["Công việc", "Sáng tạo"],
     images: [IMAGES.photo10_1],
     date: "TP.HCM, ngày 04-09-2025",
