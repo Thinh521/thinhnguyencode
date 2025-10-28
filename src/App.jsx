@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
+import { Toaster } from "sonner";
+
 import CustomerRoutes from "./routes/CustomerRoutes";
 import Preloader from "./components/Preloader/Preloader";
-import { Toaster } from "sonner";
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    let userId = localStorage.getItem("visitor_id");
+    if (!userId) {
+      userId = crypto.randomUUID();
+      localStorage.setItem("visitor_id", userId);
+      console.log("Tạo userId mới:", userId);
+    } else {
+      console.log("userId đã tồn tại:", userId);
+    }
 
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -21,6 +28,7 @@ function App() {
   return (
     <div className="bg-white dark:bg-neutral-900 text-black dark:text-white min-h-screen duration-200 overflow-hidden">
       <CustomerRoutes />
+
       <Toaster
         richColors
         position="top-right"

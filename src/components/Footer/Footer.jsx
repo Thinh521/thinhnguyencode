@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Heart, User } from "lucide-react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import styles from "./Footer.module.css";
 import Divider from "../Divider/Divider";
+// import VisitorCounter from "../VisitorCounter";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -115,6 +116,10 @@ const Footer = () => {
               Sản phẩm được tạo ra bằng cả tâm huyết
             </span>
           </div>
+
+          {/* <div className="mb-6">
+            <VisitorCounter />
+          </div> */}
 
           <div className="text-center">
             <p className="text-sm text-black dark:text-white mb-2">
