@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 
+const STORAGE_KEY = "viewedStories";
+
 export default function useViewedStories() {
   const [viewedStories, setViewedStories] = useState(() => {
-    const stored = localStorage.getItem("viewedStories");
-    return stored ? JSON.parse(stored) : [];
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem("viewedStories", JSON.stringify(viewedStories));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(viewedStories));
   }, [viewedStories]);
 
   const markAsViewed = (id) => {

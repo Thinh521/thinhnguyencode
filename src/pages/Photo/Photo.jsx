@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback, memo } from "react";
 import { Link } from "react-router-dom";
 import {
   Search,
@@ -24,14 +24,20 @@ import useViewedStories from "../../hooks/useViewedStories";
 
 import "./Photo.css";
 
-/* ------------------ Story Avatar Component ------------------ */
-const StoryAvatar = ({ story, index, onClick, viewed }) => {
+/* ------------------ Story Avatar (memoized) ------------------ */
+const StoryAvatar = memo(({ story, index, onClick, viewed }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   const borderClass = viewed
     ? "bg-gray-400 p-[2.5px]"
     : "bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-400 p-[2.5px]";
+
+  const handleLoaded = useCallback((e) => {
+    e.target.currentTime = 0.001;
+    e.target.pause();
+    setIsLoaded(true);
+  }, []);
 
   return (
     <div
@@ -54,7 +60,7 @@ const StoryAvatar = ({ story, index, onClick, viewed }) => {
           <div className="w-full h-full rounded-full p-1 overflow-hidden bg-gray-200 dark:bg-neutral-700">
             <video
               src={`/thinhnguyencode/videos/${story.video}`}
-              className={`w-full h-full object-cover rounded-full transition-all duration-300 bg-gray-100 dark:bg-neutral-800 ${
+              className={`w-full h-full object-cover rounded-full transition-opacity duration-300 bg-gray-100 dark:bg-neutral-800 ${
                 isLoaded ? "opacity-100" : "opacity-0"
               }`}
               muted
@@ -62,16 +68,11 @@ const StoryAvatar = ({ story, index, onClick, viewed }) => {
               controls={false}
               disablePictureInPicture
               preload="metadata"
-              onLoadedMetadata={(e) => {
-                e.target.currentTime = 0.001;
-                e.target.pause();
-                setIsLoaded(true);
-              }}
+              onLoadedMetadata={handleLoaded}
               onError={() => setIsLoaded(true)}
             />
           </div>
 
-          {/* Play icon overlay */}
           <div
             className={`absolute inset-0 flex items-center justify-center bg-black/20 rounded-full transition-opacity duration-300 ${
               isHovered ? "opacity-100" : "opacity-0"
@@ -86,9 +87,10 @@ const StoryAvatar = ({ story, index, onClick, viewed }) => {
       </p>
     </div>
   );
-};
+});
+StoryAvatar.displayName = "StoryAvatar";
 
-/* ------------------ Main Photo Page ------------------ */
+/* ------------------ Main Component ------------------ */
 export default function Photo() {
   const [open, setOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
@@ -99,72 +101,69 @@ export default function Photo() {
 
   const { markAsViewed, isViewed } = useViewedStories();
 
-  /* Category icon mapping */
-  const categoryIcons = {
-    "Tất cả": Sparkles,
-    "Đời thường": Smile,
-    "Chân dung": Camera,
-    "Du lịch": MapPin,
-    "Sáng tạo": ImageIcon,
-    "Ẩm thực": Utensils,
-    "Công việc": Briefcase,
-  };
+  /* Category icons map */
+  const categoryIcons = useMemo(
+    () => ({
+      "Tất cả": Sparkles,
+      "Đời thường": Smile,
+      "Chân dung": Camera,
+      "Du lịch": MapPin,
+      "Sáng tạo": ImageIcon,
+      "Ẩm thực": Utensils,
+      "Công việc": Briefcase,
+    }),
+    []
+  );
 
-  /* Stories open handler */
-  const handleStoryClick = (index) => {
-    const storyId = storiesData[index].id;
-    markAsViewed(storyId);
-    setStartIndex(index);
-    setOpen(true);
-  };
+  /* ------------------ Callbacks ------------------ */
+  const handleStoryClick = useCallback(
+    (index) => {
+      const storyId = storiesData[index].id;
+      markAsViewed(storyId);
+      setStartIndex(index);
+      setOpen(true);
+    },
+    [markAsViewed]
+  );
 
-  /* Category list */
+  const handleCategoryClick = useCallback((cat) => {
+    setSelectedCategory(cat);
+    const el = categoryRefs.current[cat];
+    if (el) setIndicatorStyle({ left: el.offsetLeft, width: el.offsetWidth });
+  }, []);
+
+  /* ------------------ Effects ------------------ */
+  useEffect(() => {
+    const el = categoryRefs.current["Tất cả"];
+    if (el) setIndicatorStyle({ left: el.offsetLeft, width: el.offsetWidth });
+  }, []);
+
+  /* ------------------ Derived data ------------------ */
   const categories = useMemo(() => {
     const unique = new Set(["Tất cả"]);
-    PhotoData.forEach((p) => p.category.forEach((c) => unique.add(c)));
+    for (const p of PhotoData) {
+      for (const c of p.category) unique.add(c);
+    }
     return Array.from(unique);
   }, []);
 
-  /* Category click + underline animation */
-  const handleCategoryClick = (cat) => {
-    setSelectedCategory(cat);
-    const el = categoryRefs.current[cat];
-    if (el) {
-      const { offsetLeft, offsetWidth } = el;
-      setIndicatorStyle({ left: offsetLeft, width: offsetWidth });
-    }
-  };
-
-  /* On mount: set indicator position for "Tất cả" */
-  useEffect(() => {
-    const el = categoryRefs.current["Tất cả"];
-    if (el) {
-      setIndicatorStyle({ left: el.offsetLeft, width: el.offsetWidth });
-    }
-  }, [categories]);
-
-  /* Filtered photos */
   const filteredPhotos = useMemo(() => {
+    const searchNormalized = removeVietnameseTones(search.toLowerCase());
     return PhotoData.filter((photo) => {
-      const matchesCategory =
+      const inCategory =
         selectedCategory === "Tất cả" ||
         photo.category.includes(selectedCategory);
-
-      const titleNoAccent = removeVietnameseTones(photo.title).toLowerCase();
-      const searchNoAccent = removeVietnameseTones(search).toLowerCase();
-
-      const matchesSearch = titleNoAccent.includes(searchNoAccent);
-
-      return matchesCategory && matchesSearch;
+      const titleNormalized = removeVietnameseTones(photo.title.toLowerCase());
+      return inCategory && titleNormalized.includes(searchNormalized);
     });
   }, [search, selectedCategory]);
 
-  /* Total count */
   const totalImages = useMemo(
     () => filteredPhotos.reduce((sum, item) => sum + item.images.length, 0),
     [filteredPhotos]
   );
 
+  /* ------------------ Render ------------------ */
   return (
     <article className="pb-8">
       <Header
@@ -173,28 +172,25 @@ export default function Photo() {
       />
 
       <section className="space-y-10">
-        {/* ----------- Stories Section ----------- */}
-        <div className="relative">
+        {/* Stories */}
+        <div>
           <SectionTitle>Tin nổi bật</SectionTitle>
-
-          <div className="relative">
-            <div className="overflow-x-auto pb-3 scrollbar-hide">
-              <div className="flex space-x-4 px-1 min-w-max">
-                {storiesData.map((story, index) => (
-                  <StoryAvatar
-                    key={story.id}
-                    story={story}
-                    index={index}
-                    viewed={isViewed(story.id)}
-                    onClick={handleStoryClick}
-                  />
-                ))}
-              </div>
+          <div className="overflow-x-auto pb-3 scrollbar-hide">
+            <div className="flex space-x-4 px-1 min-w-max">
+              {storiesData.map((story, index) => (
+                <StoryAvatar
+                  key={story.id}
+                  story={story}
+                  index={index}
+                  viewed={isViewed(story.id)}
+                  onClick={handleStoryClick}
+                />
+              ))}
             </div>
           </div>
         </div>
 
-        {/* ----------- Gallery Section ----------- */}
+        {/* Gallery */}
         <section>
           <SectionTitle>Ống kính nhiệm màu</SectionTitle>
 
@@ -207,11 +203,11 @@ export default function Photo() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 dark:border-neutral-700/50 rounded-full 
-                           bg-white dark:bg-neutral-800 focus:outline-none focus:ring-1 focus:ring-gray-200  dark:focus:ring-neutral-700 transition"
+                         bg-white dark:bg-neutral-800 focus:outline-none focus:ring-1 focus:ring-gray-200  dark:focus:ring-neutral-700 transition"
             />
           </div>
 
-          {/* Category Filter (Shopee style) */}
+          {/* Categories */}
           <div className="relative mb-6 border-b border-gray-200 dark:border-neutral-700">
             <div className="overflow-x-auto scrollbar-hide">
               <div className="flex space-x-1 min-w-max relative">
@@ -242,16 +238,13 @@ export default function Photo() {
                 })}
                 <span
                   className="absolute bottom-0 h-1 bg-gray-400 dark:bg-neutral-400 transition-all duration-300 ease-out rounded-tl-full rounded-tr-full"
-                  style={{
-                    left: `${indicatorStyle.left}px`,
-                    width: `${indicatorStyle.width}px`,
-                  }}
+                  style={indicatorStyle}
                 />
               </div>
             </div>
           </div>
 
-          {/* Results Count */}
+          {/* Results */}
           <div className="flex items-center justify-between mb-5">
             <p className="text-sm text-gray-600 dark:text-neutral-400">
               {filteredPhotos.length > 0 ? (
@@ -288,18 +281,15 @@ export default function Photo() {
                 <Link
                   key={photo.id}
                   to={`/photos/${photo.id}`}
-                  className="relative group block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl dark:bg-neutral-800 border-2 border-transparent hover:-translate-y-1"
-                  style={{
-                    animationDelay: `${idx * 50}ms`,
-                    animation: "fadeInUp 0.5s ease-out forwards",
-                    opacity: 0,
-                  }}
+                  className="relative group block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl dark:bg-neutral-800 border-2 border-transparent hover:-translate-y-1 animate-fadeInUp"
+                  style={{ animationDelay: `${idx * 50}ms` }}
                 >
                   <div className="aspect-square overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-neutral-700 dark:to-neutral-800">
                     <img
                       src={photo.images[0]}
                       alt={photo.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-1"
+                      loading="lazy"
                     />
                   </div>
 
@@ -329,7 +319,6 @@ export default function Photo() {
         <Divider />
       </section>
 
-      {/* Story Viewer */}
       {open && (
         <StoryViewer
           storyList={storiesData}
@@ -338,19 +327,6 @@ export default function Photo() {
           key={startIndex}
         />
       )}
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </article>
   );
 }

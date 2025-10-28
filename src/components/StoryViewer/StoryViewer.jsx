@@ -1,8 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { X, Volume2, VolumeX, Heart } from "lucide-react";
+
+import useViewedStories from "../../hooks/useViewedStories";
 
 const STORAGE_KEY = "storyLikes";
 
+// LocalStorage helpers
 const readStore = () => {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -15,7 +18,7 @@ const writeStore = (data) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 };
 
-const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
+const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
@@ -24,25 +27,27 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
 
   const videoRef = useRef(null);
   const intervalRef = useRef(null);
+  const touch = useRef({ startX: 0, startY: 0 });
 
-  const touchStartX = useRef(null);
-  const touchEndX = useRef(null);
-  const touchStartY = useRef(null);
-  const touchEndY = useRef(null);
+  const { markAsViewed } = useViewedStories();
+  const story = useMemo(
+    () => storyList[currentIndex],
+    [storyList, currentIndex]
+  );
 
-  const story = storyList[currentIndex];
+  // Đánh dấu đã xem khi đổi story
+  useEffect(() => {
+    markAsViewed(story.id);
+  }, [story.id]);
 
-  // Khóa scroll background
+  // Khóa scroll body
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
+    return () => document.body.classList.remove("overflow-hidden");
   }, []);
 
-  // Load trạng thái like từ localStorage
+  // Load trạng thái like (chỉ khi đổi story)
   useEffect(() => {
-    if (!story) return;
     const store = readStore();
     if (!store[story.id]) {
       store[story.id] = {
@@ -52,187 +57,160 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
       writeStore(store);
     }
     setLiked(store[story.id].liked);
-  }, [currentIndex, story]);
+  }, [story.id]);
 
-  // Swipe xử lý next/prev/close
-  const handleTouchStart = (e) => {
-    const touch = e.changedTouches[0];
-    touchStartX.current = touch.clientX;
-    touchStartY.current = touch.clientY;
-  };
-
-  const handleTouchEnd = (e) => {
-    const touch = e.changedTouches[0];
-    touchEndX.current = touch.clientX;
-    touchEndY.current = touch.clientY;
-    handleSwipe();
-  };
-
-  const handleSwipe = () => {
-    const distX = touchStartX.current - touchEndX.current;
-    const distY = touchStartY.current - touchEndY.current;
-    const threshold = 50;
-
-    if (Math.abs(distY) > Math.abs(distX)) {
-      if (distY < -threshold) {
-        onClose();
-      }
-    } else {
-      if (distX > threshold) {
-        setCurrentIndex((prev) => Math.min(prev + 1, storyList.length - 1));
-      } else if (distX < -threshold) {
-        setCurrentIndex((prev) => Math.max(prev - 1, 0));
-      }
-    }
-  };
-
-  // Quản lý tiến trình story
+  // Cập nhật muted video nếu thay đổi
   useEffect(() => {
-    if (currentIndex >= storyList.length) {
-      onClose();
-      return;
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
     }
+  }, [isMuted]);
 
+  // Cập nhật tiến trình story (ảnh & video)
+  useEffect(() => {
+    if (!story) return;
+
+    clearInterval(intervalRef.current);
     setProgress(0);
     setIsLoading(true);
-    if (intervalRef.current) clearInterval(intervalRef.current);
 
-    const duration = story.type === "video" || story.video ? null : 10000;
+    const isVideo = !!(story.type === "video" || story.video);
+    const video = videoRef.current;
 
-    const startProgress = (time) => {
+    const startProgress = (durationMs) => {
+      const tickTime = durationMs / 50;
       intervalRef.current = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
+        setProgress((p) => {
+          if (p >= 100) {
             clearInterval(intervalRef.current);
-            setCurrentIndex((prevIndex) => prevIndex + 1);
+            setCurrentIndex((prev) => Math.min(prev + 1, storyList.length - 1));
             return 0;
           }
-          return prev + 2;
+          return p + 2;
         });
-      }, time / 50);
+      }, tickTime);
     };
 
-    if (story.type === "video" || story.video) {
-      const video = videoRef.current;
-      if (video) {
-        video.muted = isMuted;
-        video.load();
+    if (isVideo && video) {
+      const handleLoaded = () => {
+        setIsLoading(false);
+        const duration = video.duration ? video.duration * 1000 : 10000;
+        startProgress(duration);
+        video.play().catch(() => {});
+      };
 
-        const handleLoadedMetadata = () => {
-          setIsLoading(false);
-          const durationMs = video.duration * 1000;
-          startProgress(durationMs);
-          video.play().catch(() => {});
-        };
+      const handleEnd = () =>
+        setCurrentIndex((prev) => Math.min(prev + 1, storyList.length - 1));
 
-        const handleEnded = () => {
-          setCurrentIndex((prevIndex) => prevIndex + 1);
-        };
+      video.addEventListener("loadedmetadata", handleLoaded);
+      video.addEventListener("ended", handleEnd);
+      video.load();
 
-        video.addEventListener("loadedmetadata", handleLoadedMetadata);
-        video.addEventListener("ended", handleEnded);
-
-        return () => {
-          video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-          video.removeEventListener("ended", handleEnded);
-          clearInterval(intervalRef.current);
-        };
-      }
+      return () => {
+        video.pause();
+        video.removeEventListener("loadedmetadata", handleLoaded);
+        video.removeEventListener("ended", handleEnd);
+        clearInterval(intervalRef.current);
+      };
     } else {
-      startProgress(duration);
+      startProgress(10000);
     }
 
     return () => clearInterval(intervalRef.current);
-  }, [currentIndex]);
+  }, [story.id]);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) video.muted = isMuted;
-  }, [isMuted]);
+  // Xử lý like
+  const handleLike = useCallback(
+    (e) => {
+      e.stopPropagation();
+      const store = readStore();
+      const entry = store[story.id] || { liked: false, count: 0 };
 
-  if (currentIndex >= storyList.length) return null;
+      entry.liked = !entry.liked;
+      entry.count = entry.liked
+        ? entry.count + 1
+        : Math.max(0, entry.count - 1);
 
-  const handleClick = (e) => {
-    const bounds = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - bounds.left;
-    if (x < bounds.width / 2) {
-      setCurrentIndex((prev) => Math.max(prev - 1, 0));
-    } else {
-      setCurrentIndex((prev) => Math.min(prev + 1, storyList.length - 1));
-    }
-  };
+      store[story.id] = entry;
+      writeStore(store);
+      setLiked(entry.liked);
+    },
+    [story.id]
+  );
 
-  const handleLike = (e) => {
-    e.stopPropagation();
-    if (!story) return;
-    const store = readStore();
+  // Xử lý touch
+  const handleTouchStart = useCallback((e) => {
+    const t = e.changedTouches[0];
+    touch.current = { startX: t.clientX, startY: t.clientY };
+  }, []);
 
-    const entry = store[story.id] || { liked: false, count: 0 };
-    if (entry.liked) {
-      entry.liked = false;
-      entry.count = Math.max(0, entry.count - 1);
-    } else {
-      entry.liked = true;
-      entry.count += 1;
-    }
+  const handleTouchEnd = useCallback(
+    (e) => {
+      const t = e.changedTouches[0];
+      const distX = touch.current.startX - t.clientX;
+      const distY = touch.current.startY - t.clientY;
+      const threshold = 50;
 
-    store[story.id] = entry;
-    writeStore(store);
+      if (Math.abs(distY) > Math.abs(distX)) {
+        if (distY < -threshold) onClose();
+      } else {
+        if (distX > threshold)
+          setCurrentIndex((i) => Math.min(i + 1, storyList.length - 1));
+        else if (distX < -threshold) setCurrentIndex((i) => Math.max(i - 1, 0));
+      }
+    },
+    [onClose, storyList.length]
+  );
 
-    setLiked(entry.liked);
-  };
+  // Click next/prev
+  const handleClick = useCallback(
+    (e) => {
+      const { left, width } = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - left;
+      setCurrentIndex((i) =>
+        x < width / 2
+          ? Math.max(i - 1, 0)
+          : Math.min(i + 1, storyList.length - 1)
+      );
+    },
+    [storyList.length]
+  );
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black/90 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
       <div
         className="relative w-[95vw] max-w-[400px] h-[90vh] bg-black overflow-hidden"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}
       >
+        {/* Loading spinner */}
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center z-30">
-            <div className="w-12 h-12 relative transform rotate-45">
-              <div
-                className="absolute bg-white w-5 h-5 animate-ping"
-                style={{ top: 0, left: 0, animationDuration: "1.2s" }}
-              />
-              <div
-                className="absolute bg-white w-5 h-5 animate-ping"
-                style={{
-                  top: 0,
-                  right: 0,
-                  animationDuration: "1.2s",
-                  animationDelay: "0.15s",
-                }}
-              />
-              <div
-                className="absolute bg-white w-5 h-5 animate-ping"
-                style={{
-                  bottom: 0,
-                  right: 0,
-                  animationDuration: "1.2s",
-                  animationDelay: "0.3s",
-                }}
-              />
-              <div
-                className="absolute bg-white w-5 h-5 animate-ping"
-                style={{
-                  bottom: 0,
-                  left: 0,
-                  animationDuration: "1.2s",
-                  animationDelay: "0.45s",
-                }}
-              />
+            <div className="w-12 h-12 relative rotate-45">
+              {[0, 0.15, 0.3, 0.45].map((d, i) => (
+                <div
+                  key={i}
+                  className="absolute bg-white w-5 h-5 animate-ping"
+                  style={{
+                    top: i < 2 ? 0 : "auto",
+                    bottom: i >= 2 ? 0 : "auto",
+                    left: i % 3 === 0 ? 0 : "auto",
+                    right: i % 2 === 0 ? "auto" : 0,
+                    animationDelay: `${d}s`,
+                    animationDuration: "1.2s",
+                  }}
+                />
+              ))}
             </div>
           </div>
         )}
 
         {/* Video hoặc ảnh */}
-        {story.type === "video" || story.video ? (
+        {story.video ? (
           <video
             ref={videoRef}
-            key={`video-${currentIndex}`}
+            key={`video-${story.id}`}
             src={`/thinhnguyencode/videos/${story.video}`}
             className="w-full h-full object-contain bg-black"
             autoPlay
@@ -248,9 +226,9 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
         )}
 
         {/* Progress bar */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gray-400/50 z-20">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gray-400/40 z-20">
           <div
-            className="bg-white h-full transition-[width] duration-500 ease-linear"
+            className="bg-white h-full transition-[width] duration-300 ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -274,12 +252,12 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
           </button>
 
           {/* Volume */}
-          {(story.type === "video" || story.video) && (
+          {story.video && (
             <button
               className="text-white rounded-full p-2 bg-black/30 hover:bg-black/50"
               onClick={(e) => {
                 e.stopPropagation();
-                setIsMuted((prev) => !prev);
+                setIsMuted((m) => !m);
               }}
             >
               {isMuted ? <VolumeX size={22} /> : <Volume2 size={22} />}
@@ -287,18 +265,14 @@ const StoryViewer = ({ storyList, onClose, initialIndex = 0 }) => {
           )}
 
           {/* Heart */}
-          <div className="flex flex-col items-center">
-            <button
-              className="text-white rounded-full p-2 bg-black/30 hover:bg-black/50 active:scale-90 transition"
-              onClick={handleLike}
-            >
-              <Heart
-                className={`w-5 h-5 ${
-                  liked ? "text-red-500 fill-red-500" : ""
-                }`}
-              />
-            </button>
-          </div>
+          <button
+            className="text-white rounded-full p-2 bg-black/30 hover:bg-black/50 active:scale-90 transition"
+            onClick={handleLike}
+          >
+            <Heart
+              className={`w-5 h-5 ${liked ? "text-red-500 fill-red-500" : ""}`}
+            />
+          </button>
         </div>
       </div>
     </div>
