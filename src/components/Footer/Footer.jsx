@@ -50,23 +50,23 @@ const Footer = () => {
           <div className="relative inline-flex rounded-full p-[2px] overflow-hidden">
             <style>
               {`
-                @property --angle {
-                  syntax: '<angle>';
-                  initial-value: 0deg;
-                  inherits: false;
-                }
-                @keyframes shimmer-spin {
-                  to {
-                    --angle: 360deg;
-                  }
-                }
-              `}
+        @property --angle {
+          syntax: '<angle>';
+          initial-value: 0deg;
+          inherits: false;
+        }
+        @keyframes shimmer-spin {
+          to {
+            --angle: 360deg;
+          }
+        }
+      `}
             </style>
             <div
               className="absolute inset-0 rounded-full"
               style={{
                 background:
-                  "conic-gradient(from var(--angle), transparent 25%, #0ea5e9, transparent 50%)",
+                  "conic-gradient(from var(--angle), transparent 25%, #01C5BA, transparent 50%)",
                 animation: "shimmer-spin 3s linear infinite",
               }}
             />

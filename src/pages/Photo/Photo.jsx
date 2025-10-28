@@ -49,7 +49,7 @@ const StoryAvatar = ({ story, index, onClick, viewed }) => {
         )}
 
         <div
-          className={`relative w-[72px] h-[72px] rounded-full ${borderClass} transform transition-all duration-300 group-hover:shadow-lg`}
+          className={`relative w-[72px] h-[72px] rounded-full ${borderClass}`}
         >
           <div className="w-full h-full rounded-full p-1 overflow-hidden bg-gray-200 dark:bg-neutral-700">
             <video
@@ -229,15 +229,15 @@ export default function Photo() {
                       onClick={() => handleCategoryClick(cat)}
                       className={`relative group flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
                         isActive
-                          ? "text-orange-500 dark:text-orange-400"
-                          : "text-gray-600 dark:text-neutral-400 hover:text-orange-500"
+                          ? "text-black dark:text-white"
+                          : " hover:text-black hover:dark:text-white"
                       }`}
                     >
                       <Icon
                         className={`w-4 h-4 transition-colors duration-200 ${
                           isActive
-                            ? "text-orange-500 dark:text-orange-400"
-                            : "text-gray-500 dark:text-neutral-500 group-hover:text-orange-500"
+                            ? "text-black dark:text-white"
+                            : "group-hover:dark:text-white"
                         }`}
                       />
                       {cat}
@@ -245,7 +245,7 @@ export default function Photo() {
                   );
                 })}
                 <span
-                  className="absolute bottom-0 h-0.5 bg-orange-500 dark:bg-orange-400 transition-all duration-300 ease-out"
+                  className="absolute bottom-0 h-1 bg-gray-400 dark:bg-neutral-400 transition-all duration-300 ease-out rounded-tl-full rounded-tr-full"
                   style={{
                     left: `${indicatorStyle.left}px`,
                     width: `${indicatorStyle.width}px`,
@@ -261,7 +261,7 @@ export default function Photo() {
               {filteredPhotos.length > 0 ? (
                 <>
                   Tìm thấy{" "}
-                  <span className="font-bold text-purple-600">
+                  <span className="font-bold text-black dark:text-white">
                     {filteredPhotos.length}
                   </span>{" "}
                   bộ sưu tập
@@ -271,7 +271,7 @@ export default function Photo() {
               )}
             </p>
             <p className="text-base font-semibold text-black dark:text-white">
-              <span className="text-purple-600">{totalImages}</span> ảnh
+              <span>{totalImages}</span> ảnh
             </p>
           </div>
 
@@ -292,7 +292,7 @@ export default function Photo() {
                 <Link
                   key={photo.id}
                   to={`/photos/${photo.id}`}
-                  className="relative group block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 dark:bg-neutral-800 border-2 border-transparent hover:border-purple-500/30 dark:hover:border-purple-500/30 hover:-translate-y-1"
+                  className="relative group block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl dark:bg-neutral-800 border-2 border-transparent hover:-translate-y-1"
                   style={{
                     animationDelay: `${idx * 50}ms`,
                     animation: "fadeInUp 0.5s ease-out forwards",
