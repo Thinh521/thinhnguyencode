@@ -20,13 +20,18 @@ import Header from "../../components/Header/Header";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import Divider from "../../components/Divider/Divider";
 import { removeVietnameseTones } from "../../utils/stringUtils";
+import useViewedStories from "../../hooks/useViewedStories";
 
 import "./Photo.css";
 
 /* ------------------ Story Avatar Component ------------------ */
-const StoryAvatar = ({ story, index, onClick }) => {
+const StoryAvatar = ({ story, index, onClick, viewed }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  const borderClass = viewed
+    ? "bg-gray-400 p-[2.5px]"
+    : "bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-400 p-[2.5px]";
 
   return (
     <div
@@ -39,21 +44,24 @@ const StoryAvatar = ({ story, index, onClick }) => {
       <div className="relative">
         {!isLoaded && (
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className="w-5 h-5 border-3 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+            <div className="w-5 h-5 border-3 border-gray-300 border-t-gray-600 dark:border-neutral-600 dark:border-t-neutral-300 rounded-full animate-spin" />
           </div>
         )}
 
-        <div className="relative w-[72px] h-[72px] rounded-full bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-400 p-[2.5px] transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-purple-500/30">
-          <div className="w-full h-full rounded-full border-[3px] border-white dark:border-neutral-900 overflow-hidden bg-gray-200 dark:bg-neutral-700">
+        <div
+          className={`relative w-[72px] h-[72px] rounded-full ${borderClass} transform transition-all duration-300 group-hover:shadow-lg`}
+        >
+          <div className="w-full h-full rounded-full p-1 overflow-hidden bg-gray-200 dark:bg-neutral-700">
             <video
               src={`/thinhnguyencode/videos/${story.video}`}
               className={`w-full h-full object-cover rounded-full transition-all duration-300 bg-gray-100 dark:bg-neutral-800 ${
                 isLoaded ? "opacity-100" : "opacity-0"
-              } ${isHovered ? "scale-110" : "scale-100"}`}
+              }`}
               muted
               playsInline
-              preload="metadata"
+              controls={false}
               disablePictureInPicture
+              preload="metadata"
               onLoadedMetadata={(e) => {
                 e.target.currentTime = 0.001;
                 e.target.pause();
@@ -63,9 +71,9 @@ const StoryAvatar = ({ story, index, onClick }) => {
             />
           </div>
 
-          {/* Play overlay */}
+          {/* Play icon overlay */}
           <div
-            className={`absolute inset-0 flex items-center justify-center bg-black/25 rounded-full transition-opacity duration-300 ${
+            className={`absolute inset-0 flex items-center justify-center bg-black/20 rounded-full transition-opacity duration-300 ${
               isHovered ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -73,7 +81,6 @@ const StoryAvatar = ({ story, index, onClick }) => {
           </div>
         </div>
       </div>
-
       <p className="text-xs font-medium text-center text-black dark:text-white w-full truncate transition-colors duration-200 group-hover:text-purple-600 dark:group-hover:text-purple-400">
         {story.username}
       </p>
@@ -90,6 +97,8 @@ export default function Photo() {
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
   const categoryRefs = useRef({});
 
+  const { markAsViewed, isViewed } = useViewedStories();
+
   /* Category icon mapping */
   const categoryIcons = {
     "Tất cả": Sparkles,
@@ -103,6 +112,8 @@ export default function Photo() {
 
   /* Stories open handler */
   const handleStoryClick = (index) => {
+    const storyId = storiesData[index].id;
+    markAsViewed(storyId);
     setStartIndex(index);
     setOpen(true);
   };
@@ -168,12 +179,13 @@ export default function Photo() {
 
           <div className="relative">
             <div className="overflow-x-auto pb-3 scrollbar-hide">
-              <div className="flex space-x-5 px-1 min-w-max">
+              <div className="flex space-x-4 px-1 min-w-max">
                 {storiesData.map((story, index) => (
                   <StoryAvatar
                     key={story.id}
                     story={story}
                     index={index}
+                    viewed={isViewed(story.id)}
                     onClick={handleStoryClick}
                   />
                 ))}
@@ -191,14 +203,15 @@ export default function Photo() {
           <SectionTitle>Ống kính nhiệm màu</SectionTitle>
 
           {/* Search */}
-          <div className="relative w-full sm:w-96 mb-5 group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-neutral-500 transition-colors group-focus-within:text-purple-500" />
+          <div className="relative w-full sm:w-80 mb-3">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
-              placeholder="Tìm kiếm ảnh..."
+              placeholder="Tìm ảnh..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 text-sm border-2 border-gray-200 dark:border-neutral-700 rounded-2xl bg-white dark:bg-neutral-800 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 placeholder:text-gray-400 transition-all duration-200"
+              className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 dark:border-neutral-700/50 rounded-full 
+                           bg-white dark:bg-neutral-800 focus:outline-none focus:ring-1 focus:ring-gray-200  dark:focus:ring-neutral-700 transition"
             />
           </div>
 
@@ -214,14 +227,14 @@ export default function Photo() {
                       key={cat}
                       ref={(el) => (categoryRefs.current[cat] = el)}
                       onClick={() => handleCategoryClick(cat)}
-                      className={`relative flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
+                      className={`relative group flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
                         isActive
                           ? "text-orange-500 dark:text-orange-400"
                           : "text-gray-600 dark:text-neutral-400 hover:text-orange-500"
                       }`}
                     >
                       <Icon
-                        className={`w-4 h-4 ${
+                        className={`w-4 h-4 transition-colors duration-200 ${
                           isActive
                             ? "text-orange-500 dark:text-orange-400"
                             : "text-gray-500 dark:text-neutral-500 group-hover:text-orange-500"
@@ -274,12 +287,12 @@ export default function Photo() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:gap-4">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:gap-4">
               {filteredPhotos.map((photo, idx) => (
                 <Link
                   key={photo.id}
                   to={`/photos/${photo.id}`}
-                  className="relative group block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 dark:bg-neutral-800 border-2 border-transparent hover:border-purple-500/30 hover:-translate-y-1"
+                  className="relative group block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 dark:bg-neutral-800 border-2 border-transparent hover:border-purple-500/30 dark:hover:border-purple-500/30 hover:-translate-y-1"
                   style={{
                     animationDelay: `${idx * 50}ms`,
                     animation: "fadeInUp 0.5s ease-out forwards",
@@ -294,26 +307,18 @@ export default function Photo() {
                     />
                   </div>
 
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                  {/* Title */}
-                  <div className="absolute bottom-0 left-0 right-0 z-10 p-3 bg-gradient-to-t from-black/90 via-black/60 to-transparent translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 z-10 p-3 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
                     <div className="flex items-center justify-between">
-                      <p className="truncate font-semibold text-sm text-white">
+                      <p className="truncate font-semibold text-sm text-white drop-shadow-lg">
                         {photo.title}
                       </p>
-                      <div className="ml-2 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-purple-500">
+                      <div className="flex-shrink-0 ml-2 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
                         <ArrowRight className="w-4 h-4 text-white" />
                       </div>
                     </div>
-                    <p className="text-xs text-white/80 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
-                      {photo.images.length} ảnh
-                    </p>
                   </div>
 
-                  {/* Badge */}
-                  <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-3 right-3 z-10 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1">
                     <ImageIcon className="w-3 h-3" />
                     {photo.images.length}
                   </div>
