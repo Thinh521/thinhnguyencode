@@ -67,7 +67,7 @@ export default function VisitorCounter() {
           daily,
         });
 
-        setTotalVisitors(totalCount);
+        setTotalVisitors(data.totalCount ?? data.count ?? 0);
         setTodayVisitors(todayList.length);
       } catch (error) {
         console.error("Lỗi cập nhật dữ liệu Firestore:", error);
