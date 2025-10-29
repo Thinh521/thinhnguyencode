@@ -34,7 +34,7 @@ const Footer = () => {
     {
       icon: MapPin,
       label: "Địa chỉ",
-      value: "Nguyễn Văn Khối, Phường 11, Gò Vấp, TP. HCM",
+      value: "Phường 11, Gò Vấp, TP. HCM",
       href: "#",
     },
   ];
@@ -93,10 +93,8 @@ const Footer = () => {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-black dark:text-white mb-1">
-                    {item.label}
-                  </p>
-                  <p className="text-sm group-hover:text-gray-900 dark:group-hover:text-white transition-colors break-all">
+                  <p className="text-sm  mb-1">{item.label}</p>
+                  <p className="text-sm text-black dark:text-white font-bold group-hover:text-gray-900 dark:group-hover:text-white transition-colors break-all">
                     {item.value}
                   </p>
                 </div>

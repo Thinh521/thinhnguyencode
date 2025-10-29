@@ -73,7 +73,7 @@ const Education = () => {
           {studyInfo.map((item, idx) => (
             <li key={idx} className="flex items-start">
               <span className="inline-block w-1.5 h-1.5 bg-gray-400 mr-3 rotate-45 self-center" />
-              <span className="text-sm font-medium">
+              <span className="text-sm">
                 {item.label}:{" "}
                 <strong className="text-black dark:text-white font-bold">
                   {item.value}
