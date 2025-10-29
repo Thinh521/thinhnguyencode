@@ -25,7 +25,7 @@ const Education = () => {
       />
 
       <section className="flex flex-col items-center justify-center text-center mb-10">
-        <h1 className="font-bold text-xl dark:text-white text-black uppercase mb-2">
+        <h1 className="font-playfair font-bold text-xl dark:text-white text-black uppercase mb-2">
           TRƯỜNG CAO ĐẲNG CÔNG NGHỆ THÔNG TIN TP. HỒ CHÍ MINH
         </h1>
 
@@ -71,8 +71,8 @@ const Education = () => {
         <SectionTitle>Thông tin học tập</SectionTitle>
         <ul className="space-y-4">
           {studyInfo.map((item, idx) => (
-            <li key={idx} className="flex items-start">
-              <span className="inline-block w-1.5 h-1.5 bg-gray-400 mr-3 rotate-45 self-center" />
+            <li key={idx} className="flex gap-3">
+              <span className="mt-2 flex-shrink-0 w-2 h-2 rotate-45 bg-gray-400 dark:bg-gray-500 rounded-sm" />
               <span className="text-sm">
                 {item.label}:{" "}
                 <strong className="text-black dark:text-white font-bold">

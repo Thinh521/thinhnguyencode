@@ -67,13 +67,13 @@ export default function ProjectDetail() {
 
         <section>
           <SectionTitle>Mô tả dự án</SectionTitle>
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {project.responsibilities?.map((task, idx) => (
-              <li key={idx} className="flex items-start">
-                <span className="inline-block w-1.5 h-1.5 bg-gray-400 mr-3 rotate-45 self-center" />
-                <span className="text-sm text-justify leading-relaxed">
+              <li key={idx} className="flex gap-3">
+                <span className="mt-2 flex-shrink-0 w-2 h-2 rotate-45 bg-gray-400 dark:bg-gray-500 rounded-sm" />
+                <p className="text-sm text-justify leading-relaxed">
                   {task}
-                </span>
+                </p>
               </li>
             ))}
           </ul>
