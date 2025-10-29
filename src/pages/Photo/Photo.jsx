@@ -276,7 +276,7 @@ export default function Photo() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:gap-4">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:gap-2">
               {filteredPhotos.map((photo, idx) => (
                 <Link
                   key={photo.id}
