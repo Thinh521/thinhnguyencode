@@ -7,6 +7,7 @@ import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import ShimmerButton from "../../components/Button/ShimmerButton";
 import Divider from "../../components/Divider/Divider";
+import FormField from "../../components/FormField/FormField";
 
 const testimonials = [
   {
@@ -65,7 +66,10 @@ const Contact = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+    watch,
+  } = useForm({ mode: "onChange", reValidateMode: "onChange" });
+
+  watch();
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -91,7 +95,7 @@ const Contact = () => {
       toast.error("Có lỗi kết nối. Vui lòng kiểm tra mạng và thử lại.", {
         icon: null,
       });
-      console.log("error", error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -110,97 +114,41 @@ const Contact = () => {
           className="flex flex-col md:ml-auto w-full mb-4"
         >
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative w-full md:w-1/2">
-              <label className="block text-sm font-medium mb-2">
-                Họ và tên
-              </label>
-              <input
-                type="text"
-                {...register("name", { required: "Vui lòng nhập họ và tên" })}
-                className={`w-full bg-gray-100 dark:bg-neutral-800 border rounded-lg focus:ring-1 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out
-                          ${
-                            errors.name
-                              ? "border-red-500 focus:ring-red-400 dark:border-red-400 dark:focus:ring-red-500"
-                              : "border-gray-200 dark:border-neutral-700/50 focus:ring-neutral-300 dark:focus:ring-neutral-700"
-                          }`}
-              />
-              {errors.name && (
-                <p className="text-red-500 dark:text-red-400 text-sm mt-1">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
-            <div className="relative w-full md:w-1/2 mb-4">
-              <label className="block text-sm font-medium mb-2">
-                Số điện thoại
-              </label>
-              <input
-                type="tel"
-                {...register("phone", {
-                  required: "Vui lòng nhập số điện thoại",
-                  pattern: {
-                    value: /^[0-9]{9,11}$/,
-                    message: "Số điện thoại không hợp lệ",
-                  },
-                })}
-                className={`w-full bg-gray-100 dark:bg-neutral-800 border rounded-lg focus:ring-1 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out
-                          ${
-                            errors.phone
-                              ? "border-red-500 focus:ring-red-400 dark:border-red-400 dark:focus:ring-red-500"
-                              : "border-gray-200 dark:border-neutral-700/50 focus:ring-neutral-300 dark:focus:ring-neutral-700"
-                          }`}
-              />
-              {errors.phone && (
-                <p className="text-red-500 dark:text-red-400 text-sm mt-1">
-                  {errors.phone.message}
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div className="relative mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Email của bạn
-            </label>
-            <input
-              type="email"
-              {...register("email", {
-                required: "Vui lòng nhập email",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Email không hợp lệ",
-                },
-              })}
-              className={`w-full bg-gray-100 dark:bg-neutral-800 border rounded-lg focus:ring-1 text-base outline-none py-2 px-3 leading-8 transition-colors duration-200 ease-in-out
-                          ${
-                            errors.email
-                              ? "border-red-500 focus:ring-red-400 dark:border-red-400 dark:focus:ring-red-500"
-                              : "border-gray-200 dark:border-neutral-700/50 focus:ring-neutral-300 dark:focus:ring-neutral-700"
-                          }`}
+            <FormField
+              label="Họ và tên"
+              name="name"
+              register={register}
+              errors={errors}
             />
-            {errors.email && (
-              <p className="text-red-500 dark:text-red-400 text-sm mt-1">
-                {errors.email.message}
-              </p>
-            )}
+            <FormField
+              label="Số điện thoại"
+              name="phone"
+              type="tel"
+              register={register}
+              errors={errors}
+              pattern={{
+                value: /^[0-9]{9,11}$/,
+                message: "Số điện thoại không hợp lệ",
+              }}
+            />
           </div>
 
-          <div className="relative mb-4">
-            <label className="block text-sm font-medium mb-2">Nội dung</label>
-            <textarea
-              {...register("message", { required: "Vui lòng nhập nội dung" })}
-              className={`w-full bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-lg focus:ring-1 focus:ring-neutral-300 dark:focus:ring-neutral-700 h-32 text-base outline-none py-2 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out ${
-                errors.email
-                  ? "border-red-500 focus:ring-red-400 dark:border-red-400 dark:focus:ring-red-500"
-                  : "border-gray-200 dark:border-neutral-700/50 focus:ring-neutral-300 dark:focus:ring-neutral-700"
-              }`}
-            ></textarea>
-            {errors.message && (
-              <p className="text-red-500 dark:text-red-400 text-sm mt-1">
-                {errors.message.message}
-              </p>
-            )}
-          </div>
+          <FormField
+            label="Email của bạn"
+            name="email"
+            type="email"
+            register={register}
+            errors={errors}
+            pattern={{ value: /^\S+@\S+$/i, message: "Email không hợp lệ" }}
+          />
+
+          <FormField
+            label="Nội dung"
+            name="message"
+            type="textarea"
+            register={register}
+            errors={errors}
+          />
 
           <ShimmerButton type="submit" disabled={loading}>
             {loading ? "Đang gửi..." : "Gửi tin nhắn"}

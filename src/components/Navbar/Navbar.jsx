@@ -10,6 +10,7 @@ import {
   UserIcon,
   WritingIcon,
   TimelineIcon,
+  RatingIcon,
 } from "../Icons/Icons";
 import DarkModeToggle from "./DarkModeToggle";
 import Loading from "../../components/Loading/Loading";
@@ -23,6 +24,7 @@ const navItems = [
   { to: "/photos", title: "Photos", icon: PhotoIcon },
   { to: "/writing", title: "Writing", icon: WritingIcon },
   { to: "/contact", title: "Contact", icon: ContactIcon },
+  { to: "/ratings", title: "Ratings", icon: RatingIcon },
 ];
 
 const Navbar = () => {
