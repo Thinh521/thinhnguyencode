@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBSHzwTdr2hQi79u-9W8YE1NlA557mjmtc",
@@ -12,7 +13,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-export { db };
+signInAnonymously(auth).catch((error) => {
+  console.error("Anonymous sign-in failed:", error);
+});
+
+export { db, auth };
