@@ -174,7 +174,7 @@ export default function Photo() {
       <section className="space-y-10">
         {/* Stories */}
         <div>
-          <SectionTitle>Tin nổi bật</SectionTitle>
+          <SectionTitle className="mb-4">Tin nổi bật</SectionTitle>
           <div className="overflow-x-auto pb-3 scrollbar-hide">
             <div className="flex space-x-4 px-1 min-w-max">
               {storiesData.map((story, index) => (
@@ -192,7 +192,7 @@ export default function Photo() {
 
         {/* Gallery */}
         <section>
-          <SectionTitle>Ống kính nhiệm màu</SectionTitle>
+          <SectionTitle className="mb-4">Ống kính nhiệm màu</SectionTitle>
 
           {/* Search */}
           <div className="relative w-full sm:w-80 mb-3">

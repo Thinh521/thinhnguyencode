@@ -156,7 +156,7 @@ const Contact = () => {
         </form>
 
         <section className="my-10">
-          <SectionTitle>Kết nối</SectionTitle>
+          <SectionTitle className="mb-4">Kết nối</SectionTitle>
           <div className="flex flex-col gap-6">
             <Button className="w-[150px]" to="/cv">
               Resume

@@ -66,7 +66,7 @@ export default function ProjectDetail() {
         </h3>
 
         <section>
-          <SectionTitle>Mô tả dự án</SectionTitle>
+          <SectionTitle className="mb-2">Mô tả dự án</SectionTitle>
           <ul className="space-y-4">
             {project.responsibilities?.map((task, idx) => (
               <li key={idx} className="flex gap-3">
@@ -81,7 +81,7 @@ export default function ProjectDetail() {
 
         {/* Skills */}
         <section>
-          <SectionTitle>Kỹ năng sử dụng</SectionTitle>
+          <SectionTitle className="mb-4">Kỹ năng sử dụng</SectionTitle>
           <div className="flex flex-wrap gap-2">
             {project.skills?.map((skill, idx) => {
               const Icon = skillIcons[skill] || Code2;

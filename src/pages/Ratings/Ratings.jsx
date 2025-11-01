@@ -132,7 +132,7 @@ export default function Ratings() {
     <article>
       <Header
         title="Đánh giá"
-        subtitle="Chia sẻ cảm nhận của bạn về sản phẩm của mình"
+        subtitle="Chia sẻ cảm nhận của bạn về sản phẩm"
       />
 
       {/* Form Section */}
@@ -146,10 +146,10 @@ export default function Ratings() {
           />
 
           <div>
-            <label className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300">
-              Mức độ hài lòng của bạn
+            <label className="block text-sm font-medium mb-3">
+              Mức độ hài lòng
             </label>
-            <div className="flex flex-col items-center bg-white dark:bg-neutral-800 border-2 border-gray-200 dark:border-neutral-700 rounded-xl p-6 shadow-sm">
+            <div className="flex flex-col items-center bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl p-6 shadow-sm">
               <div className="flex justify-center space-x-3 mb-2">
                 {[1, 2, 3, 4, 5].map((s) => (
                   <button
@@ -306,13 +306,13 @@ export default function Ratings() {
           <div className="grid grid-cols-[7fr_3fr] gap-4 items-center">
             {/* Search Box */}
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Tìm kiếm theo tên hoặc nội dung..."
+                placeholder="Tìm kiếm..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-10 py-3 text-sm border border-gray-200 dark:border-neutral-700/50 bg-white dark:bg-neutral-800 focus:outline-none transition rounded-xl"
+                className="w-full pl-10 pr-10 py-3 text-sm border border-gray-200 dark:border-neutral-700/50 bg-white dark:bg-neutral-800 dark:text-neutral-400 focus:outline-none transition rounded-xl"
               />
             </div>
 

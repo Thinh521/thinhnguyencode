@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
 
         <div className="mb-12">
-          <SectionTitle>Thông tin liên hệ</SectionTitle>
+          <SectionTitle className="mb-6">Thông tin liên hệ</SectionTitle>
 
           <div>
             {contactItems.map((item, index) => (

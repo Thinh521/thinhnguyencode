@@ -16,7 +16,7 @@ const Home = () => {
       />
 
       <section className="mb-5">
-        <SectionTitle>Giới thiệu</SectionTitle>
+        <SectionTitle className="mb-2">Giới thiệu</SectionTitle>
         <p className="text-sm text-justify leading-relaxed">
           Xin chào, mình là Nguyễn Phúc Thịnh, sinh viên chuyên ngành Thiết Kế
           Trang Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Với
@@ -55,7 +55,7 @@ const Home = () => {
       <Divider />
 
       <section className="my-6">
-        <SectionTitle>Kết nối</SectionTitle>
+        <SectionTitle className="mb-4">Kết nối</SectionTitle>
         <div className="flex flex-col gap-6">
           <Button className="w-[150px]" to="/cv">
             Resume

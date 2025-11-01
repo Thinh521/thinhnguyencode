@@ -48,7 +48,7 @@ const Education = () => {
       </section>
 
       <section>
-        <SectionTitle>Tổng quan</SectionTitle>
+        <SectionTitle className="mb-2">Tổng quan</SectionTitle>
         <p className=" mb-6 text-sm text-justify leading-relaxed">
           Trải qua 24 năm đào tạo, đã có hơn 23 khóa sinh viên tốt nghiệp ra
           trường. Hiện nay, trường Cao đẳng Công nghệ thông tin TP.HCM (ITC)
@@ -68,7 +68,7 @@ const Education = () => {
       </section>
 
       <section>
-        <SectionTitle>Thông tin học tập</SectionTitle>
+        <SectionTitle className="mb-4">Thông tin học tập</SectionTitle>
         <ul className="space-y-4">
           {studyInfo.map((item, idx) => (
             <li key={idx} className="flex gap-3">
@@ -89,7 +89,7 @@ const Education = () => {
       </section>
 
       <section>
-        <SectionTitle>Kỹ năng</SectionTitle>
+        <SectionTitle className="mb-4">Kỹ năng</SectionTitle>
         <SkillCarousel />
       </section>
 

@@ -69,7 +69,7 @@ const About = () => {
       </section>
 
       <section className="my-6">
-        <SectionTitle>Kết nối</SectionTitle>
+        <SectionTitle className="mb-4">Kết nối</SectionTitle>
         <div className="flex flex-col gap-6">
           <Button className="w-[150px]" to="/cv">
             Resume
@@ -83,7 +83,7 @@ const About = () => {
       </section>
 
       <section>
-        <SectionTitle>Câu chuyện</SectionTitle>
+        <SectionTitle className="mb-2">Câu chuyện</SectionTitle>
         <p className="text-sm text-justify leading-relaxed">
           Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của mình.
           Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang
@@ -120,7 +120,7 @@ const About = () => {
       </section>
 
       <section className="mb-5">
-        <SectionTitle>Những điều thú vị</SectionTitle>
+        <SectionTitle className="mb-2">Những điều thú vị</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {interestingFacts.map((fact, index) => (
             <div
