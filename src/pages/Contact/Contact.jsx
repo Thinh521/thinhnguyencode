@@ -102,7 +102,7 @@ const Contact = () => {
   };
 
   return (
-    <article className="space-y-8">
+    <article>
       <Header
         title="Liên hệ"
         subtitle="Mọi người liên hệ với mình qua form này nhé"
