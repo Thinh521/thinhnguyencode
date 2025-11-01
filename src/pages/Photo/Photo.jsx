@@ -167,7 +167,7 @@ export default function Photo() {
   return (
     <article className="pb-8">
       <Header
-        title="Ảnh & tin"
+        title="Ảnh & Tin"
         subtitle="Những bức ảnh mình chụp qua ống kính nhiệm màu"
       />
 

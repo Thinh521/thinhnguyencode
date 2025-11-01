@@ -20,7 +20,7 @@ const Education = () => {
   return (
     <article>
       <Header
-        title="Học vấn & Đào tạo"
+        title="Học vấn & Kĩ năng"
         subtitle="Quá trình học tập và các kĩ năng của mình"
       />
 
