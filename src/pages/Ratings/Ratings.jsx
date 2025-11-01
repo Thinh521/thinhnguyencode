@@ -7,6 +7,7 @@ import {
   orderBy,
   serverTimestamp,
 } from "firebase/firestore";
+import { toast } from "sonner";
 import { onAuthStateChanged } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { db, auth } from "../../firebaseConfig";
@@ -20,11 +21,9 @@ import {
   Search,
   Filter,
   MessageSquare,
-  Send,
-  TrendingUp,
-  Award,
 } from "lucide-react";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import ShimmerButton from "../../components/Button/ShimmerButton";
 
 export default function Ratings() {
   const [userId, setUserId] = useState(null);
@@ -36,6 +35,7 @@ export default function Ratings() {
   const [hoverStar, setHoverStar] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStar, setFilterStar] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const ratingsRef = collection(db, "ratings");
 
@@ -45,7 +45,10 @@ export default function Ratings() {
     reset,
     setValue,
     formState: { errors },
+    watch,
   } = useForm();
+
+  watch();
 
   // Đăng nhập ẩn danh
   useEffect(() => {
@@ -105,20 +108,33 @@ export default function Ratings() {
   };
 
   const onSubmit = async (data) => {
-    const newRating = {
-      name: data.name,
-      rating: data.star,
-      description: data.description,
-      avatar: randomAvatar(),
-      createdAt: serverTimestamp(),
-      userId,
-    };
+    setLoading(true);
+    try {
+      const newRating = {
+        name: data.name,
+        rating: data.star,
+        description: data.description,
+        avatar: randomAvatar(),
+        createdAt: serverTimestamp(),
+        userId,
+      };
 
-    await addDoc(ratingsRef, newRating);
+      await addDoc(ratingsRef, newRating);
+      await fetchRatings();
+      reset();
+      setStar(0);
 
-    reset();
-    setStar(0);
-    fetchRatings();
+      toast.success("Cảm ơn bạn! Đánh giá đã được gửi thành công.", {
+        icon: null,
+      });
+    } catch (error) {
+      console.error("Lỗi khi gửi đánh giá:", error);
+      toast.error("Có lỗi xảy ra. Vui lòng thử lại sau.", {
+        icon: null,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Tính phần trăm theo sao
@@ -136,8 +152,8 @@ export default function Ratings() {
       />
 
       {/* Form Section */}
-      <section className="mb-12">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <section className="mb-10">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-6">
           <FormField
             label="Họ và tên"
             name="name"
@@ -161,7 +177,7 @@ export default function Ratings() {
                     }}
                     onMouseEnter={() => setHoverStar(s)}
                     onMouseLeave={() => setHoverStar(0)}
-                    className="transform transition-all duration-200 hover:scale-125"
+                    className="transform transition-all duration-200"
                   >
                     <Star
                       className={`w-10 h-10 transition-colors ${
@@ -209,25 +225,23 @@ export default function Ratings() {
             errors={errors}
           />
 
-          <button
+          <ShimmerButton
             type="submit"
-            className="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-white font-semibold py-3.5 rounded-xl hover:from-yellow-500 hover:to-orange-500 transition-all duration-300 shadow-md hover:shadow-xl flex items-center justify-center space-x-2 group"
+            disabled={loading}
+            className="rounded-xl w-full"
           >
-            <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            <span>Gửi đánh giá</span>
-          </button>
+            {loading ? "Đang gửi..." : "Gửi đánh giá"}
+          </ShimmerButton>
         </form>
       </section>
 
-      <section className="my-12">
-        <Divider />
-      </section>
+      <Divider className="my-10" />
 
       {/* Statistics Section */}
       <section className="mb-8">
         <SectionTitle className="mb-4">Thống kê đánh giá</SectionTitle>
 
-        <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl p-6 shadow-lg">
+        <div className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl p-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
             {/* Trái: Điểm trung bình */}
             <div className="flex flex-col items-center justify-center text-center">
@@ -235,12 +249,10 @@ export default function Ratings() {
                 <p className="text-5xl font-bold text-gray-800 dark:text-white">
                   {averageRating.toFixed(1)}
                 </p>
-                <span className="text-2xl text-gray-600 dark:text-gray-400">
-                  / 5.0
-                </span>
+                <span className="text-2xl">/ 5.0</span>
               </div>
 
-              <div className="flex items-center justify-center mb-3">
+              <div className="flex items-center justify-center space-x-1 mb-3">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
@@ -253,7 +265,7 @@ export default function Ratings() {
                 ))}
               </div>
 
-              <div className="text-gray-600 dark:text-gray-400 text-sm flex items-center space-x-1">
+              <div className=" text-sm flex items-center space-x-1">
                 <Users className="w-4 h-4" />
                 <p>
                   Tổng cộng{" "}
@@ -270,7 +282,7 @@ export default function Ratings() {
               {[5, 4, 3, 2, 1].map((starNum) => (
                 <div key={starNum} className="flex items-center space-x-3">
                   <div className="flex items-center space-x-1 w-16">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-medium text-black dark:text-white">
                       {starNum}
                     </span>
                     <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
@@ -281,7 +293,7 @@ export default function Ratings() {
                       style={{ width: `${getStarPercentage(starNum)}%` }}
                     ></div>
                   </div>
-                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400 w-12 text-right">
+                  <span className="text-sm font-medium text-black dark:text-white w-12 text-right">
                     {getStarPercentage(starNum)}%
                   </span>
                 </div>
@@ -295,7 +307,7 @@ export default function Ratings() {
       <section>
         <div className="flex items-center justify-between mb-4">
           <SectionTitle>Tất cả đánh giá</SectionTitle>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm font-medium text-black dark:text-white">
             {filteredRatings.length} đánh giá
             {searchTerm || filterStar > 0 ? " được tìm thấy" : ""}
           </p>
@@ -303,7 +315,7 @@ export default function Ratings() {
 
         {/* Search & Filter */}
         <div className="w-full overflow-hidden mb-6">
-          <div className="grid grid-cols-[7fr_3fr] gap-4 items-center">
+          <div className="grid grid-cols-[7fr_3fr] gap-2 items-center">
             {/* Search Box */}
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" />
@@ -336,30 +348,32 @@ export default function Ratings() {
 
           {/* Active Filters */}
           {(searchTerm || filterStar > 0) && (
-            <div className="flex items-center space-x-2 mt-4 pt-4 border-t border-gray-200 dark:border-neutral-700">
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                Đang lọc:
-              </span>
-              {searchTerm && (
-                <span className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 px-3 py-1 rounded-full text-sm font-medium">
-                  Từ khóa: "{searchTerm}"
-                </span>
-              )}
-              {filterStar > 0 && (
-                <span className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 px-3 py-1 rounded-full text-sm font-medium">
-                  {filterStar} sao
-                </span>
-              )}
-              <button
-                onClick={() => {
-                  setSearchTerm("");
-                  setFilterStar(0);
-                }}
-                className="text-sm text-red-500 hover:text-red-600 font-medium ml-2"
-              >
-                Xóa bộ lọc
-              </button>
-            </div>
+            <>
+              <Divider className="mt-4" />
+
+              <div className="flex items-center space-x-2 mt-4">
+                <span className="text-sm">Đang lọc:</span>
+                {searchTerm && (
+                  <span className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 text-gray-700 dark:text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Từ khóa: "{searchTerm}"
+                  </span>
+                )}
+                {filterStar > 0 && (
+                  <span className="bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 text-gray-700 dark:text-white px-3 py-1 rounded-full text-sm font-medium">
+                    {filterStar} sao
+                  </span>
+                )}
+                <button
+                  onClick={() => {
+                    setSearchTerm("");
+                    setFilterStar(0);
+                  }}
+                  className="text-sm text-red-500 hover:text-red-600 font-medium ml-2"
+                >
+                  Xóa bộ lọc
+                </button>
+              </div>
+            </>
           )}
         </div>
 
@@ -383,7 +397,7 @@ export default function Ratings() {
                   key={i}
                   className="group p-4 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl shadow-sm"
                 >
-                  <div className="flex items-center space-x-3 mb-2">
+                  <div className="flex items-center space-x-3 mb-3">
                     {/* Avatar với name, rating*/}
                     <div className="flex-shrink-0">
                       <img
@@ -415,9 +429,7 @@ export default function Ratings() {
                     {r.description}
                   </p>
 
-                  <section className="my-2">
-                    <Divider />
-                  </section>
+                  <Divider className="my-2.5" />
 
                   <div className="flex items-center space-x-2 text-sm">
                     <Clock className="w-4 h-4" />
@@ -428,11 +440,11 @@ export default function Ratings() {
             })
           ) : (
             <div className="text-center py-12 bg-gray-50 dark:bg-neutral-800 rounded-xl border-2 border-dashed border-gray-300 dark:border-neutral-700">
-              <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 dark:text-gray-400 text-lg font-medium">
+              <MessageSquare className="w-16 h-16 mx-auto mb-4 text-black dark:text-white" />
+              <p className="text-black dark:text-white text-lg font-medium">
                 Không tìm thấy đánh giá nào
               </p>
-              <p className="text-gray-500 dark:text-gray-500 text-sm mt-2">
+              <p className="text-sm mt-2">
                 Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm
               </p>
             </div>

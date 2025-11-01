@@ -92,10 +92,10 @@ const Contact = () => {
         toast.error("Có lỗi xảy ra. Vui lòng thử lại sau.", { icon: null });
       }
     } catch (error) {
+      console.error(error);
       toast.error("Có lỗi kết nối. Vui lòng kiểm tra mạng và thử lại.", {
         icon: null,
       });
-      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -150,7 +150,11 @@ const Contact = () => {
             errors={errors}
           />
 
-          <ShimmerButton type="submit" disabled={loading}>
+          <ShimmerButton
+            type="submit"
+            disabled={loading}
+            className="rounded-xl w-full"
+          >
             {loading ? "Đang gửi..." : "Gửi tin nhắn"}
           </ShimmerButton>
         </form>

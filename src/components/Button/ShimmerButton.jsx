@@ -3,6 +3,8 @@ export default function ShimmerButton({
   onClick,
   disabled = false,
   type = "button",
+  className = "",
+  style = {},
 }) {
   const customCss = `
     @property --angle {
@@ -16,15 +18,18 @@ export default function ShimmerButton({
   `;
 
   return (
-    <div className="flex items-center justify-center font-sans">
+     <div className="w-full flex font-sans">
       <style>{customCss}</style>
+
       <button
         type={type}
         onClick={onClick}
         disabled={disabled}
-        className={`relative inline-flex items-center justify-center p-[1.5px] rounded-full overflow-hidden group border transition-opacity duration-200 ${
-          disabled ? "opacity-60 cursor-not-allowed" : "hover:opacity-90"
-        } bg-gray-100 dark:bg-neutral-800 border-gray-200 dark:border-neutral-700/50`}
+        style={style}
+        className={`relative inline-flex items-center justify-center p-[1.5px] rounded-xl overflow-hidden group transition-opacity duration-200
+          ${disabled ? "opacity-60 cursor-not-allowed" : "hover:opacity-90"}
+          ${className}
+        `}
       >
         {!disabled && (
           <div
@@ -36,7 +41,8 @@ export default function ShimmerButton({
             }}
           />
         )}
-        <span className="relative z-10 inline-flex items-center justify-center w-full h-full px-8 py-3 text-gray-900 dark:text-white bg-gray-200 dark:bg-neutral-700 rounded-full group-hover:bg-gray-100 dark:group-hover:bg-gray-800 transition-colors duration-300 font-semibold text-sm">
+
+        <span className="relative z-10 inline-flex items-center justify-center w-full h-full px-6 py-3 rounded-xl text-sm font-semibold text-gray-900 dark:text-white bg-gray-200 dark:bg-neutral-700 group-hover:bg-gray-100 dark:group-hover:bg-gray-800 transition-colors duration-300">
           {children}
         </span>
       </button>
