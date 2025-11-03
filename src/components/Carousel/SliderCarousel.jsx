@@ -6,6 +6,7 @@ import {
   HomeIcon,
   PhotoIcon,
   ProjectIcon,
+  RatingIcon,
   TimelineIcon,
   UserIcon,
   WritingIcon,
@@ -40,13 +41,13 @@ const DEFAULT_ITEMS = [
   },
   {
     id: 5,
-    title: "Học vấn & Đào tạo",
+    title: "Học vấn & Kĩ năng",
     description: "Quá trình học tập và các kĩ năng của mình",
     icon: <EducationIcon />,
   },
   {
     id: 6,
-    title: "Ảnh chụp & tin nổi bật",
+    title: "Ảnh & Tin",
     description: "Những bức ảnh mà mình tự chụp qua ống kính nhiệm màu",
     icon: <PhotoIcon />,
   },
@@ -61,6 +62,12 @@ const DEFAULT_ITEMS = [
     title: "Liên hệ",
     description: "Mọi người liên hệ với mình qua form này nhé",
     icon: <ContactIcon />,
+  },
+  {
+    id: 9,
+    title: "Đánh giá",
+    description: "Chia sẻ cảm nhận của bạn về sản phẩm",
+    icon: <RatingIcon />,
   },
 ];
 
