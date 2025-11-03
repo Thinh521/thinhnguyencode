@@ -379,7 +379,36 @@ export default function Ratings() {
 
         {/* Reviews List */}
         <div className="space-y-4">
-          {filteredRatings.length > 0 ? (
+          {loading ? (
+            Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                className="p-4 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl shadow-sm animate-pulse"
+              >
+                <div className="flex items-center space-x-3 mb-3">
+                  {/* Avatar giả */}
+                  <div className="w-12 h-12 rounded-full bg-gray-300 dark:bg-neutral-700" />
+                  <div className="flex-1 space-y-2">
+                    <div className="w-1/3 h-4 bg-gray-300 dark:bg-neutral-700 rounded" />
+                    <div className="flex space-x-1">
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <div
+                          key={idx}
+                          className="w-4 h-4 bg-gray-300 dark:bg-neutral-700 rounded"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full h-16 bg-gray-200 dark:bg-neutral-700 rounded mb-3" />
+
+                <Divider className="my-2.5" />
+
+                <div className="w-1/4 h-4 bg-gray-300 dark:bg-neutral-700 rounded" />
+              </div>
+            ))
+          ) : filteredRatings.length > 0 ? (
             filteredRatings.map((r, i) => {
               const createdAt = r.createdAt?.seconds
                 ? new Date(r.createdAt.seconds * 1000)

@@ -21,11 +21,11 @@ const Preloader = ({ loading = true, text = "Grilli" }) => {
     >
       <div className="w-12 h-12 relative transform rotate-45 -top-14">
         <div
-          className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping"
+          className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping rounded-sm"
           style={{ top: 0, left: 0, animationDuration: "1.2s" }}
         />
         <div
-          className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping"
+          className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping rounded-sm"
           style={{
             top: 0,
             right: 0,
@@ -34,7 +34,7 @@ const Preloader = ({ loading = true, text = "Grilli" }) => {
           }}
         />
         <div
-          className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping"
+          className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping rounded-sm"
           style={{
             bottom: 0,
             right: 0,
@@ -43,7 +43,7 @@ const Preloader = ({ loading = true, text = "Grilli" }) => {
           }}
         />
         <div
-          className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping"
+          className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping rounded-sm"
           style={{
             bottom: 0,
             left: 0,

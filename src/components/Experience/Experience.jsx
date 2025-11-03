@@ -3,6 +3,50 @@ import { ChevronDown } from "lucide-react";
 import { timelineData } from "../../data/timelineData";
 import Button from "../../components/Button/Button";
 
+// --- IMAGES ---
+const TimelineImage = ({ src, alt }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className="relative w-full bg-gray-200 dark:bg-neutral-800 rounded-xl overflow-hidden border border-gray-300 dark:border-neutral-700 shadow-sm">
+      {!isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="relative w-10 h-10 transform rotate-45">
+            {[0, 0.15, 0.3, 0.45].map((delay, i) => (
+              <div
+                key={i}
+                className="absolute bg-neutral-900 dark:bg-white w-4 h-4 animate-ping rounded-sm opacity-60"
+                style={{
+                  animationDuration: "1.2s",
+                  animationDelay: `${delay}s`,
+                  ...(i === 0
+                    ? { top: 0, left: 0 }
+                    : i === 1
+                    ? { top: 0, right: 0 }
+                    : i === 2
+                    ? { bottom: 0, right: 0 }
+                    : { bottom: 0, left: 0 }),
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Ảnh chính */}
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        loading="lazy"
+        className={`object-contain w-full h-full transition-opacity duration-700 ease-out ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    </div>
+  );
+};
+
 // --- BADGE COMPONENT ---
 const Badge = ({ children, className = "", variant = "default", ...props }) => {
   const variants = {
@@ -28,11 +72,7 @@ const Badge = ({ children, className = "", variant = "default", ...props }) => {
 const TimelineItemContent = memo(({ item }) => (
   <div className="mt-4 lg:mt-6 space-y-4 lg:space-y-6 animate-in slide-in-from-top-1 duration-200">
     {/* Images */}
-    <img
-      src={item.images[0]}
-      alt={item.role}
-      className="object-contain w-full h-auto rounded-lg border border-slate-200 dark:border-slate-800"
-    />
+    <TimelineImage src={item.images[0]} alt={item.role} />
 
     <h3 className="font-playfair font-bold text-xl text-gray-900 dark:text-white mb-2 line-clamp-2">
       {item.title}
@@ -180,6 +220,6 @@ export function ProfessionalTimeline({
   );
 }
 
-export default function TimelinePage2() {
+export default function Timeline() {
   return <ProfessionalTimeline data={timelineData} expandMode="multi" />;
 }

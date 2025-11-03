@@ -38,28 +38,50 @@ const StoryAvatar = memo(({ story, index, onClick, viewed }) => {
     setIsLoaded(true);
   }, []);
 
+  const isDisabled = !isLoaded;
+
   return (
     <div
-      onClick={() => onClick(index)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="flex flex-col items-center space-y-2.5 cursor-pointer flex-shrink-0 group"
+      onClick={() => !isDisabled && onClick(index)}
+      onMouseEnter={() => !isDisabled && setIsHovered(true)}
+      onMouseLeave={() => !isDisabled && setIsHovered(false)}
+      className={`flex flex-col items-center space-y-2.5 flex-shrink-0 group transition-all ${
+        isDisabled ? "cursor-default opacity-70" : "cursor-pointer"
+      }`}
       style={{ width: "80px" }}
     >
       <div className="relative">
         {!isLoaded && (
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className="w-5 h-5 border-3 border-gray-300 border-t-gray-600 dark:border-neutral-600 dark:border-t-neutral-300 rounded-full animate-spin" />
+            <div className="relative w-5 h-5 transform rotate-45">
+              {[0, 0.15, 0.3, 0.45].map((delay, i) => (
+                <div
+                  key={i}
+                  className="absolute bg-neutral-900 dark:bg-white w-2 h-2 animate-ping rounded-sm opacity-60"
+                  style={{
+                    animationDuration: "1.2s",
+                    animationDelay: `${delay}s`,
+                    ...(i === 0
+                      ? { top: 0, left: 0 }
+                      : i === 1
+                      ? { top: 0, right: 0 }
+                      : i === 2
+                      ? { bottom: 0, right: 0 }
+                      : { bottom: 0, left: 0 }),
+                  }}
+                />
+              ))}
+            </div>
           </div>
         )}
 
         <div
           className={`relative w-[64px] h-[64px] rounded-full ${borderClass}`}
         >
-          <div className="w-full h-full rounded-full p-1 overflow-hidden bg-gray-200 dark:bg-neutral-700">
+          <div className="w-full h-full rounded-full overflow-hidden bg-gray-200 dark:bg-neutral-700">
             <video
               src={`/thinhnguyencode/videos/${story.video}`}
-              className={`w-full h-full object-cover rounded-full transition-opacity duration-300 bg-gray-100 dark:bg-neutral-800 ${
+              className={`w-full h-full object-cover rounded-full transition-opacity duration-500 ease-out ${
                 isLoaded ? "opacity-100" : "opacity-0"
               }`}
               muted
@@ -73,21 +95,113 @@ const StoryAvatar = memo(({ story, index, onClick, viewed }) => {
           </div>
 
           <div
-            className={`absolute inset-0 flex items-center justify-center bg-black/20 rounded-full transition-opacity duration-300 ${
-              isHovered ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 flex items-center justify-center bg-black/25 rounded-full transition-opacity duration-300 ${
+              isHovered && isLoaded ? "opacity-100" : "opacity-0"
             }`}
           >
             <Play className="w-5 h-5 text-white fill-white drop-shadow-lg" />
           </div>
         </div>
       </div>
-      <p className="text-xs font-medium text-center text-black dark:text-white w-full truncate transition-colors duration-200 group-hover:text-purple-600 dark:group-hover:text-purple-400">
+
+      <p
+        className={`text-xs font-medium text-center w-full truncate transition-colors duration-200 ${
+          isDisabled
+            ? "text-gray-400 dark:text-gray-500"
+            : "text-black dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400"
+        }`}
+      >
         {story.username}
       </p>
     </div>
   );
 });
 StoryAvatar.displayName = "StoryAvatar";
+
+/* ------------------ Photo Thumbnail (with Loading) ------------------ */
+const PhotoThumbnail = memo(({ photo, idx }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div
+      className={`relative group block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl dark:bg-neutral-800 border-2 border-transparent animate-fadeInUp ${
+        isLoaded ? "hover:-translate-y-1" : "pointer-events-none opacity-80"
+      }`}
+      style={{ animationDelay: `${idx * 50}ms` }}
+    >
+      <div className="aspect-square overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-neutral-700 dark:to-neutral-800 relative">
+        {/* Hiệu ứng loading */}
+        {!isLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center z-10 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-neutral-800 dark:to-neutral-900">
+            <div className="relative w-10 h-10 transform rotate-45">
+              {[0, 0.15, 0.3, 0.45].map((delay, i) => (
+                <div
+                  key={i}
+                  className="absolute bg-neutral-900 dark:bg-white w-4 h-4 animate-ping rounded-sm opacity-60"
+                  style={{
+                    animationDuration: "1.2s",
+                    animationDelay: `${delay}s`,
+                    ...(i === 0
+                      ? { top: 0, left: 0 }
+                      : i === 1
+                      ? { top: 0, right: 0 }
+                      : i === 2
+                      ? { bottom: 0, right: 0 }
+                      : { bottom: 0, left: 0 }),
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Ảnh chính */}
+        <img
+          src={photo.images[0]}
+          alt={photo.title}
+          loading="lazy"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-cover transition-all duration-700 ease-out ${
+            isLoaded
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-105 pointer-events-none"
+          } group-hover:scale-110`}
+        />
+      </div>
+
+      {/* Phần nội dung chỉ hiện khi đã load xong */}
+      {isLoaded && (
+        <>
+          {/* Overlay dưới */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 py-2 px-3 bg-gradient-to-t from-black/70 via-black/50 to-transparent">
+            <div className="flex items-center justify-between">
+              <p className="truncate font-semibold text-sm text-white drop-shadow-lg">
+                {photo.title}
+              </p>
+              <div className="flex-shrink-0 ml-2 w-7 h-7 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center">
+                <ArrowRight className="w-4 h-4 text-white" />
+              </div>
+            </div>
+          </div>
+
+          {/* Số lượng ảnh */}
+          <div className="absolute top-3 right-3 z-10 bg-black/20 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1">
+            <ImageIcon className="w-3 h-3" />
+            {photo.images.length}
+          </div>
+
+          {/* Bọc toàn bộ bằng Link sau khi loaded */}
+          <Link
+            to={`/photos/${photo.id}`}
+            className="absolute inset-0 z-20"
+            aria-label={`Xem bộ sưu tập ${photo.title}`}
+          />
+        </>
+      )}
+    </div>
+  );
+});
+PhotoThumbnail.displayName = "PhotoThumbnail";
 
 /* ------------------ Main Component ------------------ */
 export default function Photo() {
@@ -271,37 +385,7 @@ export default function Photo() {
           ) : (
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:gap-2">
               {filteredPhotos.map((photo, idx) => (
-                <Link
-                  key={photo.id}
-                  to={`/photos/${photo.id}`}
-                  className="relative group block overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl dark:bg-neutral-800 border-2 border-transparent hover:-translate-y-1 animate-fadeInUp"
-                  style={{ animationDelay: `${idx * 50}ms` }}
-                >
-                  <div className="aspect-square overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-neutral-700 dark:to-neutral-800">
-                    <img
-                      src={photo.images[0]}
-                      alt={photo.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-1"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 z-10 py-2 px-3 bg-gradient-to-t from-black/70 via-black/50 to-transparent">
-                    <div className="flex items-center justify-between">
-                      <p className="truncate font-semibold text-sm text-white drop-shadow-lg">
-                        {photo.title}
-                      </p>
-                      <div className="flex-shrink-0 ml-2 w-7 h-7 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-white" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="absolute top-3 right-3 z-10 bg-black/20 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1">
-                    <ImageIcon className="w-3 h-3" />
-                    {photo.images.length}
-                  </div>
-                </Link>
+                <PhotoThumbnail key={photo.id} photo={photo} idx={idx} />
               ))}
             </div>
           )}

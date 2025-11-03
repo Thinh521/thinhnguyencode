@@ -1,5 +1,5 @@
 import Header from "../../components/Header/Header";
-import TimelinePage2 from "../../components/Experience/Experience";
+import Timeline from "../../components/Experience/Experience";
 import Divider from "../../components/Divider/Divider";
 
 const Project = () => {
@@ -10,7 +10,7 @@ const Project = () => {
         subtitle="Những dự án lập trình cá nhân / pet projects của mình từ Github"
       />
 
-      <TimelinePage2 />
+      <Timeline />
 
       <Divider className="mb-10" />
     </article>
