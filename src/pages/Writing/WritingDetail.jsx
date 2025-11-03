@@ -71,7 +71,7 @@ const WritingDetail = () => {
 
         <Divider />
 
-        <BackButton className="mt-5" />
+        <BackButton className="mt-5 mb-10" />
       </article>
     </>
   );

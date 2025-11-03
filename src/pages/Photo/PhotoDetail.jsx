@@ -1,4 +1,4 @@
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import PhotoData from "../../data/PhotoData";
 import Divider from "../../components/Divider/Divider";
@@ -53,7 +53,7 @@ const PhotoDetail = () => {
 
         <Divider />
 
-        <BackButton className="mt-5" />
+        <BackButton className="mt-5 mb-10" />
       </article>
     </>
   );

@@ -158,19 +158,23 @@ const Contact = () => {
             {loading ? "Đang gửi..." : "Gửi tin nhắn"}
           </ShimmerButton>
         </form>
-
-        <section className="my-10">
-          <SectionTitle className="mb-4">Kết nối</SectionTitle>
-          <div className="flex flex-col gap-6">
-            <Button className="w-[150px]" to="/cv">
-              Resume
-            </Button>
-            <SocialLinks />
-          </div>
-        </section>
       </section>
 
-      <section className="overflow-hidden relative pt-8 space-y-6">
+      <Divider className="my-10" />
+
+      <section>
+        <SectionTitle className="mb-4">Kết nối</SectionTitle>
+        <div className="flex flex-col gap-6">
+          <Button className="w-[150px]" to="/cv">
+            Resume
+          </Button>
+          <SocialLinks />
+        </div>
+      </section>
+
+      <Divider className="my-10" />
+
+      <section className="overflow-hidden relative space-y-6">
         {animations.map((animation, idx) => (
           <MarqueeRow
             key={idx}
@@ -180,9 +184,7 @@ const Contact = () => {
         ))}
       </section>
 
-      <section className="mt-5">
-        <Divider />
-      </section>
+      <Divider className="my-10" />
     </article>
   );
 };

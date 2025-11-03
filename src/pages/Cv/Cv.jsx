@@ -14,7 +14,7 @@ const Cv = () => {
         subtitle="Resume cá nhân của tớ cho các nhà tuyển dụng"
       />
 
-      <section className="mb-5">
+      <section>
         <img
           src={IMAGES.resume1}
           alt="resume"
@@ -27,9 +27,9 @@ const Cv = () => {
         />
       </section>
 
-      <Divider />
+      <Divider className="mt-10" />
 
-      <BackButton className="mt-5" />
+      <BackButton className="mt-5 mb-10" />
     </article>
   );
 };

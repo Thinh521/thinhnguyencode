@@ -12,7 +12,7 @@ const Project = () => {
 
       <TimelinePage2 />
 
-      <Divider />
+      <Divider className="mb-10" />
     </article>
   );
 };

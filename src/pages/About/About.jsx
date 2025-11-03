@@ -34,7 +34,6 @@ const About = () => {
       <section className="flex justify-center">
         <div className="text-center my-2">
           <div className="relative w-44 h-44 mx-auto mb-4">
-            {/* Skeleton */}
             {!imgLoaded && (
               <div className="w-full h-full rounded-full bg-gray-200 dark:bg-neutral-700 animate-pulse" />
             )}
@@ -60,15 +59,13 @@ const About = () => {
             </h1>
             <VerifiedIcon />
           </div>
-          <p className="text-sm mb-5">Mobile App Developer • Freelancer</p>
+          <p className="text-sm">Mobile App Developer • Freelancer</p>
         </div>
       </section>
 
-      <section>
-        <Divider />
-      </section>
+      <Divider className="my-10" />
 
-      <section className="my-6">
+      <section>
         <SectionTitle className="mb-4">Kết nối</SectionTitle>
         <div className="flex flex-col gap-6">
           <Button className="w-[150px]" to="/cv">
@@ -78,9 +75,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="mb-5">
-        <Divider />
-      </section>
+      <Divider className="my-10 mb-6" />
 
       <section>
         <SectionTitle className="mb-2">Câu chuyện</SectionTitle>
@@ -115,12 +110,10 @@ const About = () => {
         </p>
       </section>
 
-      <section className="my-5">
-        <Divider />
-      </section>
+      <Divider className="my-8" />
 
-      <section className="mb-5">
-        <SectionTitle className="mb-2">Những điều thú vị</SectionTitle>
+      <section>
+        <SectionTitle className="mb-4">Những điều thú vị</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {interestingFacts.map((fact, index) => (
             <div
@@ -136,7 +129,7 @@ const About = () => {
         </div>
       </section>
 
-      <Divider />
+      <Divider className="my-10" />
     </article>
   );
 };

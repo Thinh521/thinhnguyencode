@@ -12,7 +12,6 @@ import {
   ArrowRight,
   Play,
 } from "lucide-react";
-
 import PhotoData from "../../data/PhotoData";
 import storiesData from "../../data/StoriesData";
 import StoryViewer from "../../components/StoryViewer/StoryViewer";
@@ -101,7 +100,6 @@ export default function Photo() {
 
   const { markAsViewed, isViewed } = useViewedStories();
 
-  /* Category icons map */
   const categoryIcons = useMemo(
     () => ({
       "Tất cả": Sparkles,
@@ -115,7 +113,6 @@ export default function Photo() {
     []
   );
 
-  /* ------------------ Callbacks ------------------ */
   const handleStoryClick = useCallback(
     (index) => {
       const storyId = storiesData[index].id;
@@ -132,13 +129,11 @@ export default function Photo() {
     if (el) setIndicatorStyle({ left: el.offsetLeft, width: el.offsetWidth });
   }, []);
 
-  /* ------------------ Effects ------------------ */
   useEffect(() => {
     const el = categoryRefs.current["Tất cả"];
     if (el) setIndicatorStyle({ left: el.offsetLeft, width: el.offsetWidth });
   }, []);
 
-  /* ------------------ Derived data ------------------ */
   const categories = useMemo(() => {
     const unique = new Set(["Tất cả"]);
     for (const p of PhotoData) {
@@ -163,7 +158,6 @@ export default function Photo() {
     [filteredPhotos]
   );
 
-  /* ------------------ Render ------------------ */
   return (
     <article className="pb-8">
       <Header
@@ -172,7 +166,6 @@ export default function Photo() {
       />
 
       <section className="space-y-10">
-        {/* Stories */}
         <div>
           <SectionTitle className="mb-4">Tin nổi bật</SectionTitle>
           <div className="overflow-x-auto pb-3 scrollbar-hide">
@@ -315,7 +308,7 @@ export default function Photo() {
         </section>
       </section>
 
-      <section className="mt-10">
+      <section className="my-10">
         <Divider />
       </section>
 

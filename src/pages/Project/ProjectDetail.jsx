@@ -71,9 +71,7 @@ export default function ProjectDetail() {
             {project.responsibilities?.map((task, idx) => (
               <li key={idx} className="flex gap-3">
                 <span className="mt-2 flex-shrink-0 w-2 h-2 rotate-45 bg-gray-400 dark:bg-gray-500 rounded-sm" />
-                <p className="text-sm text-justify leading-relaxed">
-                  {task}
-                </p>
+                <p className="text-sm text-justify leading-relaxed">{task}</p>
               </li>
             ))}
           </ul>
@@ -128,7 +126,7 @@ export default function ProjectDetail() {
 
         <Divider />
 
-        <BackButton className="mt-5" />
+        <BackButton className="mt-5 mb-10" />
       </div>
     </article>
   );

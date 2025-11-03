@@ -451,6 +451,8 @@ export default function Ratings() {
           )}
         </div>
       </section>
+
+      <Divider className="my-10" />
     </article>
   );
 }

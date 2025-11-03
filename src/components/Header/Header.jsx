@@ -19,14 +19,10 @@ const Header = ({ title, subtitle, verified = false }) => {
             {title}
           </h1>
         )}
-        <p className="text-sm text-left">
-          {subtitle}
-        </p>
+        <p className="text-sm text-left">{subtitle}</p>
       </header>
 
-      <section className="mb-5">
-        <Divider />
-      </section>
+      <Divider className="mb-5" />
     </>
   );
 };

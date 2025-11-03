@@ -15,7 +15,7 @@ const Home = () => {
         verified={true}
       />
 
-      <section className="mb-5">
+      <section>
         <SectionTitle className="mb-2">Giới thiệu</SectionTitle>
         <p className="text-sm text-justify leading-relaxed">
           Xin chào, mình là Nguyễn Phúc Thịnh, sinh viên chuyên ngành Thiết Kế
@@ -33,15 +33,15 @@ const Home = () => {
         </p>
       </section>
 
-      <Divider />
+      <Divider className="mt-6" />
 
       <section className="flex justify-center items-center w-full h-full">
         <Macbook />
       </section>
 
-      <Divider className="w-full lg:w-[70%]" />
+      <Divider className="w-full lg:w-[70%] mb-10" />
 
-      <section className="my-10 flex justify-center items-center w-full h-full">
+      <section className="flex justify-center items-center w-full h-full">
         <SliderCarousel
           baseWidth={300}
           autoplay={true}
@@ -52,9 +52,9 @@ const Home = () => {
         />
       </section>
 
-      <Divider />
+      <Divider className="my-10" />
 
-      <section className="my-6">
+      <section>
         <SectionTitle className="mb-4">Kết nối</SectionTitle>
         <div className="flex flex-col gap-6">
           <Button className="w-[150px]" to="/cv">
@@ -64,7 +64,7 @@ const Home = () => {
         </div>
       </section>
 
-      <Divider />
+      <Divider className="my-10"/>
     </article>
   );
 };

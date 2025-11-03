@@ -1,4 +1,3 @@
-import { ExternalLink } from "lucide-react";
 import { IMAGES } from "../../../public/images/imgaes";
 import SkillCarousel from "../../components/Carousel/SkillCarousel";
 import Divider from "../../components/Divider/Divider";
@@ -63,9 +62,7 @@ const Education = () => {
         </p>
       </section>
 
-      <section className="my-8">
-        <Divider />
-      </section>
+      <Divider className="my-8" />
 
       <section>
         <SectionTitle className="mb-4">Thông tin học tập</SectionTitle>
@@ -84,16 +81,14 @@ const Education = () => {
         </ul>
       </section>
 
-      <section className="my-8">
-        <Divider />
-      </section>
+      <Divider className="my-8" />
 
       <section>
         <SectionTitle className="mb-4">Kỹ năng</SectionTitle>
         <SkillCarousel />
       </section>
 
-      <Divider />
+      <Divider className="mt-5 mb-10"/>
     </article>
   );
 };
