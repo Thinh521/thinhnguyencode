@@ -51,6 +51,8 @@ import resume2 from "./resume_2.jpg";
 import resume22 from "./resume_22.jpg";
 
 import story1_1 from "./story_1.png";
+import story1_2 from "./story_2.png";
+import story1_3 from "./story_3.png";
 
 export const IMAGES = {
   avatar,
@@ -106,4 +108,6 @@ export const IMAGES = {
   resume22,
 
   story1_1,
+  story1_2,
+  story1_3,
 };
