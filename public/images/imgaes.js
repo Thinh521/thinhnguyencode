@@ -25,6 +25,7 @@ import photo5_2 from "./photo_5.2.jpg";
 import photo6_1 from "./photo_6.1.png";
 import photo6_2 from "./photo_6.2.png";
 import photo6_3 from "./photo_6.3.png";
+import photo6_4 from "./photo_6.4.png";
 import photo7_1 from "./photo_7.1.jpg";
 import photo7_2 from "./photo_7.2.jpg";
 import photo8_1 from "./photo_8.1.jpg";
@@ -82,6 +83,7 @@ export const IMAGES = {
   photo6_1,
   photo6_2,
   photo6_3,
+  photo6_4,
   photo7_1,
   photo7_2,
   photo8_1,

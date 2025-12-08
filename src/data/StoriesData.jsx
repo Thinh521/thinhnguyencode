@@ -39,6 +39,16 @@ const storiesData = [
     username: "_thjnh.pn_",
     video: "story_8.mp4",
   },
+  {
+    id: 9,
+    username: "_thjnh.pn_",
+    video: "story_9.mp4",
+  },
+  {
+    id: 9,
+    username: "_thjnh.pn_",
+    video: "story_10.mp4",
+  },
 ];
 
 export default storiesData;
