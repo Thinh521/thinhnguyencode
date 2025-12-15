@@ -296,7 +296,22 @@ Please change the parent <Route path="${M}"> to <Route path="${M==="/"?"*":`${M}
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const xD=[["path",{d:"M18 6 6 18",key:"1bl5f8"}],["path",{d:"m6 6 12 12",key:"d8bk6v"}]],bD=Ze("x",xD),qn=({children:t,className:e=""})=>y.jsxs("h1",{className:`text-lg font-semibold text-black dark:text-white flex items-center gap-2 ${e}`,children:[y.jsx("span",{className:"w-1 h-4 bg-gradient-to-b from-gray-700 to-gray-500 rounded-full"}),t]}),TD="_typing_indicator_338qn_1",ED="_typing_circle_338qn_15",kD="_typing_shadow_338qn_95",Bo={typing_indicator:TD,typing_circle:ED,typing_shadow:kD},mt=({width:t,align:e="center",className:n=""})=>{let r=e==="left"?{marginLeft:0,marginRight:"auto"}:e==="right"?{marginLeft:"auto",marginRight:0}:{marginLeft:"auto",marginRight:"auto"};const i=/\bw-/.test(n);return y.jsx("div",{className:`border-t border-dashed border-gray-200 dark:border-neutral-700 ${n}`,style:!i&&t?{width:t,...r}:r})},SD=()=>{};var q_={};/**
+ */const xD=[["path",{d:"M18 6 6 18",key:"1bl5f8"}],["path",{d:"m6 6 12 12",key:"d8bk6v"}]],bD=Ze("x",xD),qn=({children:t,className:e=""})=>y.jsxs("h1",{className:`text-lg font-semibold text-black dark:text-white flex items-center gap-2 ${e}`,children:[y.jsx("span",{className:"w-1 h-4 bg-gradient-to-b from-gray-700 to-gray-500 rounded-full"}),t]}),TD="_typing_indicator_338qn_1",ED="_typing_circle_338qn_15",kD="_typing_shadow_338qn_95",Bo={typing_indicator:TD,typing_circle:ED,typing_shadow:kD},mt=({width:t,align:e="center",className:n=""})=>{let r=e==="left"?{marginLeft:0,marginRight:"auto"}:e==="right"?{marginLeft:"auto",marginRight:0}:{marginLeft:"auto",marginRight:"auto"};const i=/\bw-/.test(n);return y.jsx("div",{className:`border-t border-dashed border-gray-200 dark:border-neutral-700 ${n}`,style:!i&&t?{width:t,...r}:r})};/**
+ * @license
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */const SD=()=>{};var q_={};/**
  * @license
  * Copyright 2017 Google LLC
  *
