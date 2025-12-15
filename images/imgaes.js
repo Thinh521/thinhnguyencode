@@ -35,14 +35,13 @@ import photo8_4 from "./photo_8.4.jpg";
 import photo9_1 from "./photo_9.1.jpg";
 import photo10_1 from "./photo_10.1.jpg";
 
-import project1 from "./project_1.png";
-import project1_2 from "./project_1.2.png";
-import project1_3 from "./project_1.3.png";
-import project1_4 from "./project_1.4.png";
-import project1_5 from "./project_1.5.png";
-import project2 from "./project_2.png";
-import project2_2 from "./project_2.2.png";
-import project2_3 from "./project_2.3.png";
+import project1_1 from "./project_1.png";
+import project2_1 from "./project_2.png";
+import project3_1 from "./project_3.png";
+import project4_1 from "./project_4.png";
+import project5_1 from "./project_5.png";
+import project6_1 from "./project_6.png";
+import project7_1 from "./project_7.png";
 import project3 from "./project_3.png";
 import project4 from "./project_4.png";
 import project5 from "./project_5.png";
@@ -93,14 +92,13 @@ export const IMAGES = {
   photo9_1,
   photo10_1,
 
-  project1,
-  project1_2,
-  project1_3,
-  project1_4,
-  project1_5,
-  project2,
-  project2_2,
-  project2_3,
+  project1_1,
+  project2_1,
+  project3_1,
+  project4_1,
+  project5_1,
+  project6_1,
+  project7_1,
   project3,
   project4,
   project5,
