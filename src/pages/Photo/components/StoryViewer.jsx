@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { X, Volume2, VolumeX, Heart } from "lucide-react";
 
-import useViewedStories from "../../hooks/useViewedStories";
+import useViewedStories from "../../../hooks/useViewedStories";
 
 const STORAGE_KEY = "storyLikes";
 
@@ -186,23 +186,38 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
       >
         {/* Loading spinner */}
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center z-30">
-            <div className="w-12 h-12 relative rotate-45">
-              {[0, 0.15, 0.3, 0.45].map((d, i) => (
-                <div
-                  key={i}
-                  className="absolute bg-white w-5 h-5 animate-ping"
-                  style={{
-                    top: i < 2 ? 0 : "auto",
-                    bottom: i >= 2 ? 0 : "auto",
-                    left: i % 3 === 0 ? 0 : "auto",
-                    right: i % 2 === 0 ? "auto" : 0,
-                    animationDelay: `${d}s`,
-                    animationDuration: "1.2s",
-                  }}
-                />
-              ))}
-            </div>
+          <div className="w-12 h-12 relative transform rotate-45 -top-14">
+            <div
+              className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping rounded-sm"
+              style={{ top: 0, left: 0, animationDuration: "1.2s" }}
+            />
+            <div
+              className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping rounded-sm"
+              style={{
+                top: 0,
+                right: 0,
+                animationDuration: "1.2s",
+                animationDelay: "0.15s",
+              }}
+            />
+            <div
+              className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping rounded-sm"
+              style={{
+                bottom: 0,
+                right: 0,
+                animationDuration: "1.2s",
+                animationDelay: "0.3s",
+              }}
+            />
+            <div
+              className="absolute bg-neutral-900 dark:bg-white w-5 h-5 animate-ping rounded-sm"
+              style={{
+                bottom: 0,
+                left: 0,
+                animationDuration: "1.2s",
+                animationDelay: "0.45s",
+              }}
+            />
           </div>
         )}
 

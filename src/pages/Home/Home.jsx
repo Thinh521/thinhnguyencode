@@ -64,7 +64,7 @@ const Home = () => {
         </div>
       </section>
 
-      <Divider className="my-10"/>
+      <Divider className="my-10" />
     </article>
   );
 };

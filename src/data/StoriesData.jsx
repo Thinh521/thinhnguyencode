@@ -45,7 +45,7 @@ const storiesData = [
     video: "story_9.mp4",
   },
   {
-    id: 9,
+    id: 10,
     username: "_thjnh.pn_",
     video: "story_10.mp4",
   },
