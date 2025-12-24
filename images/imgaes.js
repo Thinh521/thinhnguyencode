@@ -36,20 +36,8 @@ import photo4_1 from "./photo_4.1.jpg";
 import photo4_2 from "./photo_4.2.jpg";
 import photo4_3 from "./photo_4.3.jpg";
 import photo4_4 from "./photo_4.4.jpg";
-// import photo5_1 from "./photo_5.1.jpg";
-// import photo5_2 from "./photo_5.2.jpg";
-// import photo6_1 from "./photo_6.1.jpg";
-// import photo6_2 from "./photo_6.2.jpg";
-// import photo6_3 from "./photo_6.3.jpg";
-// import photo6_4 from "./photo_6.4.jpg";
-// import photo7_1 from "./photo_7.1.jpg";
-// import photo7_2 from "./photo_7.2.jpg";
-// import photo8_1 from "./photo_8.1.jpg";
-// import photo8_2 from "./photo_8.2.jpg";
-// import photo8_3 from "./photo_8.3.jpg";
-// import photo8_4 from "./photo_8.4.jpg";
-// import photo9_1 from "./photo_9.1.jpg";
-// import photo10_1 from "./photo_10.1.jpg";
+import photo5_1 from "./photo_5.1.jpg";
+import photo5_2 from "./photo_5.2.jpg";
 
 import project1_1 from "./project_1.png";
 import project2_1 from "./project_2.png";
@@ -108,20 +96,8 @@ export const IMAGES = {
   photo4_2,
   photo4_3,
   photo4_4,
-  // photo5_1,
-  // photo5_2,
-  // photo6_1,
-  // photo6_2,
-  // photo6_3,
-  // photo6_4,
-  // photo7_1,
-  // photo7_2,
-  // photo8_1,
-  // photo8_2,
-  // photo8_3,
-  // photo8_4,
-  // photo9_1,
-  // photo10_1,
+  photo5_1,
+  photo5_2,
 
   project1_1,
   project2_1,
