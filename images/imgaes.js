@@ -18,12 +18,24 @@ import photo1_3 from "./photo_1.3.jpg";
 import photo1_4 from "./photo_1.4.jpg";
 import photo1_5 from "./photo_1.5.jpg";
 import photo1_6 from "./photo_1.6.jpg";
-// import photo2_1 from "./photo_2.1.jpg";
-// import photo2_2 from "./photo_2.2.jpg";
-// import photo3_1 from "./photo_3.1.jpg";
-// import photo3_2 from "./photo_3.2.jpg";
-// import photo4_1 from "./photo_4.1.jpg";
-// import photo4_2 from "./photo_4.2.jpg";
+import photo2_1 from "./photo_2.1.jpg";
+import photo2_2 from "./photo_2.2.jpg";
+import photo2_3 from "./photo_2.3.jpg";
+import photo2_4 from "./photo_2.4.jpg";
+import photo3_1 from "./photo_3.1.jpg";
+import photo3_2 from "./photo_3.2.jpg";
+import photo3_3 from "./photo_3.3.jpg";
+import photo3_4 from "./photo_3.4.jpg";
+import photo3_5 from "./photo_3.5.jpg";
+import photo3_6 from "./photo_3.6.jpg";
+import photo3_7 from "./photo_3.7.jpg";
+import photo3_8 from "./photo_3.8.jpg";
+import photo3_9 from "./photo_3.9.jpg";
+import photo3_10 from "./photo_3.10.jpg";
+import photo4_1 from "./photo_4.1.jpg";
+import photo4_2 from "./photo_4.2.jpg";
+import photo4_3 from "./photo_4.3.jpg";
+import photo4_4 from "./photo_4.4.jpg";
 // import photo5_1 from "./photo_5.1.jpg";
 // import photo5_2 from "./photo_5.2.jpg";
 // import photo6_1 from "./photo_6.1.jpg";
@@ -78,12 +90,24 @@ export const IMAGES = {
   photo1_4,
   photo1_5,
   photo1_6,
-  // photo2_1,
-  // photo2_2,
-  // photo3_1,
-  // photo3_2,
-  // photo4_1,
-  // photo4_2,
+  photo2_1,
+  photo2_2,
+  photo2_3,
+  photo2_4,
+  photo3_1,
+  photo3_2,
+  photo3_3,
+  photo3_4,
+  photo3_5,
+  photo3_6,
+  photo3_7,
+  photo3_8,
+  photo3_9,
+  photo3_10,
+  photo4_1,
+  photo4_2,
+  photo4_3,
+  photo4_4,
   // photo5_1,
   // photo5_2,
   // photo6_1,
