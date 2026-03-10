@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { timelineData } from "../../data/timelineData";
-import Button from "../../components/Button/Button";
+import { timelineData } from "../../../data/timelineData";
+import Button from "../../../components/Button/Button";
 
 // --- IMAGES ---
 const TimelineImage = ({ src, alt }) => {

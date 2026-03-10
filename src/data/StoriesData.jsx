@@ -15,11 +15,6 @@ const storiesData = [
     video: "story_3.mp4",
   },
   {
-    id: 4,
-    username: "_thjnh.pn_",
-    video: "story_4.mp4",
-  },
-  {
     id: 5,
     username: "_thjnh.pn_",
     video: "story_5.mp4",
@@ -43,11 +38,6 @@ const storiesData = [
     id: 9,
     username: "_thjnh.pn_",
     video: "story_9.mp4",
-  },
-  {
-    id: 10,
-    username: "_thjnh.pn_",
-    video: "story_10.mp4",
   },
 ];
 

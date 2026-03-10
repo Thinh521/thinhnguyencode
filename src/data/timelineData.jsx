@@ -1,27 +1,42 @@
-import { BarChart3, GraduationCap, QrCode, ShoppingBag, UtensilsCrossed } from "lucide-react";
+import {
+  BarChart3,
+  GraduationCap,
+  QrCode,
+  ShoppingBag,
+  UtensilsCrossed,
+} from "lucide-react";
 import { IMAGES } from "../../public/images/imgaes";
 
 export const timelineData = [
   {
     id: "1",
-    role: "Senior Frontend Developer",
-    title: "Website giới thiệu nhà hàng",
-    type: "Full-time",
-    duration: "10.2024—Present",
-    images: [
-      IMAGES.project1,
-      IMAGES.project1_2,
-      IMAGES.project1_3,
-      IMAGES.project1_4,
-      IMAGES.project1_5,
-    ],
-    icon: UtensilsCrossed,
+    role: "Mobile App Developer (React Native)",
+    title: "NFT Marketplace dApp",
+    type: "Personal Project",
+    duration: "10.2024 — Present",
+    images: [IMAGES.project1_1],
+    icon: ShoppingBag,
     responsibilities: [
-      "Xây dựng website giới thiệu nhà hàng với HTML, CSS và JavaScript, tập trung vào giao diện trực quan và thân thiện với người dùng.",
-      "Thiết kế giao diện responsive, đảm bảo trải nghiệm tốt trên cả máy tính và thiết bị di động.",
-      "Quản lý và tối ưu mã nguồn, tuân thủ HTML semantic và CSS hiện đại.",
+      "Phát triển ứng dụng NFT Marketplace cho phép người dùng mint, mua bán và đấu giá NFT trực tiếp trên blockchain.",
+      "Xây dựng giao diện React Native theo thiết kế Figma, đảm bảo UI/UX thân thiện và tối ưu trải nghiệm người dùng trên thiết bị di động.",
+      "Tích hợp kết nối ví (Wallet Integration) để đăng nhập, ký giao dịch và tương tác với smart contract một cách an toàn.",
+      "Triển khai luồng mint NFT, mua bán và đấu giá NFT, xử lý giao dịch on-chain thông qua smart contract.",
+      "Xây dựng cơ chế đấu giá NFT: lưu trữ dữ liệu đấu giá bằng Firebase Firestore, theo dõi bid theo thời gian thực, tự động xác định người thắng cuộc.",
+      "Tự động xử lý chuyển NFT cho người thắng và hoàn tiền cho người thua khi kết thúc phiên đấu giá.",
+      "Phát triển các chức năng tương tự ứng dụng thương mại điện tử: quản lý người dùng, hiển thị marketplace, tìm kiếm và lọc NFT theo nhiều tiêu chí.",
+      "Kết nối và làm việc với backend API để xử lý dữ liệu, nghiệp vụ và đồng bộ trạng thái giữa off-chain và on-chain.",
+      "Tối ưu hiệu năng ứng dụng, quản lý state và đảm bảo tính nhất quán dữ liệu trong quá trình giao dịch.",
     ],
-    skills: ["HTML, CSS", "JavaScript"],
+    skills: [
+      "React Native",
+      "JavaScript",
+      "Blockchain",
+      "Smart Contracts",
+      "Wallet Integration",
+      "RESTful API",
+      "Firebase Firestore",
+      "UI/UX from Figma",
+    ],
     links: [
       {
         label: "Chi tiết",
@@ -30,7 +45,7 @@ export const timelineData = [
       },
       {
         label: "Xem Github",
-        url: "https://github.com/Thinh521/Decora_Frontend",
+        url: "https://github.com/Thinh521/MarketPlace_NFT",
       },
       {
         label: "Xem Dự án",
@@ -40,18 +55,29 @@ export const timelineData = [
   },
   {
     id: "2",
-    role: "Senior Frontend Developer",
-    title: "Website giới thiệu các khóa học (TuHoc.CC Clone)",
+    role: "Mobile App Developer (React Native)",
+    title: "Ứng dụng truy xuất nguồn gốc nông sản",
     type: "Full-time",
-    duration: "10.2022—Present",
-    images: [IMAGES.project2, IMAGES.project2_2, IMAGES.project2_3],
-    icon: GraduationCap,
+    duration: "03.2021—09.2022",
+    images: [IMAGES.project2_1],
+    icon: QrCode,
     responsibilities: [
-      "Xây dựng website giới thiệu các khóa học trực tuyến bằng HTML, CSS và JavaScript, giao diện dễ tiếp cận cho người học.",
-      "Thiết kế responsive, hiển thị tốt trên máy tính và thiết bị di động.",
-      "Quản lý và tối ưu mã nguồn, áp dụng HTML semantic và CSS hiện đại.",
+      "Phát triển ứng dụng di động truy xuất nguồn gốc nông sản bằng React Native.",
+      "Tích hợp Blockchain để lưu trữ dữ liệu nguồn gốc, đảm bảo minh bạch và không thay đổi.",
+      "Triển khai Smart Contracts để tự động hóa xác nhận nguồn gốc.",
+      "Quét mã QR/nhập mã sản phẩm, hiển thị chi tiết quá trình trồng trọt và vận chuyển.",
+      "Thiết kế cảnh báo khi phát hiện dấu hiệu giả mạo hoặc sai lệch thông tin.",
+      "Phối hợp nhóm Agile từ thiết kế UI đến kiểm thử và triển khai bản beta.",
     ],
-    skills: ["HTML, CSS", "JavaScript", "Figma"],
+    skills: [
+      "React Native",
+      "JavaScript",
+      "Blockchain",
+      "Smart Contracts / Web3",
+      "Node.js",
+      "Express",
+      "MongoDB",
+    ],
     links: [
       {
         label: "Chi tiết",
@@ -60,9 +86,12 @@ export const timelineData = [
       },
       {
         label: "Xem Github",
-        url: "https://github.com/Thinh521/TuHoc_Clone",
+        url: "https://github.com/Thinh521/Blockchain_Farm",
       },
-      { label: "Xem Dự án", url: "https://thinh521.github.io/TuHoc_Clone/" },
+      {
+        label: "Xem Dự án",
+        url: "https://github.com/Thinh521/Blockchain_Farm",
+      },
     ],
   },
   {
@@ -71,7 +100,7 @@ export const timelineData = [
     title: "Ứng dụng thống kê, quản lý và cập nhật thị trường nông sản",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: [IMAGES.project3, IMAGES.project3, IMAGES.project3],
+    images: [IMAGES.project3_1],
     icon: BarChart3,
     responsibilities: [
       "Phát triển ứng dụng di động thống kê và quản lý thị trường nông sản bằng React Native.",
@@ -106,51 +135,10 @@ export const timelineData = [
   {
     id: "4",
     role: "Mobile App Developer (React Native)",
-    title: "Ứng dụng truy xuất nguồn gốc nông sản",
-    type: "Full-time",
-    duration: "03.2021—09.2022",
-    images: [IMAGES.project4, IMAGES.project4, IMAGES.project4],
-    icon: QrCode,
-    responsibilities: [
-      "Phát triển ứng dụng di động truy xuất nguồn gốc nông sản bằng React Native.",
-      "Tích hợp Blockchain để lưu trữ dữ liệu nguồn gốc, đảm bảo minh bạch và không thay đổi.",
-      "Triển khai Smart Contracts để tự động hóa xác nhận nguồn gốc.",
-      "Quét mã QR/nhập mã sản phẩm, hiển thị chi tiết quá trình trồng trọt và vận chuyển.",
-      "Thiết kế cảnh báo khi phát hiện dấu hiệu giả mạo hoặc sai lệch thông tin.",
-      "Phối hợp nhóm Agile từ thiết kế UI đến kiểm thử và triển khai bản beta.",
-    ],
-    skills: [
-      "React Native",
-      "JavaScript",
-      "Blockchain",
-      "Smart Contracts / Web3",
-      "Node.js",
-      "Express",
-      "MongoDB",
-    ],
-    links: [
-      {
-        label: "Chi tiết",
-        url: "/projects/4",
-        internal: true,
-      },
-      {
-        label: "Xem Github",
-        url: "https://github.com/Thinh521/Blockchain_Farm",
-      },
-      {
-        label: "Xem Dự án",
-        url: "https://github.com/Thinh521/Blockchain_Farm",
-      },
-    ],
-  },
-  {
-    id: "5",
-    role: "Mobile App Developer (React Native)",
     title: "Ứng dụng mua sắm quần áo",
     type: "Full-time",
     duration: "03.2021—09.2022",
-    images: [IMAGES.project5, IMAGES.project5, IMAGES.project5],
+    images: [IMAGES.project4_1],
     icon: ShoppingBag,
     responsibilities: [
       "Phát triển ứng dụng mua sắm quần áo bằng React Native, giao diện trực quan và thân thiện với người dùng.",
@@ -171,7 +159,7 @@ export const timelineData = [
     links: [
       {
         label: "Chi tiết",
-        url: "/projects/5",
+        url: "/projects/4",
         internal: true,
       },
       {
@@ -181,6 +169,93 @@ export const timelineData = [
       {
         label: "Xem Dự án",
         url: "https://github.com/Thinh521/Fashion_Shop_App",
+      },
+    ],
+  },
+  {
+    id: "5",
+    role: "Senior Frontend Developer",
+    title: "Website giới thiệu nhà hàng",
+    type: "Full-time",
+    duration: "10.2024—Present",
+    images: [IMAGES.project5_1],
+    icon: ShoppingBag,
+    responsibilities: [
+      "Xây dựng website giới thiệu nhà hàng với HTML, CSS và JavaScript, tập trung vào giao diện trực quan và thân thiện với người dùng.",
+      "Thiết kế giao diện responsive, đảm bảo trải nghiệm tốt trên cả máy tính và thiết bị di động.",
+      "Quản lý và tối ưu mã nguồn, tuân thủ HTML semantic và CSS hiện đại.",
+    ],
+    skills: ["HTML, CSS", "JavaScript"],
+    links: [
+      {
+        label: "Chi tiết",
+        url: "/projects/5",
+        internal: true,
+      },
+      {
+        label: "Xem Github",
+        url: "https://github.com/Thinh521/Decora_Frontend",
+      },
+      {
+        label: "Xem Dự án",
+        url: "https://thinh521.github.io/Restaurant_Frontend/",
+      },
+    ],
+  },
+  {
+    id: "6",
+    role: "Senior Frontend Developer",
+    title: "Website giới thiệu các khóa học (TuHoc.CC Clone)",
+    type: "Full-time",
+    duration: "10.2022—Present",
+    images: [IMAGES.project6_1],
+    icon: GraduationCap,
+    responsibilities: [
+      "Xây dựng website giới thiệu các khóa học trực tuyến bằng HTML, CSS và JavaScript, giao diện dễ tiếp cận cho người học.",
+      "Thiết kế responsive, hiển thị tốt trên máy tính và thiết bị di động.",
+      "Quản lý và tối ưu mã nguồn, áp dụng HTML semantic và CSS hiện đại.",
+    ],
+    skills: ["HTML, CSS", "JavaScript", "Figma"],
+    links: [
+      {
+        label: "Chi tiết",
+        url: "/projects/6",
+        internal: true,
+      },
+      {
+        label: "Xem Github",
+        url: "https://github.com/Thinh521/TuHoc_Clone",
+      },
+      { label: "Xem Dự án", url: "https://thinh521.github.io/TuHoc_Clone/" },
+    ],
+  },
+  {
+    id: "7",
+    role: "Senior Frontend Developer",
+    title: "Website giới thiệu nhà hàng",
+    type: "Full-time",
+    duration: "10.2024—Present",
+    images: [IMAGES.project7_1],
+    icon: UtensilsCrossed,
+    responsibilities: [
+      "Xây dựng website giới thiệu nhà hàng với HTML, CSS và JavaScript, tập trung vào giao diện trực quan và thân thiện với người dùng.",
+      "Thiết kế giao diện responsive, đảm bảo trải nghiệm tốt trên cả máy tính và thiết bị di động.",
+      "Quản lý và tối ưu mã nguồn, tuân thủ HTML semantic và CSS hiện đại.",
+    ],
+    skills: ["HTML, CSS", "JavaScript"],
+    links: [
+      {
+        label: "Chi tiết",
+        url: "/projects/1",
+        internal: true,
+      },
+      {
+        label: "Xem Github",
+        url: "https://github.com/Thinh521/Decora_Frontend",
+      },
+      {
+        label: "Xem Dự án",
+        url: "https://thinh521.github.io/Restaurant_Frontend/",
       },
     ],
   },

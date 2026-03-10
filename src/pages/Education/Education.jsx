@@ -9,7 +9,7 @@ const studyInfo = [
   { label: "Chuyên ngành", value: "Thiết Kế Trang Web" },
   { label: "Loại hình đào tạo", value: "Chính quy" },
   { label: "Bằng cấp", value: "Cử nhân Cao đẳng" },
-  { label: "Tình trạng", value: "Chuẩn bị tốt nghiệp (đang chờ xét)" },
+  { label: "Tình trạng", value: "Đã tốt nghiệp" },
   { label: "Điểm trung bình (GPA)", value: "3.35 / 4.0" },
   { label: "Tốt nghiệp loại", value: "Giỏi" },
   { label: "Thời gian", value: "2023 - 2025" },
@@ -88,7 +88,7 @@ const Education = () => {
         <SkillCarousel />
       </section>
 
-      <Divider className="mt-5 mb-10"/>
+      <Divider className="mt-5 mb-10" />
     </article>
   );
 };

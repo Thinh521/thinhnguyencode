@@ -1,6 +1,6 @@
 import Header from "../../components/Header/Header";
-import Timeline from "../../components/Experience/Experience";
 import Divider from "../../components/Divider/Divider";
+import Timeline from "./components/Experience";
 
 const Project = () => {
   return (
