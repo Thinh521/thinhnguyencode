@@ -8,7 +8,7 @@ const CustomerLayout = () => {
   const hideNavbarPaths = ["/projects/", "/photos/", "/writing/", "/cv"];
 
   const shouldHideNavbar = hideNavbarPaths.some((path) =>
-    location.pathname.startsWith(path)
+    location.pathname.startsWith(path),
   );
 
   return (
