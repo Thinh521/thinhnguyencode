@@ -5,6 +5,7 @@ import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import Button from "../../components/Button/Button";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import SliderCarousel from "../../components/Carousel/SliderCarousel";
+import DevIntro from "./components/DevIntro";
 
 const Home = () => {
   return (
@@ -36,7 +37,7 @@ const Home = () => {
       <Divider className="mt-6" />
 
       <section className="flex justify-center items-center w-full h-full">
-        <Macbook />
+        <DevIntro />
       </section>
 
       <Divider className="w-full lg:w-[70%] mb-10" />
