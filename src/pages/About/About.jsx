@@ -16,7 +16,7 @@ const interestingFacts = [
 
 const About = () => {
   const [imgLoaded, setImgLoaded] = useState(
-    localStorage.getItem("avatarLoaded") === "true"
+    localStorage.getItem("avatarLoaded") === "true",
   );
 
   const handleImageLoad = () => {
@@ -41,7 +41,7 @@ const About = () => {
             <img
               src={IMAGES.avatar}
               alt="avatar"
-              className={`w-full h-full rounded-full object-cover border border-gray-200 dark:border-neutral-700/50 absolute inset-0 transition-opacity duration-500 ${
+              className={`w-full h-full rounded-full object-contain border border-gray-200 dark:border-neutral-700/50 absolute inset-0 transition-opacity duration-500 ${
                 imgLoaded ? "opacity-100" : "opacity-0"
               }`}
               onLoad={handleImageLoad}

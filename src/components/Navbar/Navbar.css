@@ -217,11 +217,9 @@
 .sm-scope .sm-panel-item {
     color: #000;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1rem;
     cursor: pointer;
-    letter-spacing: -2px;
     text-transform: uppercase;
-    text-decoration: none;
 }
 
 .sm-scope .sm-panel-item:hover {

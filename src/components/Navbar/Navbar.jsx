@@ -399,7 +399,9 @@ export const StaggeredMenu = ({
 
   return (
     <div
-      className={`sm-scope z-40 ${isFixed ? "fixed top-0 left-0 w-full h-screen overflow-hidden" : "w-full h-full"}`}
+      className={`sm-scope z-40 ${
+        isFixed ? "fixed top-0 left-0 w-full" : "w-full"
+      }`}
     >
       <div
         className={
@@ -528,7 +530,7 @@ export const StaggeredMenu = ({
                     key={it.label + idx}
                   >
                     <Link
-                      className="sm-panel-item relative text-black font-semibold cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
+                      className="sm-panel-item w-full text-black font-semibold cursor-pointer uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] py-1"
                       to={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
