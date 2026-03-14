@@ -1,5 +1,5 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import "./Navbar.css";
 import DarkModeToggle from "./DarkModeToggle";
@@ -25,6 +25,14 @@ export const StaggeredMenu = ({
 }) => {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
+
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (openRef.current) {
+      closeMenu();
+    }
+  }, [location.pathname]);
 
   const panelRef = useRef(null);
   const preLayersRef = useRef(null);

@@ -36,34 +36,22 @@ const Home = () => {
 
       <Divider className="mt-6" />
 
-      <section className="flex justify-center items-center w-full h-full">
-        <DevIntro />
-      </section>
-
-      <Divider className="w-full lg:w-[70%] mb-10" />
-
-      <section className="flex justify-center items-center w-full h-full">
-        <SliderCarousel
-          baseWidth={300}
-          autoplay={true}
-          autoplayDelay={3000}
-          pauseOnHover={true}
-          loop={true}
-          round={false}
-        />
-      </section>
-
-      <Divider className="my-10" />
-
-      <section>
-        <SectionTitle className="mb-4">Kết nối</SectionTitle>
-        <div className="flex flex-col gap-6">
-          <Button className="w-[150px]" to="/cv">
+      <section className="mt-6 flex items-center justify-center">
+        <div className="lg:flex gap-6 justify-center items-center">
+          <Button className="w-[150px] mx-auto mb-4 lg:mb-0" to="/cv">
             Resume
           </Button>
           <SocialLinks />
         </div>
       </section>
+
+      <Divider className="mt-6" />
+
+      <section className="flex justify-center items-center w-full h-full">
+        <DevIntro />
+      </section>
+
+      <Divider className="w-full lg:w-[70%] mb-10" />
 
       <Divider className="my-10" />
     </article>

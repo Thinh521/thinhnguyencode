@@ -20,14 +20,14 @@ const DevIntro = () => {
         {/* content */}
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* LEFT */}
-          <div className="p-10 text-white space-y-6">
+          <div className="p-6 text-white space-y-6">
             <img
               src={IMAGES.avatar}
               alt="avatar"
               className="w-32 h-32 rounded-full border-4 border-[#222]"
             />
 
-            <h1 className="text-4xl font-bold">Nguyễn Phúc Thịnh</h1>
+            <h1 className="font-playfair text-3xl font-bold">Thịnh Nguyễn</h1>
 
             <div className="space-y-2 text-gray-300 text-sm">
               <p>
