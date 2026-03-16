@@ -1,17 +1,14 @@
 import { memo } from "react";
-import { Link } from "react-router-dom";
 import { ArrowRight, ImageIcon } from "lucide-react";
 
-const PhotoThumbnail = memo(({ photo, idx }) => {
+const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
   return (
-    <Link
-      to={`/photos/${photo.id}`}
-      className="relative block w-full overflow-hidden rounded-2xl bg-white shadow-md 
-             transition hover:-translate-y-1 hover:shadow-xl
-             animate-fadeInUp"
+    <div
+      onClick={() => onOpen(photo)}
+      className="relative block w-full cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md 
+      transition hover:-translate-y-1 hover:shadow-xl animate-fadeInUp"
       style={{ animationDelay: `${idx * 40}ms` }}
     >
-      {/* Image */}
       <div className="overflow-hidden">
         <img
           src={photo.images[0]}
@@ -31,14 +28,12 @@ const PhotoThumbnail = memo(({ photo, idx }) => {
         </div>
       </div>
 
-      {/* image count */}
       <div className="absolute top-3 right-3 bg-black/40 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
         <ImageIcon className="w-3 h-3" />
         {photo.images.length}
       </div>
-    </Link>
+    </div>
   );
 });
 
-PhotoThumbnail.displayName = "PhotoThumbnail";
 export default PhotoThumbnail;

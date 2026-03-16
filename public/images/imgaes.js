@@ -12,32 +12,27 @@ import JavaScript from "./JavaScript.png";
 import hinhnenLight from "./hinhnen.png";
 import hinhnenDark from "./hinhnendark.png";
 
-import photo1_1 from "./photo_1.2.jpg";
-import photo1_2 from "./photo_1.1.jpg";
-import photo1_3 from "./photo_1.3.jpg";
-import photo1_4 from "./photo_1.4.jpg";
-import photo1_5 from "./photo_1.5.jpg";
-import photo1_6 from "./photo_1.6.jpg";
-import photo2_1 from "./photo_2.1.jpg";
-import photo2_2 from "./photo_2.2.jpg";
-import photo2_3 from "./photo_2.3.jpg";
-import photo2_4 from "./photo_2.4.jpg";
-import photo3_1 from "./photo_3.1.jpg";
-import photo3_2 from "./photo_3.2.jpg";
-import photo3_3 from "./photo_3.3.jpg";
-import photo3_4 from "./photo_3.4.jpg";
-import photo3_5 from "./photo_3.5.jpg";
-import photo3_6 from "./photo_3.6.jpg";
-import photo3_7 from "./photo_3.7.jpg";
-import photo3_8 from "./photo_3.8.jpg";
-import photo3_9 from "./photo_3.9.jpg";
-import photo3_10 from "./photo_3.10.jpg";
-import photo4_1 from "./photo_4.1.jpg";
-import photo4_2 from "./photo_4.2.jpg";
-import photo4_3 from "./photo_4.3.jpg";
-import photo4_4 from "./photo_4.4.jpg";
-import photo5_1 from "./photo_5.1.jpg";
-import photo5_2 from "./photo_5.2.jpg";
+import photo_1 from "./photo_1.jpg";
+import photo_2 from "./photo_2.jpg";
+import photo_3 from "./photo_3.jpg";
+import photo_4 from "./photo_4.jpg";
+import photo_5 from "./photo_5.jpg";
+import photo_6 from "./photo_6.jpg";
+import photo_7 from "./photo_7.jpg";
+import photo_8 from "./photo_8.jpg";
+import photo_9 from "./photo_9.jpg";
+import photo_10 from "./photo_10.jpg";
+import photo_11 from "./photo_11.jpg";
+import photo_12 from "./photo_12.jpg";
+import photo_13 from "./photo_13.jpg";
+import photo_14 from "./photo_14.jpg";
+import photo_15 from "./photo_15.jpg";
+import photo_16 from "./photo_16.jpg";
+import photo_17 from "./photo_17.jpg";
+import photo_18 from "./photo_18.jpg";
+import photo_19 from "./photo_19.jpg";
+import photo_20 from "./photo_20.jpg";
+import photo_21 from "./photo_21.jpg";
 
 import project1_1 from "./project_1.png";
 import project2_1 from "./project_2.png";
@@ -77,32 +72,27 @@ export const IMAGES = {
   hinhnenLight,
   hinhnenDark,
 
-  photo1_1,
-  photo1_2,
-  photo1_3,
-  photo1_4,
-  photo1_5,
-  photo1_6,
-  photo2_1,
-  photo2_2,
-  photo2_3,
-  photo2_4,
-  photo3_1,
-  photo3_2,
-  photo3_3,
-  photo3_4,
-  photo3_5,
-  photo3_6,
-  photo3_7,
-  photo3_8,
-  photo3_9,
-  photo3_10,
-  photo4_1,
-  photo4_2,
-  photo4_3,
-  photo4_4,
-  photo5_1,
-  photo5_2,
+  photo_1,
+  photo_2,
+  photo_3,
+  photo_4,
+  photo_5,
+  photo_6,
+  photo_7,
+  photo_8,
+  photo_9,
+  photo_10,
+  photo_11,
+  photo_12,
+  photo_13,
+  photo_14,
+  photo_15,
+  photo_16,
+  photo_17,
+  photo_18,
+  photo_19,
+  photo_20,
+  photo_21,
 
   project1_1,
   project2_1,

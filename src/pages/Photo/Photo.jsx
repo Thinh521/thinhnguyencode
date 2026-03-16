@@ -21,6 +21,7 @@ import "./Photo.css";
 import StoryAvatar from "./components/StoryAvatar";
 import PhotoThumbnail from "./components/PhotoThumbnail ";
 import StoryViewer from "./components/StoryViewer";
+import PhotoModal from "./components/PhotoModal";
 
 export default function Photo() {
   const [open, setOpen] = useState(false);
@@ -28,6 +29,7 @@ export default function Photo() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Tất cả");
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
   const categoryRefs = useRef({});
 
   const { markAsViewed, isViewed } = useViewedStories();
@@ -199,13 +201,24 @@ export default function Photo() {
               </p>
             </div>
           ) : (
-            <div className="columns-2 sm:columns-2 lg:columns-3 gap-2">
-              {filteredPhotos.map((photo, idx) => (
-                <div key={photo.id} className="mb-2 break-inside-avoid">
-                  <PhotoThumbnail photo={photo} idx={idx} />
-                </div>
-              ))}
-            </div>
+            <>
+              <div className="columns-2 sm:columns-2 lg:columns-3 gap-2">
+                {filteredPhotos.map((photo, idx) => (
+                  <div key={photo.id} className="mb-2 break-inside-avoid">
+                    <PhotoThumbnail
+                      photo={photo}
+                      idx={idx}
+                      onOpen={setSelectedPhoto}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <PhotoModal
+                photo={selectedPhoto}
+                onClose={() => setSelectedPhoto(null)}
+              />
+            </>
           )}
         </section>
       </section>
