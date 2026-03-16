@@ -42,7 +42,7 @@ export default function Photo() {
       "Ẩm thực": Utensils,
       "Công việc": Briefcase,
     }),
-    []
+    [],
   );
 
   const handleStoryClick = useCallback(
@@ -52,7 +52,7 @@ export default function Photo() {
       setStartIndex(index);
       setOpen(true);
     },
-    [markAsViewed]
+    [markAsViewed],
   );
 
   const handleCategoryClick = useCallback((cat) => {
@@ -87,7 +87,7 @@ export default function Photo() {
 
   const totalImages = useMemo(
     () => filteredPhotos.reduce((sum, item) => sum + item.images.length, 0),
-    [filteredPhotos]
+    [filteredPhotos],
   );
 
   return (
@@ -199,9 +199,11 @@ export default function Photo() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:gap-2">
+            <div className="columns-2 sm:columns-2 lg:columns-3 gap-2">
               {filteredPhotos.map((photo, idx) => (
-                <PhotoThumbnail key={photo.id} photo={photo} idx={idx} />
+                <div key={photo.id} className="mb-2 break-inside-avoid">
+                  <PhotoThumbnail photo={photo} idx={idx} />
+                </div>
               ))}
             </div>
           )}

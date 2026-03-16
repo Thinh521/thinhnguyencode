@@ -6,17 +6,18 @@ const PhotoThumbnail = memo(({ photo, idx }) => {
   return (
     <Link
       to={`/photos/${photo.id}`}
-      className="relative block overflow-hidden rounded-2xl bg-white shadow-md 
-                 transition hover:-translate-y-1 hover:shadow-xl
-                 animate-fadeInUp"
+      className="relative block w-full overflow-hidden rounded-2xl bg-white shadow-md 
+             transition hover:-translate-y-1 hover:shadow-xl
+             animate-fadeInUp"
       style={{ animationDelay: `${idx * 40}ms` }}
     >
-      <div className="aspect-square overflow-hidden">
+      {/* Image */}
+      <div className="overflow-hidden">
         <img
           src={photo.images[0]}
           alt={photo.title}
           loading="lazy"
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+          className="w-full h-auto object-cover transition-transform duration-500 hover:scale-110"
         />
       </div>
 
@@ -30,6 +31,7 @@ const PhotoThumbnail = memo(({ photo, idx }) => {
         </div>
       </div>
 
+      {/* image count */}
       <div className="absolute top-3 right-3 bg-black/40 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
         <ImageIcon className="w-3 h-3" />
         {photo.images.length}
