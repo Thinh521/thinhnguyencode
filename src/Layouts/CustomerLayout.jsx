@@ -1,5 +1,5 @@
-import { Outlet, useLocation } from "react-router-dom";
-import Navbar, { StaggeredMenu } from "../components/Navbar/Navbar";
+import { Outlet } from "react-router-dom";
+import { StaggeredMenu } from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 
 const menuItems = [
@@ -7,7 +7,6 @@ const menuItems = [
   { label: "About", ariaLabel: "Learn about us", link: "about" },
   { label: "Projects", ariaLabel: "Learn projects us", link: "projects" },
   { label: "Timeline", ariaLabel: "Learn timeline us", link: "timeline" },
-  { label: "Education", ariaLabel: "Learn education us", link: "education" },
   { label: "Photos", ariaLabel: "View our photos", link: "photos" },
   { label: "Writing", ariaLabel: "View our writing", link: "writing" },
   { label: "Contact", ariaLabel: "Get in totuch", link: "contact" },

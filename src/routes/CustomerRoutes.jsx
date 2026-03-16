@@ -7,7 +7,6 @@ import Photo from "../pages/Photo/Photo";
 import Writing from "../pages/Writing/Writing";
 import Contact from "../pages/Contact/Contact";
 import PhotoDetail from "../pages/Photo/PhotoDetail";
-import Education from "../pages/Education/Education";
 import WritingDetail from "../pages/Writing/WritingDetail";
 import Timeline from "../pages/Timeline/Timeline";
 import Cv from "../pages/Cv/Cv";
@@ -27,7 +26,6 @@ const CustomerRoutes = () => {
           <Route path="projects" element={<Project />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="timeline" element={<Timeline />} />
-          <Route path="education" element={<Education />} />
           <Route path="photos" element={<Photo />} />
           <Route path="/photos/:id" element={<PhotoDetail />} />
           <Route path="writing" element={<Writing />} />

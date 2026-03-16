@@ -7,8 +7,10 @@ import {
   FaFigma,
   FaHtml5,
   FaCss3Alt,
+  FaGraduationCap,
+  FaBriefcase,
 } from "react-icons/fa";
-
+import { MdSchool } from "react-icons/md";
 import {
   SiNextdotjs,
   SiJavascript,
@@ -78,26 +80,29 @@ const skillGroups = [
   },
 ];
 
-const education = [
-  {
-    school: "Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC)",
-    major: "Thiết Kế Trang Web",
-    year: "2022 – 2025",
-  },
+const studyInfo = [
+  { label: "Họ và tên", value: "Nguyễn Phúc Thịnh" },
+  { label: "Chuyên ngành", value: "Thiết Kế Trang Web" },
+  { label: "Loại hình đào tạo", value: "Chính quy" },
+  { label: "Bằng cấp", value: "Cử nhân Cao đẳng" },
+  { label: "Tình trạng", value: "Đã tốt nghiệp" },
+  { label: "Điểm trung bình (GPA)", value: "3.35 / 4.0" },
+  { label: "Xếp loại", value: "Giỏi" },
+  { label: "Thời gian", value: "2022 – 2025" },
 ];
 
 const experience = [
   {
-    company: "Freelance Frontend",
-    role: "Frontend Developer",
-    year: "2024 – Hiện tại",
-    desc: "Thiết kế và xây dựng giao diện website bằng ReactJS, TailwindCSS và GSAP.",
+    year: "06/2025 – 12/2025",
+    company: "Pione Group",
+    role: "Thực tập sinh Mobile Developer (React Native)",
+    desc: "Phát triển ứng dụng di động bằng React Native, triển khai giao diện từ thiết kế Figma, tích hợp RESTful API, làm việc với Firebase và Smart Contract cho các chức năng dữ liệu thời gian thực.",
   },
   {
-    company: "Dự án cá nhân",
-    role: "Frontend Developer",
-    year: "2023 – 2024",
-    desc: "Phát triển các website portfolio và landing page.",
+    year: "2026 – Hiện tại",
+    company: "Freelance",
+    role: "Web Developer",
+    desc: "Xây dựng ứng dụng web như một sở thích.",
   },
 ];
 
@@ -208,16 +213,33 @@ const EducationContent = () => (
     <Tag>Đào tạo</Tag>
     <Display title="Học vấn" />
 
-    {education.map((item, i) => (
-      <div key={i} className="p-4 border rounded-lg mb-3">
-        <p className="text-sm font-medium mb-2">{item.school}</p>
-
-        <div className="text-[11px] text-neutral-400 font-mono flex gap-3">
-          <span>{item.major}</span>
-          <span>{item.year}</span>
+    <div className="p-5 border rounded-xl mt-4 bg-neutral-50 dark:bg-neutral-900">
+      {/* School */}
+      <div className="flex items-center gap-3 mb-4">
+        <FaGraduationCap className="text-lg text-neutral-600" />
+        <div>
+          <p className="text-sm font-semibold">
+            Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC)
+          </p>
+          <p className="text-xs text-neutral-500 flex items-center gap-2">
+            <MdSchool />
+            Chuyên ngành Thiết Kế Trang Web
+          </p>
         </div>
       </div>
-    ))}
+
+      {/* Study info */}
+      <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-xs">
+        {studyInfo.map((item, i) => (
+          <div key={i} className="flex flex-col">
+            <span className="text-neutral-400">{item.label}</span>
+            <span className="font-medium text-neutral-700 dark:text-neutral-300">
+              {item.value}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 );
 
@@ -226,18 +248,30 @@ const ExperienceContent = () => (
     <Tag>Kinh nghiệm</Tag>
     <Display title="Kinh nghiệm làm việc" />
 
-    {experience.map((item, i) => (
-      <div key={i} className="p-4 border rounded-lg mb-3">
-        <p className="text-sm font-medium">{item.company}</p>
+    <div className="relative border-l mt-6 ml-3">
+      {experience.map((item, i) => (
+        <div key={i} className="mb-8 ml-6">
+          {/* icon */}
+          <span className="absolute -left-3 flex items-center justify-center w-6 h-6 bg-white border rounded-full">
+            <FaBriefcase className="text-xs text-neutral-500" />
+          </span>
 
-        <div className="text-[11px] text-neutral-400 font-mono flex gap-3 mb-2">
-          <span>{item.role}</span>
-          <span>{item.year}</span>
+          {/* year */}
+          <p className="text-xs text-neutral-400 font-mono mb-1">{item.year}</p>
+
+          {/* company */}
+          <h3 className="text-base font-semibold">{item.company}</h3>
+
+          {/* role */}
+          <p className="text-sm text-neutral-600 mb-1">{item.role}</p>
+
+          {/* description */}
+          <p className="text-xs text-neutral-500 leading-relaxed">
+            {item.desc}
+          </p>
         </div>
-
-        <p className="text-xs text-neutral-500">{item.desc}</p>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 );
 
