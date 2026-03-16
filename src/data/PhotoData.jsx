@@ -11,7 +11,7 @@ const PhotoData = [
   },
   {
     id: 2,
-    title: "Sài Gòn",
+    title: "Đi bão ở Sài Gòn",
     category: ["Đời thường"],
     images: [IMAGES.photo_2],
     date: "Tiền Giang, ngày 04-03-2025",
@@ -19,7 +19,7 @@ const PhotoData = [
   },
   {
     id: 3,
-    title: "Ăm uống",
+    title: "Công viên sông Sài Gòn",
     category: ["Ẩm thực"],
     images: [IMAGES.photo_3],
     date: "TP.HCM, ngày 04-03-2025",
@@ -27,7 +27,7 @@ const PhotoData = [
   },
   {
     id: 4,
-    title: "Linh tinh",
+    title: "Nhà thờ Đức Bà",
     category: ["Đời thường"],
     images: [IMAGES.photo_4],
     date: "Tiền Giang, ngày 04-03-2025",
@@ -35,7 +35,7 @@ const PhotoData = [
   },
   {
     id: 5,
-    title: "Công việc",
+    title: "Linh tinh",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_5],
     date: "TP.HCM, ngày 04-03-2025",
@@ -43,7 +43,7 @@ const PhotoData = [
   },
   {
     id: 6,
-    title: "Công việc",
+    title: "Cờ phê",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_6],
     date: "TP.HCM, ngày 04-03-2025",
@@ -51,7 +51,7 @@ const PhotoData = [
   },
   {
     id: 7,
-    title: "Công việc",
+    title: "Lật mặt 7",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_7],
     date: "TP.HCM, ngày 04-03-2025",
@@ -59,7 +59,7 @@ const PhotoData = [
   },
   {
     id: 8,
-    title: "Công việc",
+    title: "Yummi",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_8],
     date: "TP.HCM, ngày 04-03-2025",
@@ -67,7 +67,7 @@ const PhotoData = [
   },
   {
     id: 9,
-    title: "Công việc",
+    title: "So so",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_9],
     date: "TP.HCM, ngày 04-03-2025",
@@ -75,7 +75,7 @@ const PhotoData = [
   },
   {
     id: 10,
-    title: "Công việc",
+    title: "Chill",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_10],
     date: "TP.HCM, ngày 04-03-2025",

@@ -5,7 +5,7 @@ const PhotoModal = ({ photo, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur flex items-center justify-center px-4"
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur flex items-center justify-center px-3"
       onClick={onClose}
     >
       <div
