@@ -1,4 +1,26 @@
 import { useState, useEffect, useRef } from "react";
+import {
+  FaReact,
+  FaNodeJs,
+  FaGithub,
+  FaWordpress,
+  FaFigma,
+  FaHtml5,
+  FaCss3Alt,
+} from "react-icons/fa";
+
+import {
+  SiNextdotjs,
+  SiJavascript,
+  SiTailwindcss,
+  SiBootstrap,
+  SiPostman,
+  SiFirebase,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiAdobepremierepro,
+} from "react-icons/si";
+import { VscVscode } from "react-icons/vsc";
 import Divider from "../../components/Divider/Divider";
 import Header from "../../components/Header/Header";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
@@ -6,16 +28,54 @@ import Button from "../../components/Button/Button";
 import { IMAGES } from "../../../public/images/imgaes";
 
 /* DATA */
-
-const skills = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "ReactJS",
-  "TailwindCSS",
-  "GSAP",
-  "Figma",
-  "Photoshop",
+const skillGroups = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "React", icon: <FaReact /> },
+      { name: "Next.js", icon: <SiNextdotjs /> },
+      { name: "React Native", icon: <FaReact /> },
+      { name: "JavaScript", icon: <SiJavascript /> },
+      { name: "HTML", icon: <FaHtml5 /> },
+      { name: "CSS", icon: <FaCss3Alt /> },
+      { name: "TailwindCSS", icon: <SiTailwindcss /> },
+      { name: "Bootstrap", icon: <SiBootstrap /> },
+    ],
+  },
+  {
+    title: "Backend",
+    skills: [
+      { name: "Node.js", icon: <FaNodeJs /> },
+      { name: "Express", icon: <FaNodeJs /> },
+      { name: "Firebase", icon: <SiFirebase /> },
+    ],
+  },
+  {
+    title: "Blockchain",
+    skills: [
+      { name: "Smart Contract", icon: "⛓️" },
+      { name: "Blockchain", icon: "🔗" },
+    ],
+  },
+  {
+    title: "Tools",
+    skills: [
+      { name: "GitHub", icon: <FaGithub /> },
+      { name: "VS Code", icon: <VscVscode /> },
+      { name: "Postman", icon: <SiPostman /> },
+      { name: "WordPress", icon: <FaWordpress /> },
+    ],
+  },
+  {
+    title: "Design & Media",
+    skills: [
+      { name: "Figma", icon: <FaFigma /> },
+      { name: "Photoshop", icon: <SiAdobephotoshop /> },
+      { name: "Illustrator", icon: <SiAdobeillustrator /> },
+      { name: "Premiere Pro", icon: <SiAdobepremierepro /> },
+      { name: "CapCut", icon: "🎬" },
+    ],
+  },
 ];
 
 const education = [
@@ -61,13 +121,12 @@ const HR = () => (
 );
 
 /* CONTENT */
-
 const StoryContent = () => (
   <div>
     <Tag>Giới thiệu</Tag>
     <Display title="Câu chuyện của mình" />
 
-    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed text-justify">
+    <p className="text-sm text-neutral-500 leading-relaxed text-justify">
       Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của mình.
       Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
       tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Hiện tại mình đang
@@ -112,15 +171,26 @@ const StoryContent = () => (
 const SkillsContent = () => (
   <div>
     <Tag>Công nghệ</Tag>
-    <Display title="Kỹ năng & công cụ" />
+    <Display title="Kỹ năng" />
 
-    <div className="grid grid-cols-4 gap-2">
-      {skills.map((skill) => (
-        <div
-          key={skill}
-          className="py-2 px-1 text-center text-[10px] border rounded text-neutral-500"
-        >
-          {skill}
+    <div className="flex flex-col gap-6">
+      {skillGroups.map((group) => (
+        <div key={group.title}>
+          <h3 className="text-sm font-semibold mb-2 text-neutral-700">
+            {group.title}
+          </h3>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            {group.skills.map((skill) => (
+              <div
+                key={skill.name}
+                className="flex items-center gap-2 py-2 px-3 border rounded text-xs text-neutral-600 hover:bg-neutral-100 transition"
+              >
+                <span className="text-base">{skill.icon}</span>
+                {skill.name}
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
@@ -128,7 +198,7 @@ const SkillsContent = () => (
     <HR />
 
     <p className="text-xs text-neutral-500 font-mono">
-      Next.js · TypeScript · Three.js
+      Always learning new technologies 🚀
     </p>
   </div>
 );
@@ -136,7 +206,7 @@ const SkillsContent = () => (
 const EducationContent = () => (
   <div>
     <Tag>Đào tạo</Tag>
-    <Display title="Học vấn & nền tảng" />
+    <Display title="Học vấn" />
 
     {education.map((item, i) => (
       <div key={i} className="p-4 border rounded-lg mb-3">
