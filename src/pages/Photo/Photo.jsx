@@ -202,7 +202,7 @@ export default function Photo() {
             </div>
           ) : (
             <>
-              <div className="columns-2 sm:columns-2 lg:columns-3 gap-2">
+              <div className="columns-2 sm:columns-2 lg:columns-3 gap-2 sm:px-16 sm:pt-4 lg:px-24 lg:pt-4">
                 {filteredPhotos.map((photo, idx) => (
                   <div key={photo.id} className="mb-2 break-inside-avoid">
                     <PhotoThumbnail

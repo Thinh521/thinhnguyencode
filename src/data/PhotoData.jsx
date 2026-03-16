@@ -20,7 +20,7 @@ const PhotoData = [
   {
     id: 3,
     title: "Công viên sông Sài Gòn",
-    category: ["Ẩm thực"],
+    category: ["Ẩm thực", "Đời thường"],
     images: [IMAGES.photo_3],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Một chuyến đi Sài Gòn đầy kỷ niệm.",
@@ -36,7 +36,7 @@ const PhotoData = [
   {
     id: 5,
     title: "Linh tinh",
-    category: ["Công việc", "Đời thường"],
+    category: ["Chân dung"],
     images: [IMAGES.photo_5],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -44,7 +44,7 @@ const PhotoData = [
   {
     id: 6,
     title: "Cờ phê",
-    category: ["Công việc", "Đời thường"],
+    category: ["Ẩm thực"],
     images: [IMAGES.photo_6],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -52,15 +52,15 @@ const PhotoData = [
   {
     id: 7,
     title: "Lật mặt 7",
-    category: ["Công việc", "Đời thường"],
+    category: ["Đời thường"],
     images: [IMAGES.photo_7],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
   },
   {
     id: 8,
-    title: "Yummi",
-    category: ["Công việc", "Đời thường"],
+    title: "Yummy",
+    category: ["Ẩm thực"],
     images: [IMAGES.photo_8],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -68,7 +68,7 @@ const PhotoData = [
   {
     id: 9,
     title: "So so",
-    category: ["Công việc", "Đời thường"],
+    category: ["Chân dung"],
     images: [IMAGES.photo_9],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -76,7 +76,7 @@ const PhotoData = [
   {
     id: 10,
     title: "Chill",
-    category: ["Công việc", "Đời thường"],
+    category: ["Ẩm thực", "Đời thường"],
     images: [IMAGES.photo_10],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -84,7 +84,7 @@ const PhotoData = [
   {
     id: 11,
     title: "Tâm trạng",
-    category: ["Công việc", "Đời thường"],
+    category: ["Đời thường"],
     images: [IMAGES.photo_11],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -92,7 +92,7 @@ const PhotoData = [
   {
     id: 12,
     title: "Hoa ở vườn nhà May",
-    category: ["Công việc", "Đời thường"],
+    category: ["Đời thường"],
     images: [IMAGES.photo_12],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -100,7 +100,7 @@ const PhotoData = [
   {
     id: 13,
     title: "Spisy noodles",
-    category: ["Công việc", "Đời thường"],
+    category: ["Ẩm thực"],
     images: [IMAGES.photo_13],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -108,7 +108,7 @@ const PhotoData = [
   {
     id: 14,
     title: "Chill code :>>",
-    category: ["Công việc", "Đời thường"],
+    category: ["Công việc"],
     images: [IMAGES.photo_14],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -116,7 +116,7 @@ const PhotoData = [
   {
     id: 15,
     title: "Ngon quá",
-    category: ["Công việc", "Đời thường"],
+    category: ["Ẩm thực"],
     images: [IMAGES.photo_15],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -124,7 +124,7 @@ const PhotoData = [
   {
     id: 16,
     title: "Cần thơ",
-    category: ["Công việc", "Đời thường"],
+    category: ["Chân dung"],
     images: [IMAGES.photo_16],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -132,7 +132,7 @@ const PhotoData = [
   {
     id: 17,
     title: "3 giờ sáng",
-    category: ["Công việc", "Đời thường"],
+    category: ["Đời thường"],
     images: [IMAGES.photo_17],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -140,7 +140,7 @@ const PhotoData = [
   {
     id: 18,
     title: "Công việc",
-    category: ["Công việc", "Đời thường"],
+    category: ["Chân dung", "Công việc"],
     images: [IMAGES.photo_18],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -148,7 +148,7 @@ const PhotoData = [
   {
     id: 19,
     title: "Hôm nay trà cà phê và bánh",
-    category: ["Công việc", "Đời thường"],
+    category: ["Đời thường"],
     images: [IMAGES.photo_19],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -156,7 +156,7 @@ const PhotoData = [
   {
     id: 20,
     title: "Ly 1 lít",
-    category: ["Công việc", "Đời thường"],
+    category: ["Ẩm thực", "Đời thường"],
     images: [IMAGES.photo_20],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",
@@ -164,7 +164,7 @@ const PhotoData = [
   {
     id: 21,
     title: "Đông đầy",
-    category: ["Công việc", "Đời thường"],
+    category: ["Ẩm thực", "Đời thường"],
     images: [IMAGES.photo_21],
     date: "TP.HCM, ngày 04-03-2025",
     description: "Khoảnh khắc tại nơi làm việc.",

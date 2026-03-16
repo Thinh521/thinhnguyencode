@@ -5,7 +5,7 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
   return (
     <div
       onClick={() => onOpen(photo)}
-      className="relative block w-full cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md 
+      className="relative block w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md 
       transition hover:-translate-y-1 hover:shadow-xl animate-fadeInUp"
       style={{ animationDelay: `${idx * 40}ms` }}
     >
@@ -21,9 +21,7 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
       {/* overlay */}
       <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
         <div className="flex justify-between items-center">
-          <p className="text-white font-semibold text-sm truncate">
-            {photo.title}
-          </p>
+          <p className="text-white text-sm truncate">{photo.title}</p>
           <ArrowRight className="w-4 h-4 text-white" />
         </div>
       </div>

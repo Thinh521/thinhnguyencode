@@ -1,14 +1,4 @@
 import avatar from "./avatar.jpg";
-import logoSchool from "./logo_school.png";
-import Vscode from "./Vscode.png";
-import Github from "./Github.png";
-import Postman from "./Postman.png";
-import React from "./React.png";
-import TailwindCSS from "./TailwindCSS.png";
-import Bootstrap from "./Bootstrap.png";
-import HTML5 from "./HTML5.png";
-import CSS3 from "./CSS3.png";
-import JavaScript from "./JavaScript.png";
 import hinhnenLight from "./hinhnen.png";
 import hinhnenDark from "./hinhnendark.png";
 
@@ -59,16 +49,6 @@ import about_4 from "./about_4.jpg";
 
 export const IMAGES = {
   avatar,
-  logoSchool,
-  Vscode,
-  Github,
-  Postman,
-  React,
-  TailwindCSS,
-  Bootstrap,
-  HTML5,
-  CSS3,
-  JavaScript,
   hinhnenLight,
   hinhnenDark,
 
