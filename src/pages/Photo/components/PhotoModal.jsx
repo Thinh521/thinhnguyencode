@@ -5,11 +5,11 @@ const PhotoModal = ({ photo, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur flex items-center justify-center px-3 sm:px-6"
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur flex items-center justify-center px-4"
       onClick={onClose}
     >
       <div
-        className="relative max-w-xs sm:max-w-xl lg:max-w-3xl"
+        className="relative max-w-xl lg:max-w-3xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative">
