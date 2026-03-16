@@ -83,7 +83,7 @@ const PhotoData = [
   },
   {
     id: 11,
-    title: "Công việc",
+    title: "Tâm trạng",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_11],
     date: "TP.HCM, ngày 04-03-2025",
@@ -91,7 +91,7 @@ const PhotoData = [
   },
   {
     id: 12,
-    title: "Công việc",
+    title: "Hoa ở vườn nhà May",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_12],
     date: "TP.HCM, ngày 04-03-2025",
@@ -99,7 +99,7 @@ const PhotoData = [
   },
   {
     id: 13,
-    title: "Công việc",
+    title: "Spisy noodles",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_13],
     date: "TP.HCM, ngày 04-03-2025",
@@ -107,7 +107,7 @@ const PhotoData = [
   },
   {
     id: 14,
-    title: "Công việc",
+    title: "Chill code :>>",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_14],
     date: "TP.HCM, ngày 04-03-2025",
@@ -115,7 +115,7 @@ const PhotoData = [
   },
   {
     id: 15,
-    title: "Công việc",
+    title: "Ngon quá",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_15],
     date: "TP.HCM, ngày 04-03-2025",
@@ -123,7 +123,7 @@ const PhotoData = [
   },
   {
     id: 16,
-    title: "Công việc",
+    title: "Cần thơ",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_16],
     date: "TP.HCM, ngày 04-03-2025",
@@ -131,7 +131,7 @@ const PhotoData = [
   },
   {
     id: 17,
-    title: "Công việc",
+    title: "3 giờ sáng",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_17],
     date: "TP.HCM, ngày 04-03-2025",
@@ -147,7 +147,7 @@ const PhotoData = [
   },
   {
     id: 19,
-    title: "Công việc",
+    title: "Hôm nay trà cà phê và bánh",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_19],
     date: "TP.HCM, ngày 04-03-2025",
@@ -155,7 +155,7 @@ const PhotoData = [
   },
   {
     id: 20,
-    title: "Công việc",
+    title: "Ly 1 lít",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_20],
     date: "TP.HCM, ngày 04-03-2025",
@@ -163,7 +163,7 @@ const PhotoData = [
   },
   {
     id: 21,
-    title: "Công việc",
+    title: "Đông đầy",
     category: ["Công việc", "Đời thường"],
     images: [IMAGES.photo_21],
     date: "TP.HCM, ngày 04-03-2025",
