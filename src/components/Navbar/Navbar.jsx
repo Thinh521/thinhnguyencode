@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import "./Navbar.css";
 import DarkModeToggle from "./DarkModeToggle";
-import Magnet from "../Magnet/Magnet";
 
 export const StaggeredMenu = ({
   position = "right",
@@ -453,11 +452,11 @@ export const StaggeredMenu = ({
             className="sm-logo flex items-center select-none pointer-events-auto"
             aria-label="Logo"
           >
-            <Magnet>
-              <Link to="/">
-                <h2>Thinh.dev</h2>
-              </Link>
-            </Magnet>
+            <Link to="/">
+              <h2 className="text-black dark:text-white font-medium">
+                Thinh.dev
+              </h2>
+            </Link>
           </div>
 
           <nav className="sm-desktop-menu">
@@ -538,7 +537,7 @@ export const StaggeredMenu = ({
                     key={it.label + idx}
                   >
                     <Link
-                      className="sm-panel-item w-full text-black font-semibold cursor-pointer uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] py-1"
+                      className="sm-panel-item w-full text-black font-semibold cursor-pointer uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] py-1.5"
                       to={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}

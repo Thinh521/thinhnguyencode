@@ -13,11 +13,11 @@ const menuItems = [
   { label: "Ratings", ariaLabel: "Get in touch", link: "ratings" },
 ];
 
-const socialItems = [
-  { label: "Twitter", link: "https://twitter.com" },
-  { label: "GitHub", link: "https://github.com" },
-  { label: "LinkedIn", link: "https://linkedin.com" },
-];
+// const socialItems = [
+//   { label: "Twitter", link: "https://twitter.com" },
+//   { label: "GitHub", link: "https://github.com" },
+//   { label: "LinkedIn", link: "https://linkedin.com" },
+// ];
 
 const CustomerLayout = () => {
   return (
@@ -26,7 +26,7 @@ const CustomerLayout = () => {
         <StaggeredMenu
           position="right"
           items={menuItems}
-          socialItems={socialItems}
+          // socialItems={socialItems}
           displaySocials
           displayItemNumbering={true}
           menuButtonColor="#000"
@@ -39,7 +39,7 @@ const CustomerLayout = () => {
           onMenuClose={() => console.log("Menu closed")}
         />
       </div>
-      <main className="pt-28">
+      <main className="pt-20">
         <Outlet />
       </main>
       <Footer />
