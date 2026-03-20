@@ -15,12 +15,11 @@ const menuItems = [
 
 const CustomerLayout = () => {
   return (
-    <div className="min-h-screen text-gray-600 dark:text-neutral-400 lg:px-[4rem] px-[1.4rem]">
+    <div className="min-h-screen text-gray-600 dark:text-neutral-400 lg:px-[8rem] px-[1.4rem]">
       <div>
         <StaggeredMenu
           position="right"
           items={menuItems}
-          // socialItems={socialItems}
           displaySocials
           displayItemNumbering={true}
           menuButtonColor="#000"
