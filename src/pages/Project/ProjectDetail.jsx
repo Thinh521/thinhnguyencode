@@ -346,7 +346,7 @@ export default function ProjectDetail() {
       {/* ── STICKY TOP BAR ── */}
       <div className="sticky-bar flex items-center justify-between mb-4">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/projects")}
           className="back-btn flex items-center gap-2 text-black dark:text-white"
         >
           <ArrowLeft size={13} />
