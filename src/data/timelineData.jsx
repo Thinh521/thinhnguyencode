@@ -14,7 +14,7 @@ export const timelineData = [
     title: "NFT Marketplace dApp",
     type: "Personal Project",
     duration: "10.2024 — Present",
-    images: [IMAGES.project1_1],
+    images: [IMAGES.project1_1, IMAGES.project1_1, IMAGES.project1_1],
     icon: ShoppingBag,
     responsibilities: [
       "Phát triển ứng dụng NFT Marketplace cho phép người dùng mint, mua bán và đấu giá NFT trực tiếp trên blockchain.",
