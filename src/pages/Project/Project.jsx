@@ -364,7 +364,7 @@ export default function Projects() {
 
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h1 className="font-serif-display text-5xl md:text-6xl leading-none mb-2">
+            <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white leading-none mb-2">
               Dự án<span className="text-orange-500">.</span>
             </h1>
             <p className="text-neutral-500 text-sm leading-relaxed max-w-md">
