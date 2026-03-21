@@ -43,7 +43,6 @@ const FontLoader = () => (
     .img-zoom { overflow: hidden; }
     .img-zoom img {
       transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.7s ease;
-      filter: brightness(0.85) saturate(0.75);
     }
     .proj-card-hover:hover .img-zoom img {
       transform: scale(1.06);
@@ -219,7 +218,6 @@ function ProjectCard({ item, index }) {
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/20 to-transparent" />
 
             {Icon && (
               <div className="absolute top-3 right-3 bg-neutral-950/70 backdrop-blur-sm p-1.5 rounded-lg border border-white/10 z-10">
@@ -359,8 +357,8 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
         className="mb-10"
       >
-        <p className="font-mono-cod text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-          <span className="inline-block w-4 h-px bg-black" />
+        <p className="font-mono-cod text-orange-400 text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
+          <span className="inline-block w-4 h-px bg-orange-400" />
           Portfolio / Projects
         </p>
 

@@ -30,13 +30,10 @@ const FontLoader = () => (
     .skill-badge {
       display: inline-flex; align-items: center; gap: 7px;
       padding: 6px 14px; border-radius: 9999px;
-      border: 1px solid rgba(249,115,22,0.25);
-      background: rgba(249,115,22,0.05);
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .skill-badge:hover {
-      border-color: rgba(249,115,22,0.5);
+      border: 1px solid #f97316;
+      color: #f97316;
       background: rgba(249,115,22,0.1);
+      transition: border-color 0.2s, background 0.2s;
     }
 
     /* Responsibility item */
@@ -59,23 +56,23 @@ const FontLoader = () => (
       padding: 10px 22px; border-radius: 10px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.75);
-      background: rgba(255,255,255,0.04);
+      border: 1px solid #f97316;
+      color: #f97316;
+      background: rgba(249,115,22,0.1);
       transition: all 0.25s ease;
       text-decoration: none;
     }
     .proj-btn:hover {
       border-color: rgba(249,115,22,0.5);
-      color: #fff;
       background: rgba(249,115,22,0.1);
     }
     .proj-btn--primary {
-      border-color: #f97316;
       color: #fff;
-      background: rgba(249,115,22,0.15);
+      background: #f97316;
+      border-color: #f97316;
     }
     .proj-btn--primary:hover {
+      border-color: rgba(249,115,22,0.28)
       background: rgba(249,115,22,0.28);
       box-shadow: 0 0 20px rgba(249,115,22,0.25);
     }
@@ -449,7 +446,7 @@ export default function ProjectDetail() {
                   href={githubLink.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="proj-btn proj-btn--primary"
+                  className="proj-btn"
                 >
                   <Github size={13} />
                   Xem Github
@@ -460,7 +457,7 @@ export default function ProjectDetail() {
                   href={demoLink.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="proj-btn"
+                  className="proj-btn proj-btn--primary"
                 >
                   <ExternalLink size={13} />
                   Xem Dự án
@@ -518,7 +515,7 @@ export default function ProjectDetail() {
                   className="skill-badge"
                 >
                   <SkillIcon size={14} className="text-orange-400" />
-                  <span className="font-mono-code text-[0.68rem] text-neutral-300 tracking-wide">
+                  <span className="font-mono-code text-[0.68rem] tracking-wide">
                     {skill}
                   </span>
                 </motion.div>
@@ -578,11 +575,11 @@ export default function ProjectDetail() {
         {/* ── BACK ── */}
         <div className="pt-2">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/projects")}
             className="back-btn flex items-center gap-2  hover:text-orange-400 transition-colors font-mono-code text-[0.65rem] tracking-widest uppercase"
           >
             <ArrowLeft size={13} />
-            Quay lại danh sách
+            Quay lại
           </button>
         </div>
       </div>
