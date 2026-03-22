@@ -39,7 +39,7 @@ const FontLoader = () => (
     /* Input */
     .field-input {
       width: 100%; border-radius: 12px;
-      padding: 11px 16px; color: white;
+      padding: 11px 16px 11px 34px;
       font-family: 'Syne', sans-serif; font-size: 0.88rem;
       outline: none; resize: none;
       transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
@@ -55,9 +55,7 @@ const FontLoader = () => (
     /* Select */
     .field-select {
       appearance: none; cursor: pointer;
-      background-color: rgba(255,255,255,0.03) !important;
     }
-    .field-select option { background: #1a1a1a; color: white; }
 
     /* Submit button */
     .submit-btn {
@@ -83,8 +81,7 @@ const FontLoader = () => (
 
     /* Review card */
     .review-card {
-      border: 1px solid rgba(255,255,255,0.07); border-radius: 14px;
-      background: rgba(255,255,255,0.02);
+      border-radius: 14px;
       transition: border-color 0.25s, background 0.25s;
     }
     .review-card:hover {
@@ -415,7 +412,8 @@ function ReviewCard({ r, index }) {
         duration: 0.45,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="review-card p-5"
+      className="review-card p-5 bg-white/40 dark:bg-neutral-900/60 backdrop-blur-md
+      border border-neutral-200 dark:border-white/10"
     >
       <div className="flex items-start gap-3 mb-3">
         {/* Avatar */}
@@ -437,7 +435,7 @@ function ReviewCard({ r, index }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <p
-              className="text-white font-semibold text-sm leading-none"
+              className="text-neutral-900 dark:text-white font-semibold text-sm leading-none"
               style={{ fontFamily: "'Syne', sans-serif" }}
             >
               {r.name}
@@ -457,11 +455,11 @@ function ReviewCard({ r, index }) {
           </div>
 
           <div className="flex items-center gap-1.5 mt-1">
-            <Clock size={10} style={{ color: "rgba(255,255,255,0.25)" }} />
-            <span
-              className="font-mono-code text-[0.56rem] tracking-wide"
-              style={{ color: "rgba(255,255,255,0.25)" }}
-            >
+            <Clock
+              size={10}
+              className="text-neutral-500 dark:text-neutral-400"
+            />
+            <span className="font-mono-code text-[0.56rem] text-neutral-500 dark:text-neutral-400 tracking-wide">
               {formatted}
             </span>
           </div>
@@ -469,15 +467,9 @@ function ReviewCard({ r, index }) {
       </div>
 
       {/* Divider */}
-      <div
-        className="h-px mb-3"
-        style={{ background: "rgba(255,255,255,0.05)" }}
-      />
+      <div className="h-px mb-3 border border-neutral-200/50 dark:border-neutral-800" />
 
-      <p
-        className="text-sm leading-relaxed text-justify"
-        style={{ color: "rgba(255,255,255,0.6)" }}
-      >
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed text-justify">
         {r.description}
       </p>
     </motion.div>
@@ -808,12 +800,21 @@ export default function Ratings() {
               <select
                 value={filterStar}
                 onChange={(e) => setFilterStar(Number(e.target.value))}
-                className="field-input field-select w-full pl-9 pr-9 py-2.5"
+                className="field-input field-select w-full pl-9 pr-9 py-2.5 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50"
                 style={{ cursor: "pointer" }}
               >
-                <option value={0}>Tất cả sao</option>
+                <option
+                  value={0}
+                  className="text-neutral-500 dark:text-neutral-400"
+                >
+                  Tất cả sao
+                </option>
                 {[5, 4, 3, 2, 1].map((n) => (
-                  <option key={n} value={n}>
+                  <option
+                    key={n}
+                    value={n}
+                    className="text-neutral-500 dark:text-neutral-400"
+                  >
                     {n} sao
                   </option>
                 ))}

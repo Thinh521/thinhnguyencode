@@ -279,11 +279,7 @@ export default function Photo() {
                 transition: "outline 0.2s",
               }}
             >
-              <Search
-                size={14}
-                className="text-neutral-500"
-                style={{ flexShrink: 0 }}
-              />
+              <Search size={14} className="text-neutral-500 shrink-0" />
               <input
                 type="text"
                 placeholder="Tìm ảnh..."
