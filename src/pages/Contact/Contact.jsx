@@ -473,7 +473,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="submit-btn mt-1 bg-orange-400 border-orange-500 text-white"
+                    className="submit-btn mt-1 bg-orange-400 border-orange-400 text-white"
                   >
                     {loading ? (
                       <>
