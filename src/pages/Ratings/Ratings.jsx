@@ -38,14 +38,12 @@ const FontLoader = () => (
 
     /* Input */
     .field-input {
-      width: 100%; background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.09); border-radius: 12px;
+      width: 100%; border-radius: 12px;
       padding: 11px 16px; color: white;
       font-family: 'Syne', sans-serif; font-size: 0.88rem;
       outline: none; resize: none;
       transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     }
-    .field-input::placeholder { color: rgba(255,255,255,0.2); }
     .field-input:focus {
       border-color: rgba(249,115,22,0.5);
       background: rgba(249,115,22,0.04);
@@ -67,8 +65,7 @@ const FontLoader = () => (
       padding: 12px 24px; border-radius: 12px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-      background: rgba(249,115,22,0.14);
-      border: 1px solid rgba(249,115,22,0.45); color: white; cursor: pointer;
+ color: white; cursor: pointer;
       transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
     }
     .submit-btn:hover:not(:disabled) {
@@ -97,8 +94,7 @@ const FontLoader = () => (
 
     /* Star bar */
     .star-bar-track {
-      flex: 1; height: 6px; border-radius: 99px;
-      background: rgba(255,255,255,0.06); overflow: hidden;
+      flex: 1; height: 6px; border-radius: 99px; overflow: hidden;
     }
     .star-bar-fill {
       height: 100%; border-radius: 99px;
@@ -165,10 +161,7 @@ function SectionLabel({ icon: Icon, children, count }) {
           <Icon size={12} className="text-orange-400" />
         </div>
       )}
-      <h2
-        className="font-mono-code text-[0.62rem] tracking-[0.18em] uppercase"
-        style={{ color: "rgba(255,255,255,0.4)" }}
-      >
+      <h2 className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.18em] uppercase">
         {children}
       </h2>
       {count !== undefined && (
@@ -193,24 +186,15 @@ function SectionLabel({ icon: Icon, children, count }) {
 ───────────────────────────────────────────── */
 function StarPicker({ star, hoverStar, onSet, onHover, error }) {
   return (
-    <div className="mb-4">
+    <div>
       <div className="flex items-center gap-2 mb-2">
         <Star size={12} style={{ color: "rgba(249,115,22,0.7)" }} />
-        <label
-          className="font-mono-code text-[0.62rem] tracking-[0.14em] uppercase"
-          style={{ color: "rgba(255,255,255,0.45)" }}
-        >
+        <label className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.14em] uppercase">
           Mức độ hài lòng
         </label>
       </div>
 
-      <div
-        className="flex flex-col items-center gap-3 p-5 rounded-xl"
-        style={{
-          border: "1px solid rgba(255,255,255,0.07)",
-          background: "rgba(255,255,255,0.02)",
-        }}
-      >
+      <div className="flex flex-col items-center gap-3 p-5 mb-4 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl">
         <div className="flex gap-2">
           {[1, 2, 3, 4, 5].map((s) => (
             <motion.button
@@ -225,18 +209,11 @@ function StarPicker({ star, hoverStar, onSet, onHover, error }) {
             >
               <Star
                 size={32}
-                style={{
-                  color:
-                    s <= (hoverStar || star)
-                      ? "#fbbf24"
-                      : "rgba(255,255,255,0.12)",
-                  fill: s <= (hoverStar || star) ? "#fbbf24" : "transparent",
-                  filter:
-                    s <= (hoverStar || star)
-                      ? "drop-shadow(0 0 6px rgba(251,191,36,0.5))"
-                      : "none",
-                  transition: "color 0.15s, fill 0.15s, filter 0.15s",
-                }}
+                className={`transition-all duration-150 ${
+                  s <= (hoverStar || star)
+                    ? "text-amber-400 fill-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.5)]"
+                    : "fill-transparent text-neutral-400"
+                }`}
               />
             </motion.button>
           ))}
@@ -249,8 +226,11 @@ function StarPicker({ star, hoverStar, onSet, onHover, error }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.18 }}
-            className="font-mono-code text-[0.65rem] tracking-wider"
-            style={{ color: star > 0 ? "#fbbf24" : "rgba(255,255,255,0.25)" }}
+            className={`font-mono-code text-[0.65rem] tracking-wider ${
+              star > 0
+                ? "text-amber-400"
+                : "text-neutral-500 dark:text-neutral-400"
+            }`}
           >
             {STAR_LABELS[hoverStar || star] || "Nhấn để chọn số sao"}
           </motion.p>
@@ -291,10 +271,7 @@ function FormField({
     <div className="mb-4">
       <div className="flex items-center gap-2 mb-2">
         <Icon size={12} style={{ color: "rgba(249,115,22,0.7)" }} />
-        <label
-          className="font-mono-code text-[0.62rem] tracking-[0.14em] uppercase"
-          style={{ color: "rgba(255,255,255,0.45)" }}
-        >
+        <label className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.14em] uppercase">
           {label}
         </label>
       </div>
@@ -302,14 +279,14 @@ function FormField({
         <textarea
           {...reg}
           rows={4}
-          className={`field-input ${error ? "has-error" : ""}`}
+          className={`field-input bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "has-error" : ""}`}
           placeholder={`Nhập ${label.toLowerCase()}...`}
         />
       ) : (
         <input
           type={type}
           {...reg}
-          className={`field-input ${error ? "has-error" : ""}`}
+          className={`field-input bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "has-error" : ""}`}
           placeholder={`Nhập ${label.toLowerCase()}...`}
         />
       )}
@@ -336,21 +313,15 @@ function FormField({
 ───────────────────────────────────────────── */
 function StatsSection({ averageRating, totalRatings, getStarPct }) {
   return (
-    <div
-      className="p-6 rounded-2xl mb-8"
-      style={{
-        border: "1px solid rgba(255,255,255,0.07)",
-        background: "rgba(255,255,255,0.02)",
-      }}
-    >
+    <div className="p-6 rounded-2xl mb-8 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50">
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-center">
         {/* Left: big score */}
         <div className="flex flex-col items-center text-center min-w-[140px]">
           <div className="flex items-end gap-2 mb-2">
-            <span className="font-serif-display text-6xl text-white leading-none">
+            <span className="font-serif-display text-6xl text-black dark:text-white leading-none">
               {averageRating.toFixed(1)}
             </span>
-            <span className="font-mono-code text-[0.65rem] tracking-widest text-neutral-600 mb-2">
+            <span className="font-mono-code text-[0.65rem] tracking-widest text-neutral-500 dark:text-neutral-400 mb-2">
               / 5.0
             </span>
           </div>
@@ -374,11 +345,11 @@ function StatsSection({ averageRating, totalRatings, getStarPct }) {
           </div>
 
           <div className="flex items-center gap-1.5">
-            <Users size={11} style={{ color: "rgba(255,255,255,0.3)" }} />
-            <span
-              className="font-mono-code text-[0.58rem] tracking-widest"
-              style={{ color: "rgba(255,255,255,0.3)" }}
-            >
+            <Users
+              size={11}
+              className=" text-neutral-500 dark:text-neutral-400"
+            />
+            <span className="font-mono-code text-[0.58rem] tracking-widest text-neutral-500 dark:text-neutral-400">
               {totalRatings} đánh giá
             </span>
           </div>
@@ -389,13 +360,13 @@ function StatsSection({ averageRating, totalRatings, getStarPct }) {
           {[5, 4, 3, 2, 1].map((n) => (
             <div key={n} className="flex items-center gap-3">
               <div className="flex items-center gap-1 w-12 shrink-0">
-                <span className="font-mono-code text-[0.65rem] text-white">
+                <span className="font-mono-code text-[0.65rem] text-black dark:text-white">
                   {n}
                 </span>
                 <Star size={10} style={{ color: "#fbbf24", fill: "#fbbf24" }} />
               </div>
 
-              <div className="star-bar-track">
+              <div className="star-bar-track bg-neutral-200 dark:bg-neutral-600">
                 <motion.div
                   className="star-bar-fill"
                   initial={{ width: 0 }}
@@ -408,10 +379,7 @@ function StatsSection({ averageRating, totalRatings, getStarPct }) {
                 />
               </div>
 
-              <span
-                className="font-mono-code text-[0.6rem] w-9 text-right shrink-0"
-                style={{ color: "rgba(255,255,255,0.35)" }}
-              >
+              <span className="font-mono-code text-[0.6rem] w-9 text-right shrink-0 text-neutral-500 dark:text-neutral-400">
                 {getStarPct(n)}%
               </span>
             </div>
@@ -664,7 +632,7 @@ export default function Ratings() {
   const hasFilter = searchTerm || filterStar > 0;
 
   return (
-    <article className="ratings-root min-h-screen bg-neutral-950 text-white pb-16">
+    <article className="ratings-root min-h-screend pb-16">
       <FontLoader />
 
       {/* ── PAGE HEADER ── */}
@@ -672,7 +640,7 @@ export default function Ratings() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55 }}
-        className="px-4 md:px-8 pt-10 pb-6 max-w-5xl mx-auto"
+        className="pt-10 pb-6 max-w-5xl mx-auto"
       >
         <p className="font-mono-code text-orange-400 text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
           <span className="inline-block w-4 h-px bg-orange-400" />
@@ -680,10 +648,10 @@ export default function Ratings() {
         </p>
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h1 className="font-serif-display text-5xl md:text-6xl text-white leading-none mb-2">
+            <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white  leading-none mb-2">
               Đánh giá<span className="text-orange-500">.</span>
             </h1>
-            <p className="text-neutral-500 text-sm">
+            <p className="text-neutral-600 dark:text-neutral-400  text-sm">
               Chia sẻ cảm nhận của bạn về sản phẩm
             </p>
           </div>
@@ -694,7 +662,7 @@ export default function Ratings() {
         <div className="mt-5 h-px bg-gradient-to-r from-orange-500 via-orange-400/30 to-transparent" />
       </motion.div>
 
-      <div className="max-w-5xl mx-auto px-4 md:px-8 space-y-12">
+      <div className="max-w-5xl mx-auto space-y-12">
         {/* ── MAIN GRID: form + stats ── */}
         <div className="grid md:grid-cols-[1fr_1.05fr] gap-10 items-start">
           {/* LEFT: FORM */}
@@ -745,7 +713,7 @@ export default function Ratings() {
               <button
                 type="submit"
                 disabled={loading}
-                className="submit-btn mt-2"
+                className="submit-btn mt-2 bg-orange-400 border-orange-400"
               >
                 {loading ? (
                   <>
@@ -802,17 +770,8 @@ export default function Ratings() {
             className="flex flex-col sm:flex-row gap-3 mb-5"
           >
             {/* Search */}
-            <div
-              className="search-ring relative flex items-center gap-3 px-4 py-2.5 rounded-xl flex-1 transition-all"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <Search
-                size={13}
-                style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}
-              />
+            <div className="search-ring relative flex items-center gap-3 px-4 py-2.5 rounded-xl flex-1 transition-all bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50">
+              <Search size={14} className="text-neutral-500 shrink-0" />
               <input
                 type="text"
                 placeholder="Tìm tên hoặc nội dung..."

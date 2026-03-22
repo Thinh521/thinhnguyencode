@@ -1,3 +1,16 @@
+:root {
+    --nav-bg-light: rgba(255, 255, 255, 0.88);
+    --nav-bg-dark: rgba(10, 10, 10, 0.82);
+    --nav-border-light: rgba(0, 0, 0, 0.07);
+    --nav-border-dark: rgba(255, 255, 255, 0.06);
+    --nav-text-light: #111;
+    --nav-text-dark: rgba(255, 255, 255, 0.75);
+    --nav-panel-light: #ffffff;
+    --nav-panel-dark: #0d0d0d;
+    --nav-accent: #f97316;
+    --nav-accent-soft: rgba(249, 115, 22, 0.1);
+}
+
 /* MENU DESKTOP */
 .sm-desktop-menu {
     display: flex;
@@ -8,13 +21,19 @@
 .sm-desktop-item {
     text-decoration: none;
     font-weight: 500;
-    color: #111;
+    color: var(--nav-text-light);
     font-size: 16px;
     transition: 0.3s;
 }
 
+.dark .sm-desktop-item {
+    color: var(--nav-text-dark);
+}
+
 .sm-desktop-item:hover {
-    color: var(--sm-accent);
+    color: var(--nav-accent);
+    background: var(--nav-accent-soft);
+    border-color: rgba(249, 115, 22, 0.2);
 }
 
 .sm-scope .staggered-menu-wrapper {
@@ -35,9 +54,12 @@
     align-items: center;
     justify-content: space-between;
 
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: var(--nav-bg-light);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+
+    border-bottom: 1px solid var(--nav-border-light);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
 
     pointer-events: none;
     z-index: 20;
@@ -47,6 +69,12 @@
     box-shadow:
         0 4px 10px rgba(0, 0, 0, 0.06),
         0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.dark .sm-scope .staggered-menu-header {
+    background: var(--nav-bg-dark);
+    border-color: var(--nav-border-dark);
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .sm-scope .staggered-menu-header>* {
@@ -64,11 +92,15 @@
     align-items: center;
     gap: 0.3rem;
     background: transparent;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
     cursor: pointer;
-    color: #e9e9ef;
-    font-weight: 500;
+    padding: 7px 12px;
+    color: #111;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
     line-height: 1;
+    transition: border-color 0.2s, background 0.2s;
 }
 
 .sm-scope .sm-toggle:focus-visible {
@@ -113,7 +145,6 @@
     top: 50%;
     width: 100%;
     height: 2px;
-    background: currentColor;
     border-radius: 2px;
     transform: translate(-50%, -50%);
 }
@@ -122,21 +153,39 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: clamp(260px, 38vw, 420px);
+    width: clamp(280px, 40vw, 440px);
     height: 100vh;
-    background: white;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: var(--nav-panel-light);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
-    padding: 6em 2em 2em 2em;
+    padding: 5.5em 2.2em 2.2em 2.2em;
     overflow-y: auto;
     z-index: 10;
+    border-left: 1px solid rgba(0, 0, 0, 0.07);
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.dark .sm-scope .staggered-menu-panel {
+    background: var(--nav-panel-dark);
+    border-left-color: rgba(255, 255, 255, 0.06);
 }
 
 .sm-scope [data-position='left'] .staggered-menu-panel {
     right: auto;
     left: 0;
+    border-left: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.sm-scope .staggered-menu-panel::-webkit-scrollbar {
+    width: 3px;
+}
+
+.sm-scope .staggered-menu-panel::-webkit-scrollbar-thumb {
+    background: rgba(249, 115, 22, 0.3);
+    border-radius: 99px;
 }
 
 .sm-scope .sm-prelayers {
@@ -222,11 +271,6 @@
 
 .sm-scope .sm-panel-item:hover {
     color: var(--sm-accent, #ff0000);
-}
-
-.sm-mobile-darkmode {
-    margin-top: 20px;
-    display: flex;
 }
 
 .sm-toggle {

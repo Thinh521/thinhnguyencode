@@ -328,10 +328,7 @@ function SuccessState({ onReset }) {
       >
         Mình sẽ phản hồi sớm nhất có thể
       </p>
-      <button
-        onClick={onReset}
-        className="resume-btn mt-2 bg-orange-400 border-orange-500 text-white"
-      >
+      <button onClick={onReset} className="resume-btn mt-2 text-white">
         <ArrowRight size={13} /> Gửi tin nhắn khác
       </button>
     </motion.div>

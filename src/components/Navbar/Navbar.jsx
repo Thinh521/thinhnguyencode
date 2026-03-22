@@ -467,13 +467,13 @@ export const StaggeredMenu = ({
             ))}
           </nav>
 
-          <button className="darkmode-btn">
+          <button className="hidden lg:flex">
             <DarkModeToggle />
           </button>
 
           <button
             ref={toggleBtnRef}
-            className="sm-toggle relative items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer text-[#e9e9ef] font-medium leading-none overflow-visible pointer-events-auto"
+            className="sm-toggle relative items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
@@ -491,7 +491,7 @@ export const StaggeredMenu = ({
               >
                 {textLines.map((l, i) => (
                   <span
-                    className="sm-toggle-line block h-[1em] leading-none"
+                    className="sm-toggle-line text-black dark:text-white block h-[1em] leading-none"
                     key={i}
                   >
                     {l}
@@ -507,11 +507,11 @@ export const StaggeredMenu = ({
             >
               <span
                 ref={plusHRef}
-                className="sm-icon-line absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
+                className="sm-icon-line absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform] bg-black dark:bg-white"
               />
               <span
                 ref={plusVRef}
-                className="sm-icon-line sm-icon-line-v absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform]"
+                className="sm-icon-line sm-icon-line-v absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-[2px] -translate-x-1/2 -translate-y-1/2 [will-change:transform] bg-black dark:bg-white"
               />
             </span>
           </button>
@@ -520,7 +520,7 @@ export const StaggeredMenu = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px] pointer-events-auto"
+          className="staggered-menu-panel absolute top-0 right-0 h-full flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px] pointer-events-auto"
           style={{ WebkitBackdropFilter: "blur(12px)" }}
           aria-hidden={!open}
         >
@@ -537,7 +537,7 @@ export const StaggeredMenu = ({
                     key={it.label + idx}
                   >
                     <Link
-                      className="sm-panel-item w-full text-black font-semibold cursor-pointer uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] py-1.5"
+                      className="sm-panel-item w-full text-black dark:text-white font-semibold cursor-pointer uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] py-1.5"
                       to={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
@@ -563,37 +563,9 @@ export const StaggeredMenu = ({
             </ul>
 
             {/* Darkmode inside mobile menu */}
-            <div className="sm-mobile-darkmode">
+            <div>
               <DarkModeToggle />
             </div>
-
-            {displaySocials && socialItems && socialItems.length > 0 && (
-              <div
-                className="sm-socials mt-auto pt-8 flex flex-col gap-3"
-                aria-label="Social links"
-              >
-                <h3 className="sm-socials-title m-0 text-base font-medium [color:var(--sm-accent,#ff0000)]">
-                  Socials
-                </h3>
-                <ul
-                  className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap"
-                  role="list"
-                >
-                  {socialItems.map((s, i) => (
-                    <li key={s.label + i} className="sm-socials-item">
-                      <a
-                        href={s.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear"
-                      >
-                        {s.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </div>
         </aside>
       </div>
