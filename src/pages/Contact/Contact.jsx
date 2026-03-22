@@ -30,18 +30,14 @@ const FontLoader = () => (
     /* Input field */
     .field-input {
       width: 100%;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.09);
       border-radius: 12px;
       padding: 12px 16px;
-      color: white;
       font-family: 'Syne', sans-serif;
       font-size: 0.88rem;
       outline: none;
       transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
       resize: none;
     }
-    .field-input::placeholder { color: rgba(255,255,255,0.22); }
     .field-input:focus {
       border-color: rgba(249,115,22,0.5);
       background: rgba(249,115,22,0.04);
@@ -62,9 +58,6 @@ const FontLoader = () => (
       border-radius: 12px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      background: rgba(249,115,22,0.15);
-      border: 1px solid rgba(249,115,22,0.45);
-      color: white;
       cursor: pointer;
       transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
     }
@@ -86,8 +79,6 @@ const FontLoader = () => (
       width: 300px; flex-shrink: 0;
       padding: 20px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(255,255,255,0.02);
     }
 
     /* Marquee */
@@ -110,9 +101,7 @@ const FontLoader = () => (
       padding: 10px 22px; border-radius: 10px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-      background: rgba(249,115,22,0.12);
-      border: 1px solid rgba(249,115,22,0.35);
-      color: white; text-decoration: none;
+       text-decoration: none;
       transition: background 0.25s, box-shadow 0.25s;
       cursor: pointer;
     }
@@ -193,10 +182,7 @@ const FormField = ({
       {/* Label row */}
       <div className="flex items-center gap-2 mb-2">
         <Icon size={12} style={{ color: "rgba(249,115,22,0.7)" }} />
-        <label
-          className="font-mono-code text-[0.62rem] tracking-[0.14em] uppercase"
-          style={{ color: "rgba(255,255,255,0.45)" }}
-        >
+        <label className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.14em] uppercase">
           {label}
         </label>
       </div>
@@ -205,14 +191,14 @@ const FormField = ({
         <textarea
           {...registerProps}
           rows={4}
-          className={`field-input ${error ? "error" : ""}`}
+          className={`field-input bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "error" : ""}`}
           placeholder={`Nhập ${label.toLowerCase()}...`}
         />
       ) : (
         <input
           type={type}
           {...registerProps}
-          className={`field-input ${error ? "error" : ""}`}
+          className={`field-input bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "error" : ""}`}
           placeholder={`Nhập ${label.toLowerCase()}...`}
         />
       )}
@@ -240,38 +226,34 @@ const FormField = ({
 ───────────────────────────────────────────── */
 function TestimonialCard({ item }) {
   return (
-    <div className="test-card">
-      <Quote
-        size={16}
-        style={{ color: "rgba(249,115,22,0.4)", marginBottom: "10px" }}
-      />
-      <p
-        className="text-sm leading-relaxed mb-4"
-        style={{ color: "rgba(255,255,255,0.55)", fontStyle: "italic" }}
-      >
+    <div
+      className="test-card
+      bg-white/40 dark:bg-neutral-900/60
+      backdrop-blur-md
+      border border-neutral-200 dark:border-white/10
+      text-neutral-800 dark:text-neutral-200
+      shadow-sm dark:shadow-none
+    "
+    >
+      <Quote size={16} className="text-orange-500/40 mb-2" />
+
+      <p className="text-sm leading-relaxed mb-4 italic text-neutral-600 dark:text-neutral-400">
         "{item.text}"
       </p>
+
       <div className="flex items-center gap-3">
         <img
           src={item.img}
           alt={item.name}
-          className="w-8 h-8 rounded-full object-cover"
-          style={{
-            filter: "grayscale(30%)",
-            border: "1.5px solid rgba(249,115,22,0.3)",
-          }}
+          className="w-8 h-8 rounded-full object-cover grayscale-[30%] border border-orange-500/30"
         />
+
         <div>
-          <p
-            className="text-white text-xs font-semibold leading-none"
-            style={{ fontFamily: "'Syne', sans-serif" }}
-          >
+          <p className="text-xs font-semibold leading-none text-neutral-900 dark:text-white font-syne">
             {item.name}
           </p>
-          <p
-            className="font-mono-code text-[0.57rem] tracking-wide mt-0.5"
-            style={{ color: "rgba(255,255,255,0.3)" }}
-          >
+
+          <p className="font-mono-code text-[0.57rem] tracking-wide mt-0.5 text-neutral-500 dark:text-neutral-400">
             {item.role}
           </p>
         </div>
@@ -308,10 +290,7 @@ function SectionLabel({ icon: Icon, children }) {
           <Icon size={12} className="text-orange-400" />
         </div>
       )}
-      <h2
-        className="font-mono-code text-[0.62rem] tracking-[0.18em] uppercase"
-        style={{ color: "rgba(255,255,255,0.4)" }}
-      >
+      <h2 className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.18em] uppercase">
         {children}
       </h2>
       <div className="flex-1 section-rule" />
@@ -349,7 +328,10 @@ function SuccessState({ onReset }) {
       >
         Mình sẽ phản hồi sớm nhất có thể
       </p>
-      <button onClick={onReset} className="resume-btn mt-2">
+      <button
+        onClick={onReset}
+        className="resume-btn mt-2 bg-orange-400 border-orange-500 text-white"
+      >
         <ArrowRight size={13} /> Gửi tin nhắn khác
       </button>
     </motion.div>
@@ -415,7 +397,7 @@ const Contact = () => {
             <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white leading-none mb-2">
               Liên hệ<span className="text-orange-500">.</span>
             </h1>
-            <p className="text-neutral-500 text-sm">
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm">
               Mọi người liên hệ với mình qua form này nhé
             </p>
           </div>
@@ -494,7 +476,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="submit-btn mt-1"
+                    className="submit-btn mt-1 bg-orange-400 border-orange-500 text-white"
                   >
                     {loading ? (
                       <>
@@ -555,11 +537,7 @@ const Contact = () => {
                 ].map(({ icon: Icon, label, value, href }) => (
                   <div
                     key={label}
-                    className="flex items-center gap-3 p-3.5 rounded-xl"
-                    style={{
-                      border: "1px solid rgba(255,255,255,0.06)",
-                      background: "rgba(255,255,255,0.02)",
-                    }}
+                    className="flex items-center gap-3 p-3.5 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl"
                   >
                     <div
                       className="p-2 rounded-lg shrink-0"
@@ -571,21 +549,18 @@ const Contact = () => {
                       <Icon size={13} className="text-orange-400" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p
-                        className="font-mono-code text-[0.55rem] tracking-widest uppercase"
-                        style={{ color: "rgba(255,255,255,0.3)" }}
-                      >
+                      <p className="font-mono-code text-[0.55rem] text-neutral-500 tracking-widest uppercase">
                         {label}
                       </p>
                       {href ? (
                         <a
                           href={href}
-                          className="text-white text-sm font-medium hover:text-orange-400 transition-colors truncate block"
+                          className="text-black dark:text-white text-sm font-medium hover:text-orange-400 transition-colors truncate block"
                         >
                           {value}
                         </a>
                       ) : (
-                        <p className="text-white text-sm font-medium truncate">
+                        <p className="text-black dark:text-white text-sm font-medium truncate">
                           {value}
                         </p>
                       )}
@@ -601,7 +576,7 @@ const Contact = () => {
               <div className="space-y-4">
                 <button
                   onClick={() => navigate("/cv")}
-                  className="resume-btn w-full justify-center"
+                  className="resume-btn w-full justify-center bg-orange-400 border-orange-500 text-white"
                 >
                   <ExternalLink size={13} /> Resume / CV
                 </button>
@@ -625,13 +600,10 @@ const Contact = () => {
                 }}
               />
               <div>
-                <p className="text-white text-sm font-semibold leading-none mb-1">
+                <p className="text-black dark:text-white text-sm font-semibold leading-none mb-1">
                   Sẵn sàng hợp tác
                 </p>
-                <p
-                  className="font-mono-code text-[0.6rem] tracking-wide"
-                  style={{ color: "rgba(255,255,255,0.35)" }}
-                >
+                <p className="font-mono-code text-[0.6rem] text-neutral-500 tracking-wide">
                   Hiện đang open to work — freelance & full-time
                 </p>
               </div>
