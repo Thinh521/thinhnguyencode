@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Phone, Mail, MapPin, Heart, User } from "lucide-react";
-import SectionTitle from "../SectionTitle/SectionTitle";
 import styles from "./Footer.module.css";
-import Divider from "../Divider/Divider";
-import VisitorCounter from "../VisitorCounter";
+import Divider from "../../Divider/Divider";
+import VisitorCounter from "../../VisitorCounter";
+import SectionLabel from "../../SectionLabel/SectionLabel";
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
 
         <div className="mb-12">
-          <SectionTitle className="mb-6">Thông tin liên hệ</SectionTitle>
+          <SectionLabel icon={User}>Thông tin liên hệ</SectionLabel>
 
           <div>
             {contactItems.map((item, index) => (

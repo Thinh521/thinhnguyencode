@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import Divider from "../../components/Divider/Divider";
-import Header from "../../components/Header/Header";
 import { ScrollTimeline } from "../../components/scroll-timeline";
+import PageHeader from "../../components/layout/PageHeader";
 
 const DEFAULT_EVENTS = [
   {
@@ -37,10 +38,16 @@ const Timeline = () => {
   return (
     <>
       <article>
-        <Header
-          title="Hành trình"
-          subtitle="Những dấu mốc và trải nghiệm trên hành trình của mình"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <PageHeader
+            title="Hành trình."
+            subtitle="Những dấu mốc và trải nghiệm trên hành trình của mình"
+          />
+        </motion.div>
 
         <ScrollTimeline
           events={DEFAULT_EVENTS}

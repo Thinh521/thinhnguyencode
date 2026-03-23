@@ -1,40 +1,28 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Code2,
   Smartphone,
   Globe,
   Camera,
-  MapPin,
-  Download,
   ExternalLink,
-  Star,
   Sparkles,
-  ChevronDown,
   Zap,
   Layers,
   GitBranch,
   User,
 } from "lucide-react";
-import Header from "../../components/Header/Header";
 import Divider from "../../components/Divider/Divider";
-import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import Button from "../../components/Button/Button";
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import DevIntro from "./components/DevIntro";
 import { timelineData } from "../../data/timelineData";
-import { IMAGES } from "../../../public/images/imgaes";
 import PhotoData from "../../data/PhotoData";
 import PhotoThumbnail from "../Photo/components/PhotoThumbnail ";
 import PhotoModal from "../Photo/components/PhotoModal";
-import SectionLabel from "../../components/SectionLabel/SectionLabel";
+import SectionLabel from "../../components/SectionLabel";
+import PageHeader from "../../components/layout/PageHeader";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -143,19 +131,6 @@ const FontLoader = () => (
   `}</style>
 );
 
-/* ─────────────────────────────────────────────
-   DATA
-───────────────────────────────────────────── */
-const SKILLS_MAIN = [
-  { icon: Smartphone, label: "React Native" },
-  { icon: Globe, label: "React.js" },
-  { icon: Code2, label: "JavaScript" },
-  { icon: Layers, label: "Next.js" },
-  { icon: GitBranch, label: "Blockchain" },
-  { icon: Zap, label: "TailwindCSS" },
-  { icon: Camera, label: "Figma" },
-];
-
 const SERVICES = [
   {
     icon: Smartphone,
@@ -237,11 +212,17 @@ export default function Home() {
     <article className="home-root noise-bg min-h-screen" ref={containerRef}>
       <FontLoader />
 
-      <Header
-        title="Nguyễn Phúc Thịnh"
-        subtitle="Mobile App Developer • Freelancer"
-        verified={true}
-      />
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <PageHeader
+          title="Nguyễn Phúc Thịnh"
+          subtitle="Mobile App Developer • Freelancer"
+          verified
+        />
+      </motion.div>
 
       <section>
         <SectionLabel icon={User}>Giới thiệu</SectionLabel>
@@ -393,7 +374,7 @@ export default function Home() {
               <Button
                 to="/about"
                 rightIcon={<ArrowRight size={13} />}
-                className="text-white max-w-max"
+                className="max-w-max"
               >
                 Xem thêm
               </Button>

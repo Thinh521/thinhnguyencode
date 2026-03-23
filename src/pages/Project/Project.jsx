@@ -8,8 +8,11 @@ import {
   Github,
   ArrowRight,
   Star,
+  Projector,
 } from "lucide-react";
 import { timelineData } from "../../data/timelineData";
+import PageHeader from "../../components/layout/PageHeader";
+import SectionLabel from "../../components/SectionLabel";
 
 /* ─────────────────────────────────────────────
    FONT INJECTION
@@ -96,14 +99,10 @@ function FeaturedCard({ item }) {
     <motion.div
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5 }}
       className="relative mb-12"
     >
-      {/* Star badge */}
-      <div className="absolute -top-3.5 left-6 z-20 flex items-center gap-1.5 bg-orange-500 text-white text-xs px-3 py-1 rounded-full shadow-lg font-mono-code">
-        <Star size={10} fill="white" />
-        Dự án nổi bật
-      </div>
+      <SectionLabel icon={Star}>Dự án nổi bật</SectionLabel>
 
       <Link to={`/projects/${item.id}`} className="block">
         <div className="proj-card-hover grain-overlay rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 border border-gray-200 dark:border-neutral-700/50 overflow-hidden">
@@ -241,7 +240,7 @@ function ProjectCard({ item, index }) {
               </span>
             </div>
 
-            <h3 className="text-black dark:text-white font-semibold text-[0.95rem] leading-snug line-clamp-2 group-hover:text-orange-300 transition-colors duration-300">
+            <h3 className="text-black dark:text-white font-semibold text-[0.95rem] leading-snug group-hover:text-orange-300 transition-colors duration-300">
               {item.title}
             </h3>
 
@@ -354,90 +353,69 @@ export default function Projects() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-10"
+        transition={{ duration: 0.5 }}
+        className="mb-5"
       >
-        <p className="font-mono-cod text-orange-400 text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-          <span className="inline-block w-4 h-px bg-orange-400" />
-          Portfolio / Projects
-        </p>
-
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white leading-none mb-2">
-              Dự án<span className="text-orange-500">.</span>
-            </h1>
-            <p className="text-neutral-500 text-sm leading-relaxed max-w-md">
-              Những dự án lập trình cá nhân / pet projects của mình từ Github
-            </p>
-          </div>
-          <div className="shrink-0 text-right hidden sm:block select-none">
-            <span className="font-serif-display text-[5rem] leading-none block">
+        <PageHeader
+          title="Dự án."
+          subtitle="Những dự án lập trình cá nhân / pet projects của mình từ Github"
+          rightContent={
+            <span className="font-serif-display text-[2.5rem] hidden sm:block">
               {String(timelineData.length).padStart(2, "0")}
             </span>
-            <p className="font-mono-code text-[0.58rem] tracking-[0.2em] -mt-2">
-              PROJECTS
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 h-px bg-gradient-to-r from-orange-500 via-orange-400/30 to-transparent" />
+          }
+        />
       </motion.div>
 
       {/* ── FEATURED ── */}
       <FeaturedCard item={featured} />
-
-      {/* ── SECTION LABEL ── */}
-      <div className="flex items-center gap-4 mb-6">
-        <p className="font-mono-code text-neutral-500 text-[0.62rem] tracking-[0.2em] uppercase whitespace-nowrap">
-          Tất cả dự án
-        </p>
-        <div className="flex-1 h-px bg-white/6" />
-      </div>
 
       {/* ── SEARCH + FILTER ── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25, duration: 0.5 }}
-        className="flex flex-col sm:flex-row gap-3 mb-6"
+        className="mb-6"
       >
-        {/* Search input */}
-        <div className="search-ring relative flex items-center flex-1 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl px-4 py-2.5 gap-3 transition-all duration-200">
-          <Search size={14} className="text-neutral-500 shrink-0" />
-          <input
-            type="text"
-            placeholder="Tìm kiếm theo tên, kỹ năng..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="bg-transparent flex-1 text-white text-sm outline-none placeholder:text-neutral-600 font-mono-code"
-          />
-          {search && (
-            <button
-              onClick={() => setSearch("")}
-              className="text-neutral-500 hover:text-white transition-colors"
-            >
-              <X size={14} />
-            </button>
-          )}
-        </div>
+        <SectionLabel icon={Projector}>Tất cả dự án</SectionLabel>
+        <div className="flex flex-col sm:flex-row gap-3 ">
+          {/* Search input */}
+          <div className="search-ring relative flex items-center flex-1 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl px-4 py-2.5 gap-3 transition-all duration-200">
+            <Search size={14} className="text-neutral-500 shrink-0" />
+            <input
+              type="text"
+              placeholder="Tìm kiếm theo tên, kỹ năng..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="bg-transparent flex-1 text-white text-sm outline-none placeholder:text-neutral-600 font-mono-code"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="text-neutral-500 hover:text-white transition-colors"
+              >
+                <X size={14} />
+              </button>
+            )}
+          </div>
 
-        {/* Type pills */}
-        <div className="flex items-center gap-2 flex-wrap">
-          {ALL_TYPES.map((type) => (
-            <button
-              key={type}
-              onClick={() => setActiveType(type)}
-              className={`font-mono-code text-[0.6rem] tracking-wider uppercase px-4 py-3 rounded-lg border transition-all duration-200
+          {/* Type pills */}
+          <div className="flex items-center gap-2 flex-wrap">
+            {ALL_TYPES.map((type) => (
+              <button
+                key={type}
+                onClick={() => setActiveType(type)}
+                className={`font-mono-code text-[0.6rem] tracking-wider uppercase px-4 py-3 rounded-lg border transition-all duration-200
                 ${
                   activeType === type
                     ? "filter-active shadow-md shadow-orange-500/20"
                     : "text-neutral-400 hover:border-black hover:text-black bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 "
                 }`}
-            >
-              {type}
-            </button>
-          ))}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
         </div>
       </motion.div>
 

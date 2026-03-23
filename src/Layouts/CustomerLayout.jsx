@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { StaggeredMenu } from "../components/Navbar/Navbar";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/layout/Footer";
 
 const menuItems = [
   { label: "Home", ariaLabel: "Go to home page", link: "/" },

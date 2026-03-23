@@ -15,6 +15,8 @@ import {
   ArrowRight,
   Quote,
 } from "lucide-react";
+import PageHeader from "../../components/layout/PageHeader";
+import SectionLabel from "../../components/SectionLabel";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -274,31 +276,6 @@ function MarqueeRow({ reverse }) {
 }
 
 /* ─────────────────────────────────────────────
-   SECTION LABEL
-───────────────────────────────────────────── */
-function SectionLabel({ icon: Icon, children }) {
-  return (
-    <div className="flex items-center gap-3 mb-6">
-      {Icon && (
-        <div
-          className="p-1.5 rounded-lg"
-          style={{
-            background: "rgba(249,115,22,0.1)",
-            border: "1px solid rgba(249,115,22,0.2)",
-          }}
-        >
-          <Icon size={12} className="text-orange-400" />
-        </div>
-      )}
-      <h2 className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.18em] uppercase">
-        {children}
-      </h2>
-      <div className="flex-1 section-rule" />
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────
    SUCCESS STATE
 ───────────────────────────────────────────── */
 function SuccessState({ onReset }) {
@@ -382,37 +359,28 @@ const Contact = () => {
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        className="pt-10 pb-6 max-w-5xl mx-auto"
+        transition={{ duration: 0.5 }}
+        className="mb-6"
       >
-        <p className="font-mono-code text-orange-400 text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-          <span className="inline-block w-4 h-px bg-orange-400" />
-          Contact / Reach out
-        </p>
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white leading-none mb-2">
-              Liên hệ<span className="text-orange-500">.</span>
-            </h1>
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-              Mọi người liên hệ với mình qua form này nhé
-            </p>
-          </div>
-          <span className="font-serif-display text-[5rem] text-white/4 leading-none select-none hidden sm:block">
-            ✉
-          </span>
-        </div>
-        <div className="mt-5 h-px bg-gradient-to-r from-orange-500 via-orange-400/30 to-transparent" />
+        <PageHeader
+          title="Liên hệ."
+          subtitle="Mọi người liên hệ với mình qua form này nhé"
+          rightContent={
+            <span className="font-serif-display text-[2.5rem] text-white/4 leading-none select-none hidden sm:block">
+              ✉
+            </span>
+          }
+        />
       </motion.div>
 
       {/* ── MAIN GRID ── */}
-      <div className="max-w-5xl mx-auto space-y-14">
+      <div className="space-y-14">
         <div className="grid md:grid-cols-[1.1fr_1fr] gap-10 items-start">
           {/* ── LEFT: FORM ── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.55 }}
+            transition={{ duration: 0.5 }}
           >
             <SectionLabel icon={Mail}>Gửi tin nhắn</SectionLabel>
 
@@ -504,7 +472,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.55 }}
+            transition={{ duration: 0.5 }}
             className="space-y-8"
           >
             {/* Contact card */}

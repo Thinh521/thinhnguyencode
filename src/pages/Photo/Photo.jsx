@@ -20,6 +20,8 @@ import StoryAvatar from "./components/StoryAvatar";
 import PhotoThumbnail from "./components/PhotoThumbnail ";
 import StoryViewer from "./components/StoryViewer";
 import PhotoModal from "./components/PhotoModal";
+import PageHeader from "../../components/layout/PageHeader";
+import SectionLabel from "../../components/SectionLabel";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -79,43 +81,6 @@ const FontLoader = () => (
     .photo-root ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 99px; }
   `}</style>
 );
-
-/* ─────────────────────────────────────────────
-   SECTION HEADING
-───────────────────────────────────────────── */
-function SectionLabel({ icon: Icon, children, count }) {
-  return (
-    <div className="flex items-center gap-3 mb-5">
-      {Icon && (
-        <div
-          className="p-1.5 rounded-lg"
-          style={{
-            background: "rgba(249,115,22,0.1)",
-            border: "1px solid rgba(249,115,22,0.2)",
-          }}
-        >
-          <Icon size={12} className="text-orange-400" />
-        </div>
-      )}
-      <h2 className="font-mono-code text-[0.62rem] tracking-[0.18em] uppercase text-black dark:text-white">
-        {children}
-      </h2>
-      {count !== undefined && (
-        <span
-          className="font-mono-code text-[0.58rem] px-2 py-0.5 rounded-full"
-          style={{
-            background: "rgba(249,115,22,0.08)",
-            border: "1px solid rgba(249,115,22,0.2)",
-            color: "#f97316",
-          }}
-        >
-          {count}
-        </span>
-      )}
-      <div className="flex-1 section-rule" />
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────────
    EMPTY STATE
@@ -213,30 +178,18 @@ export default function Photo() {
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        className="pb-6 max-w-6xl mx-auto"
+        transition={{ duration: 0.5 }}
+        className="mb-6"
       >
-        <p className="font-mono-code text-orange-400 text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-          <span className="inline-block w-4 h-px bg-orange-400" />
-          Gallery / Stories
-        </p>
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white leading-none mb-2">
-              Ảnh &amp; Tin<span className="text-orange-500">.</span>
-            </h1>
-            <p className="text-sm">
-              Những bức ảnh mình chụp qua ống kính nhiệm màu
-            </p>
-          </div>
-          <span
-            className="font-serif-display text-[5rem] text-white/4 leading-none select-none hidden sm:block"
-            style={{ lineHeight: 1 }}
-          >
-            {String(PhotoData.length).padStart(2, "0")}
-          </span>
-        </div>
-        <div className="mt-5 h-px bg-gradient-to-r from-orange-500 via-orange-400/30 to-transparent" />
+        <PageHeader
+          title="Ảnh & tin."
+          subtitle="Những bức ảnh mình chụp qua ống kính nhiệm màu"
+          rightContent={
+            <span className="font-serif-display text-[2.5rem] hidden sm:block">
+              {String(PhotoData.length).padStart(2, "0")}
+            </span>
+          }
+        />
       </motion.div>
 
       <div className="max-w-6xl mx-auto space-y-12">

@@ -24,6 +24,8 @@ import {
   User,
   ChevronDown,
 } from "lucide-react";
+import PageHeader from "../../components/layout/PageHeader";
+import SectionLabel from "../../components/SectionLabel";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -140,43 +142,6 @@ const FontLoader = () => (
 const STAR_LABELS = ["", "Rất tệ", "Tệ", "Bình thường", "Tốt", "Tuyệt vời!"];
 const randomAvatar = () =>
   `https://api.dicebear.com/7.x/adventurer/svg?seed=${Math.floor(Math.random() * 10000)}`;
-
-/* ─────────────────────────────────────────────
-   SECTION LABEL
-───────────────────────────────────────────── */
-function SectionLabel({ icon: Icon, children, count }) {
-  return (
-    <div className="flex items-center gap-3 mb-6">
-      {Icon && (
-        <div
-          className="p-1.5 rounded-lg"
-          style={{
-            background: "rgba(249,115,22,0.1)",
-            border: "1px solid rgba(249,115,22,0.2)",
-          }}
-        >
-          <Icon size={12} className="text-orange-400" />
-        </div>
-      )}
-      <h2 className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.18em] uppercase">
-        {children}
-      </h2>
-      {count !== undefined && (
-        <span
-          className="font-mono-code text-[0.58rem] px-2 py-0.5 rounded-full"
-          style={{
-            background: "rgba(249,115,22,0.08)",
-            border: "1px solid rgba(249,115,22,0.2)",
-            color: "#f97316",
-          }}
-        >
-          {count}
-        </span>
-      )}
-      <div className="flex-1 section-rule" />
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────────
    STAR PICKER
@@ -631,30 +596,21 @@ export default function Ratings() {
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        className="pt-10 pb-6 max-w-5xl mx-auto"
+        transition={{ duration: 0.5 }}
+        className="mb-6"
       >
-        <p className="font-mono-code text-orange-400 text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-          <span className="inline-block w-4 h-px bg-orange-400" />
-          Reviews / Đánh giá
-        </p>
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white  leading-none mb-2">
-              Đánh giá<span className="text-orange-500">.</span>
-            </h1>
-            <p className="text-neutral-600 dark:text-neutral-400  text-sm">
-              Chia sẻ cảm nhận của bạn về sản phẩm
-            </p>
-          </div>
-          <span className="font-serif-display text-[5rem] text-white/4 leading-none select-none hidden sm:block">
-            {String(totalRatings).padStart(2, "0")}
-          </span>
-        </div>
-        <div className="mt-5 h-px bg-gradient-to-r from-orange-500 via-orange-400/30 to-transparent" />
+        <PageHeader
+          title="Đánh giá."
+          subtitle=" Chia sẻ cảm nhận của bạn về sản phẩm"
+          rightContent={
+            <span className="font-serif-display text-[2.5rem] hidden sm:block">
+              {String(totalRatings).padStart(2, "0")}
+            </span>
+          }
+        />
       </motion.div>
 
-      <div className="max-w-5xl mx-auto space-y-12">
+      <div className="space-y-12">
         {/* ── MAIN GRID: form + stats ── */}
         <div className="grid md:grid-cols-[1fr_1.05fr] gap-10 items-start">
           {/* LEFT: FORM */}
@@ -748,11 +704,9 @@ export default function Ratings() {
 
         {/* ── REVIEWS LIST ── */}
         <section>
-          <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-            <SectionLabel icon={MessageSquare} count={filteredRatings.length}>
-              Tất cả đánh giá
-            </SectionLabel>
-          </div>
+          <SectionLabel icon={MessageSquare} count={filteredRatings.length}>
+            Tất cả đánh giá
+          </SectionLabel>
 
           {/* Search + Filter */}
           <motion.div

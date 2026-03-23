@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, BookOpen, ArrowRight, Search, X, Feather } from "lucide-react";
 import StorytData from "../../data/StoryData";
+import PageHeader from "../../components/layout/PageHeader";
+import SectionLabel from "../../components/SectionLabel";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -67,43 +69,6 @@ const FontLoader = () => (
     .story-card:hover .read-arrow { transform: translateX(5px); }
   `}</style>
 );
-
-/* ─────────────────────────────────────────────
-   SECTION LABEL
-───────────────────────────────────────────── */
-function SectionLabel({ icon: Icon, children, count }) {
-  return (
-    <div className="flex items-center gap-3 mb-0">
-      {Icon && (
-        <div
-          className="p-1.5 rounded-lg"
-          style={{
-            background: "rgba(249,115,22,0.1)",
-            border: "1px solid rgba(249,115,22,0.2)",
-          }}
-        >
-          <Icon size={12} className="text-orange-400" />
-        </div>
-      )}
-      <h2 className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.18em] uppercase">
-        {children}
-      </h2>
-      {count !== undefined && (
-        <span
-          className="font-mono-code text-[0.58rem] px-2 py-0.5 rounded-full"
-          style={{
-            background: "rgba(249,115,22,0.08)",
-            border: "1px solid rgba(249,115,22,0.2)",
-            color: "#f97316",
-          }}
-        >
-          {count}
-        </span>
-      )}
-      <div className="flex-1 section-rule" />
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────────
    FEATURED CARD (first item, full-width)
@@ -373,7 +338,6 @@ function EmptyState({ onReset }) {
 ───────────────────────────────────────────── */
 const Writing = () => {
   const [search, setSearch] = useState("");
-
   const [featured, ...rest] = StorytData;
 
   const filtered = useMemo(() => {
@@ -395,44 +359,32 @@ const Writing = () => {
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        className="pt-10 pb-6 max-w-5xl mx-auto"
+        transition={{ duration: 0.5 }}
+        className="mb-6"
       >
-        <p className="font-mono-code text-orange-400 text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-          <span className="inline-block w-4 h-px bg-orange-400" />
-          Writing / Câu chuyện
-        </p>
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white leading-none mb-2">
-              Câu chuyện<span className="text-orange-500">.</span>
-            </h1>
-            <p className="text-neutral-500 text-sm max-w-md leading-relaxed">
-              Những câu chuyện mà mình đã trải qua trong cuộc sống
-            </p>
-          </div>
-          <span
-            className="font-serif-display text-[5rem] text-white/4 leading-none select-none hidden sm:block"
-            style={{ lineHeight: 1 }}
-          >
-            {String(StorytData.length).padStart(2, "0")}
-          </span>
-        </div>
-        <div className="mt-5 h-px bg-gradient-to-r from-orange-500 via-orange-400/30 to-transparent" />
+        <PageHeader
+          title="Câu chuyện."
+          subtitle="Những câu chuyện mà mình đã trải qua trong cuộc sống"
+          rightContent={
+            <span className="font-serif-display text-[2.5rem] hidden sm:block">
+              {String(StorytData.length).padStart(2, "0")}
+            </span>
+          }
+        />
       </motion.div>
 
-      <div className="max-w-5xl mx-auto space-y-10">
+      <div>
         {/* ── FEATURED ── */}
         {featured && <FeaturedCard item={featured} />}
 
         {/* ── SECTION LABEL + SEARCH ── */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <SectionLabel icon={BookOpen} count={filtered.length}>
-            Tất cả bài viết
-          </SectionLabel>
+        <SectionLabel icon={BookOpen} count={filtered.length}>
+          Tất cả bài viết
+        </SectionLabel>
 
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
           {/* Search */}
-          <div className="search-ring relative flex items-center gap-3 px-4 py-2.5 rounded-xl shrink-0 sm:w-64 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl">
+          <div className="search-ring relative flex items-center gap-3 px-4 py-2.5 shrink-0 sm:w-64 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl">
             <Search size={14} className="text-neutral-500 shrink-0" />
             <input
               type="text"

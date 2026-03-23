@@ -32,6 +32,9 @@ import {
 } from "lucide-react";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import { IMAGES } from "../../../public/images/imgaes";
+import Divider from "../../components/Divider/Divider";
+import Button from "../../components/Button/Button";
+import PageHeader from "../../components/layout/PageHeader";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -240,7 +243,7 @@ const StoryPanel = () => (
       <h2 className="font-serif-display text-3xl sm:text-4xl text-black dark:text-white leading-tight mb-4">
         Xin chào, mình là Thịnh<span className="text-orange-500">.</span>
       </h2>
-      <p className="text-sm leading-[1.85] text-justify">
+      <p className="text-sm text-justify">
         Hiện tại mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
         tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Mình đang dồn hết
         tâm huyết cho các dự án tốt nghiệp — website cá nhân này chính là một
@@ -248,7 +251,7 @@ const StoryPanel = () => (
       </p>
     </div>
 
-    <p className="text-sm leading-[1.85] text-justify">
+    <p className="text-sm text-justify">
       Mình có niềm yêu thích đặc biệt với lập trình giao diện (Frontend) và
       không ngừng tự học thêm để xây dựng những ứng dụng hiện đại, độc đáo.
       Ngoài ra, mình cực kỳ đam mê quay phim và chụp ảnh — đó là cách mình lưu
@@ -277,9 +280,13 @@ const StoryPanel = () => (
     </div>
 
     <div className="pt-2 flex flex-col gap-4">
-      <a href="/cv" className="resume-btn w-fit">
-        <ExternalLink size={13} /> Resume / CV
-      </a>
+      <Button
+        to="/cv"
+        leftIcon={<ExternalLink size={13} />}
+        className="max-w-max"
+      >
+        Resume / CV
+      </Button>
       <SocialLinks />
     </div>
   </div>
@@ -295,7 +302,7 @@ const SkillsPanel = () => (
         Kỹ năng<span className="text-orange-500">.</span>
       </h2>
       <p className="text-neutral-600 font-mono-code text-[0.62rem] tracking-widest mb-5">
-        Always learning new technologies
+        Luôn luôn học hỏi những công nghệ mới
       </p>
     </div>
 
@@ -314,7 +321,7 @@ const SkillsPanel = () => (
             {group.skills.map((skill) => (
               <div
                 key={skill.name}
-                className="skill-item bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 border border-gray-200 dark:border-neutral-700/50"
+                className="skill-item bg-neutral-200/20 dark:bg-neutral-700/20 border border-neutral-200/80 dark:border-neutral-700/80"
               >
                 <span className="text-sm text-orange-400/80">{skill.icon}</span>
                 <p className="text-black dark:text-white"> {skill.name}</p>
@@ -339,7 +346,7 @@ const EducationPanel = () => (
     </div>
 
     {/* School card */}
-    <div className="p-5 rounded-2xl border border-white/8 bg-white/2 space-y-5">
+    <div className="p-5 rounded-2xl space-y-5 bg-neutral-200/20 dark:bg-neutral-700/20 border border-neutral-200/80 dark:border-neutral-700/80">
       <div className="flex items-start gap-3">
         <div className="p-2 rounded-xl bg-orange-500/10 border border-orange-500/20 shrink-0 mt-0.5">
           <FaGraduationCap size={16} className="text-orange-400" />
@@ -444,10 +451,12 @@ const ExperiencePanel = () => (
             </div>
 
             {/* Role */}
-            <p className="text-sm">{item.role}</p>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              {item.role}
+            </p>
 
             {/* Desc */}
-            <p className="text-xs leading-relaxed text-justify pt-1">
+            <p className="text-xs leading-relaxed text-justify pt-1 text-neutral-600 dark:text-neutral-400">
               {item.desc}
             </p>
           </div>
@@ -537,25 +546,18 @@ export default function About() {
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        className="pb-6"
+        transition={{ duration: 0.5 }}
+        className="mb-5"
       >
-        <p className="font-mono-code text-orange-400 text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-          <span className="inline-block w-4 h-px bg-orange-400" /> About me
-        </p>
-        <div className="flex items-end justify-between">
-          <div>
-            <h1 className="font-serif-display text-5xl md:text-6xl text-black dark:text-white leading-none mb-2">
-              Giới thiệu<span className="text-orange-500">.</span>
-            </h1>
-            <p className="text-sm">Một chút thú vị về mình</p>
-          </div>
-          {/* slide counter */}
-          <span className="font-serif-display text-[4.5rem] text-black dark:text-white leading-none select-none hidden sm:block">
-            {String(active + 1).padStart(2, "0")}
-          </span>
-        </div>
-        <div className="mt-5 h-px bg-gradient-to-r from-orange-500 via-orange-400/30 to-transparent" />
+        <PageHeader
+          title="Giới thiệu."
+          subtitle="Một chút thú vị về mình"
+          rightContent={
+            <span className="font-serif-display text-[2.5rem] hidden sm:block">
+              {String(active + 1).padStart(2, "0")}
+            </span>
+          }
+        />
       </motion.div>
 
       {/* ── TAB NAV ── */}
@@ -579,7 +581,7 @@ export default function About() {
 
       {/* ── MAIN LAYOUT ── */}
       <div className="pb-16">
-        <div className="grid md:grid-cols-[1fr_1.6fr] gap-0 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 border border-gray-200 dark:border-neutral-700/50 overflow-hidden">
+        <div className="grid md:grid-cols-[1fr_1.6fr] gap-0 rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 overflow-hidden">
           {/* LEFT — Image */}
           <div className="img-panel grain relative min-h-[320px] md:min-h-[600px]">
             <AnimatePresence mode="wait">
