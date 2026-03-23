@@ -34,7 +34,7 @@ const DevIntro = () => {
                 duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="hidden md:flex flex-col items-center gap-4"
+              className="flex flex-col items-center gap-4"
             >
               {/* Avatar frame */}
               <div className="relative">

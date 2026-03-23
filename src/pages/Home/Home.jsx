@@ -30,6 +30,9 @@ import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import DevIntro from "./components/DevIntro";
 import { timelineData } from "../../data/timelineData";
 import { IMAGES } from "../../../public/images/imgaes";
+import PhotoData from "../../data/PhotoData";
+import PhotoThumbnail from "../Photo/components/PhotoThumbnail ";
+import PhotoModal from "../Photo/components/PhotoModal";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -275,43 +278,12 @@ const ROLES = [
   "Creative Coder",
 ];
 
-function TypeWriter() {
-  const [idx, setIdx] = useState(0);
-  const [text, setText] = useState("");
-  const [del, setDel] = useState(false);
-
-  useEffect(() => {
-    const target = ROLES[idx];
-    const speed = del ? 40 : 85;
-    const timer = setTimeout(() => {
-      if (!del) {
-        setText(target.slice(0, text.length + 1));
-        if (text.length + 1 === target.length)
-          setTimeout(() => setDel(true), 1800);
-      } else {
-        setText(target.slice(0, text.length - 1));
-        if (text.length === 0) {
-          setDel(false);
-          setIdx((i) => (i + 1) % ROLES.length);
-        }
-      }
-    }, speed);
-    return () => clearTimeout(timer);
-  }, [text, del, idx]);
-
-  return (
-    <span className="font-mono text-orange-400 text-sm tracking-wider">
-      {text}
-      <span className="cursor">_</span>
-    </span>
-  );
-}
-
 /* ─────────────────────────────────────────────
    MAIN
 ───────────────────────────────────────────── */
 export default function Home() {
   const containerRef = useRef(null);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const featuredProjects = timelineData.slice(0, 3);
 
@@ -359,41 +331,43 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.55 }}
-        className="max-w-6xl mx-auto mb-16"
+        className="mb-16"
       >
         <div
-          className="
-          grid grid-cols-2 md:grid-cols-4 gap-3 p-5 rounded-2xl
-          border border-black/10 dark:border-white/10
-          bg-white/20 dark:bg-white/[0.03]
-          shadow-sm
-          transition-colors
-        "
+          className="grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden border border-neutral-200/80 dark:border-neutral-700/80
+                  bg-neutral-200/20 dark:bg-neutral-700/20 shadow-sm"
         >
           {STATS.map((s, i) => (
-            <motion.div
+            <div
               key={s.label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.07, duration: 0.4 }}
               className="
-              stat-card text-center rounded-xl p-3
-              transition-all duration-300
-              hover:bg-black/5 dark:hover:bg-white/5
-              hover:shadow-lg
-            "
+          text-center p-4
+          relative
+        "
             >
+              {i !== 0 && (
+                <span
+                  className="
+            hidden md:block
+            absolute left-0 top-1/2 -translate-y-1/2
+            w-px h-10
+            bg-neutral-300 dark:bg-neutral-600
+          "
+                />
+              )}
+
               <p className="text-4xl font-serif leading-none mb-1 text-black dark:text-white">
                 {s.value}
               </p>
+
               <p className="font-mono text-[0.62rem] tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
                 {s.label}
               </p>
+
               <p className="font-mono text-[0.54rem] tracking-widest uppercase mt-0.5 text-black/30 dark:text-white/25">
                 {s.sub}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </motion.section>
@@ -406,7 +380,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto mb-16"
+        className="mb-16"
       >
         <SectionLabel icon={Zap}>Dịch vụ</SectionLabel>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -417,20 +391,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.45 }}
-              className="p-5 rounded-xl group"
-              style={{
-                border: "1px solid rgba(255,255,255,0.07)",
-                background: "rgba(255,255,255,0.04)",
-                transition: "border-color 0.25s, background 0.25s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(249,115,22,0.3)";
-                e.currentTarget.style.background = "rgba(249,115,22,0.04)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
-                e.currentTarget.style.background = "rgba(255,255,255,0.02)";
-              }}
+              className="p-5 rounded-xl group cursor-pointer border border-neutral-200/80 dark:border-neutral-700/80
+                        bg-neutral-200/20 dark:bg-neutral-700/20 hover:border-orange-400/50 hover:dark:border-orange-400/50
+                        hover:bg-orange-400/10 hover:dark:bg-orange-400/10 transition-all duration-300"
             >
               <div
                 className="p-2.5 rounded-xl w-fit mb-4"
@@ -460,7 +423,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.55 }}
-        className="px-4 md:px-8 max-w-6xl mx-auto mb-16"
+        className="mb-16"
       >
         <div className="s-rule mb-10" />
         <SectionLabel icon={Sparkles}>Về mình</SectionLabel>
@@ -539,6 +502,7 @@ export default function Home() {
       {/* ══════════════════════════════════════
           TECH MARQUEE
       ══════════════════════════════════════ */}
+      <SectionLabel icon={Layers}>Kỹ năng</SectionLabel>
       <div className="mb-16 overflow-hidden tech-fade tech-marquee-wrap py-2">
         <div className="flex gap-4 tech-marquee">
           {TECH_STACK.map((t, i) => (
@@ -560,7 +524,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="px-4 md:px-8 max-w-6xl mx-auto mb-16"
+        className="mb-16"
       >
         <div className="s-rule mb-10" />
         <div className="flex items-center justify-between mb-6">
@@ -644,42 +608,54 @@ export default function Home() {
       </motion.section>
 
       {/* ══════════════════════════════════════
-          SKILLS GRID
+          FEATURED PHOTOS
       ══════════════════════════════════════ */}
       <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="px-4 md:px-8 max-w-6xl mx-auto mb-16"
+        className="mb-16"
       >
         <div className="s-rule mb-10" />
-        <SectionLabel icon={Layers}>Kỹ năng</SectionLabel>
-        <div className="flex flex-wrap gap-2.5">
-          {SKILLS_MAIN.concat([
-            { icon: Code2, label: "Node.js" },
-            { icon: Code2, label: "Express" },
-            { icon: Code2, label: "MongoDB" },
-            { icon: Code2, label: "Firebase" },
-            { icon: Code2, label: "HTML & CSS" },
-            { icon: Code2, label: "Bootstrap" },
-            { icon: Code2, label: "Photoshop" },
-            { icon: Code2, label: "Premiere Pro" },
-          ]).map((sk, i) => (
-            <motion.span
-              key={sk.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.04, duration: 0.3 }}
-              className="skill-badge"
-            >
-              <sk.icon size={12} className="text-orange-400/70" />
-              {sk.label}
-            </motion.span>
-          ))}
+        <div className="flex items-center justify-between mb-6">
+          <SectionLabel icon={Code2}>Ảnh nổi bật</SectionLabel>
+          <Link
+            to="/photos"
+            className="font-mono text-[0.62rem] tracking-widest uppercase flex items-center gap-1.5 transition-colors"
+            style={{ color: "rgba(249,115,22,0.7)" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#f97316")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.color = "rgba(249,115,22,0.7)")
+            }
+          >
+            Tất cả <ArrowRight size={11} />
+          </Link>
         </div>
+
+        <motion.div
+          key="grid"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="columns-2 md:columns-3 gap-3"
+        >
+          {PhotoData.slice(0, 6).map((photo, idx) => (
+            <PhotoThumbnail
+              key={photo.id}
+              photo={photo}
+              idx={idx}
+              onOpen={setSelectedPhoto}
+            />
+          ))}
+        </motion.div>
       </motion.section>
+
+      <PhotoModal
+        photo={selectedPhoto}
+        onClose={() => setSelectedPhoto(null)}
+      />
 
       {/* ══════════════════════════════════════
           CTA BOTTOM
@@ -689,7 +665,7 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="px-4 md:px-8 max-w-6xl mx-auto mb-16"
+        className="mb-16"
       >
         <div className="s-rule mb-10" />
         <div
