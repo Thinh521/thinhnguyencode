@@ -12,20 +12,18 @@ const Button = ({
   newTab = false,
 }) => {
   const baseClasses = `
-    group relative flex items-center justify-center gap-2
-    bg-gradient-to-r from-gray-800 to-gray-700
-    hover:from-gray-700 hover:to-gray-600 dark:from-gray-100 dark:to-gray-200
-    dark:hover:from-white dark:hover:to-gray-100 text-white dark:text-gray-800
+    group relative flex items-center justify-center gap-2 bg-orange-500 border border-orange-500
     px-6 lg:py-2 py-3 rounded-full transition-all duration-300 ease-in-out text-base
-    transform hover:scale-105 hover:shadow-lg
-    focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
+    transform hover:bg-orange-500/25 hover:border-orange-500/25 hover:shadow-[0_0_28px_rgba(249,115,22,0.22)] focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
   `;
 
   const content = (
     <>
-      {leftIcon && <span className="text-lg">{leftIcon}</span>}
-      <span className="lg:text-sm text-xs font-bold">{children}</span>
-      {rightIcon && <span className="text-lg">{rightIcon}</span>}
+      {leftIcon && <span className="text-lg text-white">{leftIcon}</span>}
+      <span className="lg:text-sm text-xs font-bold text-white">
+        {children}
+      </span>
+      {rightIcon && <span className="text-lg text-white">{rightIcon}</span>}
     </>
   );
 

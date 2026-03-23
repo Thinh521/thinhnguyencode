@@ -21,6 +21,7 @@ import {
   Zap,
   Layers,
   GitBranch,
+  User,
 } from "lucide-react";
 import Header from "../../components/Header/Header";
 import Divider from "../../components/Divider/Divider";
@@ -33,6 +34,7 @@ import { IMAGES } from "../../../public/images/imgaes";
 import PhotoData from "../../data/PhotoData";
 import PhotoThumbnail from "../Photo/components/PhotoThumbnail ";
 import PhotoModal from "../Photo/components/PhotoModal";
+import SectionLabel from "../../components/SectionLabel/SectionLabel";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -90,28 +92,6 @@ const FontLoader = () => (
       background: rgba(249,115,22,0.06);
       color: rgba(255,255,255,0.85);
     }
-
-    /* Project card */
-    .proj-mini {
- border-radius: 14px;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s;
-      text-decoration: none; display: block;
-    }
-    .proj-mini:hover {
-      border-color: rgba(249,115,22,0.3);
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
-    }
-    .proj-mini img {
-      width: 100%; height: 160px; object-fit: cover; display: block;
-      transition: transform 0.7s ease, filter 0.5s;
-    }
-    .proj-mini:hover img {
-      transform: scale(1.06);
-      filter: brightness(0.92) saturate(1.05);
-    }
-
     /* Resume btn */
     .resume-btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -159,23 +139,6 @@ const FontLoader = () => (
       content: ''; position: absolute; inset: 0; border-radius: 50%;
       background: #4ade80;
       animation: availPulse 2s ease-in-out infinite;
-    }
-
-    /* Section label */
-    .sec-label {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 24px;
-    }
-    .sec-label-icon {
-      padding: 6px; border-radius: 8px;
-      background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2);
-    }
-    .sec-label-text {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
-    }
-    .sec-label-rule {
-      flex: 1; height: 1px;
-      background: linear-gradient(to right, rgba(249,115,22,0.3), transparent);
     }
   `}</style>
 );
@@ -251,23 +214,6 @@ const TECH_STACK = [
 ];
 
 /* ─────────────────────────────────────────────
-   SECTION LABEL
-───────────────────────────────────────────── */
-function SectionLabel({ icon: Icon, children }) {
-  return (
-    <div className="sec-label">
-      <div className="sec-label-icon">
-        <Icon size={12} className="text-orange-400" />
-      </div>
-      <span className="sec-label-text text-black dark:text-white">
-        {children}
-      </span>
-      <div className="sec-label-rule" />
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────
    TYPEWRITER
 ───────────────────────────────────────────── */
 const ROLES = [
@@ -298,7 +244,7 @@ export default function Home() {
       />
 
       <section>
-        <SectionTitle className="mb-2">Giới thiệu</SectionTitle>
+        <SectionLabel icon={User}>Giới thiệu</SectionLabel>
         <p className="text-sm text-justify leading-relaxed">
           Xin chào, mình là Nguyễn Phúc Thịnh, sinh viên chuyên ngành Thiết Kế
           Trang Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Với
@@ -333,37 +279,18 @@ export default function Home() {
         transition={{ duration: 0.55 }}
         className="mb-16"
       >
-        <div
-          className="grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden border border-neutral-200/80 dark:border-neutral-700/80
-                  bg-neutral-200/20 dark:bg-neutral-700/20 shadow-sm"
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-sm">
           {STATS.map((s, i) => (
-            <div
-              key={s.label}
-              className="
-          text-center p-4
-          relative
-        "
-            >
+            <div key={s.label} className="relative text-center p-4">
               {i !== 0 && (
-                <span
-                  className="
-            hidden md:block
-            absolute left-0 top-1/2 -translate-y-1/2
-            w-px h-10
-            bg-neutral-300 dark:bg-neutral-600
-          "
-                />
+                <span className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-10 bg-neutral-300 dark:bg-neutral-600" />
               )}
-
               <p className="text-4xl font-serif leading-none mb-1 text-black dark:text-white">
                 {s.value}
               </p>
-
               <p className="font-mono text-[0.62rem] tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
                 {s.label}
               </p>
-
               <p className="font-mono text-[0.54rem] tracking-widest uppercase mt-0.5 text-black/30 dark:text-white/25">
                 {s.sub}
               </p>
@@ -416,7 +343,7 @@ export default function Home() {
       </motion.section>
 
       {/* ══════════════════════════════════════
-          ABOUT (2-col)
+          ABOUT
       ══════════════════════════════════════ */}
       <motion.section
         initial={{ opacity: 0 }}
@@ -463,13 +390,13 @@ export default function Home() {
             </div>
 
             <div className="mt-6">
-              <Link
+              <Button
                 to="/about"
-                className="resume-btn bg-orange-400 border-orange-400"
-                style={{ display: "inline-flex" }}
+                rightIcon={<ArrowRight size={13} />}
+                className="text-white max-w-max"
               >
-                Xem thêm <ArrowRight size={13} />
-              </Link>
+                Xem thêm
+              </Button>
             </div>
           </div>
 
@@ -485,12 +412,12 @@ export default function Home() {
             ].map(({ label, value }) => (
               <div
                 key={label}
-                className="flex items-center justify-between gap-4 py-2.5 border-b border-black/10 dark:border-white/10"
+                className="flex items-center justify-between gap-4 py-2.5 border-b border-neutral-200/80 dark:border-neutral-700/80"
               >
                 <span className="font-mono text-[0.6rem] text-neutral-600 dark:text-neutral-400  tracking-widest uppercase shrink-0">
                   {label}
                 </span>
-                <span className="text-black dark:text-white text-xs font-medium text-right">
+                <span className="text-black dark:text-white text-xs text-right font-semibold">
                   {value}
                 </span>
               </div>
@@ -528,15 +455,12 @@ export default function Home() {
       >
         <div className="s-rule mb-10" />
         <div className="flex items-center justify-between mb-6">
-          <SectionLabel icon={Code2}>Dự án nổi bật</SectionLabel>
+          <SectionLabel icon={Code2} className="-mb-0">
+            Dự án nổi bật
+          </SectionLabel>
           <Link
             to="/projects"
-            className="font-mono text-[0.62rem] tracking-widest uppercase flex items-center gap-1.5 transition-colors"
-            style={{ color: "rgba(249,115,22,0.7)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#f97316")}
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.color = "rgba(249,115,22,0.7)")
-            }
+            className="flex items-center gap-1.5 font-mono text-[0.62rem] tracking-widest uppercase transition-colors text-black dark:text-white hover:text-orange-500"
           >
             Tất cả <ArrowRight size={11} />
           </Link>
@@ -557,29 +481,23 @@ export default function Home() {
             >
               <Link
                 to={`/projects/${project.id}`}
-                className="proj-mini bg-white/40 dark:bg-neutral-900/60 backdrop-blur-md border border-neutral-200 dark:border-white/10"
+                className="block rounded-xl overflow-hidden border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md backdrop-blur-md transition-[border-color,transform,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:border-orange-500/30 hover:shadow-lg"
               >
                 <div className="relative overflow-hidden">
                   <img
                     src={project.images?.[0]}
                     alt={project.title}
                     loading="lazy"
+                    className="block w-full h-44 object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:brightness-95 group-hover:saturate-105"
                   />
                   <div className="absolute top-3 left-3">
-                    <span
-                      className="font-mono text-[0.55rem] tracking-widest uppercase px-2 py-0.5 rounded"
-                      style={{
-                        background: "rgba(0,0,0,0.6)",
-                        border: "1px solid rgba(249,115,22,0.3)",
-                        color: "#f97316",
-                      }}
-                    >
+                    <span className="font-mono text-[0.55rem] tracking-widest uppercase px-2 py-0.5 rounded bg-black/60 text-white">
                       {project.type}
                     </span>
                   </div>
                 </div>
                 <div className="p-4">
-                  <p className="text-black dark:text-white font-semibold text-sm leading-snug mb-1 line-clamp-2">
+                  <p className="text-black dark:text-white font-semibold text-sm leading-snug mb-1 line-clamp-1">
                     {project.title}
                   </p>
                   <p className="font-mono text-[0.58rem] text-neutral-500 dark:text-neutral-400 tracking-wide">
@@ -618,16 +536,11 @@ export default function Home() {
         className="mb-16"
       >
         <div className="s-rule mb-10" />
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between">
           <SectionLabel icon={Code2}>Ảnh nổi bật</SectionLabel>
           <Link
             to="/photos"
-            className="font-mono text-[0.62rem] tracking-widest uppercase flex items-center gap-1.5 transition-colors"
-            style={{ color: "rgba(249,115,22,0.7)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#f97316")}
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.color = "rgba(249,115,22,0.7)")
-            }
+            className="flex items-center gap-1.5 font-mono text-[0.62rem] tracking-widest uppercase transition-colors text-black dark:text-white hover:text-orange-500"
           >
             Tất cả <ArrowRight size={11} />
           </Link>
@@ -706,26 +619,12 @@ export default function Home() {
             full-time.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap relative z-10">
-            <Link
-              to="/contact"
-              className="resume-btn bg-orange-400 border-orange-400"
-            >
-              Liên hệ ngay <ArrowRight size={13} />
-            </Link>
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-mono text-[0.7rem] tracking-widest uppercase transition-all border border-orange-400 text-orange-400"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
-                e.currentTarget.style.color = "white";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
-                e.currentTarget.style.color = "rgba(255,255,255,0.5)";
-              }}
-            >
-              Xem dự án <ExternalLink size={12} />
-            </Link>
+            <Button to="/contact" leftIcon={<ArrowRight size={13} />}>
+              Liên hệ ngay
+            </Button>
+            <Button to="/projects" leftIcon={<ExternalLink size={13} />}>
+              Xem dự án
+            </Button>
           </div>
         </div>
       </motion.section>
