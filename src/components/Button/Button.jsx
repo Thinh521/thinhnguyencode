@@ -10,6 +10,8 @@ const Button = ({
   rightIcon,
   className = "",
   newTab = false,
+  type = "button",
+  disabled = false,
 }) => {
   const baseClasses = `
     group relative flex items-center justify-center gap-2 bg-orange-500 border border-orange-500
@@ -58,7 +60,8 @@ const Button = ({
       className={`${baseClasses} ${className}`}
       aria-label={ariaLabel}
       onClick={onClick}
-      type="button"
+      type={type}
+      disabled={disabled}
     >
       {content}
     </button>

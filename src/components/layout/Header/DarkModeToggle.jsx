@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import DarkModeContext from "../../context/DarkModeContext";
+import DarkModeContext from "../../../context/DarkModeContext";
 
 /* Sun icon */
 const SunIcon = () => (

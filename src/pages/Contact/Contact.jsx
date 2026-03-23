@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import PageHeader from "../../components/layout/PageHeader";
 import SectionLabel from "../../components/SectionLabel";
+import Button from "../../components/Button/Button";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -296,18 +297,21 @@ function SuccessState({ onReset }) {
           <CheckCircle2 size={28} className="text-orange-400" />
         </div>
       </div>
-      <h3 className="font-serif-display text-2xl text-white">
+      <h3 className="font-serif-display text-2xl text-black dark:text-white">
         Đã gửi thành công<span className="text-orange-500">.</span>
       </h3>
-      <p
-        className="font-mono-code text-[0.65rem] tracking-widest uppercase"
-        style={{ color: "rgba(255,255,255,0.35)" }}
-      >
+      <p className="font-mono-code text-[0.65rem] tracking-widest uppercase text-neutral-500 dark:text-neutral-400">
         Mình sẽ phản hồi sớm nhất có thể
       </p>
-      <button onClick={onReset} className="resume-btn mt-2 text-white">
-        <ArrowRight size={13} /> Gửi tin nhắn khác
-      </button>
+
+      <Button
+        type="submit"
+        className="max-w-max"
+        onClick={onReset}
+        leftIcon={<ArrowRight size={13} />}
+      >
+        Gửi tin nhắn khác
+      </Button>
     </motion.div>
   );
 }
@@ -438,29 +442,26 @@ const Contact = () => {
                     errors={errors}
                   />
 
-                  <button
+                  <Button
                     type="submit"
                     disabled={loading}
-                    className="submit-btn mt-1 bg-orange-400 border-orange-400 text-white"
-                  >
-                    {loading ? (
-                      <>
+                    className="w-full"
+                    leftIcon={
+                      loading ? (
                         <div
                           className="w-4 h-4 rounded-full border-2 border-white/30"
                           style={{
-                            borderTopColor: "#f97316",
+                            borderTopColor: "#fff",
                             animation: "spin 0.8s linear infinite",
                           }}
                         />
-                        Đang gửi...
-                      </>
-                    ) : (
-                      <>
-                        {" "}
-                        <Send size={13} /> Gửi tin nhắn{" "}
-                      </>
-                    )}
-                  </button>
+                      ) : (
+                        <Send size={13} />
+                      )
+                    }
+                  >
+                    {loading ? "Đang gửi..." : "Gửi tin nhắn"}
+                  </Button>
 
                   <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
                 </motion.form>
@@ -539,12 +540,10 @@ const Contact = () => {
             <div>
               <SectionLabel icon={ExternalLink}>Kết nối</SectionLabel>
               <div className="space-y-4">
-                <button
-                  onClick={() => navigate("/cv")}
-                  className="resume-btn w-full justify-center bg-orange-400 border-orange-500 text-white"
-                >
-                  <ExternalLink size={13} /> Resume / CV
-                </button>
+                <Button to="/cv" leftIcon={<ExternalLink size={13} />}>
+                  Xem thêm
+                </Button>
+
                 <SocialLinks />
               </div>
             </div>

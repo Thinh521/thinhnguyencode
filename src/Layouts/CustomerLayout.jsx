@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { StaggeredMenu } from "../components/Navbar/Navbar";
 import Footer from "../components/layout/Footer";
+import Header from "../components/layout/Header";
 
 const menuItems = [
   { label: "Home", ariaLabel: "Go to home page", link: "/" },
@@ -17,7 +17,7 @@ const CustomerLayout = () => {
   return (
     <div className="min-h-screen text-gray-600 dark:text-neutral-400 lg:px-[14rem] px-[1.4rem]">
       <div>
-        <StaggeredMenu
+        <Header
           position="right"
           items={menuItems}
           displaySocials
