@@ -31,7 +31,6 @@ const FontLoader = () => (
 
     /* card */
     .story-card {
-      border-radius: 16px;
       overflow: hidden;
       transition: border-color 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s;
       display: flex; flex-direction: column; height: 100%;
@@ -39,7 +38,6 @@ const FontLoader = () => (
     .story-card:hover {
       border-color: rgba(249,115,22,0.3);
       transform: translateY(-6px);
-      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.5);
     }
 
     /* image zoom */
@@ -51,17 +49,6 @@ const FontLoader = () => (
     .story-card:hover .img-zoom img {
       transform: scale(1.07);
       filter: brightness(0.95) saturate(1.05);
-    }
-
-    /* Featured card */
-    .story-card--featured { border-color: rgba(249,115,22,0.2); }
-
-    /* grain */
-    .grain::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      background-size: 150px;
     }
 
     /* read more arrow */
@@ -82,7 +69,7 @@ function FeaturedCard({ item }) {
       className="mb-10"
     >
       <Link to={`/writing/${item.id}`} className="block">
-        <div className="story-card story-card--featured grain relative rounded-xl bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 border border-gray-200 dark:border-neutral-700/50 overflow-hidden">
+        <div className="story-card relative rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg overflow-hidden">
           {/* Featured badge */}
           <div
             className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full"
@@ -99,18 +86,10 @@ function FeaturedCard({ item }) {
             <Feather size={9} /> Nổi bật
           </div>
 
-          <div className="grid md:grid-cols-[1.2fr_1fr] min-h-[320px]">
+          <div className="grid md:grid-cols-[1fr_1fr] min-h-[320px]">
             {/* Image */}
             <div className="img-zoom relative min-h-[220px] md:min-h-0">
               <img src={item.imgae} alt={item.title} loading="eager" />
-              <div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-neutral-950/80 hidden md:block"
-                style={{ zIndex: 1 }}
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent md:hidden"
-                style={{ zIndex: 1 }}
-              />
             </div>
 
             {/* Content */}
@@ -149,7 +128,7 @@ function FeaturedCard({ item }) {
                 </p>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-white/6">
+              <div className="flex items-center justify-between pt-4 border-t border-neutral-200/80 dark:border-neutral-700/80">
                 <div className="flex items-center gap-2">
                   <div
                     className="w-6 h-6 rounded-full flex items-center justify-center"
@@ -196,7 +175,7 @@ function StoryCard({ item, index }) {
       style={{ height: "100%" }}
     >
       <Link to={`/writing/${item.id}`} className="block h-full">
-        <div className="story-card grain relative rounded-xl bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 border border-gray-200 dark:border-neutral-700/50 overflow-hidden">
+        <div className="story-card relative rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg overflow-hidden">
           {/* Image */}
           <div className="img-zoom relative" style={{ height: "200px" }}>
             <img src={item.imgae} alt={item.title} loading="lazy" />
@@ -272,10 +251,7 @@ function StoryCard({ item, index }) {
             </p>
 
             {/* Footer */}
-            <div
-              className="flex items-center justify-between pt-3 mt-auto"
-              style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-            >
+            <div className="flex items-center justify-between pt-3 mt-auto border-t border-neutral-200/80 dark:border-neutral-700/80">
               <div className="flex items-center gap-2">
                 <div
                   className="w-5 h-5 rounded-full flex items-center justify-center"

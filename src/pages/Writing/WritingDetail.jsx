@@ -21,6 +21,7 @@ import {
   Quote,
 } from "lucide-react";
 import StorytData from "../../data/StoryData";
+import SectionLabel from "../../components/SectionLabel";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -38,19 +39,11 @@ const FontLoader = () => (
       background: linear-gradient(to right, rgba(249,115,22,0.4), rgba(255,255,255,0.04), transparent);
     }
 
-    .sticky-bar {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(16px) saturate(1.5);
-      -webkit-backdrop-filter: blur(16px) saturate(1.5);
-      background: rgba(10,10,10,0.8);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
     .back-btn {
       display: inline-flex; align-items: center; gap: 7px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); background: none; border: none; cursor: pointer;
+      background: none; border: none; cursor: pointer;
       transition: color 0.2s;
     }
     .back-btn:hover { color: #f97316; }
@@ -234,19 +227,22 @@ const WritingDetail = () => {
     : [story.description];
 
   return (
-    <article className="wd-root min-h-screen bg-neutral-950 text-white">
+    <article className="wd-root min-h-screen">
       <FontLoader />
       <ReadingProgress />
 
       {/* ── STICKY BAR ── */}
-      <div className="sticky-bar px-4 md:px-8 py-3 flex items-center justify-between gap-4">
-        <button className="back-btn" onClick={() => navigate(-1)}>
+      <div className="flex items-center justify-between mb-4">
+        <button
+          className="back-btn flex items-center gap-2 text-black dark:text-white"
+          onClick={() => navigate("/writing")}
+        >
           <ArrowLeft size={13} /> Câu chuyện
         </button>
 
-        <p className="font-serif-display text-sm text-white/45 line-clamp-1 max-w-xs hidden sm:block flex-1 text-center">
+        <span className="font-serif-display text-sm text-black dark:text-white line-clamp-1 max-w-xs hidden sm:block">
           {story.title}
-        </p>
+        </span>
 
         <div className="flex items-center gap-2 shrink-0">
           <button
@@ -415,13 +411,12 @@ const WritingDetail = () => {
             style={{ opacity: 0.55 }}
           />
           <p
-            className="relative z-10"
+            className="relative z-10 text-black dark:text-white"
             style={{
               fontFamily: "'Instrument Serif', serif",
               fontStyle: "italic",
               fontSize: "clamp(0.95rem, 2.5vw, 1.15rem)",
               lineHeight: 1.8,
-              color: "rgba(255,255,255,0.72)",
             }}
           >
             {paragraphs[0]?.split(".").slice(0, 2).join(".") + "."}
@@ -436,7 +431,9 @@ const WritingDetail = () => {
           className="prose-body"
         >
           {paragraphs.map((para, i) => (
-            <p key={i}>{para}</p>
+            <p key={i} className="text-neutral-500 dark:text-neutral-400">
+              {para}
+            </p>
           ))}
         </motion.div>
 
@@ -583,25 +580,7 @@ const WritingDetail = () => {
         {/* ── RELATED ── */}
         {related.length > 0 && (
           <section>
-            <div className="flex items-center gap-3 mb-5">
-              <div
-                className="p-1.5 rounded-lg"
-                style={{
-                  background: "rgba(249,115,22,0.1)",
-                  border: "1px solid rgba(249,115,22,0.2)",
-                }}
-              >
-                <BookOpen size={12} className="text-orange-400" />
-              </div>
-              <h2
-                className="font-mono-code text-[0.62rem] tracking-[0.18em] uppercase"
-                style={{ color: "rgba(255,255,255,0.4)" }}
-              >
-                Bài viết khác
-              </h2>
-              <div className="flex-1 section-rule" />
-            </div>
-
+            <SectionLabel icon={BookOpen}>Bài viết khác</SectionLabel>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {related.map((s, i) => (
                 <motion.div

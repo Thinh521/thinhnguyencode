@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import PageHeader from "../../components/layout/PageHeader";
 import SectionLabel from "../../components/SectionLabel";
+import Button from "../../components/Button/Button";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -475,20 +476,9 @@ function EmptyState({ hasFilter, onReset }) {
       className="flex flex-col items-center justify-center py-20 text-center"
     >
       <div className="text-5xl mb-4 select-none">💬</div>
-      <p
-        className="font-mono-code text-[0.7rem] tracking-widest uppercase mb-1"
-        style={{ color: "rgba(255,255,255,0.3)" }}
-      >
+      <p className="font-mono-code text-[0.7rem] text-neutral-900 dark:text-white tracking-widest uppercase mb-1">
         {hasFilter ? "Không tìm thấy đánh giá" : "Chưa có đánh giá nào"}
       </p>
-      {hasFilter && (
-        <button
-          onClick={onReset}
-          className="font-mono-code text-[0.6rem] text-orange-400 hover:text-orange-300 transition mt-3 flex items-center gap-1 tracking-wider uppercase"
-        >
-          <X size={10} /> Xoá bộ lọc
-        </button>
-      )}
     </motion.div>
   );
 }
@@ -658,29 +648,26 @@ export default function Ratings() {
                 icon={MessageSquare}
               />
 
-              <button
+              <Button
                 type="submit"
                 disabled={loading}
-                className="submit-btn mt-2 bg-orange-400 border-orange-400"
-              >
-                {loading ? (
-                  <>
+                className="w-full"
+                leftIcon={
+                  loading ? (
                     <div
-                      className="w-4 h-4 rounded-full border-2 border-white/20"
+                      className="w-4 h-4 rounded-full border-2 border-white/30"
                       style={{
-                        borderTopColor: "#f97316",
+                        borderTopColor: "#fff",
                         animation: "spin 0.8s linear infinite",
                       }}
                     />
-                    Đang gửi...
-                  </>
-                ) : (
-                  <>
-                    {" "}
-                    <Send size={13} /> Gửi đánh giá{" "}
-                  </>
-                )}
-              </button>
+                  ) : (
+                    <Send size={13} />
+                  )
+                }
+              >
+                {loading ? "Đang gửi..." : "Gửi đánh giá"}
+              </Button>
             </form>
           </motion.div>
 
@@ -723,7 +710,7 @@ export default function Ratings() {
                 placeholder="Tìm tên hoặc nội dung..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-transparent flex-1 outline-none text-white"
+                className="bg-transparent flex-1 outline-none"
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.78rem",
@@ -732,8 +719,7 @@ export default function Ratings() {
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="hover:text-white transition"
-                  style={{ color: "rgba(255,255,255,0.3)" }}
+                  className="transition"
                 >
                   <X size={13} />
                 </button>
@@ -785,10 +771,7 @@ export default function Ratings() {
                 exit={{ opacity: 0, height: 0 }}
                 className="flex items-center gap-2 flex-wrap mb-4 overflow-hidden"
               >
-                <span
-                  className="font-mono-code text-[0.58rem] tracking-widest uppercase"
-                  style={{ color: "rgba(255,255,255,0.25)" }}
-                >
+                <span className="font-mono-code text-[0.58rem] text-neutral-500 dark:text-neutral-400 tracking-widest uppercase">
                   Đang lọc:
                 </span>
                 {searchTerm && (
@@ -812,8 +795,7 @@ export default function Ratings() {
                     setSearchTerm("");
                     setFilterStar(0);
                   }}
-                  className="font-mono-code text-[0.58rem] tracking-wider uppercase flex items-center gap-1 hover:text-orange-400 transition"
-                  style={{ color: "rgba(255,255,255,0.3)" }}
+                  className="font-mono-code text-[0.58rem] text-neutral-500 dark:text-neutral-400 tracking-wider uppercase flex items-center gap-1 hover:text-orange-400 transition"
                 >
                   <X size={9} /> Xoá tất cả
                 </button>

@@ -23,6 +23,7 @@ import PhotoThumbnail from "../Photo/components/PhotoThumbnail ";
 import PhotoModal from "../Photo/components/PhotoModal";
 import SectionLabel from "../../components/SectionLabel";
 import PageHeader from "../../components/layout/PageHeader";
+import FeaturedProjects from "../../components/Project/FeaturedProjects/FeaturedProjects";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -436,7 +437,7 @@ export default function Home() {
       >
         <div className="s-rule mb-10" />
         <div className="flex items-center justify-between mb-6">
-          <SectionLabel icon={Code2} className="-mb-0">
+          <SectionLabel icon={Code2} className="!mb-0">
             Dự án nổi bật
           </SectionLabel>
           <Link
@@ -446,64 +447,7 @@ export default function Home() {
             Tất cả <ArrowRight size={11} />
           </Link>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {featuredProjects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: i * 0.09,
-                duration: 0.5,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <Link
-                to={`/projects/${project.id}`}
-                className="block rounded-xl overflow-hidden border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md backdrop-blur-md transition-[border-color,transform,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:border-orange-500/30 hover:shadow-lg"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.images?.[0]}
-                    alt={project.title}
-                    loading="lazy"
-                    className="block w-full h-44 object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:brightness-95 group-hover:saturate-105"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="font-mono text-[0.55rem] tracking-widest uppercase px-2 py-0.5 rounded bg-black/60 text-white">
-                      {project.type}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <p className="text-black dark:text-white font-semibold text-sm leading-snug mb-1 line-clamp-1">
-                    {project.title}
-                  </p>
-                  <p className="font-mono text-[0.58rem] text-neutral-500 dark:text-neutral-400 tracking-wide">
-                    {project.duration}
-                  </p>
-                  <div className="flex flex-wrap gap-1 mt-3">
-                    {project.skills?.slice(0, 3).map((s) => (
-                      <span
-                        key={s}
-                        className="font-mono text-[0.54rem] tracking-wide uppercase px-2 py-0.5 rounded-full"
-                        style={{
-                          background: "rgba(249,115,22,0.08)",
-                          border: "1px solid rgba(249,115,22,0.2)",
-                          color: "rgba(249,115,22,0.7)",
-                        }}
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+        <FeaturedProjects projects={featuredProjects} />
       </motion.section>
 
       {/* ══════════════════════════════════════
@@ -600,10 +544,18 @@ export default function Home() {
             full-time.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap relative z-10">
-            <Button to="/contact" leftIcon={<ArrowRight size={13} />}>
+            <Button
+              to="/contact"
+              variant="primary"
+              leftIcon={<ArrowRight size={13} />}
+            >
               Liên hệ ngay
             </Button>
-            <Button to="/projects" leftIcon={<ExternalLink size={13} />}>
+            <Button
+              to="/projects"
+              variant="outline"
+              leftIcon={<ExternalLink size={13} />}
+            >
               Xem dự án
             </Button>
           </div>

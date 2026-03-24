@@ -35,14 +35,6 @@ const FontLoader = () => (
       font-size: 0.63rem; letter-spacing: 0.05em; white-space: nowrap;
     }
 
-    .proj-card-hover {
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
-    }
-    .proj-card-hover:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.5);
-    }
-
     .img-zoom { overflow: hidden; }
     .img-zoom img {
       transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.7s ease;
@@ -60,16 +52,6 @@ const FontLoader = () => (
       background: #f97316 !important;
       color: #fff !important;
       border-color: #f97316 !important;
-    }
-
-    .grain-overlay {
-      position: relative;
-    }
-    .grain-overlay::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      background-size: 150px;
     }
 
     .featured-arrow {
@@ -105,8 +87,8 @@ function FeaturedCard({ item }) {
       <SectionLabel icon={Star}>Dự án nổi bật</SectionLabel>
 
       <Link to={`/projects/${item.id}`} className="block">
-        <div className="proj-card-hover grain-overlay rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 border border-gray-200 dark:border-neutral-700/50 overflow-hidden">
-          <div className="grid md:grid-cols-[1.15fr_1fr] min-h-[360px]">
+        <div className="rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg hover:border-orange-400/30 hover:-translate-y-1.5 transition-all overflow-hidden">
+          <div className="grid md:grid-cols-[1fr_1fr] min-h-[360px]">
             {/* LEFT – Image */}
             <div className="img-zoom relative min-h-[240px] md:min-h-0">
               <img
@@ -115,10 +97,6 @@ function FeaturedCard({ item }) {
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="eager"
               />
-              {/* right fade for desktop */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-neutral-900/90 hidden md:block" />
-              {/* bottom fade for mobile */}
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/85 via-transparent to-transparent md:hidden" />
             </div>
 
             {/* RIGHT – Content */}
@@ -208,7 +186,7 @@ function ProjectCard({ item, index }) {
       }}
     >
       <Link to={`/projects/${item.id}`} className="block h-full">
-        <div className="proj-card-hover grain-overlay group relative rounded-xl bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 border border-gray-200 dark:border-neutral-700/50 overflow-hidden flex flex-col h-full">
+        <div className="group relative flex flex-col h-full rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg hover:border-orange-400/30 hover:-translate-y-1.5 transition-all overflow-hidden">
           {/* Image */}
           <div className="img-zoom relative h-60">
             <img
@@ -261,7 +239,7 @@ function ProjectCard({ item, index }) {
               )}
             </div>
 
-            <div className="flex items-center justify-between pt-3 mt-auto border-t border-white/6">
+            <div className="flex items-center justify-between pt-3 mt-auto border-t border-neutral-200/80 dark:border-neutral-700/80">
               <span className="text-orange-400 text-xs font-medium flex items-center gap-1.5 group/cta">
                 Xem chi tiết
                 <ArrowRight
@@ -387,12 +365,12 @@ export default function Projects() {
               placeholder="Tìm kiếm theo tên, kỹ năng..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-transparent flex-1 text-white text-sm outline-none placeholder:text-neutral-600 font-mono-code"
+              className="bg-transparent flex-1 text text-sm outline-none font-mono-code"
             />
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="text-neutral-500 hover:text-white transition-colors"
+                className="text-neutral-500 transition-colors"
               >
                 <X size={14} />
               </button>

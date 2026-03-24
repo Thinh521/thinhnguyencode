@@ -11,9 +11,13 @@ import {
   CheckCircle2,
   Clock,
   Layers,
+  ArrowRight,
 } from "lucide-react";
 import { timelineData } from "../../data/timelineData";
 import { skillIcons } from "../../data/skillIcons";
+import FeaturedProjects from "../../components/Project/FeaturedProjects/FeaturedProjects";
+import SectionLabel from "../../components/SectionLabel";
+import Button from "../../components/Button/Button";
 
 /* ─────────────────────────────────────────────
    FONTS (same system as Projects page)
@@ -253,51 +257,6 @@ function SectionHeading({ icon: Icon, children }) {
 }
 
 /* ─────────────────────────────────────────────
-   RELATED PROJECTS
-───────────────────────────────────────────── */
-function RelatedProjects({ currentId }) {
-  const related = timelineData.filter((p) => p.id !== currentId).slice(0, 3);
-  if (!related.length) return null;
-
-  return (
-    <section>
-      <SectionHeading icon={Layers}>Dự án khác</SectionHeading>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {related.map((p, i) => (
-          <motion.div
-            key={p.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + i * 0.08, duration: 0.5 }}
-          >
-            <Link
-              to={`/projects/${p.id}`}
-              className="related-card flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-700/50 border border-gray-200 dark:border-neutral-700/50 overflow-hidden"
-            >
-              <div className="relative h-32 overflow-hidden">
-                <img
-                  src={p.images?.[0]}
-                  alt={p.title}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-3">
-                <span className="font-mono-code text-orange-400/70 text-[0.55rem] tracking-widest uppercase">
-                  {p.type}
-                </span>
-                <p className="text-black dark:text-white text-xs font-semibold mt-1 line-clamp-2 leading-snug">
-                  {p.title}
-                </p>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────
    NOT FOUND
 ───────────────────────────────────────────── */
 function NotFound() {
@@ -442,26 +401,25 @@ export default function ProjectDetail() {
               className="flex flex-wrap gap-3 mt-7"
             >
               {githubLink && (
-                <a
+                <Button
                   href={githubLink.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="proj-btn"
+                  newTab
+                  leftIcon={<Github size={13} />}
+                  variant="outline"
                 >
-                  <Github size={13} />
                   Xem Github
-                </a>
+                </Button>
               )}
+
               {demoLink && demoLink.url !== githubLink?.url && (
-                <a
+                <Button
                   href={demoLink.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="proj-btn proj-btn--primary"
+                  newTab
+                  leftIcon={<ExternalLink size={13} />}
+                  variant="primary"
                 >
-                  <ExternalLink size={13} />
                   Xem Dự án
-                </a>
+                </Button>
               )}
             </motion.div>
           </div>
@@ -569,8 +527,27 @@ export default function ProjectDetail() {
           )}
         </div>
 
-        {/* ── RELATED PROJECTS ── */}
-        <RelatedProjects currentId={id} />
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <div className="s-rule mb-10" />
+          <div className="flex items-center justify-between mb-6">
+            <SectionLabel icon={Code2} className="!mb-0">
+              Dự án nổi bật
+            </SectionLabel>
+            <Link
+              to="/projects"
+              className="flex items-center gap-1.5 font-mono text-[0.62rem] tracking-widest uppercase transition-colors text-black dark:text-white hover:text-orange-500"
+            >
+              Tất cả <ArrowRight size={11} />
+            </Link>
+          </div>
+          <FeaturedProjects projects={timelineData.slice(0, 3)} />
+        </motion.section>
 
         {/* ── BACK ── */}
         <div className="pt-2">
