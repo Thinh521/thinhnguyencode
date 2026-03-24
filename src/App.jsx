@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <div className="bg-white dark:bg-neutral-900 text-black dark:text-white min-h-screen duration-200 overflow-hidden">
+    <div className="bg-neutral-100/20 dark:bg-neutral-900 text-black dark:text-white min-h-screen duration-200 overflow-hidden">
       <CustomerRoutes />
 
       <Toaster

@@ -1,8 +1,10 @@
+/* Kept for backward compat — BouncingDots now use inline styles */
+/* This file can be deleted if Footer.jsx no longer imports it */
+
 .typing_indicator {
     width: 60px;
     height: 30px;
     position: relative;
-    z-index: 4;
 }
 
 .typing_circle {

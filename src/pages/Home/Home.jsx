@@ -32,7 +32,6 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .home-root { font-family: 'Syne', sans-serif; }
     .font-serif { font-family: 'Instrument Serif', serif; }
     .font-mono  { font-family: 'JetBrains Mono', monospace; }
 

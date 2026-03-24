@@ -24,7 +24,7 @@ const PageHeader = ({
           </div>
 
           {subtitle && (
-            <p className="text-sm text-left text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-left text-neutral-700 dark:text-neutral-300">
               {subtitle}
             </p>
           )}

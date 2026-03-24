@@ -15,7 +15,7 @@ const menuItems = [
 
 const CustomerLayout = () => {
   return (
-    <div className="min-h-screen text-gray-600 dark:text-neutral-400 lg:px-[14rem] px-[1.4rem]">
+    <div className="min-h-screen text-neutral-600 dark:text-neutral-400 lg:px-[14rem] px-[1.4rem]">
       <div>
         <Header
           position="right"
