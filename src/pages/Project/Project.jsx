@@ -21,7 +21,6 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .proj-root { font-family: 'Syne', sans-serif; }
     .font-serif-display { font-family: 'Instrument Serif', serif; }
     .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
 
@@ -111,11 +110,11 @@ function FeaturedCard({ item }) {
                   </span>
                 </div>
 
-                <h2 className="font-serif-display text-black dark:text-white text-3xl md:text-[2.1rem] leading-tight mb-3">
+                <h2 className="font-playfair text-neutral-900 dark:text-white text-2xl leading-tight mb-3">
                   {item.title}
                 </h2>
 
-                <p className="text-neutral-400 text-sm leading-relaxed line-clamp-3 mb-5">
+                <p className="text-neutral-500 text-sm leading-relaxed line-clamp-3 mb-5">
                   {item.responsibilities?.[0]}
                 </p>
 
@@ -383,11 +382,11 @@ export default function Projects() {
               <button
                 key={type}
                 onClick={() => setActiveType(type)}
-                className={`font-mono-code text-[0.6rem] tracking-wider uppercase px-4 py-3 rounded-lg border transition-all duration-200
+                className={`text-xs tracking-wider px-4 py-3 rounded-lg border border-primary-500/20 transition-all duration-200
                 ${
                   activeType === type
                     ? "filter-active shadow-md shadow-orange-500/20"
-                    : "text-neutral-400 hover:border-black hover:text-black bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 "
+                    : "text-neutral-400 hover:border-primary-500 hover:text-neutral-900 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 "
                 }`}
               >
                 {type}
