@@ -32,7 +32,6 @@ import {
 } from "lucide-react";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import { IMAGES } from "../../../public/images/imgaes";
-import Divider from "../../components/Divider/Divider";
 import Button from "../../components/Button/Button";
 import PageHeader from "../../components/layout/PageHeader";
 
@@ -43,37 +42,14 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .about-root { font-family: 'Syne', sans-serif; }
     .font-serif-display { font-family: 'Instrument Serif', serif; }
     .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
 
-    /* Tab button */
-    .tab-btn {
-      position: relative;
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: color 0.25s, border-color 0.25s, background 0.25s;
-      white-space: nowrap;
-    }
-    .tab-btn:hover {  border-color: #f97316;  background: rgba(249,115,22,0.1); }
-    .tab-btn.active {
-      border-color: #f97316;
-      background: rgba(249,115,22,0.1);
-    }
-
-    .tab-btn:hover svg { color: #f97316; }
-    .tab-btn.active svg { color: #f97316; }
     /* Skill chip */
     .skill-item {
       display: flex; align-items: center; gap: 8px;
       padding: 8px 14px;
       border-radius: 8px;
-      font-family: 'JetBrains Mono', monospace;
       font-size: 0.68rem; color: rgba(255,255,255,0.65);
       transition: border-color 0.2s, background 0.2s, color 0.2s;
     }
@@ -93,7 +69,7 @@ const FontLoader = () => (
     /* Timeline dot */
     .tl-dot {
       position: absolute;
-      left: -5px; top: 2px;
+      left: -5px; top: 9px;
       width: 10px; height: 10px;
       border-radius: 50%;
       border: 2px solid #f97316;
@@ -146,7 +122,7 @@ const FontLoader = () => (
     /* scroll fade */
     .content-scroll::-webkit-scrollbar { width: 3px; }
     .content-scroll::-webkit-scrollbar-track { background: transparent; }
-    .content-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 99px; }
+    .content-scroll::-webkit-scrollbar-thumb { background: #f97316; border-radius: 99px; }
   `}</style>
 );
 
@@ -231,49 +207,72 @@ const experience = [
   },
 ];
 
+const STATS = [
+  { value: "7+", label: "Dự án", sub: "completed" },
+  { value: "3.35", label: "GPA", sub: "out of 4.0" },
+  { value: "2+", label: "Năm", sub: "experience" },
+  { value: "100%", label: "Commitment", sub: "always" },
+];
+
 /* ─────────────────────────────────────────────
    CONTENT PANELS
 ───────────────────────────────────────────── */
 const StoryPanel = () => (
   <div className="space-y-6">
     <div>
-      <p className="font-mono-code text-orange-400 text-[0.6rem] tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-        <span className="w-4 h-px bg-orange-400 inline-block" /> Câu chuyện
+      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
+        <span className="w-4 h-px bg-primary-400 inline-block" /> Câu chuyện
       </p>
-      <h2 className="font-serif-display text-3xl sm:text-4xl text-black dark:text-white leading-tight mb-4">
-        Xin chào, mình là Thịnh<span className="text-orange-500">.</span>
+      <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
+        Xin chào, mình là
+        <span className="gradient-text"> Thịnh</span>
+        <span className="text-primary-500">.</span>
       </h2>
       <p className="text-sm text-justify">
-        Hiện tại mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang Web
-        tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Mình đang dồn hết
-        tâm huyết cho các dự án tốt nghiệp — website cá nhân này chính là một
-        trong những dự án tâm đắc nhất của mình.
+        Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của mình.
+        Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang
+        Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Hiện tại mình
+        đang sinh sống và làm việc tại TP.HCM. Đây là giai đoạn mình đang dồn
+        hết tâm huyết của mình cho các dự án tốt nghiệp, mà Website cá nhân này
+        chính là một trong những dự án tâm đắc nhất của mình. Mục tiêu của
+        website này là một không gian toàn diện hiện đại, thân thiện và đẹp mắt
+        để: giới thiệu bản thân, trưng bày các dự án đã thực hiện, chia sẻ học
+        vấn, và đặc biệt là nơi lưu giữ những hình ảnh, âm nhạc, những câu
+        chuyện, thành tựu cá nhân mình đã trải qua và có được trong hành trình
+        của mình. Mình có niềm yêu thích đặc biệt với lập trình giao diện
+        (Frontend) và đang không ngừng tự học thêm các ngôn ngữ lập trình chuyên
+        sâu hơn để có thể xây dựng những ứng dụng (App), website hoàn chỉnh,
+        hiện đại và độc đáo. Cùng với khát vọng trở thành một Frontend Developer
+        chuyên nghiệp trong tương lai. Bên cạnh kiến thức lập trình. Nhà trường
+        cũng đã trang bị thêm kiến thức nền tảng cho mình về thiết kế và sáng
+        tạo. Mình cũng học được các kỹ năng đủ để thiết kế được các Poster. Tuy
+        nhiên, Mình không ngừng tự thử thách bản thân. Mình đang trên hành trình
+        học hỏi không ngừng để hoàn thiện sâu hơn nữa kỹ năng chuyên môn và tư
+        duy thiết kế, nhằm tạo ra những sản phẩm không chỉ đẹp mà còn mang tính
+        ứng dụng cao và đột phá. Ngoài ra, mình cực kỳ đam mê quay phim và chụp
+        ảnh. Sở thích này không chỉ là giải trí mà còn là cách mình lưu giữ trọn
+        vẹn những khoảnh khắc đáng nhớ nhất của bản thân, gia đình, bạn bè và
+        người yêu của mình. Mình muốn dùng "góc kính nhiệm màu" của mình để
+        truyền tải đến mọi người những gì mình thấy là đẹp đẽ, đáng yêu và ý
+        nghĩa nhất trong cuộc sống của mình.
       </p>
     </div>
 
-    <p className="text-sm text-justify">
-      Mình có niềm yêu thích đặc biệt với lập trình giao diện (Frontend) và
-      không ngừng tự học thêm để xây dựng những ứng dụng hiện đại, độc đáo.
-      Ngoài ra, mình cực kỳ đam mê quay phim và chụp ảnh — đó là cách mình lưu
-      giữ những khoảnh khắc đáng nhớ nhất của bản thân và những người thân yêu.
-    </p>
-
     {/* Quick stats */}
-    <div className="grid grid-cols-3 gap-3 pt-2">
-      {[
-        { num: "7+", label: "Dự án" },
-        { num: "3.35", label: "GPA" },
-        { num: "2+", label: "Năm kinh nghiệm" },
-      ].map((s) => (
-        <div
-          key={s.label}
-          className="p-3 rounded-xl border border-white/6 bg-white/2 text-center"
-        >
-          <p className="font-serif-display text-2xl text-orange-400 leading-none mb-1">
-            {s.num}
+    <div className="grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-sm">
+      {STATS.map((s, i) => (
+        <div key={s.label} className="relative text-center p-4">
+          {i !== 0 && (
+            <span className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-10 bg-neutral-300 dark:bg-neutral-600" />
+          )}
+          <p className="text-2xl font-serif leading-none mb-1 text-neutral-900 dark:text-white">
+            {s.value}
           </p>
-          <p className="font-mono-code text-[0.58rem] text-neutral-500 tracking-wider uppercase">
+          <p className="text-[0.78rem] font-semibold tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
             {s.label}
+          </p>
+          <p className="text-[0.62rem] tracking-widest uppercase mt-0.5 text-black/30 dark:text-white/25">
+            {s.sub}
           </p>
         </div>
       ))}
@@ -295,13 +294,13 @@ const StoryPanel = () => (
 const SkillsPanel = () => (
   <div className="space-y-6">
     <div>
-      <p className="font-mono-code text-orange-400 text-[0.6rem] tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-        <span className="w-4 h-px bg-orange-400 inline-block" /> Tech Stack
+      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
+        <span className="w-4 h-px bg-primary-400 inline-block" /> Tech Stack
       </p>
-      <h2 className="font-serif-display text-3xl sm:text-4xl text-black dark:text-white leading-tight mb-1">
-        Kỹ năng<span className="text-orange-500">.</span>
+      <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
+        Kỹ năng<span className="text-primary-500">.</span>
       </h2>
-      <p className="text-neutral-600 font-mono-code text-[0.62rem] tracking-widest mb-5">
+      <p className="text-neutral-600 text-xs tracking-widest mb-5">
         Luôn luôn học hỏi những công nghệ mới
       </p>
     </div>
@@ -314,7 +313,7 @@ const SkillsPanel = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: gi * 0.07, duration: 0.4 }}
         >
-          <p className="font-mono-code text-[0.58rem] tracking-[0.18em] uppercase text-neutral-600 mb-2">
+          <p className="text-[0.58rem] tracking-[0.18em] uppercase text-neutral-900 dark:text-white font-bold mb-2">
             {group.title}
           </p>
           <div className="flex flex-wrap gap-2">
@@ -323,8 +322,8 @@ const SkillsPanel = () => (
                 key={skill.name}
                 className="skill-item bg-neutral-200/20 dark:bg-neutral-700/20 border border-neutral-200/80 dark:border-neutral-700/80"
               >
-                <span className="text-sm text-orange-400/80">{skill.icon}</span>
-                <p className="text-black dark:text-white"> {skill.name}</p>
+                <span className="text-sm text-primary-400">{skill.icon}</span>
+                <p className="text-neutral-900 dark:text-white">{skill.name}</p>
               </div>
             ))}
           </div>
@@ -337,25 +336,25 @@ const SkillsPanel = () => (
 const EducationPanel = () => (
   <div className="space-y-6">
     <div>
-      <p className="font-mono-code text-orange-400 text-[0.6rem] tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-        <span className="w-4 h-px bg-orange-400 inline-block" /> Đào tạo
+      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
+        <span className="w-4 h-px bg-primary-400 inline-block" /> Đào tạo
       </p>
-      <h2 className="font-serif-display text-3xl sm:text-4xl text-black dark:text-white leading-tight">
-        Học vấn<span className="text-orange-500">.</span>
+      <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
+        Học vấn<span className="text-primary-500">.</span>
       </h2>
     </div>
 
     {/* School card */}
     <div className="p-5 rounded-2xl space-y-5 bg-neutral-200/20 dark:bg-neutral-700/20 border border-neutral-200/80 dark:border-neutral-700/80">
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-xl bg-orange-500/10 border border-orange-500/20 shrink-0 mt-0.5">
-          <FaGraduationCap size={16} className="text-orange-400" />
+        <div className="p-2 rounded-xl bg-primary-500/10 border border-primary-500/20 shrink-0 mt-0.5">
+          <FaGraduationCap size={16} className="text-primary-400" />
         </div>
         <div>
-          <p className="text-black dark:text-white font-semibold text-sm leading-snug">
+          <p className="text-neutral-900 dark:text-white font-semibold text-sm leading-snug">
             Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM
           </p>
-          <p className="text-xs flex items-center gap-1.5 mt-1 font-mono-code">
+          <p className="text-xs flex items-center gap-1.5 mt-1">
             <MdSchool size={12} /> ITC — Thiết Kế Trang Web
           </p>
         </div>
@@ -365,24 +364,22 @@ const EducationPanel = () => (
       <div className="flex items-center gap-4">
         <div className="flex-1">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="font-mono-code text-[0.6rem] uppercase tracking-wider text-neutral-500">
+            <span className="text-[0.6rem] uppercase tracking-wider text-neutral-500">
               GPA
             </span>
-            <span className="font-mono-code text-orange-400 text-xs">
-              3.35 / 4.0
-            </span>
+            <span className="text-primary-400 text-xs">3.35 / 4.0</span>
           </div>
           <div className="w-full h-1.5 bg-white/6 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: "83.75%" }}
               transition={{ delay: 0.3, duration: 0.9, ease: "easeOut" }}
-              className="h-full bg-gradient-to-r from-orange-500 to-orange-300 rounded-full"
+              className="h-full bg-gradient-to-r from-primary-500 to-primary-300 rounded-full"
             />
           </div>
         </div>
         <div className="text-right shrink-0">
-          <p className="font-serif-display text-2xl text-orange-400 leading-none">
+          <p className="font-serif-display text-2xl text-primary-400 leading-none">
             Giỏi
           </p>
         </div>
@@ -393,10 +390,8 @@ const EducationPanel = () => (
       <div className="space-y-0">
         {studyInfo.slice(0, 6).map((item, i) => (
           <div key={i} className="info-row">
-            <span className="font-mono-code text-[0.62rem] tracking-wide">
-              {item.label}
-            </span>
-            <span className="text-black dark:text-white text-xs font-bold text-right">
+            <span className="text-[0.62rem] tracking-wide">{item.label}</span>
+            <span className="text-neutral-900 dark:text-white text-xs font-bold text-right">
               {item.value}
             </span>
           </div>
@@ -409,11 +404,11 @@ const EducationPanel = () => (
 const ExperiencePanel = () => (
   <div className="space-y-6">
     <div>
-      <p className="font-mono-code text-orange-400 text-[0.6rem] tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-        <span className="w-4 h-px bg-orange-400 inline-block" /> Career
+      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
+        <span className="w-4 h-px bg-primary-400 inline-block" /> Career
       </p>
-      <h2 className="font-serif-display text-3xl sm:text-4xl text-black dark:text-white leading-tight">
-        Kinh nghiệm<span className="text-orange-500">.</span>
+      <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
+        Kinh nghiệm<span className="text-primary-500">.</span>
       </h2>
     </div>
 
@@ -434,24 +429,24 @@ const ExperiencePanel = () => (
 
           <div className="space-y-1.5 ml-4">
             {/* Year badge */}
-            <span className="font-mono-code text-[0.6rem] tracking-widest text-orange-400/70 uppercase">
+            <span className="text-[0.6rem] tracking-widest text-primary-400 uppercase">
               {item.year}
             </span>
 
             {/* Company */}
             <div className="flex items-center gap-2">
-              <h3 className="text-black dark:text-white font-bold text-base">
+              <h3 className="text-neutral-900 dark:text-white font-bold text-base">
                 {item.company}
               </h3>
               {item.current && (
-                <span className="font-mono-code text-[0.5rem] tracking-widest uppercase px-2 py-0.5 bg-orange-500/15 border border-orange-500/30 text-orange-400 rounded-full">
+                <span className="text-[0.5rem] tracking-widest uppercase px-2 py-0.5 bg-primary-500/15 border border-primary-500/30 text-primary-400 rounded-full">
                   Now
                 </span>
               )}
             </div>
 
             {/* Role */}
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            <p className="text-sm text-neutral-700 dark:text-neutral-200">
               {item.role}
             </p>
 
@@ -539,7 +534,7 @@ export default function About() {
   const CurrentPanel = SLIDES[active].Panel;
 
   return (
-    <article className="about-root min-h-scree">
+    <article className="min-h-screen">
       <FontLoader />
 
       {/* ── PAGE HEADER ── */}
@@ -553,7 +548,7 @@ export default function About() {
           title="Giới thiệu."
           subtitle="Một chút thú vị về mình"
           rightContent={
-            <span className="font-serif-display text-[2.5rem] hidden sm:block">
+            <span className="font-playfair text-5xl hidden sm:block">
               {String(active + 1).padStart(2, "0")}
             </span>
           }
@@ -569,7 +564,13 @@ export default function About() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`tab-btn text-black dark:text-white ${active === i ? "active" : ""}`}
+                className={`relative inline-flex items-center gap-2 py-2 px-5 text-xs uppercase rounded-lg cursor-pointer whitespace-nowrap border border-primary-500/20 text-neutral-900 dark:text-white transition-colors hover:border-primary-500 hover:bg-primary-500/10 [&:hover_svg]:text-primary-500
+                          ${
+                            active === i
+                              ? "border-primary-500 bg-primary-500/10 [&_svg]:text-primary-500"
+                              : ""
+                          }
+                        `}
               >
                 <Icon size={12} />
                 {s.label}
@@ -655,7 +656,7 @@ export default function About() {
           <button
             onClick={() => goTo(active - 1)}
             disabled={active === 0}
-            className="font-mono-code text-[0.62rem] tracking-widest uppercase hover:text-orange-400 transition-colors disabled:opacity-20 flex items-center gap-2"
+            className="text-[0.62rem] tracking-widest uppercase text-neutral-900 dark:text-white hover:text-primary-400 transition-colors disabled:opacity-20 flex items-center gap-2"
           >
             ← {active > 0 ? SLIDES[active - 1].label : ""}
           </button>
@@ -679,7 +680,7 @@ export default function About() {
           <button
             onClick={() => goTo(active + 1)}
             disabled={active === SLIDES.length - 1}
-            className="font-mono-code text-[0.62rem] tracking-widest uppercase text-neutral-500 hover:text-orange-400 transition-colors disabled:opacity-20 flex items-center gap-2"
+            className="text-[0.62rem] tracking-widest uppercase text-neutral-900 dark:text-white hover:text-primary-400 transition-colors disabled:opacity-20 flex items-center gap-2"
           >
             {active < SLIDES.length - 1 ? SLIDES[active + 1].label : ""} →
           </button>
