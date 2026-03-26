@@ -8,7 +8,7 @@ import Button from "../../../components/Button/Button";
 
 const DevIntro = () => {
   return (
-    <div className="w-full flex justify-center mt-10">
+    <div className="w-full flex justify-center mt-8">
       <div className="w-full max-w-6xl bg-[#0d0d0d] rounded-xl shadow-xl overflow-hidden border border-[#222]">
         {/* Macbook top bar */}
         <div className="flex items-center gap-2 px-4 py-2 bg-[#1e1e1e]">

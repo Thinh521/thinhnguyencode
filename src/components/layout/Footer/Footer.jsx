@@ -1,18 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  User,
-  ArrowUpRight,
-  Github,
-  ExternalLink,
-  Heart,
-} from "lucide-react";
+import { Phone, Mail, MapPin, User, ArrowUpRight, Heart } from "lucide-react";
 import VisitorCounter from "../../VisitorCounter";
-import Divider from "../../Divider/Divider";
 
 /* ─────────────────────────────────────────────
    FONTS + STYLES
@@ -213,16 +203,7 @@ const Footer = () => {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-14"
       >
-        <p
-          className="f-serif text-black dark:text-white"
-          style={{
-            fontStyle: "italic",
-            fontSize: "clamp(1.1rem, 3vw, 1.6rem)",
-            lineHeight: 1.5,
-            maxWidth: "500px",
-            margin: "0 auto 12px",
-          }}
-        >
+        <p className="font-playfair text-neutral-900 dark:text-white text-lg sm:text-2xl italic leading-[1.5] max-w-[500px] mx-auto mb-3">
           "Mã là thơ ca, thiết kế là nghệ thuật —<br />
           cùng nhau tạo nên điều kỳ diệu."
         </p>
@@ -240,86 +221,30 @@ const Footer = () => {
           >
             {/* Big name */}
             <div className="mb-6">
-              <p
-                className="f-mono mb-2 flex items-center gap-2"
-                style={{
-                  fontSize: "0.58rem",
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  color: "rgba(249,115,22,0.7)",
-                }}
-              >
-                <span
-                  style={{
-                    display: "inline-block",
-                    width: 14,
-                    height: 1,
-                    background: "#f97316",
-                  }}
-                />
+              <p className="mb-2 flex items-center gap-2 text-[0.58rem] tracking-[0.22em] font-bold uppercase text-primary-500/70">
+                <span className="inline-block w-3.5 h-px bg-primary-500" />
                 Portfolio
               </p>
-              <h2
-                className="f-serif f-gradient-text"
-                style={{
-                  fontSize: "clamp(2.5rem, 7vw, 3rem)",
-                  lineHeight: 0.95,
-                  letterSpacing: "-0.03em",
-                }}
-              >
+
+              <h2 className="font-playfair f-gradient-text text-[clamp(2.5rem,7vw,3rem)] leading-[1.2] tracking-[-0.03em]">
                 Nguyễn
                 <br />
                 Phúc Thịnh
               </h2>
-              <p
-                className="f-mono mt-2 text-neutral-700 dark:text-neutral-300 uppercase"
-                style={{
-                  fontSize: "0.6rem",
-                  letterSpacing: "0.15em",
-                }}
-              >
+
+              <p className="mt-2 text-neutral-700 dark:text-neutral-300 uppercase text-[0.6rem] tracking-[0.15em]">
                 Frontend Developer · TP.HCM 🇻🇳
               </p>
             </div>
 
             {/* Available badge */}
-            <div
-              className="flex items-center gap-2.5 mb-6"
-              style={{
-                display: "inline-flex",
-                padding: "6px 14px",
-                borderRadius: "99px",
-                border: "1px solid rgba(74,222,128,0.2)",
-                background: "rgba(74,222,128,0.05)",
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  width: 8,
-                  height: 8,
-                  flexShrink: 0,
-                }}
-              >
+            <div className="inline-flex items-center gap-2.5 mb-6 px-3.5 py-1.5 rounded-full border border-green-400/20 bg-green-400/5">
+              <div className="relative w-2 h-2 shrink-0">
                 <div className="f-avail-ring" />
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    borderRadius: "50%",
-                    background: "#4ade80",
-                  }}
-                />
+                <div className="absolute inset-0 rounded-full bg-green-400" />
               </div>
-              <span
-                className="f-mono"
-                style={{
-                  fontSize: "0.58rem",
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "#4ade80",
-                }}
-              >
+
+              <span className="f-mono text-[0.58rem] tracking-[0.14em] uppercase text-green-400">
                 Sẵn sàng hợp tác
               </span>
             </div>
@@ -336,26 +261,23 @@ const Footer = () => {
                   transition={{ delay: 0.2 + i * 0.07, duration: 0.4 }}
                 >
                   <div className="f-contact-icon">
-                    <item.icon size={14} style={{ color: "#f97316" }} />
+                    <item.icon size={14} className="text-primary-500" />
                   </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <p
-                      className="f-mono text-neutral-700 dark:text-neutral-300 uppercase mb-[2px]"
-                      style={{
-                        fontSize: "0.54rem",
-                        letterSpacing: "0.12em",
-                      }}
-                    >
+
+                  <div className="flex-1 min-w-0">
+                    <p className="text-neutral-700 dark:text-neutral-300 uppercase mb-[2px] text-[0.54rem] tracking-[0.12em]">
                       {item.label}
                     </p>
-                    <p className="text-[0.82rem] font-semibold text-black dark:text-white overflow-hidden text-ellipsis whitespace-nowrap">
+
+                    <p className="text-[0.82rem] font-semibold text-neutral-900 dark:text-white overflow-hidden text-ellipsis whitespace-nowrap">
                       {item.value}
                     </p>
                   </div>
+
                   {item.href !== "#" && (
                     <ArrowUpRight
                       size={12}
-                      className="text-orange-500 shrink-0"
+                      className="text-primary-500 shrink-0"
                     />
                   )}
                 </motion.a>
@@ -372,23 +294,16 @@ const Footer = () => {
           >
             {/* Nav */}
             <div>
-              <p
-                className="f-mono mb-4"
-                style={{
-                  fontSize: "0.55rem",
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  color: "rgba(249,115,22,0.7)",
-                }}
-              >
+              <p className="mb-4 text-[0.58rem] tracking-[0.22em] font-bold uppercase text-primary-500/70">
                 Trang
               </p>
+
               <div className="grid grid-cols-2 gap-x-6">
                 {NAV_LINKS.map((n, i) => (
                   <Link
                     key={i}
                     to={n.href}
-                    className="group flex items-center gap-[6px] no-underline font-mono text-[0.62rem] tracking-[0.1em] uppercase text-black dark:text-white py-[6px] transition-colors duration-200 hover:text-orange-500 dark:hover:text-orange-500"
+                    className="group flex items-center gap-1.5 no-underline text-xs font-semibold tracking-[0.1em] text-neutral-900 dark:text-white py-1.5 transition-colors duration-200 hover:text-primary-500 dark:hover:text-primary-500"
                   >
                     <ArrowUpRight
                       size={10}
@@ -401,47 +316,19 @@ const Footer = () => {
             </div>
 
             {/* Visitor counter */}
-            <div
-              className="px-5 py-4 rounded-[14px] border border-neutral-200/80 dark:border-neutral-700/80
-                        bg-neutral-200/20 dark:bg-neutral-700/20"
-            >
-              <p className="f-mono mb-2 text-sm text-center font-semibold tracking-[0.2em] uppercase text-orange-500">
+            <div className="px-5 py-4 rounded-[14px] border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20">
+              <p className="f-mono mb-2 text-sm text-center font-semibold tracking-[0.2em] uppercase text-primary-500">
                 Lượt ghé thăm
               </p>
               <VisitorCounter />
             </div>
 
             {/* Tip badge */}
-            <div
-              style={{
-                position: "relative",
-                display: "inline-flex",
-                borderRadius: "99px",
-                padding: "1.5px",
-              }}
-            >
-              <div
-                className="f-spin-border w-full"
-                style={{ position: "absolute", inset: 0, borderRadius: "99px" }}
-              />
-              <div
-                className="w-full items-center justify-center flex border border-neutral-200/80 dark:border-neutral-700/80
-                        bg-neutral-100 dark:bg-neutral-800"
-                style={{
-                  position: "relative",
-                  padding: "8px 16px",
-                  borderRadius: "99px",
-                  zIndex: 1,
-                }}
-              >
-                <p
-                  className="f-mono text-black dark:text-white"
-                  style={{
-                    fontSize: "0.58rem",
-                    letterSpacing: "0.1em",
-                    whiteSpace: "nowrap",
-                  }}
-                >
+            <div className="relative inline-flex rounded-full p-[1.5px]">
+              <div className="f-spin-border absolute inset-0 rounded-full" />
+
+              <div className="relative z-10 flex items-center justify-center w-full px-4 py-2 rounded-full border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-100 dark:bg-neutral-800">
+                <p className="text-xs font-semibold text-neutral-900 dark:text-white tracking-[0.1em] whitespace-nowrap ">
                   💻 Dùng máy tính để trải nghiệm tốt nhất
                 </p>
               </div>
@@ -458,18 +345,16 @@ const Footer = () => {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-between gap-3"
         >
-          <p className="f-mono text-[0.64rem] text-black dark:text-white">
+          <p className="text-xs text-neutral-900 dark:text-white">
             © {new Date().getFullYear()} Nguyễn Phúc Thịnh · All rights reserved
           </p>
 
-          <div className="flex items-center gap-[6px]">
-            <span className="f-mono text-[0.64rem] text-black dark:text-white">
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs text-neutral-900 dark:text-white">
               Made with
             </span>
-
-            <Heart size={14} className="text-black dark:text-white" />
-
-            <span className="f-mono text-[0.64rem] text-black dark:text-white">
+            <Heart size={14} className="text-neutral-900 dark:text-white" />
+            <span className="text-xs text-neutral-900 dark:text-white">
               &amp; React
             </span>
           </div>

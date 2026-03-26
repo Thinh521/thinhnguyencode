@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -7,7 +7,6 @@ import {
   Smartphone,
   Globe,
   Camera,
-  ExternalLink,
   Sparkles,
   Zap,
   Layers,
@@ -15,7 +14,6 @@ import {
   User,
 } from "lucide-react";
 import Divider from "../../components/Divider/Divider";
-import Button from "../../components/Button/Button";
 import DevIntro from "./components/DevIntro";
 import { timelineData } from "../../data/timelineData";
 import PhotoData from "../../data/PhotoData";
@@ -24,6 +22,9 @@ import PhotoModal from "../Photo/components/PhotoModal";
 import SectionLabel from "../../components/SectionLabel";
 import PageHeader from "../../components/layout/PageHeader";
 import FeaturedProjects from "../../components/Project/FeaturedProjects/FeaturedProjects";
+import TechMarquee from "./components/TechMarquee";
+import BottomCTA from "./components/BottomCTA";
+import AboutSection from "./components/AboutSection";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -67,19 +68,6 @@ const FontLoader = () => (
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
     .cursor { animation: blink 1.1s step-end infinite; }
 
-    /* Skill badge */
-    .skill-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 99px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem; letter-spacing: 0.05em;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
-    }
-    .skill-badge:hover {
-      border-color: rgba(249,115,22,0.35);
-      background: rgba(249,115,22,0.06);
-      color: rgba(255,255,255,0.85);
-    }
     /* Resume btn */
     .resume-btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -100,15 +88,6 @@ const FontLoader = () => (
       50%      { box-shadow: 0 0 0 12px rgba(249,115,22,0.08); }
     }
     .avatar-glow { animation: avatarPulse 4s ease-in-out infinite; }
-
-    /* Marquee tech */
-    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-    .tech-marquee { animation: marquee 20s linear infinite; }
-    .tech-marquee-wrap:hover .tech-marquee { animation-play-state: paused; }
-    .tech-fade {
-      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-    }
 
     /* Stat card */
     .stat-card {
@@ -159,44 +138,6 @@ const STATS = [
   { value: "3.35", label: "GPA", sub: "out of 4.0" },
   { value: "2+", label: "Năm", sub: "experience" },
   { value: "100%", label: "Commitment", sub: "always" },
-];
-
-const TECH_STACK = [
-  "React Native",
-  "React.js",
-  "Next.js",
-  "JavaScript",
-  "Node.js",
-  "Firebase",
-  "TailwindCSS",
-  "Blockchain",
-  "Figma",
-  "Smart Contract",
-  "MongoDB",
-  "Express",
-  "React Native",
-  "React.js",
-  "Next.js",
-  "JavaScript",
-  "Node.js",
-  "Firebase",
-  "TailwindCSS",
-  "Blockchain",
-  "Figma",
-  "Smart Contract",
-  "MongoDB",
-  "Express",
-];
-
-/* ─────────────────────────────────────────────
-   TYPEWRITER
-───────────────────────────────────────────── */
-const ROLES = [
-  "Mobile App Developer",
-  "Frontend Engineer",
-  "UI/UX Enthusiast",
-  "Blockchain Developer",
-  "Creative Coder",
 ];
 
 /* ─────────────────────────────────────────────
@@ -266,13 +207,13 @@ export default function Home() {
               {i !== 0 && (
                 <span className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-10 bg-neutral-300 dark:bg-neutral-600" />
               )}
-              <p className="text-4xl font-serif leading-none mb-1 text-black dark:text-white">
+              <p className="text-4xl font-serif leading-none mb-1 text-neutral-900 dark:text-white">
                 {s.value}
               </p>
-              <p className="font-mono text-[0.62rem] tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
+              <p className="text-xs font-semibold tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
                 {s.label}
               </p>
-              <p className="font-mono text-[0.54rem] tracking-widest uppercase mt-0.5 text-black/30 dark:text-white/25">
+              <p className="text-[0.62rem] tracking-widest uppercase mt-0.5 text-black/30 dark:text-white/25">
                 {s.sub}
               </p>
             </div>
@@ -300,19 +241,13 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.45 }}
               className="p-5 rounded-xl group cursor-pointer border border-neutral-200/80 dark:border-neutral-700/80
-                        bg-neutral-200/20 dark:bg-neutral-700/20 hover:border-orange-400/50 hover:dark:border-orange-400/50
-                        hover:bg-orange-400/10 hover:dark:bg-orange-400/10 transition-all duration-300"
+                        bg-neutral-200/20 dark:bg-neutral-700/20 hover:border-primary-400/50 hover:dark:border-primary-400/50
+                        hover:bg-primary-400/10 hover:dark:bg-primary-400/10 transition-all duration-300"
             >
-              <div
-                className="p-2.5 rounded-xl w-fit mb-4"
-                style={{
-                  background: "rgba(249,115,22,0.1)",
-                  border: "1px solid rgba(249,115,22,0.2)",
-                }}
-              >
-                <svc.icon size={16} className="text-orange-400" />
+              <div className="p-2.5 rounded-xl w-fit mb-4 border border-primary-500/20 bg-primary-500/10">
+                <svc.icon size={16} className="text-primary-500" />
               </div>
-              <h3 className="text-black dark:text-white font-semibold text-sm mb-1.5">
+              <h3 className="text-neutral-900 dark:text-white font-semibold text-sm mb-1.5">
                 {svc.title}
               </h3>
               <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
@@ -334,95 +269,15 @@ export default function Home() {
         className="mb-16"
       >
         <div className="s-rule mb-10" />
+
         <SectionLabel icon={Sparkles}>Về mình</SectionLabel>
-
-        <div className="grid md:grid-cols-[1.2fr_1fr] gap-10 items-start">
-          {/* Left: Bio text */}
-          <div>
-            <h2 className="font-serif text-4xl text-black dark:text-white leading-tight mb-5">
-              Xin chào, mình là
-              <br />
-              <span className="gradient-text">Thịnh</span>
-              <span className="text-orange-500">.</span>
-            </h2>
-            <div className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400 leading-[1.85]">
-              <p>
-                Hiện là sinh viên năm cuối chuyên ngành{" "}
-                <span className="text-orange-400">Thiết Kế Trang Web</span> tại
-                Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC).
-              </p>
-              <p>
-                Có niềm đam mê đặc biệt với{" "}
-                <span className="text-black dark:text-white">
-                  lập trình giao diện (Frontend)
-                </span>{" "}
-                và không ngừng tự học để xây dựng những ứng dụng hiện đại, độc
-                đáo. Mình cũng từng tham gia hackathon{" "}
-                <span className="text-orange-400">Blockchain & AI</span> trong
-                quá trình thực tập.
-              </p>
-              <p>
-                Ngoài lập trình, mình còn đam mê{" "}
-                <span className="text-black dark:text-white">
-                  quay phim & chụp ảnh
-                </span>{" "}
-                — lưu giữ những khoảnh khắc đáng nhớ nhất qua ống kính.
-              </p>
-            </div>
-
-            <div className="mt-6">
-              <Button
-                to="/about"
-                rightIcon={<ArrowRight size={13} />}
-                className="max-w-max"
-              >
-                Xem thêm
-              </Button>
-            </div>
-          </div>
-
-          {/* Right: Info grid */}
-          <div className="space-y-3">
-            {[
-              { label: "Tên", value: "Nguyễn Phúc Thịnh" },
-              { label: "Trường", value: "ITC TP.HCM" },
-              { label: "Chuyên ngành", value: "Thiết Kế Trang Web" },
-              { label: "GPA", value: "3.35 / 4.0 — Giỏi" },
-              { label: "Địa điểm", value: "TP. Hồ Chí Minh" },
-              { label: "Tình trạng", value: "Đã tốt nghiệp ✓" },
-            ].map(({ label, value }) => (
-              <div
-                key={label}
-                className="flex items-center justify-between gap-4 py-2.5 border-b border-neutral-200/80 dark:border-neutral-700/80"
-              >
-                <span className="font-mono text-[0.6rem] text-neutral-600 dark:text-neutral-400  tracking-widest uppercase shrink-0">
-                  {label}
-                </span>
-                <span className="text-black dark:text-white text-xs text-right font-semibold">
-                  {value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <AboutSection />
       </motion.section>
 
-      {/* ══════════════════════════════════════
-          TECH MARQUEE
-      ══════════════════════════════════════ */}
-      <SectionLabel icon={Layers}>Kỹ năng</SectionLabel>
-      <div className="mb-16 overflow-hidden tech-fade tech-marquee-wrap py-2">
-        <div className="flex gap-4 tech-marquee">
-          {TECH_STACK.map((t, i) => (
-            <span
-              key={i}
-              className="skill-badge text-black dark:text-white shrink-0 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
+      <>
+        <SectionLabel icon={Layers}>Kỹ năng</SectionLabel>
+        <TechMarquee />
+      </>
 
       {/* ══════════════════════════════════════
           FEATURED PROJECTS
@@ -441,7 +296,7 @@ export default function Home() {
           </SectionLabel>
           <Link
             to="/projects"
-            className="flex items-center gap-1.5 font-mono text-[0.62rem] tracking-widest uppercase transition-colors text-black dark:text-white hover:text-orange-500"
+            className="flex items-center gap-1.5 text-xs uppercase transition-colors text-neutral-900 dark:text-white hover:text-primary-500"
           >
             Tất cả <ArrowRight size={11} />
           </Link>
@@ -464,7 +319,7 @@ export default function Home() {
           <SectionLabel icon={Code2}>Ảnh nổi bật</SectionLabel>
           <Link
             to="/photos"
-            className="flex items-center gap-1.5 font-mono text-[0.62rem] tracking-widest uppercase transition-colors text-black dark:text-white hover:text-orange-500"
+            className="flex items-center gap-1.5 text-xs uppercase transition-colors text-black dark:text-white hover:text-primary-500"
           >
             Tất cả <ArrowRight size={11} />
           </Link>
@@ -504,61 +359,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         className="mb-16"
       >
-        <div className="s-rule mb-10" />
-        <div
-          className="relative overflow-hidden rounded-2xl p-8 md:p-12 text-center grain"
-          style={{
-            background: "rgba(249,115,22,0.05)",
-            border: "1px solid rgba(249,115,22,0.2)",
-          }}
-        >
-          {/* Glow */}
-          <div
-            style={{
-              position: "absolute",
-              top: "-30%",
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "60%",
-              height: "200px",
-              background:
-                "radial-gradient(ellipse, rgba(249,115,22,0.12) 0%, transparent 70%)",
-              pointerEvents: "none",
-            }}
-          />
-
-          <p className="font-mono text-orange-400 text-[0.65rem] tracking-[0.25em] uppercase mb-4 relative z-10">
-            ◆ Hãy kết nối
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-black dark:text-white leading-tight mb-4 relative z-10">
-            Cùng tạo ra điều
-            <br />
-            <span className="gradient-text">tuyệt vời</span>
-          </h2>
-          <p
-            className="text-sm max-w-sm mx-auto mb-8 relative z-10 text-neutral-600 dark:text-neutral-400"
-            style={{ lineHeight: 1.8 }}
-          >
-            Mình luôn sẵn sàng hợp tác cho các dự án thú vị — freelance hoặc
-            full-time.
-          </p>
-          <div className="flex items-center justify-center gap-3 flex-wrap relative z-10">
-            <Button
-              to="/contact"
-              variant="primary"
-              leftIcon={<ArrowRight size={13} />}
-            >
-              Liên hệ ngay
-            </Button>
-            <Button
-              to="/projects"
-              variant="outline"
-              leftIcon={<ExternalLink size={13} />}
-            >
-              Xem dự án
-            </Button>
-          </div>
-        </div>
+        <BottomCTA />
       </motion.section>
     </article>
   );

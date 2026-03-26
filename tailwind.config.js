@@ -5,15 +5,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        bodyColor: "#f42c37",
+        primary: {
+          50: "#fff7ed",
+          100: "#ffedd5",
+          200: "#fed7aa",
+          300: "#fdba74",
+          400: "#fb923c",
+          500: "#f97316", // orange-500
+          600: "#ea580c",
+          700: "#c2410c",
+          800: "#9a3412",
+          900: "#7c2d12",
+        },
       },
       fontFamily: {
         playfair: ["PlayfairDisplay", "serif"],
       },
     },
   },
-  plugins: [
-    // eslint-disable-next-line no-undef
-    require("tailwind-scrollbar-hide"),
-  ],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

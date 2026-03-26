@@ -13,7 +13,7 @@ const PageHeader = ({
       <div className="flex items-end justify-between mb-5">
         <div>
           <div className="flex items-center gap-1.5">
-            <h1 className="font-playfair text-3xl font-bold mb-3 text-black dark:text-white tracking-tight text-left">
+            <h1 className="font-playfair text-3xl font-bold mb-3 text-neutral-900 dark:text-white tracking-tight text-left">
               {title}
             </h1>
             {verified && (
