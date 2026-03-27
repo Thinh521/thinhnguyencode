@@ -63,9 +63,9 @@ const PhotoModal = ({ photo, onClose }) => {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full flex items-center justify-center bg-black/50 backdrop-blur-md border border-white/10 text-white/70 hover:bg-orange-500/30 hover:text-white transition-all duration-200"
+              className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center bg-black/50 backdrop-blur-md border border-white/10 text-white/70 hover:bg-black/70 hover:text-white transition-all duration-200"
             >
-              <X size={18} />
+              <X size={16} />
             </button>
 
             {/* Image */}
@@ -86,7 +86,7 @@ const PhotoModal = ({ photo, onClose }) => {
             {hasPrev && (
               <button
                 onClick={() => setCurrent((i) => i - 1)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-orange-500/30 transition"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-black/100 transition"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -106,7 +106,7 @@ const PhotoModal = ({ photo, onClose }) => {
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
             {/* Text overlay */}
-            <div className="absolute bottom-0 left-0 right-0 py-2 px-4 z-10">
+            <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
               <p className="text-base font-semibold text-white leading-tight">
                 {photo.title}
               </p>
