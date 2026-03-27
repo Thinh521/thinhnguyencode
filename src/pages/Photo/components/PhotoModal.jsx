@@ -55,11 +55,11 @@ const PhotoModal = ({ photo, onClose }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="relative"
+          className="relative px-[1.4rem]"
           onClick={(e) => e.stopPropagation()}
         >
           {/* IMAGE WRAPPER */}
-          <div className="relative inline-block rounded-xl overflow-hidden">
+          <div className="relative inline-block rounded-xl overflow-hidden ">
             {/* Image */}
             <AnimatePresence mode="wait">
               <motion.img
