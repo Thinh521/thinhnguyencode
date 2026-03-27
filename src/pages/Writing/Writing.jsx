@@ -13,10 +13,6 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .writing-root { font-family: 'Syne', sans-serif; }
-    .font-serif-display { font-family: 'Instrument Serif', serif; }
-    .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
-
     /* section rule */
     .section-rule {
       height: 1px;
@@ -93,37 +89,31 @@ function FeaturedCard({ item }) {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col justify-between p-7 md:p-9">
+            <div className="relative z-10 flex flex-col justify-between p-5 md:p-7">
               <div>
                 {/* Date + index */}
                 <div className="flex items-center gap-2 mb-4 flex-wrap">
-                  <span className="font-mono-code text-orange-400 text-[0.58rem] tracking-widest uppercase border border-orange-400/25 px-2 py-0.5 rounded">
+                  <span className="text-primary-400 text-xs tracking-widest uppercase border border-primary-400/30 px-2 py-0.5 rounded">
                     {item.date}
                   </span>
                   {item.category && (
-                    <span
-                      className="font-mono-code text-[0.56rem] tracking-widest uppercase"
-                      style={{ color: "rgba(255,255,255,0.25)" }}
-                    >
+                    <span className="text-xs text-white tracking-widest uppercase">
                       {item.category}
                     </span>
                   )}
                 </div>
 
-                <h2
-                  className="font-serif-display text-black dark:text-white leading-tight mb-2"
-                  style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)" }}
-                >
+                <h2 className="font-playfair text-neutral-900 dark:text-white text-xl font-semibold leading-tight mb-3">
                   {item.title}
                 </h2>
 
                 {item.title_2 && (
-                  <p className="font-serif-display italic text-neutral-400 text-base mb-3 leading-snug line-clamp-1">
+                  <p className="italic text-neutral-500 text-base mb-3 leading-snug line-clamp-1">
                     {item.title_2}
                   </p>
                 )}
 
-                <p className="text-neutral-500 text-sm leading-relaxed line-clamp-3 mb-5">
+                <p className="text-neutral-500 text-sm leading-relaxed line-clamp-3 mb-4">
                   {item.description}
                 </p>
               </div>
@@ -144,9 +134,9 @@ function FeaturedCard({ item }) {
                   </span>
                 </div>
 
-                <span className="text-orange-400 font-mono-code text-[0.65rem] tracking-wider uppercase flex items-center gap-1.5">
+                <span className="text-xs uppercase tracking-wider text-neutral-900 dark:text-white hover:text-primary-400 hover:dark:text-primary-400 transition-colors flex items-center gap-1">
                   Đọc ngay
-                  <ArrowRight size={12} className="read-arrow" />
+                  <ArrowRight size={11} className="read-arrow" />
                 </span>
               </div>
             </div>
@@ -181,18 +171,7 @@ function StoryCard({ item, index }) {
             <img src={item.imgae} alt={item.title} loading="lazy" />
 
             {/* Date badge */}
-            <div
-              className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-md"
-              style={{
-                background: "rgba(0,0,0,0.6)",
-                backdropFilter: "blur(8px)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.58rem",
-                letterSpacing: "0.08em",
-                color: "rgba(255,255,255,0.6)",
-              }}
-            >
+            <div className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur border border-white/10 text-[0.68rem] tracking-[0.08em] text-white">
               {item.date}
             </div>
 
@@ -236,7 +215,6 @@ function StoryCard({ item, index }) {
               <p
                 className="line-clamp-1 leading-snug text-neutral-400 "
                 style={{
-                  fontFamily: "'Instrument Serif', serif",
                   fontStyle: "italic",
                   fontSize: "0.85rem",
                   marginTop: "-6px",
@@ -267,11 +245,8 @@ function StoryCard({ item, index }) {
                 </span>
               </div>
 
-              <span
-                className="font-mono-code text-[0.6rem] tracking-wider uppercase flex items-center gap-1"
-                style={{ color: "#f97316" }}
-              >
-                Đọc
+              <span className="text-xs uppercase tracking-wider text-neutral-900 dark:text-white hover:text-primary-400 hover:dark:text-primary-400 transition-colors flex items-center gap-1">
+                Đọc ngay
                 <ArrowRight size={11} className="read-arrow" />
               </span>
             </div>
@@ -328,7 +303,7 @@ const Writing = () => {
   }, [search, rest]);
 
   return (
-    <article className="writing-root min-h-screen pb-16">
+    <article className="min-h-screen pb-16">
       <FontLoader />
 
       {/* ── PAGE HEADER ── */}
