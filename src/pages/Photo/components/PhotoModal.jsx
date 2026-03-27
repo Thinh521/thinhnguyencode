@@ -58,16 +58,8 @@ const PhotoModal = ({ photo, onClose }) => {
           className="relative"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* ───── IMAGE CONTAINER ───── */}
-          <div className="relative rounded-xl overflow-hidden bg-neutral-900">
-            {/* Close button */}
-            <button
-              onClick={onClose}
-              className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center bg-black/50 backdrop-blur-md border border-white/10 text-white/70 hover:bg-black/70 hover:text-white transition-all duration-200"
-            >
-              <X size={16} />
-            </button>
-
+          {/* IMAGE WRAPPER */}
+          <div className="relative inline-block rounded-xl overflow-hidden">
             {/* Image */}
             <AnimatePresence mode="wait">
               <motion.img
@@ -78,60 +70,69 @@ const PhotoModal = ({ photo, onClose }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full max-h-[80vh] object-contain"
+                className="block max-h-[80vh] w-auto"
               />
             </AnimatePresence>
 
-            {/* Left arrow */}
-            {hasPrev && (
+            {/* Overlay container bám đúng theo ảnh */}
+            <div className="absolute inset-0 rounded-lg overflow-hidden">
+              {/* Close button */}
               <button
-                onClick={() => setCurrent((i) => i - 1)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-black/100 transition"
+                onClick={onClose}
+                className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center bg-black/50 backdrop-blur-md border border-white/10 text-white/70 hover:bg-black/70 hover:text-white transition-all duration-200"
               >
-                <ChevronLeft size={20} />
+                <X size={16} />
               </button>
-            )}
 
-            {/* Right arrow */}
-            {hasNext && (
-              <button
-                onClick={() => setCurrent((i) => i + 1)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-orange-500/30 transition"
-              >
-                <ChevronRight size={20} />
-              </button>
-            )}
-
-            {/* Gradient overlay */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-            {/* Text overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
-              <p className="text-base font-semibold text-white leading-tight">
-                {photo.title}
-              </p>
-
-              {/* Tags */}
-              {photo.category?.length > 0 && (
-                <div className="flex gap-2 mt-1.5 flex-wrap">
-                  {photo.category.map((cat) => (
-                    <span
-                      key={cat}
-                      className="font-mono text-[0.54rem] tracking-[0.1em] uppercase text-white/60"
-                    >
-                      #{cat}
-                    </span>
-                  ))}
-                </div>
+              {/* Left arrow */}
+              {hasPrev && (
+                <button
+                  onClick={() => setCurrent((i) => i - 1)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-black/80 transition"
+                >
+                  <ChevronLeft size={20} />
+                </button>
               )}
 
-              {/* Counter */}
-              {images.length > 0 && (
-                <p className="mt-2 text-[0.65rem] text-white/40 font-mono tracking-widest">
-                  {String(current + 1).padStart(2, "0")} /{" "}
-                  {String(images.length).padStart(2, "0")}
+              {/* Right arrow */}
+              {hasNext && (
+                <button
+                  onClick={() => setCurrent((i) => i + 1)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-black/80 transition"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              )}
+
+              {/* Gradient */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+              {/* Text */}
+              <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
+                <p className="text-base font-semibold text-white leading-tight">
+                  {photo.title}
                 </p>
-              )}
+
+                {photo.category?.length > 0 && (
+                  <div className="flex gap-2 mt-1.5 flex-wrap">
+                    {photo.category.map((cat) => (
+                      <span
+                        key={cat}
+                        className="font-mono text-[0.54rem] tracking-[0.1em] uppercase text-white/60"
+                      >
+                        #{cat}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {images.length > 0 && (
+                  <p className="mt-2 text-[0.65rem] text-white/40 font-mono tracking-widest">
+                    {String(current + 1).padStart(2, "0")} /{" "}
+                    {String(images.length).padStart(2, "0")}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </motion.div>
