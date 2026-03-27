@@ -12,8 +12,8 @@ export const timelineData = [
     id: "1",
     role: "Mobile App Developer (React Native)",
     title: "NFT Marketplace dApp",
-    type: "Personal Project",
-    duration: "10.2024 — Present",
+    type: "Dự án cá nhân",
+    duration: "25/11/2025 — Hiện tại",
     images: [IMAGES.project1_1, IMAGES.project1_1, IMAGES.project1_1],
     icon: ShoppingBag,
     responsibilities: [

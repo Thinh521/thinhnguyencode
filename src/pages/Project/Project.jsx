@@ -21,19 +21,6 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .font-serif-display { font-family: 'Instrument Serif', serif; }
-    .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
-
-    .skill-chip {
-      display: inline-flex; align-items: center;
-      padding: 2px 10px; border-radius: 9999px;
-      border: 1px solid rgba(249,115,22,0.3);
-      background: rgba(249,115,22,0.06);
-      color: #f97316;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.63rem; letter-spacing: 0.05em; white-space: nowrap;
-    }
-
     .img-zoom { overflow: hidden; }
     .img-zoom img {
       transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.7s ease;
@@ -75,7 +62,6 @@ const FEATURED_ID = "1";
    FEATURED CARD
 ───────────────────────────────────────────── */
 function FeaturedCard({ item }) {
-  const Icon = item.icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 32 }}
@@ -86,7 +72,7 @@ function FeaturedCard({ item }) {
       <SectionLabel icon={Star}>Dự án nổi bật</SectionLabel>
 
       <Link to={`/projects/${item.id}`} className="block">
-        <div className="rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg hover:border-orange-400/30 hover:-translate-y-1.5 transition-all overflow-hidden">
+        <div className="rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg hover:border-primary-400/30 hover:-translate-y-1.5 transition-all overflow-hidden">
           <div className="grid md:grid-cols-[1fr_1fr] min-h-[360px]">
             {/* LEFT – Image */}
             <div className="img-zoom relative min-h-[240px] md:min-h-0">
@@ -99,18 +85,18 @@ function FeaturedCard({ item }) {
             </div>
 
             {/* RIGHT – Content */}
-            <div className="relative z-10 flex flex-col justify-between p-7 md:p-9">
+            <div className="relative z-10 flex flex-col justify-between p-5 md:p-7">
               <div>
-                <div className="flex items-center gap-2 mb-4 flex-wrap">
-                  <span className="font-mono-code text-orange-400 text-[0.6rem] tracking-widest uppercase border border-orange-400/30 px-2 py-0.5 rounded">
+                <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
+                  <span className="text-primary-400 text-xs tracking-widest uppercase border border-primary-400/30 px-2 py-0.5 rounded">
                     {item.type}
                   </span>
-                  <span className="text-neutral-500 text-[0.6rem] font-mono-code">
+                  <span className="text-neutral-500 text-xs">
                     {item.duration}
                   </span>
                 </div>
 
-                <h2 className="font-playfair text-neutral-900 dark:text-white text-2xl leading-tight mb-3">
+                <h2 className="font-playfair text-neutral-900 dark:text-white text-xl font-semibold leading-tight mb-3">
                   {item.title}
                 </h2>
 
@@ -120,24 +106,27 @@ function FeaturedCard({ item }) {
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {item.skills?.slice(0, 5).map((s) => (
-                    <span key={s} className="skill-chip">
+                    <span
+                      key={s}
+                      className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-primary-400/10 text-primary-400 text-[0.66rem] border border-primary-400/30"
+                    >
                       {s}
                     </span>
                   ))}
                   {item.skills?.length > 5 && (
-                    <span className="font-mono-code text-neutral-500 text-[0.6rem] self-center">
+                    <span className="text-neutral-500 text-xs self-center">
                       +{item.skills.length - 5} more
                     </span>
                   )}
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-white/6">
-                <span className="text-orange-400 font-semibold text-sm flex items-center gap-2">
+              <div className="flex items-center justify-between pt-4 border-t border-neutral-200/80 dark:border-neutral-700/80">
+                <span className="text-primary-400 font-semibold text-xs flex items-center gap-2">
                   Xem chi tiết
-                  <ArrowRight size={14} className="featured-arrow" />
+                  <ArrowRight size={14} />
                 </span>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   {item.links
                     ?.filter((l) => !l.internal)
                     .map((lnk) => (
@@ -148,12 +137,12 @@ function FeaturedCard({ item }) {
                         rel="noreferrer"
                         onClick={(e) => e.stopPropagation()}
                         title={lnk.label}
-                        className="text-neutral-500 hover:text-white transition-colors"
+                        className="text-neutral-900 dark:text-white hover:text-primary-400 hover:dark:text-primary-400 transition-colors"
                       >
                         {lnk.label.toLowerCase().includes("github") ? (
-                          <Github size={16} />
+                          <Github size={14} />
                         ) : (
-                          <ExternalLink size={16} />
+                          <ExternalLink size={14} />
                         )}
                       </a>
                     ))}
@@ -185,7 +174,7 @@ function ProjectCard({ item, index }) {
       }}
     >
       <Link to={`/projects/${item.id}`} className="block h-full">
-        <div className="group relative flex flex-col h-full rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg hover:border-orange-400/30 hover:-translate-y-1.5 transition-all overflow-hidden">
+        <div className="group relative flex flex-col h-full rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg hover:border-primary-400/30 hover:-translate-y-1.5 transition-all overflow-hidden">
           {/* Image */}
           <div className="img-zoom relative h-60">
             <img
@@ -197,59 +186,52 @@ function ProjectCard({ item, index }) {
 
             {Icon && (
               <div className="absolute top-3 right-3 bg-neutral-950/70 backdrop-blur-sm p-1.5 rounded-lg border border-white/10 z-10">
-                <Icon size={13} className="text-orange-400" />
+                <Icon size={13} className="text-white" />
               </div>
             )}
-
-            <span className="absolute bottom-2 left-4 font-serif-display text-[3.5rem] text-white/6 leading-none select-none pointer-events-none">
-              {String(index + 1).padStart(2, "0")}
-            </span>
           </div>
 
           {/* Body */}
           <div className="flex flex-col flex-1 p-5 gap-3">
             <div className="flex items-center justify-between">
-              <span className="font-mono-code text-orange-400/80 text-[0.58rem] tracking-widest uppercase border border-orange-400/20 px-2 py-0.5 rounded">
+              <span className="text-primary-400 text-xs tracking-widest uppercase border border-primary-400/30 px-2 py-0.5 rounded">
                 {item.type}
               </span>
-              <span className="text-neutral-600 text-[0.58rem] font-mono-code">
-                {item.duration}
-              </span>
+              <span className="text-neutral-500 text-xs">{item.duration}</span>
             </div>
 
-            <h3 className="text-black dark:text-white font-semibold text-[0.95rem] leading-snug group-hover:text-orange-300 transition-colors duration-300">
+            <h2 className="font-playfair text-neutral-900 dark:text-white text-xl font-semibold leading-tight">
               {item.title}
-            </h3>
+            </h2>
 
-            <p className="text-neutral-500 text-xs leading-relaxed line-clamp-2 flex-1">
-              {item.role}
+            <p className="text-neutral-500 text-sm leading-relaxed line-clamp-3">
+              {item.responsibilities?.[0]}
             </p>
 
-            <div className="flex flex-wrap gap-1.5 pt-1">
+            <div className="flex flex-wrap gap-2">
               {item.skills?.slice(0, 3).map((s) => (
-                <span key={s} className="skill-chip">
+                <span
+                  key={s}
+                  className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-primary-400/10 text-primary-400 text-[0.66rem] border border-primary-400/30"
+                >
                   {s}
                 </span>
               ))}
               {item.skills?.length > 3 && (
-                <span className="font-mono-code text-neutral-600 text-[0.58rem]">
-                  +{item.skills.length - 3}
+                <span className="text-neutral-500 text-xs self-center">
+                  +{item.skills.length - 5} more
                 </span>
               )}
             </div>
 
-            <div className="flex items-center justify-between pt-3 mt-auto border-t border-neutral-200/80 dark:border-neutral-700/80">
-              <span className="text-orange-400 text-xs font-medium flex items-center gap-1.5 group/cta">
+            <div className="flex items-center justify-between pt-4 border-t border-neutral-200/80 dark:border-neutral-700/80">
+              <span className="text-primary-400 font-semibold text-xs flex items-center gap-2">
                 Xem chi tiết
-                <ArrowRight
-                  size={12}
-                  className="transition-transform group-hover/cta:translate-x-1"
-                />
+                <ArrowRight size={14} />
               </span>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-4">
                 {item.links
                   ?.filter((l) => !l.internal)
-                  .slice(0, 2)
                   .map((lnk) => (
                     <a
                       key={lnk.url}
@@ -258,12 +240,12 @@ function ProjectCard({ item, index }) {
                       rel="noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       title={lnk.label}
-                      className="text-neutral-600 hover:text-neutral-300 transition-colors"
+                      className="text-neutral-900 dark:text-white hover:text-primary-400 hover:dark:text-primary-400 transition-colors"
                     >
                       {lnk.label.toLowerCase().includes("github") ? (
-                        <Github size={13} />
+                        <Github size={14} />
                       ) : (
-                        <ExternalLink size={13} />
+                        <ExternalLink size={14} />
                       )}
                     </a>
                   ))}
@@ -385,7 +367,7 @@ export default function Projects() {
                 className={`text-xs tracking-wider px-4 py-3 rounded-lg border border-primary-500/20 transition-all duration-200
                 ${
                   activeType === type
-                    ? "filter-active shadow-md shadow-orange-500/20"
+                    ? "filter-active shadow-md shadow-primary-500/20"
                     : "text-neutral-400 hover:border-primary-500 hover:text-neutral-900 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 "
                 }`}
               >
@@ -398,9 +380,11 @@ export default function Projects() {
 
       {/* ── RESULT STATS ── */}
       <div className="flex items-center justify-between mb-5">
-        <p className="font-mono-code text-neutral-600 text-[0.6rem] tracking-widest uppercase">
+        <p className="text-neutral-900 dark:text-white text-xs tracking-widest uppercase">
           {filtered.length} dự án
-          {search && <span className="text-orange-400 ml-2">· "{search}"</span>}
+          {search && (
+            <span className="text-primary-400 ml-2">· "{search}"</span>
+          )}
         </p>
         {(search || activeType !== "Tất cả") && (
           <button
@@ -408,7 +392,7 @@ export default function Projects() {
               setSearch("");
               setActiveType("Tất cả");
             }}
-            className="font-mono-code text-[0.6rem] text-neutral-500 hover:text-orange-400 transition-colors tracking-wider uppercase flex items-center gap-1"
+            className="text-neutral-900 dark:text-white text-xs hover:text-primary-400 transition-colors tracking-wider uppercase flex items-center gap-1"
           >
             <X size={10} /> Xoá bộ lọc
           </button>
@@ -416,7 +400,10 @@ export default function Projects() {
       </div>
 
       {/* ── PROJECT GRID ── */}
-      <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <motion.div
+        layout
+        className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10"
+      >
         <AnimatePresence mode="popLayout">
           {filtered.length === 0 ? (
             <EmptyState />
