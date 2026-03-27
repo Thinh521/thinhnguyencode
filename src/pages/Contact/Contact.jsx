@@ -26,7 +26,6 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .contact-root { font-family: 'Syne', sans-serif; }
     .font-serif-display { font-family: 'Instrument Serif', serif; }
     .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
 
@@ -540,8 +539,12 @@ const Contact = () => {
             <div>
               <SectionLabel icon={ExternalLink}>Kết nối</SectionLabel>
               <div className="space-y-4">
-                <Button to="/cv" leftIcon={<ExternalLink size={13} />}>
-                  Xem thêm
+                <Button
+                  to="/cv"
+                  leftIcon={<ExternalLink size={13} />}
+                  className="max-w-max"
+                >
+                  Resume / CV
                 </Button>
 
                 <SocialLinks />

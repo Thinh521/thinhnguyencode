@@ -291,8 +291,8 @@ export const Header = ({
         <header className="sm-header" aria-label="Navigation">
           {/* Logo */}
           <Link to="/" className="sm-logo pointer-events-auto">
-            <span className="sm-logo-text">
-              thinh<span className="sm-logo-dot">.</span>dev
+            <span className="sm-logo-text font-playfair text-2xl font-bold">
+              thjnh<span className="sm-logo-dot">.</span>dev
             </span>
           </Link>
 
