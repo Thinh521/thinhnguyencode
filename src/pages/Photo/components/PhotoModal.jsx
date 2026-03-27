@@ -1,35 +1,35 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Images } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const PhotoModal = ({ photo, onClose }) => {
   const [current, setCurrent] = useState(0);
 
-  // Reset index when photo changes
+  // reset index khi mở ảnh mới
   useEffect(() => {
     setCurrent(0);
   }, [photo?.id]);
 
-  // Keyboard navigation
+  // keyboard navigation
   useEffect(() => {
     if (!photo) return;
+
     const onKey = (e) => {
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowRight")
         setCurrent((i) => Math.min(i + 1, photo.images.length - 1));
       if (e.key === "ArrowLeft") setCurrent((i) => Math.max(i - 1, 0));
     };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [photo, onClose]);
 
-  // Lock scroll
+  // lock scroll
   useEffect(() => {
     if (photo) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => (document.body.style.overflow = "");
   }, [photo]);
 
   if (!photo) return null;
@@ -46,59 +46,29 @@ const PhotoModal = ({ photo, onClose }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
-        className="fixed inset-0 z-50 flex items-center justify-center"
-        style={{ background: "rgba(5,5,5,0.96)", backdropFilter: "blur(12px)" }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
         onClick={onClose}
       >
-        {/* Main container */}
         <motion.div
           key="modal-box"
-          initial={{ opacity: 0, scale: 0.96, y: 12 }}
+          initial={{ opacity: 0, scale: 0.96, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 8 }}
+          exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="relative flex flex-col"
-          style={{
-            maxWidth: "min(92vw, 860px)",
-            width: "100%",
-            maxHeight: "92vh",
-          }}
+          className="relative"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* ── TOP BAR ── */}
-          <div className="flex items-center justify-between px-1 pb-3">
-            <div>
-              <p className="text-lg text-white/90 leading-tight">
-                {photo.title}
-              </p>
-
-              {images.length > 1 && (
-                <p className="font-mono text-[0.6rem] tracking-[0.14em] uppercase text-white/30 mt-[2px]">
-                  {String(current + 1).padStart(2, "0")} /{" "}
-                  {String(images.length).padStart(2, "0")}
-                </p>
-              )}
-            </div>
-
+          {/* ───── IMAGE CONTAINER ───── */}
+          <div className="relative rounded-xl overflow-hidden bg-neutral-900">
+            {/* Close button */}
             <button
               onClick={onClose}
-              className="
-      flex items-center justify-center
-      w-9 h-9 rounded-full
-      bg-white/10 border border-white/10 text-white/60
-      transition-all duration-200
-      hover:bg-orange-500/15 hover:border-orange-500/40 hover:text-white
-    "
+              className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full flex items-center justify-center bg-black/50 backdrop-blur-md border border-white/10 text-white/70 hover:bg-orange-500/30 hover:text-white transition-all duration-200"
             >
-              <X size={15} />
+              <X size={18} />
             </button>
-          </div>
 
-          {/* ── IMAGE ── */}
-          <div
-            className="relative rounded-xl overflow-hidden"
-            style={{ background: "#0d0d0d" }}
-          >
+            {/* Image */}
             <AnimatePresence mode="wait">
               <motion.img
                 key={current}
@@ -108,96 +78,87 @@ const PhotoModal = ({ photo, onClose }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full object-contain"
-                style={{ maxHeight: "74vh", display: "block" }}
+                className="w-full max-h-[80vh] object-contain"
               />
             </AnimatePresence>
 
-            {/* Nav arrows */}
+            {/* Left arrow */}
             {hasPrev && (
               <button
                 onClick={() => setCurrent((i) => i - 1)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200"
-                style={{
-                  background: "rgba(0,0,0,0.6)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  color: "white",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(249,115,22,0.3)";
-                  e.currentTarget.style.borderColor = "rgba(249,115,22,0.5)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(0,0,0,0.6)";
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
-                }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-orange-500/30 transition"
               >
-                <ChevronLeft size={16} />
-              </button>
-            )}
-            {hasNext && (
-              <button
-                onClick={() => setCurrent((i) => i + 1)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200"
-                style={{
-                  background: "rgba(0,0,0,0.6)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  color: "white",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(249,115,22,0.3)";
-                  e.currentTarget.style.borderColor = "rgba(249,115,22,0.5)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(0,0,0,0.6)";
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
-                }}
-              >
-                <ChevronRight size={16} />
+                <ChevronLeft size={20} />
               </button>
             )}
 
+            {/* Right arrow */}
+            {hasNext && (
+              <button
+                onClick={() => setCurrent((i) => i + 1)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-orange-500/30 transition"
+              >
+                <ChevronRight size={20} />
+              </button>
+            )}
+
+            {/* Gradient overlay */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+            {/* Text overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+              <p className="text-lg md:text-xl font-semibold text-white leading-tight">
+                {photo.title}
+              </p>
+
+              {/* Tags */}
+              {photo.category?.length > 0 && (
+                <div className="flex gap-2 mt-2 flex-wrap">
+                  {photo.category.map((cat) => (
+                    <span
+                      key={cat}
+                      className="text-[0.6rem] uppercase tracking-[0.12em] text-orange-400/90 bg-orange-500/10 border border-orange-500/30 px-2.5 py-1 rounded-full backdrop-blur-sm"
+                    >
+                      {cat}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Counter */}
+              {images.length > 1 && (
+                <p className="mt-2 text-[0.65rem] text-white/40 font-mono tracking-widest">
+                  {String(current + 1).padStart(2, "0")} /{" "}
+                  {String(images.length).padStart(2, "0")}
+                </p>
+              )}
+            </div>
+
             {/* Progress bar */}
             {images.length > 1 && (
-              <div
-                className="absolute bottom-0 left-0 right-0 h-0.5"
-                style={{ background: "rgba(255,255,255,0.08)" }}
-              >
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10">
                 <div
-                  className="h-full transition-all duration-300"
+                  className="h-full bg-gradient-to-r from-orange-500 to-amber-400 transition-all duration-300"
                   style={{
                     width: `${((current + 1) / images.length) * 100}%`,
-                    background: "linear-gradient(to right, #f97316, #fbbf24)",
                   }}
                 />
               </div>
             )}
           </div>
 
-          {/* ── THUMBNAIL STRIP ── */}
+          {/* ───── THUMBNAILS ───── */}
           {images.length > 1 && (
-            <div
-              className="flex gap-2 mt-3 overflow-x-auto pb-1"
-              style={{ scrollbarWidth: "none" }}
-            >
+            <div className="flex gap-2 mt-3 overflow-x-auto pb-1 scrollbar-none">
               {images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className="shrink-0 overflow-hidden transition-all duration-200"
-                  style={{
-                    width: "56px",
-                    height: "40px",
-                    borderRadius: "6px",
-                    border:
-                      i === current
-                        ? "2px solid #f97316"
-                        : "2px solid rgba(255,255,255,0.08)",
-                    opacity: i === current ? 1 : 0.45,
-                    transform: i === current ? "scale(1.05)" : "scale(1)",
-                  }}
+                  className={`shrink-0 w-14 h-10 overflow-hidden rounded-md border transition-all duration-200 ${
+                    i === current
+                      ? "border-orange-500 scale-105 opacity-100"
+                      : "border-white/10 opacity-40 hover:opacity-70"
+                  }`}
                 >
                   <img
                     src={img}
@@ -205,30 +166,6 @@ const PhotoModal = ({ photo, onClose }) => {
                     className="w-full h-full object-cover"
                   />
                 </button>
-              ))}
-            </div>
-          )}
-
-          {/* ── TAGS ── */}
-          {photo.category?.length > 0 && (
-            <div className="flex gap-2 mt-3 flex-wrap">
-              {photo.category.map((cat) => (
-                <span
-                  key={cat}
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.58rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "rgba(249,115,22,0.7)",
-                    background: "rgba(249,115,22,0.07)",
-                    border: "1px solid rgba(249,115,22,0.2)",
-                    borderRadius: "99px",
-                    padding: "3px 10px",
-                  }}
-                >
-                  {cat}
-                </span>
               ))}
             </div>
           )}
