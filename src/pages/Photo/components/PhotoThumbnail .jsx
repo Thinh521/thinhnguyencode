@@ -13,11 +13,10 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
         ease: [0.22, 1, 0.36, 1],
       }}
       onClick={() => onOpen(photo)}
-      className="group relative block w-full cursor-pointer overflow-hidden mb-3 break-inside-avoid"
-      style={{ borderRadius: "12px", background: "#111" }}
+      className="group relative block w-full cursor-pointer overflow-hidden mb-3 break-inside-avoid rounded-xl"
     >
       {/* Image */}
-      <div className="overflow-hidden" style={{ borderRadius: "12px" }}>
+      <div className="overflow-hidden rounded-xl">
         <img
           src={photo.images[0]}
           alt={photo.title}
@@ -49,10 +48,7 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
         }}
       >
         <div className="flex items-end justify-between gap-2">
-          <p
-            className="text-white text-xs leading-snug line-clamp-2 flex-1"
-            style={{ fontFamily: "'Syne', sans-serif", fontWeight: 600 }}
-          >
+          <p className="text-white text-xs font-semibold leading-snug line-clamp-2 flex-1">
             {photo.title}
           </p>
 

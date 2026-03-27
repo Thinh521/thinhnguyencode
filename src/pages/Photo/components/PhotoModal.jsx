@@ -133,7 +133,7 @@ const PhotoModal = ({ photo, onClose }) => {
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="w-full object-contain"
-                style={{ maxHeight: "62vh", display: "block" }}
+                style={{ maxHeight: "74vh", display: "block" }}
               />
             </AnimatePresence>
 

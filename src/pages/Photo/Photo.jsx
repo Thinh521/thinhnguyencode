@@ -171,7 +171,7 @@ export default function Photo() {
   };
 
   return (
-    <article className="photo-root min-h-screen pb-16">
+    <article className="min-h-screen pb-16">
       <FontLoader />
 
       {/* ── PAGE HEADER ── */}
@@ -185,14 +185,14 @@ export default function Photo() {
           title="Ảnh & tin."
           subtitle="Những bức ảnh mình chụp qua ống kính nhiệm màu"
           rightContent={
-            <span className="font-serif-display text-[2.5rem] hidden sm:block">
+            <span className="font-playfair text-5xl hidden sm:block">
               {String(PhotoData.length).padStart(2, "0")}
             </span>
           }
         />
       </motion.div>
 
-      <div className="max-w-6xl mx-auto space-y-12">
+      <div className="space-y-12">
         {/* ── STORIES ── */}
         <section>
           <SectionLabel icon={Camera} count={storiesData.length}>
@@ -276,15 +276,18 @@ export default function Photo() {
 
           {/* Results count */}
           <div className="flex items-center justify-between mb-5">
-            <p className="font-mono-code text-[0.6rem] text-black dark:text-white tracking-widest uppercase">
+            <p className="text-xs text-neutral-900 dark:text-white tracking-widest uppercase">
               {filteredPhotos.length} bộ sưu tập
               {search && (
                 <span className="text-orange-400 ml-2">· "{search}"</span>
               )}
             </p>
             <div className="flex items-center gap-1.5">
-              <ImageIcon size={11} className="text-black dark:text-white" />
-              <span className="font-mono-code text-[0.6rem] text-black dark:text-white">
+              <ImageIcon
+                size={14}
+                className="text-neutral-900 dark:text-white"
+              />
+              <span className="text-xs text-neutral-900 dark:text-white">
                 {totalImages} ảnh
               </span>
             </div>
