@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { Images } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
   return (
@@ -51,73 +51,19 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
           <p className="text-white text-xs font-semibold leading-snug line-clamp-2 flex-1">
             {photo.title}
           </p>
-
-          {photo.images.length > 1 && (
-            <div
-              className="flex items-center gap-1 shrink-0"
-              style={{
-                background: "rgba(249,115,22,0.2)",
-                border: "1px solid rgba(249,115,22,0.4)",
-                borderRadius: "99px",
-                padding: "2px 7px",
-              }}
-            >
-              <Images size={9} className="text-orange-400" />
-              <span
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.58rem",
-                  color: "#fb923c",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                {photo.images.length}
-              </span>
-            </div>
-          )}
         </div>
-
-        {/* Category tags */}
         {photo.category?.length > 0 && (
-          <div className="flex gap-1 mt-1.5 flex-wrap">
+          <div className="flex gap-1 mt-1 flex-wrap font-mono text-[0.54rem] tracking-[0.1em] uppercase text-white/60">
             {photo.category.slice(0, 2).map((cat) => (
-              <span
-                key={cat}
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.52rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.4)",
-                }}
-              >
-                {cat}
-              </span>
+              <span key={cat}>{cat}</span>
             ))}
           </div>
         )}
       </div>
 
       {/* Top-right hover arrow */}
-      <div
-        className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
-        style={{
-          background: "rgba(249,115,22,0.85)",
-          backdropFilter: "blur(6px)",
-          transform: "scale(0.8)",
-          transition: "opacity 0.3s, transform 0.3s",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1)")}
-      >
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-          <path
-            d="M2 8L8 2M8 2H3M8 2V7"
-            stroke="white"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+      <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full flex items-center justify-center bg-neutral-900/0 backdrop-blur-sm opacity-0 scale-75 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100">
+        <ArrowUpRight size={12} className="text-white" />
       </div>
     </motion.div>
   );

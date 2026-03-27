@@ -68,27 +68,12 @@ const PhotoModal = ({ photo, onClose }) => {
           {/* ── TOP BAR ── */}
           <div className="flex items-center justify-between px-1 pb-3">
             <div>
-              <p
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: "clamp(1rem, 3vw, 1.25rem)",
-                  color: "rgba(255,255,255,0.9)",
-                  lineHeight: 1.2,
-                }}
-              >
+              <p className="text-lg text-white/90 leading-tight">
                 {photo.title}
               </p>
+
               {images.length > 1 && (
-                <p
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.14em",
-                    color: "rgba(255,255,255,0.3)",
-                    textTransform: "uppercase",
-                    marginTop: "2px",
-                  }}
-                >
+                <p className="font-mono text-[0.6rem] tracking-[0.14em] uppercase text-white/30 mt-[2px]">
                   {String(current + 1).padStart(2, "0")} /{" "}
                   {String(images.length).padStart(2, "0")}
                 </p>
@@ -97,22 +82,13 @@ const PhotoModal = ({ photo, onClose }) => {
 
             <button
               onClick={onClose}
-              className="flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200"
-              style={{
-                background: "rgba(255,255,255,0.07)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.6)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(249,115,22,0.15)";
-                e.currentTarget.style.borderColor = "rgba(249,115,22,0.4)";
-                e.currentTarget.style.color = "#fff";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.07)";
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
-                e.currentTarget.style.color = "rgba(255,255,255,0.6)";
-              }}
+              className="
+      flex items-center justify-center
+      w-9 h-9 rounded-full
+      bg-white/10 border border-white/10 text-white/60
+      transition-all duration-200
+      hover:bg-orange-500/15 hover:border-orange-500/40 hover:text-white
+    "
             >
               <X size={15} />
             </button>
