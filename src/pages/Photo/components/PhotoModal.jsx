@@ -106,69 +106,34 @@ const PhotoModal = ({ photo, onClose }) => {
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
             {/* Text overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
-              <p className="text-lg md:text-xl font-semibold text-white leading-tight">
+            <div className="absolute bottom-0 left-0 right-0 py-2 px-4 z-10">
+              <p className="text-base font-semibold text-white leading-tight">
                 {photo.title}
               </p>
 
               {/* Tags */}
               {photo.category?.length > 0 && (
-                <div className="flex gap-2 mt-2 flex-wrap">
+                <div className="flex gap-2 mt-1.5 flex-wrap">
                   {photo.category.map((cat) => (
                     <span
                       key={cat}
-                      className="text-[0.6rem] uppercase tracking-[0.12em] text-orange-400/90 bg-orange-500/10 border border-orange-500/30 px-2.5 py-1 rounded-full backdrop-blur-sm"
+                      className="font-mono text-[0.54rem] tracking-[0.1em] uppercase text-white/60"
                     >
-                      {cat}
+                      #{cat}
                     </span>
                   ))}
                 </div>
               )}
 
               {/* Counter */}
-              {images.length > 1 && (
+              {images.length > 0 && (
                 <p className="mt-2 text-[0.65rem] text-white/40 font-mono tracking-widest">
                   {String(current + 1).padStart(2, "0")} /{" "}
                   {String(images.length).padStart(2, "0")}
                 </p>
               )}
             </div>
-
-            {/* Progress bar */}
-            {images.length > 1 && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10">
-                <div
-                  className="h-full bg-gradient-to-r from-orange-500 to-amber-400 transition-all duration-300"
-                  style={{
-                    width: `${((current + 1) / images.length) * 100}%`,
-                  }}
-                />
-              </div>
-            )}
           </div>
-
-          {/* ───── THUMBNAILS ───── */}
-          {images.length > 1 && (
-            <div className="flex gap-2 mt-3 overflow-x-auto pb-1 scrollbar-none">
-              {images.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`shrink-0 w-14 h-10 overflow-hidden rounded-md border transition-all duration-200 ${
-                    i === current
-                      ? "border-orange-500 scale-105 opacity-100"
-                      : "border-white/10 opacity-40 hover:opacity-70"
-                  }`}
-                >
-                  <img
-                    src={img}
-                    alt={`thumb-${i}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
-          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>

@@ -55,7 +55,7 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
         {photo.category?.length > 0 && (
           <div className="flex gap-1 mt-1 flex-wrap font-mono text-[0.54rem] tracking-[0.1em] uppercase text-white/60">
             {photo.category.slice(0, 2).map((cat) => (
-              <span key={cat}>{cat}</span>
+              <span key={cat}>#{cat}</span>
             ))}
           </div>
         )}
