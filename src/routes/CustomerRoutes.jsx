@@ -12,6 +12,7 @@ import Cv from "../pages/Cv/Cv";
 import ProjectDetail from "../pages/Project/ProjectDetail";
 import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 import Ratings from "../pages/Ratings/Ratings";
+import DetailLayout from "../Layouts/DetailLayout";
 
 const CustomerRoutes = () => {
   return (
@@ -23,14 +24,17 @@ const CustomerRoutes = () => {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="projects" element={<Project />} />
-          <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="timeline" element={<Timeline />} />
           <Route path="photos" element={<Photo />} />
           <Route path="writing" element={<Writing />} />
-          <Route path="/writing/:id" element={<WritingDetail />} />
           <Route path="contact" element={<Contact />} />
           <Route path="ratings" element={<Ratings />} />
+        </Route>
+
+        <Route element={<DetailLayout />}>
           <Route path="cv" element={<Cv />} />
+          <Route path="/writing/:id" element={<WritingDetail />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
         </Route>
       </Routes>
     </>
