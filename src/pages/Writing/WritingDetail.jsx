@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import StorytData from "../../data/StoryData";
 import SectionLabel from "../../components/SectionLabel";
+import Featuredwriting from "../../components/Project/Writing/Featuredwriting";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -29,10 +30,6 @@ import SectionLabel from "../../components/SectionLabel";
 const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
-
-    .wd-root { font-family: 'Syne', sans-serif; }
-    .font-serif-display { font-family: 'Instrument Serif', serif; }
-    .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
 
     .section-rule {
       height: 1px;
@@ -91,41 +88,18 @@ const FontLoader = () => (
     }
     .prose-body p { margin-bottom: 1.5em; }
     .prose-body p:first-child::first-letter {
-      font-family: 'Instrument Serif', serif;
       font-size: 3.8em; line-height: 0.75;
-      float: left; margin-right: 0.08em; margin-top: 0.05em;
+      float: left; margin-right: 0.08em; margin-top: 4px;
       color: #f97316;
     }
 
     .related-card {
-      border: 1px solid rgba(255,255,255,0.07); border-radius: 12px;
-      overflow: hidden; background: rgba(255,255,255,0.02);
       text-decoration: none; display: block;
       transition: border-color 0.3s, transform 0.3s;
     }
     .related-card:hover {
       border-color: rgba(249,115,22,0.3);
       transform: translateY(-4px);
-    }
-    .related-card-img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s ease, filter 0.5s;
-      filter: brightness(0.8) saturate(0.7);
-    }
-    .related-card:hover .related-card-img {
-      transform: scale(1.06);
-      filter: brightness(0.92) saturate(1);
-    }
-
-    .nav-card {
-      border: 1px solid rgba(255,255,255,0.07); border-radius: 12px;
-      background: rgba(255,255,255,0.02);
-      transition: border-color 0.25s, background 0.25s;
-      text-decoration: none; display: block; padding: 16px;
-    }
-    .nav-card:hover {
-      border-color: rgba(249,115,22,0.3);
-      background: rgba(249,115,22,0.03);
     }
 
     .grain::after {
@@ -199,7 +173,7 @@ const WritingDetail = () => {
   const prevStory = storyIndex > 0 ? StorytData[storyIndex - 1] : null;
   const nextStory =
     storyIndex < StorytData.length - 1 ? StorytData[storyIndex + 1] : null;
-  const related = StorytData.filter((s) => s.id !== story?.id).slice(0, 3);
+  const related = StorytData.filter((s) => s.id !== story?.id).slice(0, 2);
 
   const { scrollY } = useScroll();
   const heroImgY = useTransform(scrollY, [0, 400], [0, 70]);
@@ -227,99 +201,24 @@ const WritingDetail = () => {
     : [story.description];
 
   return (
-    <article className="wd-root min-h-screen">
+    <article className="min-h-screen">
       <FontLoader />
       <ReadingProgress />
 
-      {/* ── STICKY BAR ── */}
-      <div className="flex items-center justify-between mb-4">
-        <button
-          className="back-btn flex items-center gap-2 text-black dark:text-white"
-          onClick={() => navigate("/writing")}
-        >
-          <ArrowLeft size={13} /> Câu chuyện
-        </button>
-
-        <span className="font-serif-display text-sm text-black dark:text-white line-clamp-1 max-w-xs hidden sm:block">
-          {story.title}
-        </span>
-
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            onClick={handleShare}
-            className={`action-btn ${copied ? "liked" : ""}`}
-            style={
-              copied
-                ? {
-                    borderColor: "rgba(74,222,128,0.4)",
-                    color: "#4ade80",
-                    background: "rgba(74,222,128,0.08)",
-                  }
-                : {}
-            }
-          >
-            {copied ? <Check size={13} /> : <Share2 size={13} />}
-          </button>
-          {prevStory && (
-            <Link
-              to={`/writing/${prevStory.id}`}
-              className="action-btn"
-              title={prevStory.title}
-            >
-              <ChevronLeft size={14} />
-            </Link>
-          )}
-          {nextStory && (
-            <Link
-              to={`/writing/${nextStory.id}`}
-              className="action-btn"
-              title={nextStory.title}
-            >
-              <ChevronRight size={14} />
-            </Link>
-          )}
-        </div>
-      </div>
-
       {/* ── HERO ── */}
-      <div
-        className="relative overflow-hidden"
-        style={{ height: "clamp(300px, 52vh, 500px)" }}
-      >
-        {/* Blurred BG */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${story.imgae})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "blur(48px) brightness(0.16) saturate(0.4)",
-            transform: "scale(1.12)",
-          }}
-        />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-neutral-950" />
-
+      <div className="relative overflow-hidden h-[300px] md:h-[500px]">
         {/* Parallax image */}
         <motion.div style={{ y: heroImgY }} className="absolute inset-0 z-0">
           <img
-            src={story.imgae}
+            src={story.image}
             alt={story.title}
             className="w-full h-full object-cover"
             style={{ filter: "brightness(0.5) saturate(0.7)" }}
           />
         </motion.div>
 
-        {/* Gradient */}
-        <div
-          className="absolute inset-0 z-10"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(10,10,10,0.97) 100%)",
-          }}
-        />
-
         {/* Hero text */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 max-w-3xl mx-auto px-4 md:px-8 pb-8">
+        <div className="absolute bottom-0 left-0 right-0 z-20 lg:px-[14rem] px-[1.4rem] pb-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -344,13 +243,7 @@ const WritingDetail = () => {
             </div>
 
             {/* Title */}
-            <h1
-              className="text-white leading-tight mb-3"
-              style={{
-                fontFamily: "'Instrument Serif', serif",
-                fontSize: "clamp(1.6rem, 5vw, 2.8rem)",
-              }}
-            >
+            <h1 className="font-playfair text-white text-4xl line-clamp-1 leading-tight mb-3">
               {story.title}
             </h1>
 
@@ -392,7 +285,7 @@ const WritingDetail = () => {
       </div>
 
       {/* ── BODY ── */}
-      <div className="max-w-3xl mx-auto px-4 md:px-8 pb-20">
+      <div className="lg:px-[14rem] px-[1.4rem] pb-20">
         {/* Drop-cap pull quote */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -410,15 +303,7 @@ const WritingDetail = () => {
             className="text-orange-400 mb-2"
             style={{ opacity: 0.55 }}
           />
-          <p
-            className="relative z-10 text-black dark:text-white"
-            style={{
-              fontFamily: "'Instrument Serif', serif",
-              fontStyle: "italic",
-              fontSize: "clamp(0.95rem, 2.5vw, 1.15rem)",
-              lineHeight: 1.8,
-            }}
-          >
+          <p className="relative z-10 text-neutral-900 dark:text-white italic leading-[1.8] text-lg">
             {paragraphs[0]?.split(".").slice(0, 2).join(".") + "."}
           </p>
         </motion.div>
@@ -443,17 +328,7 @@ const WritingDetail = () => {
             {story.title_2.split(/[,，]/).map((tag) => (
               <span
                 key={tag}
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.6rem",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "rgba(249,115,22,0.7)",
-                  background: "rgba(249,115,22,0.07)",
-                  border: "1px solid rgba(249,115,22,0.2)",
-                  borderRadius: "99px",
-                  padding: "4px 12px",
-                }}
+                className="text-xs tracking-wider uppercase text-primary-500/70 bg-primary-500/10 border border-primary-500/20 rounded-full px-4 py-1"
               >
                 {tag.trim()}
               </span>
@@ -466,26 +341,19 @@ const WritingDetail = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex items-center justify-between mt-10 pt-6"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
+          className="flex items-center justify-between mt-10 pt-6 border-t border-neutral-200/80 dark:border-neutral-700/80"
         >
           <div className="flex items-center gap-2 flex-wrap">
             <motion.button
               onClick={handleLike}
               whileTap={{ scale: 0.9 }}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl transition-all"
-              style={{
-                border: liked
-                  ? "1px solid rgba(239,68,68,0.35)"
-                  : "1px solid rgba(255,255,255,0.1)",
-                background: liked
-                  ? "rgba(239,68,68,0.08)"
-                  : "rgba(255,255,255,0.03)",
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.64rem",
-                letterSpacing: "0.1em",
-                color: liked ? "#ef4444" : "rgba(255,255,255,0.4)",
-              }}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all text-xs tracking-wider
+                          ${
+                            liked
+                              ? "border border-red-500/40 bg-red-500/10 text-red-500"
+                              : "border text-neutral-900 dark:text-white border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20"
+                          }
+                        `}
             >
               <Heart
                 size={12}
@@ -496,17 +364,10 @@ const WritingDetail = () => {
 
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl transition-all"
-              style={{
-                border: "1px solid rgba(255,255,255,0.1)",
-                background: "rgba(255,255,255,0.03)",
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.64rem",
-                letterSpacing: "0.1em",
-                color: copied
-                  ? "rgba(74,222,128,0.8)"
-                  : "rgba(255,255,255,0.4)",
-              }}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all text-xs tracking-[0.1em]
+                          border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20
+                          ${copied ? "text-green-600" : "text-neutral-900 dark:text-white"}
+                        `}
             >
               {copied ? <Check size={12} /> : <Share2 size={12} />}
               {copied ? "Đã sao chép!" : "Chia sẻ"}
@@ -514,11 +375,8 @@ const WritingDetail = () => {
           </div>
 
           <div className="flex items-center gap-1.5">
-            <Clock size={11} style={{ color: "rgba(255,255,255,0.2)" }} />
-            <span
-              className="font-mono-code text-[0.57rem]"
-              style={{ color: "rgba(255,255,255,0.2)" }}
-            >
+            <Clock size={11} className="text-neutral-900 dark:text-white" />
+            <span className="text-xs text-neutral-900 dark:text-white">
               {minutes} phút đọc
             </span>
           </div>
@@ -530,22 +388,25 @@ const WritingDetail = () => {
         {/* ── PREV / NEXT ── */}
         <div className="grid grid-cols-2 gap-4 mb-10">
           {prevStory ? (
-            <Link to={`/writing/${prevStory.id}`} className="nav-card">
-              <p
-                className="font-mono-code text-[0.55rem] tracking-widest uppercase flex items-center gap-1 mb-2"
-                style={{ color: "rgba(255,255,255,0.22)" }}
-              >
-                <ChevronLeft size={9} /> Bài trước
-              </p>
-              <p className="text-white text-xs font-semibold line-clamp-2 leading-snug">
-                {prevStory.title}
-              </p>
-              <p
-                className="font-mono-code text-[0.55rem] mt-1"
-                style={{ color: "rgba(249,115,22,0.5)" }}
-              >
-                {prevStory.date}
-              </p>
+            <Link
+              to={`/writing/${prevStory.id}`}
+              className="flex items-center gap-3 p-4 rounded-xl no-underline
+             border border-neutral-200/80 dark:border-neutral-700/80
+             bg-neutral-200/20 dark:bg-neutral-700/20
+             transition-colors duration-[250ms]
+             hover:border-primary-500/20 hover:bg-primary-500/10
+             dark:hover:border-primary-500/30 dark:hover:bg-primary-500/10"
+            >
+              <ChevronLeft size={16} className="mt-0.5 shrink-0" />
+
+              <div>
+                <p className="text-xs text-neutral-600 tracking-widest uppercase flex items-center gap-1 mb-2">
+                  Bài trước
+                </p>
+                <p className="text-neutral-900 dark:text-white text-xs font-semibold line-clamp-2 leading-snug">
+                  {prevStory.title}
+                </p>
+              </div>
             </Link>
           ) : (
             <div />
@@ -554,23 +415,23 @@ const WritingDetail = () => {
           {nextStory ? (
             <Link
               to={`/writing/${nextStory.id}`}
-              className="nav-card text-right"
+              className="flex items-center gap-3 p-4 rounded-xl no-underline
+             border border-neutral-200/80 dark:border-neutral-700/80
+             bg-neutral-200/20 dark:bg-neutral-700/20
+             transition-colors duration-[250ms]
+             hover:border-primary-500/20 hover:bg-primary-500/10
+             dark:hover:border-primary-500/30 dark:hover:bg-primary-500/10"
             >
-              <p
-                className="font-mono-code text-[0.55rem] tracking-widest uppercase flex items-center justify-end gap-1 mb-2"
-                style={{ color: "rgba(255,255,255,0.22)" }}
-              >
-                Bài tiếp <ChevronRight size={9} />
-              </p>
-              <p className="text-white text-xs font-semibold line-clamp-2 leading-snug">
-                {nextStory.title}
-              </p>
-              <p
-                className="font-mono-code text-[0.55rem] mt-1"
-                style={{ color: "rgba(249,115,22,0.5)" }}
-              >
-                {nextStory.date}
-              </p>
+              <div className="flex-1 text-right">
+                <p className="text-xs tracking-widest text-neutral-600 uppercase mb-2">
+                  Bài tiếp
+                </p>
+                <p className="text-neutral-900 dark:text-white text-xs font-semibold line-clamp-2 leading-snug">
+                  {nextStory.title}
+                </p>
+              </div>
+
+              <ChevronRight size={16} className="shrink-0" />
             </Link>
           ) : (
             <div />
@@ -581,41 +442,9 @@ const WritingDetail = () => {
         {related.length > 0 && (
           <section>
             <SectionLabel icon={BookOpen}>Bài viết khác</SectionLabel>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {related.map((s, i) => (
-                <motion.div
-                  key={s.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.45 }}
-                >
-                  <Link to={`/writing/${s.id}`} className="related-card">
-                    <div
-                      className="relative overflow-hidden"
-                      style={{ height: "100px" }}
-                    >
-                      <img
-                        src={s.imgae}
-                        alt={s.title}
-                        loading="lazy"
-                        className="related-card-img"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 to-transparent" />
-                    </div>
-                    <div className="p-3">
-                      <span
-                        className="font-mono-code text-[0.52rem] tracking-widest uppercase"
-                        style={{ color: "rgba(249,115,22,0.55)" }}
-                      >
-                        {s.date}
-                      </span>
-                      <p className="text-white text-xs font-semibold mt-0.5 line-clamp-2 leading-snug">
-                        {s.title}
-                      </p>
-                    </div>
-                  </Link>
-                </motion.div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {related.map((item, index) => (
+                <Featuredwriting key={item.id} item={item} index={index} />
               ))}
             </div>
           </section>

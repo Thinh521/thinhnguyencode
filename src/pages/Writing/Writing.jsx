@@ -5,6 +5,7 @@ import { User, BookOpen, ArrowRight, Search, X, Feather } from "lucide-react";
 import StorytData from "../../data/StoryData";
 import PageHeader from "../../components/layout/PageHeader";
 import SectionLabel from "../../components/SectionLabel";
+import Featuredwriting from "../../components/Project/Writing/Featuredwriting";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -85,7 +86,7 @@ function FeaturedCard({ item }) {
           <div className="grid md:grid-cols-[1fr_1fr] min-h-[320px]">
             {/* Image */}
             <div className="img-zoom relative min-h-[220px] md:min-h-0">
-              <img src={item.imgae} alt={item.title} loading="eager" />
+              <img src={item.image} alt={item.title} loading="eager" />
             </div>
 
             {/* Content */}
@@ -139,116 +140,6 @@ function FeaturedCard({ item }) {
                   <ArrowRight size={11} className="read-arrow" />
                 </span>
               </div>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   REGULAR CARD
-───────────────────────────────────────────── */
-function StoryCard({ item, index }) {
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{
-        delay: index * 0.07,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      style={{ height: "100%" }}
-    >
-      <Link to={`/writing/${item.id}`} className="block h-full">
-        <div className="story-card relative rounded-xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-md hover:shadow-lg overflow-hidden">
-          {/* Image */}
-          <div className="img-zoom relative" style={{ height: "200px" }}>
-            <img src={item.imgae} alt={item.title} loading="lazy" />
-
-            {/* Date badge */}
-            <div className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur border border-white/10 text-[0.68rem] tracking-[0.08em] text-white">
-              {item.date}
-            </div>
-
-            {/* Index watermark */}
-            <span
-              className="absolute bottom-2 left-3 select-none pointer-events-none z-10"
-              style={{
-                fontFamily: "'Instrument Serif', serif",
-                fontSize: "3.5rem",
-                lineHeight: 1,
-                color: "rgba(255,255,255,0.06)",
-              }}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          </div>
-
-          {/* Body */}
-          <div className="flex flex-col flex-1 p-5 gap-3 relative z-10">
-            {item.category && (
-              <span
-                className="font-mono-code text-[0.56rem] tracking-widest uppercase"
-                style={{ color: "rgba(249,115,22,0.6)" }}
-              >
-                {item.category}
-              </span>
-            )}
-
-            <h3
-              className="text-black dark:text-white font-semibold leading-snug line-clamp-2 transition-colors duration-300"
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontSize: "0.95rem",
-                lineHeight: 1.35,
-              }}
-            >
-              {item.title}
-            </h3>
-
-            {item.title_2 && (
-              <p
-                className="line-clamp-1 leading-snug text-neutral-400 "
-                style={{
-                  fontStyle: "italic",
-                  fontSize: "0.85rem",
-                  marginTop: "-6px",
-                }}
-              >
-                {item.title_2}
-              </p>
-            )}
-
-            <p className="text-xs leading-relaxed line-clamp-2 flex-1 text-justify text-neutral-500 ">
-              {item.description}
-            </p>
-
-            {/* Footer */}
-            <div className="flex items-center justify-between pt-3 mt-auto border-t border-neutral-200/80 dark:border-neutral-700/80">
-              <div className="flex items-center gap-2">
-                <div
-                  className="w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{
-                    background: "rgba(249,115,22,0.12)",
-                    border: "1px solid rgba(249,115,22,0.22)",
-                  }}
-                >
-                  <User size={10} className="text-orange-400" />
-                </div>
-                <span className="text-xs font-medium text-black dark:text-white ">
-                  {item.author}
-                </span>
-              </div>
-
-              <span className="text-xs uppercase tracking-wider text-neutral-900 dark:text-white hover:text-primary-400 hover:dark:text-primary-400 transition-colors flex items-center gap-1">
-                Đọc ngay
-                <ArrowRight size={11} className="read-arrow" />
-              </span>
             </div>
           </div>
         </div>
@@ -367,7 +258,7 @@ const Writing = () => {
               <EmptyState key="empty" onReset={() => setSearch("")} />
             ) : (
               filtered.map((item, index) => (
-                <StoryCard key={item.id} item={item} index={index} />
+                <Featuredwriting key={item.id} item={item} index={index} />
               ))
             )}
           </AnimatePresence>

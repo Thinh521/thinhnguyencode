@@ -14,7 +14,7 @@ export default function FeaturedProjects({
           {/* Image */}
           <div className="relative overflow-hidden">
             <img
-              src={project.images?.[0]}
+              src={project.image}
               alt={project.title}
               loading="lazy"
               className="block w-full h-44 object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:brightness-95 group-hover:saturate-105"
