@@ -22,7 +22,7 @@ export default function FeaturedProjects({
 
             {/* Type badge */}
             <div className="absolute top-3 left-3">
-              <span className="font-mono text-[0.55rem] tracking-widest uppercase px-2 py-0.5 rounded bg-black/60 text-white">
+              <span className="text-[0.55rem] tracking-widest uppercase px-2 py-0.5 rounded bg-black/60 backdrop-blur border border-white/10 text-white">
                 {project.type}
               </span>
             </div>
@@ -30,16 +30,20 @@ export default function FeaturedProjects({
 
           {/* Content */}
           <div className="p-4">
-            <p className="text-black dark:text-white font-semibold text-sm leading-snug mb-1 line-clamp-1">
-              {project.title}
-            </p>
-
-            <p className="font-mono text-[0.58rem] text-neutral-500 dark:text-neutral-400 tracking-wide">
+            <p className="text-xs text-neutral-500 tracking-wide mb-2">
               {project.duration}
             </p>
 
+            <p className="text-neutral-900 dark:text-white font-semibold text-sm leading-snug mb-2 line-clamp-1">
+              {project.title}
+            </p>
+
+            <p className="text-neutral-500 text-xs leading-snug mb-1 line-clamp-2">
+              {project.responsibilities}
+            </p>
+
             {/* Skills */}
-            <div className="flex flex-wrap gap-1 mt-3">
+            <div className="flex flex-wrap gap-1 mt-3 pt-3 border-t border-neutral-200/80 dark:border-neutral-700/80">
               {project.skills?.slice(0, 3).map((s) => (
                 <span
                   key={s}

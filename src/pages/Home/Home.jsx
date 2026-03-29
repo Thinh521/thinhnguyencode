@@ -25,6 +25,8 @@ import FeaturedProjects from "../../components/Project/FeaturedProjects/Featured
 import TechMarquee from "./components/TechMarquee";
 import BottomCTA from "./components/BottomCTA";
 import AboutSection from "./components/AboutSection";
+import StorytData from "../../data/StoryData";
+import Featuredwriting from "../../components/Project/Writing/Featuredwriting";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -341,6 +343,45 @@ export default function Home() {
               onOpen={setSelectedPhoto}
             />
           ))}
+        </motion.div>
+      </motion.section>
+
+      {/* ══════════════════════════════════════
+          FEATURED PHOTOS
+      ══════════════════════════════════════ */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mb-16"
+      >
+        <div className="s-rule mb-10" />
+        <div className="flex items-center justify-between">
+          <SectionLabel icon={Code2}>Câu chuyện</SectionLabel>
+          <Link
+            to="/writing"
+            className="flex items-center gap-1.5 text-xs uppercase transition-colors text-black dark:text-white hover:text-primary-500"
+          >
+            Tất cả <ArrowRight size={11} />
+          </Link>
+        </div>
+
+        <motion.div
+          key="grid"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+        >
+          {StorytData.slice(0, 4).length === 0 ? (
+            <EmptyState />
+          ) : (
+            StorytData.slice(0, 4).map((item, index) => (
+              <Featuredwriting key={item.id} item={item} index={index} />
+            ))
+          )}
         </motion.div>
       </motion.section>
 

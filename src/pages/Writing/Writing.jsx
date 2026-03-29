@@ -252,7 +252,7 @@ const Writing = () => {
         </div>
 
         {/* ── GRID ── */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.length === 0 ? (
               <EmptyState key="empty" onReset={() => setSearch("")} />
