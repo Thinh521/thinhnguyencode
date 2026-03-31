@@ -41,8 +41,6 @@ const FontLoader = () => (
       display: inline-flex; align-items: center; gap: 6px;
       padding: 7px 14px;
       border-radius: 99px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
       cursor: pointer; white-space: nowrap;
       transition: all 0.2s ease;
     }
@@ -234,12 +232,7 @@ export default function Photo() {
                 placeholder="Tìm ảnh..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="bg-transparent flex-1 text-sm outline-none font-mono-code"
-                style={{
-                  color: "white",
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.78rem",
-                }}
+                className="bg-transparent flex-1 text-xs outline-none"
               />
               {search && (
                 <button
@@ -260,7 +253,7 @@ export default function Photo() {
                   <button
                     key={cat}
                     onClick={() => setSelectedCat(cat)}
-                    className={`cat-pill bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl ${selectedCat === cat ? "active" : ""}`}
+                    className={`cat-pill text-xs bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl ${selectedCat === cat ? "active" : ""}`}
                   >
                     <Icon size={11} />
                     {cat}

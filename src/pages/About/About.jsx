@@ -42,8 +42,9 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .font-serif-display { font-family: 'Instrument Serif', serif; }
-    .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none; 
+    }
 
     /* Skill chip */
     .skill-item {
@@ -100,23 +101,6 @@ const FontLoader = () => (
       position: absolute; inset: 0; pointer-events: none; z-index: 1;
       background-image: url("data?:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       background-size: 150px;
-    }
-
-    /* resume btn */
-    .resume-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 22px; border-radius: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-      background: #f97316;
-      border: 1px solid #f97316;
-      color: #fff;
-      text-decoration: none;
-      transition: background 0.25s, box-shadow 0.25s;
-    }
-    .resume-btn:hover {
-      background: rgba(249,115,22,0.28);
-      box-shadow: 0 0 24px rgba(249,115,22,0.2);
     }
 
     /* scroll fade */
@@ -218,44 +202,65 @@ const STATS = [
    CONTENT PANELS
 ───────────────────────────────────────────── */
 const StoryPanel = () => (
-  <div className="space-y-6">
+  <div className="space-y-8">
     <div>
-      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-        <span className="w-4 h-px bg-primary-400 inline-block" /> Câu chuyện
+      {/* Section label */}
+      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
+        <span className="w-5 h-px bg-primary-400 inline-block" /> Câu chuyện
       </p>
+
+      {/* Title */}
       <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
         Xin chào, mình là
         <span className="gradient-text"> Thịnh</span>
         <span className="text-primary-500">.</span>
       </h2>
-      <p className="text-sm text-justify">
-        Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của mình.
-        Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang
-        Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Hiện tại mình
-        đang sinh sống và làm việc tại TP.HCM. Đây là giai đoạn mình đang dồn
-        hết tâm huyết của mình cho các dự án tốt nghiệp, mà Website cá nhân này
-        chính là một trong những dự án tâm đắc nhất của mình. Mục tiêu của
-        website này là một không gian toàn diện hiện đại, thân thiện và đẹp mắt
-        để: giới thiệu bản thân, trưng bày các dự án đã thực hiện, chia sẻ học
-        vấn, và đặc biệt là nơi lưu giữ những hình ảnh, âm nhạc, những câu
-        chuyện, thành tựu cá nhân mình đã trải qua và có được trong hành trình
-        của mình. Mình có niềm yêu thích đặc biệt với lập trình giao diện
-        (Frontend) và đang không ngừng tự học thêm các ngôn ngữ lập trình chuyên
-        sâu hơn để có thể xây dựng những ứng dụng (App), website hoàn chỉnh,
-        hiện đại và độc đáo. Cùng với khát vọng trở thành một Frontend Developer
-        chuyên nghiệp trong tương lai. Bên cạnh kiến thức lập trình. Nhà trường
-        cũng đã trang bị thêm kiến thức nền tảng cho mình về thiết kế và sáng
-        tạo. Mình cũng học được các kỹ năng đủ để thiết kế được các Poster. Tuy
-        nhiên, Mình không ngừng tự thử thách bản thân. Mình đang trên hành trình
-        học hỏi không ngừng để hoàn thiện sâu hơn nữa kỹ năng chuyên môn và tư
-        duy thiết kế, nhằm tạo ra những sản phẩm không chỉ đẹp mà còn mang tính
-        ứng dụng cao và đột phá. Ngoài ra, mình cực kỳ đam mê quay phim và chụp
-        ảnh. Sở thích này không chỉ là giải trí mà còn là cách mình lưu giữ trọn
-        vẹn những khoảnh khắc đáng nhớ nhất của bản thân, gia đình, bạn bè và
-        người yêu của mình. Mình muốn dùng "góc kính nhiệm màu" của mình để
-        truyền tải đến mọi người những gì mình thấy là đẹp đẽ, đáng yêu và ý
-        nghĩa nhất trong cuộc sống của mình.
-      </p>
+
+      {/* Story text */}
+      <div className="relative">
+        <p className="relative text-[0.95rem] leading-relaxed text-justify text-neutral-700 dark:text-neutral-300 first-letter:text-4xl first-letter:font-bold first-letter:text-primary-500 first-letter:mr-2 first-letter:float-left">
+          Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của mình.
+          Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang
+          Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Hiện tại
+          mình đang sinh sống và làm việc tại TP.HCM. Đây là giai đoạn mình đang
+          dồn hết tâm huyết của mình cho các dự án tốt nghiệp, mà Website cá
+          nhân này chính là một trong những dự án tâm đắc nhất của mình. Mục
+          tiêu của website này là một không gian toàn diện hiện đại, thân thiện
+          và đẹp mắt để: giới thiệu bản thân, trưng bày các dự án đã thực hiện,
+          chia sẻ học vấn, và đặc biệt là nơi lưu giữ những hình ảnh, âm nhạc,
+          những câu chuyện, thành tựu cá nhân mình đã trải qua và có được trong
+          hành trình của mình.
+        </p>
+
+        {/* Highlighted passion block */}
+        <div className="mt-4 border-l-2 border-primary-500/60 pl-4 italic text-[0.9rem] text-neutral-600 dark:text-neutral-400">
+          Mình có niềm yêu thích đặc biệt với lập trình giao diện (Frontend) và
+          đang không ngừng tự học thêm các ngôn ngữ lập trình chuyên sâu hơn để
+          có thể xây dựng những ứng dụng (App), website hoàn chỉnh, hiện đại và
+          độc đáo.
+        </div>
+
+        <p className="mt-4 text-[0.95rem] leading-relaxed text-justify text-neutral-700 dark:text-neutral-300">
+          Cùng với khát vọng trở thành một Frontend Developer chuyên nghiệp
+          trong tương lai. Bên cạnh kiến thức lập trình. Nhà trường cũng đã
+          trang bị thêm kiến thức nền tảng cho mình về thiết kế và sáng tạo.
+          Mình cũng học được các kỹ năng đủ để thiết kế được các Poster. Tuy
+          nhiên, Mình không ngừng tự thử thách bản thân. Mình đang trên hành
+          trình học hỏi không ngừng để hoàn thiện sâu hơn nữa kỹ năng chuyên môn
+          và tư duy thiết kế, nhằm tạo ra những sản phẩm không chỉ đẹp mà còn
+          mang tính ứng dụng cao và đột phá.
+        </p>
+
+        {/* Quote style ending */}
+        <blockquote className="mt-4 text-[0.9rem] leading-relaxed text-neutral-600 dark:text-neutral-400 border-l-2 border-neutral-300 dark:border-neutral-600 pl-4">
+          Ngoài ra, mình cực kỳ đam mê quay phim và chụp ảnh. Sở thích này không
+          chỉ là giải trí mà còn là cách mình lưu giữ trọn vẹn những khoảnh khắc
+          đáng nhớ nhất của bản thân, gia đình, bạn bè và người yêu của mình.
+          Mình muốn dùng "góc kính nhiệm màu" của mình để truyền tải đến mọi
+          người những gì mình thấy là đẹp đẽ, đáng yêu và ý nghĩa nhất trong
+          cuộc sống của mình.
+        </blockquote>
+      </div>
     </div>
 
     {/* Quick stats */}
@@ -564,10 +569,10 @@ export default function About() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`relative inline-flex items-center gap-2 py-2 px-5 text-xs uppercase rounded-lg cursor-pointer whitespace-nowrap border border-primary-500/20 text-neutral-900 dark:text-white transition-colors hover:border-primary-500 hover:bg-primary-500/10 [&:hover_svg]:text-primary-500
+                className={`relative inline-flex items-center gap-2 py-2 px-5 text-xs cursor-pointer whitespace-nowrap bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl text-neutral-900 dark:text-white transition-colors hover:border-primary-500 hover:bg-primary-500/10 [&:hover_svg]:text-primary-500
                           ${
                             active === i
-                              ? "border-primary-500 bg-primary-500/10 [&_svg]:text-primary-500"
+                              ? "border-primary-500/20 dark:border-primary-500/20 bg-primary-500/10 dark:bg-primary-500/10 [&_svg]:text-primary-500  dark:text-primary-400 text-primary-400"
                               : ""
                           }
                         `}

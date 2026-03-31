@@ -233,11 +233,7 @@ const Writing = () => {
               placeholder="Tìm bài viết..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-transparent flex-1 outline-none text-white text-sm"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.76rem",
-              }}
+              className="bg-transparent flex-1 outline-none text-white text-xs"
             />
             {search && (
               <button

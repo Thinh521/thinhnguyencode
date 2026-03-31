@@ -34,12 +34,6 @@ const FontLoader = () => (
       outline: 2px solid #f97316; outline-offset: 0px;
     }
 
-    .filter-active {
-      background: #f97316 !important;
-      color: #fff !important;
-      border-color: #f97316 !important;
-    }
-
     .featured-arrow {
       transition: transform 0.3s ease;
     }
@@ -346,7 +340,7 @@ export default function Projects() {
               placeholder="Tìm kiếm theo tên, kỹ năng..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-transparent flex-1 text text-sm outline-none font-mono-code"
+              className="bg-transparent flex-1 text text-xs outline-none"
             />
             {search && (
               <button
@@ -364,11 +358,11 @@ export default function Projects() {
               <button
                 key={type}
                 onClick={() => setActiveType(type)}
-                className={`text-xs tracking-wider px-4 py-3 rounded-lg border border-primary-500/20 transition-all duration-200
+                className={`text-xs tracking-wider px-4 py-3 rounded-lg transition-all duration-200
                 ${
                   activeType === type
-                    ? "filter-active shadow-md shadow-primary-500/20"
-                    : "text-neutral-400 hover:border-primary-500 hover:text-neutral-900 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 "
+                    ? "border border-primary-500/20 dark:border-primary-500/20 bg-primary-500/10 dark:bg-primary-500/10 [&_svg]:text-primary-500  dark:text-primary-400 text-primary-400"
+                    : "bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl text-neutral-900 dark:text-white transition-colors hover:border-primary-500 hover:bg-primary-500/10"
                 }`}
               >
                 {type}

@@ -34,8 +34,6 @@ const FontLoader = () => (
       width: 100%;
       border-radius: 12px;
       padding: 12px 16px;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.88rem;
       outline: none;
       transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
       resize: none;
@@ -183,8 +181,8 @@ const FormField = ({
     <div className="relative w-full mb-4">
       {/* Label row */}
       <div className="flex items-center gap-2 mb-2">
-        <Icon size={12} style={{ color: "rgba(249,115,22,0.7)" }} />
-        <label className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.14em] uppercase">
+        <Icon size={12} className="text-orange-500" />
+        <label className="text-xs text-neutral-900 dark:text-white">
           {label}
         </label>
       </div>
@@ -193,14 +191,14 @@ const FormField = ({
         <textarea
           {...registerProps}
           rows={4}
-          className={`field-input bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "error" : ""}`}
+          className={`field-input text-xs bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "error" : ""}`}
           placeholder={`Nhập ${label.toLowerCase()}...`}
         />
       ) : (
         <input
           type={type}
           {...registerProps}
-          className={`field-input bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "error" : ""}`}
+          className={`field-input text-xs bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "error" : ""}`}
           placeholder={`Nhập ${label.toLowerCase()}...`}
         />
       )}
