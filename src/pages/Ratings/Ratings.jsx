@@ -27,6 +27,7 @@ import {
 import PageHeader from "../../components/layout/PageHeader";
 import SectionLabel from "../../components/SectionLabel";
 import Button from "../../components/Button/Button";
+import FormField from "../../components/FormField";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -35,45 +36,10 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .font-serif-display { font-family: 'Instrument Serif', serif; }
-    .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
-
-    /* Input */
-    .field-input {
-      width: 100%; border-radius: 12px;
-      padding: 11px 16px 11px 34px;
-      font-family: 'Syne', sans-serif; font-size: 0.88rem;
-      outline: none; resize: none;
-      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-    }
-    .field-input:focus {
-      border-color: rgba(249,115,22,0.5);
-      background: rgba(249,115,22,0.04);
-      box-shadow: 0 0 0 3px rgba(249,115,22,0.08);
-    }
-    .field-input.has-error { border-color: rgba(239,68,68,0.5); }
-    .field-input.has-error:focus { box-shadow: 0 0 0 3px rgba(239,68,68,0.08); }
-
     /* Select */
     .field-select {
       appearance: none; cursor: pointer;
     }
-
-    /* Submit button */
-    .submit-btn {
-      width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px;
-      padding: 12px 24px; border-radius: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
- color: white; cursor: pointer;
-      transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
-    }
-    .submit-btn:hover:not(:disabled) {
-      background: rgba(249,115,22,0.26);
-      box-shadow: 0 0 28px rgba(249,115,22,0.2);
-    }
-    .submit-btn:active:not(:disabled) { transform: scale(0.99); }
-    .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
     /* Section rule */
     .section-rule {
@@ -150,8 +116,8 @@ function StarPicker({ star, hoverStar, onSet, onHover, error }) {
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
-        <Star size={12} style={{ color: "rgba(249,115,22,0.7)" }} />
-        <label className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.14em] uppercase">
+        <Star size={12} className="text-primary-500" />
+        <label className="text-xs text-neutral-900 dark:text-white">
           Mức độ hài lòng
         </label>
       </div>
@@ -188,7 +154,7 @@ function StarPicker({ star, hoverStar, onSet, onHover, error }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.18 }}
-            className={`font-mono-code text-[0.65rem] tracking-wider ${
+            className={`text-xs tracking-wider ${
               star > 0
                 ? "text-amber-400"
                 : "text-neutral-500 dark:text-neutral-400"
@@ -203,69 +169,11 @@ function StarPicker({ star, hoverStar, onSet, onHover, error }) {
         <motion.p
           initial={{ opacity: 0, y: -4 }}
           animate={{ opacity: 1, y: 0 }}
-          className="font-mono-code text-[0.6rem] mt-1.5 flex items-center gap-1"
-          style={{ color: "rgba(239,68,68,0.8)" }}
+          className="text-xs mt-1.5 flex items-center gap-1 text-red-400"
         >
           ✕ {error.message}
         </motion.p>
       )}
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   FORM FIELD
-───────────────────────────────────────────── */
-function FormField({
-  label,
-  name,
-  register,
-  errors,
-  type = "text",
-  icon: Icon = User,
-}) {
-  const error = errors?.[name];
-  const reg = register
-    ? register(name, { required: `${label} là bắt buộc` })
-    : {};
-
-  return (
-    <div className="mb-4">
-      <div className="flex items-center gap-2 mb-2">
-        <Icon size={12} style={{ color: "rgba(249,115,22,0.7)" }} />
-        <label className="font-mono-code text-[0.62rem] text-black dark:text-white tracking-[0.14em] uppercase">
-          {label}
-        </label>
-      </div>
-      {type === "textarea" ? (
-        <textarea
-          {...reg}
-          rows={4}
-          className={`field-input bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "has-error" : ""}`}
-          placeholder={`Nhập ${label.toLowerCase()}...`}
-        />
-      ) : (
-        <input
-          type={type}
-          {...reg}
-          className={`field-input bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "has-error" : ""}`}
-          placeholder={`Nhập ${label.toLowerCase()}...`}
-        />
-      )}
-      <AnimatePresence>
-        {error && (
-          <motion.p
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="font-mono-code text-[0.6rem] mt-1.5 flex items-center gap-1"
-            style={{ color: "rgba(239,68,68,0.8)" }}
-          >
-            ✕ {error.message}
-          </motion.p>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
@@ -280,10 +188,10 @@ function StatsSection({ averageRating, totalRatings, getStarPct }) {
         {/* Left: big score */}
         <div className="flex flex-col items-center text-center min-w-[140px]">
           <div className="flex items-end gap-2 mb-2">
-            <span className="font-serif-display text-6xl text-black dark:text-white leading-none">
+            <span className="text-6xl text-black dark:text-white leading-none">
               {averageRating.toFixed(1)}
             </span>
-            <span className="font-mono-code text-[0.65rem] tracking-widest text-neutral-500 dark:text-neutral-400 mb-2">
+            <span className="text-xs tracking-widest text-neutral-500 dark:text-neutral-400 mb-2">
               / 5.0
             </span>
           </div>
@@ -308,10 +216,10 @@ function StatsSection({ averageRating, totalRatings, getStarPct }) {
 
           <div className="flex items-center gap-1.5">
             <Users
-              size={11}
+              size={12}
               className=" text-neutral-500 dark:text-neutral-400"
             />
-            <span className="font-mono-code text-[0.58rem] tracking-widest text-neutral-500 dark:text-neutral-400">
+            <span className="text-xs tracking-widest text-neutral-500 dark:text-neutral-400">
               {totalRatings} đánh giá
             </span>
           </div>
@@ -322,9 +230,7 @@ function StatsSection({ averageRating, totalRatings, getStarPct }) {
           {[5, 4, 3, 2, 1].map((n) => (
             <div key={n} className="flex items-center gap-3">
               <div className="flex items-center gap-1 w-12 shrink-0">
-                <span className="font-mono-code text-[0.65rem] text-black dark:text-white">
-                  {n}
-                </span>
+                <span className="text-xs text-black dark:text-white">{n}</span>
                 <Star size={10} style={{ color: "#fbbf24", fill: "#fbbf24" }} />
               </div>
 
@@ -341,7 +247,7 @@ function StatsSection({ averageRating, totalRatings, getStarPct }) {
                 />
               </div>
 
-              <span className="font-mono-code text-[0.6rem] w-9 text-right shrink-0 text-neutral-500 dark:text-neutral-400">
+              <span className="text-xs w-9 text-right shrink-0 text-neutral-500 dark:text-neutral-400">
                 {getStarPct(n)}%
               </span>
             </div>
@@ -610,7 +516,7 @@ export default function Ratings() {
           >
             <SectionLabel icon={Star}>Gửi đánh giá</SectionLabel>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-0">
+            <form onSubmit={handleSubmit(onSubmit)}>
               <FormField
                 label="Họ và tên"
                 name="name"
@@ -709,11 +615,7 @@ export default function Ratings() {
                 placeholder="Tìm tên hoặc nội dung..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-transparent flex-1 outline-none"
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.78rem",
-                }}
+                className="bg-transparent text-xs flex-1 outline-none"
               />
               {searchTerm && (
                 <button

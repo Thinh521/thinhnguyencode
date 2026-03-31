@@ -18,6 +18,7 @@ import {
 import PageHeader from "../../components/layout/PageHeader";
 import SectionLabel from "../../components/SectionLabel";
 import Button from "../../components/Button/Button";
+import FormField from "../../components/FormField";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -25,48 +26,6 @@ import Button from "../../components/Button/Button";
 const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
-
-    .font-serif-display { font-family: 'Instrument Serif', serif; }
-    .font-mono-code     { font-family: 'JetBrains Mono', monospace; }
-
-    /* Input field */
-    .field-input {
-      width: 100%;
-      border-radius: 12px;
-      padding: 12px 16px;
-      outline: none;
-      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-      resize: none;
-    }
-    .field-input:focus {
-      border-color: rgba(249,115,22,0.5);
-      background: rgba(249,115,22,0.04);
-      box-shadow: 0 0 0 3px rgba(249,115,22,0.08);
-    }
-    .field-input.error {
-      border-color: rgba(239,68,68,0.5);
-    }
-    .field-input.error:focus {
-      box-shadow: 0 0 0 3px rgba(239,68,68,0.08);
-    }
-
-    /* Submit button */
-    .submit-btn {
-      width: 100%;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 13px 24px;
-      border-radius: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
-    }
-    .submit-btn:hover:not(:disabled) {
-      background: rgba(249,115,22,0.25);
-      box-shadow: 0 0 28px rgba(249,115,22,0.2);
-    }
-    .submit-btn:active:not(:disabled) { transform: scale(0.99); }
-    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* Section rule */
     .section-rule {
@@ -160,65 +119,6 @@ const FIELD_ICONS = {
   phone: Phone,
   email: Mail,
   message: MessageSquare,
-};
-
-const FormField = ({
-  label,
-  name,
-  register,
-  errors,
-  type = "text",
-  pattern,
-}) => {
-  const error = errors?.[name];
-  const Icon = FIELD_ICONS[name] || User;
-
-  const registerProps = register
-    ? register(name, { required: `${label} là bắt buộc`, pattern })
-    : {};
-
-  return (
-    <div className="relative w-full mb-4">
-      {/* Label row */}
-      <div className="flex items-center gap-2 mb-2">
-        <Icon size={12} className="text-orange-500" />
-        <label className="text-xs text-neutral-900 dark:text-white">
-          {label}
-        </label>
-      </div>
-
-      {type === "textarea" ? (
-        <textarea
-          {...registerProps}
-          rows={4}
-          className={`field-input text-xs bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "error" : ""}`}
-          placeholder={`Nhập ${label.toLowerCase()}...`}
-        />
-      ) : (
-        <input
-          type={type}
-          {...registerProps}
-          className={`field-input text-xs bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 ${error ? "error" : ""}`}
-          placeholder={`Nhập ${label.toLowerCase()}...`}
-        />
-      )}
-
-      <AnimatePresence>
-        {error && (
-          <motion.p
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.2 }}
-            className="font-mono-code text-[0.6rem] tracking-wide mt-1.5 flex items-center gap-1"
-            style={{ color: "rgba(239,68,68,0.8)" }}
-          >
-            ✕ {error.message}
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </div>
-  );
 };
 
 /* ─────────────────────────────────────────────
@@ -409,9 +309,9 @@ const Contact = () => {
                     <FormField
                       label="Số điện thoại"
                       name="phone"
+                      type="tel"
                       register={register}
                       errors={errors}
-                      type="tel"
                       pattern={{
                         value: /^[0-9]{9,11}$/,
                         message: "Số điện thoại không hợp lệ",
@@ -482,8 +382,8 @@ const Contact = () => {
                   {
                     icon: Mail,
                     label: "Email",
-                    value: "thinh521@gmail.com",
-                    href: "mailto:thinh521@gmail.com",
+                    value: "nguyenphucthinh2005tp@gmail.com",
+                    href: "mailto:nguyenphucthinh2005tp@gmail.com",
                   },
                   {
                     icon: Phone,
@@ -502,28 +402,22 @@ const Contact = () => {
                     key={label}
                     className="flex items-center gap-3 p-3.5 bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl"
                   >
-                    <div
-                      className="p-2 rounded-lg shrink-0"
-                      style={{
-                        background: "rgba(249,115,22,0.08)",
-                        border: "1px solid rgba(249,115,22,0.18)",
-                      }}
-                    >
+                    <div className="p-2 rounded-lg shrink-0 border border-orange-500/20 bg-primary-500/10">
                       <Icon size={13} className="text-orange-400" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-mono-code text-[0.55rem] text-neutral-500 tracking-widest uppercase">
+                      <p className="text-[0.55rem] text-neutral-600 dark:text-neutral-500 tracking-widest uppercase">
                         {label}
                       </p>
                       {href ? (
                         <a
                           href={href}
-                          className="text-black dark:text-white text-sm font-medium hover:text-orange-400 transition-colors truncate block"
+                          className="text-neutral-900 dark:text-white text-sm font-medium hover:text-orange-400 transition-colors truncate block"
                         >
                           {value}
                         </a>
                       ) : (
-                        <p className="text-black dark:text-white text-sm font-medium truncate">
+                        <p className="text-neutral-900 dark:text-white text-sm font-medium truncate">
                           {value}
                         </p>
                       )}

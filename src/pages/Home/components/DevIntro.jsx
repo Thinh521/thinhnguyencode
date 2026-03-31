@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Macbook from "../../../components/Macbook/Macbook";
 import { IMAGES } from "../../../../public/images/imgaes";
 import SocialLinks from "../../../components/SocialLinks/SocialLinks";
@@ -96,7 +96,7 @@ const DevIntro = () => {
               transition={{ delay: 0.45, duration: 0.5 }}
               className="flex flex-wrap items-center justify-center gap-3 mb-7"
             >
-              <Button to="/cv" leftIcon={<Download size={13} />}>
+              <Button to="/cv" leftIcon={<ExternalLink size={13} />}>
                 Resume / CV
               </Button>
 
