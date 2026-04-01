@@ -41,6 +41,9 @@ import resume2 from "./resume_2.jpg";
 import story1_1 from "./story_1.jpg";
 import story1_2 from "./story_2.jpg";
 import story1_3 from "./story_3.jpg";
+import story1_4 from "./story_4.jpg";
+import story1_5 from "./story_5.jpg";
+import story1_6 from "./story_6.jpg";
 
 import about_1 from "./about_1.jpg";
 import about_2 from "./about_2.jpg";
@@ -91,6 +94,9 @@ export const IMAGES = {
   story1_1,
   story1_2,
   story1_3,
+  story1_4,
+  story1_5,
+  story1_6,
 
   about_1,
   about_2,
