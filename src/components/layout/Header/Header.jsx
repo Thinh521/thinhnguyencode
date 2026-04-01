@@ -302,7 +302,7 @@ export const Header = ({
               <Link
                 key={i}
                 to={it.link}
-                className={`sm-nav-link ${location.pathname === it.link ? "active" : ""}`}
+                className={`sm-nav-link text-neutral-900 dark:text-white ${location.pathname === it.link ? "active" : ""}`}
               >
                 {it.label}
                 {location.pathname === it.link && (
@@ -367,7 +367,7 @@ export const Header = ({
               <li key={i} className="sm-panel-item-wrap">
                 <Link
                   to={it.link}
-                  className={`sm-panel-link ${location.pathname === it.link ? "active" : ""}`}
+                  className={`sm-panel-link text-neutral-900 dark:text-white ${location.pathname === it.link ? "active" : ""}`}
                 >
                   <span className="sm-panel-num">
                     {String(i + 1).padStart(2, "0")}

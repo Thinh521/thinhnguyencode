@@ -14,6 +14,8 @@ import {
   CheckCircle2,
   ArrowRight,
   Quote,
+  PhoneIcon,
+  MailIcon,
 } from "lucide-react";
 import PageHeader from "../../components/layout/PageHeader";
 import SectionLabel from "../../components/SectionLabel";
@@ -112,28 +114,13 @@ const TESTIMONIALS = [
 ];
 
 /* ─────────────────────────────────────────────
-   FORM FIELD
-───────────────────────────────────────────── */
-const FIELD_ICONS = {
-  name: User,
-  phone: Phone,
-  email: Mail,
-  message: MessageSquare,
-};
-
-/* ─────────────────────────────────────────────
    TESTIMONIAL MARQUEE
 ───────────────────────────────────────────── */
 function TestimonialCard({ item }) {
   return (
     <div
-      className="test-card
-      bg-white/40 dark:bg-neutral-900/60
-      backdrop-blur-md
-      border border-neutral-200 dark:border-white/10
-      text-neutral-800 dark:text-neutral-200
-      shadow-sm dark:shadow-none
-    "
+      className="test-card bg-white/40 dark:bg-neutral-900/60 backdrop-blur-md
+      border border-neutral-200 dark:border-white/10 text-neutral-800 dark:text-neutral-200 shadow-sm dark:shadow-none"
     >
       <Quote size={16} className="text-orange-500/40 mb-2" />
 
@@ -153,7 +140,7 @@ function TestimonialCard({ item }) {
             {item.name}
           </p>
 
-          <p className="font-mono-code text-[0.57rem] tracking-wide mt-0.5 text-neutral-500 dark:text-neutral-400">
+          <p className="text-[0.58rem] tracking-wide mt-0.5 text-neutral-500 dark:text-neutral-400">
             {item.role}
           </p>
         </div>
@@ -219,7 +206,6 @@ function SuccessState({ onReset }) {
 const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const navigate = useNavigate();
 
   const {
     register,
@@ -267,9 +253,7 @@ const Contact = () => {
           title="Liên hệ."
           subtitle="Mọi người liên hệ với mình qua form này nhé"
           rightContent={
-            <span className="font-serif-display text-[2.5rem] text-white/4 leading-none select-none hidden sm:block">
-              ✉
-            </span>
+            <span className="font-playfair text-5xl hidden sm:block">✉</span>
           }
         />
       </motion.div>
@@ -303,6 +287,7 @@ const Contact = () => {
                     <FormField
                       label="Họ và tên"
                       name="name"
+                      icon={User}
                       register={register}
                       errors={errors}
                     />
@@ -310,6 +295,7 @@ const Contact = () => {
                       label="Số điện thoại"
                       name="phone"
                       type="tel"
+                      icon={PhoneIcon}
                       register={register}
                       errors={errors}
                       pattern={{
@@ -323,6 +309,7 @@ const Contact = () => {
                     label="Email"
                     name="email"
                     type="email"
+                    icon={MailIcon}
                     register={register}
                     errors={errors}
                     pattern={{
@@ -335,6 +322,7 @@ const Contact = () => {
                     label="Nội dung"
                     name="message"
                     type="textarea"
+                    icon={MessageSquare}
                     register={register}
                     errors={errors}
                   />

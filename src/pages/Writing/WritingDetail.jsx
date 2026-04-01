@@ -54,7 +54,6 @@ const FontLoader = () => (
       background: rgba(255,255,255,0.03);
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.6rem; letter-spacing: 0.06em;
-      color: rgba(255,255,255,0.5);
     }
 
     .action-btn {
@@ -226,16 +225,16 @@ const WritingDetail = () => {
           >
             {/* Badges */}
             <div className="flex items-center gap-2 flex-wrap mb-4">
-              <span className="meta-badge">
+              <span className="meta-badge text-white">
                 <Calendar size={10} className="text-orange-400" />
                 {story.date}
               </span>
-              <span className="meta-badge">
+              <span className="meta-badge text-white">
                 <Clock size={10} className="text-orange-400" />
                 {minutes} phút đọc
               </span>
               {story.title_2 && (
-                <span className="meta-badge">
+                <span className="meta-badge text-white">
                   <Tag size={10} className="text-orange-400" />
                   {story.title_2}
                 </span>
@@ -304,7 +303,7 @@ const WritingDetail = () => {
             style={{ opacity: 0.55 }}
           />
           <p className="relative z-10 text-neutral-900 dark:text-white italic leading-[1.8] text-lg">
-            {paragraphs[0]?.split(".").slice(0, 2).join(".") + "."}
+            {story.quote || "Không có trích dẫn nào cho bài viết này."}
           </p>
         </motion.div>
 

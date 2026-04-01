@@ -140,7 +140,6 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--h-muted);
     border-radius: 8px;
     border: 1px solid transparent;
     transition: color 0.18s, background 0.18s, border-color 0.18s;
@@ -386,7 +385,6 @@
     text-decoration: none;
     cursor: pointer;
     transition: color 0.18s;
-    color: var(--h-text);
 }
 
 .sm-panel-link:hover,

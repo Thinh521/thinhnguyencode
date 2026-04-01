@@ -109,7 +109,7 @@ function FeaturedCard({ item }) {
                 </h2>
 
                 {item.title_2 && (
-                  <p className="italic text-neutral-500 text-base mb-3 leading-snug line-clamp-1">
+                  <p className="italic text-neutral-400 text-base mb-3 leading-snug line-clamp-1">
                     {item.title_2}
                   </p>
                 )}

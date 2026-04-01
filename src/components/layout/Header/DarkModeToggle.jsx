@@ -44,13 +44,12 @@ const DarkModeToggle = () => {
       onClick={toggleTheme}
       whileTap={{ scale: 0.88 }}
       whileHover={{ scale: 1.05 }}
-      className="relative flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-200"
+      className="relative flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-200 text-neutral-900 dark:text-white"
       style={{
         border: isDark
           ? "1px solid rgba(255,255,255,0.1)"
           : "1px solid rgba(0,0,0,0.09)",
         background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
-        color: isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.6)",
       }}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}

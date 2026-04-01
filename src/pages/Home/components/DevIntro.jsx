@@ -5,6 +5,7 @@ import Macbook from "../../../components/Macbook/Macbook";
 import { IMAGES } from "../../../../public/images/imgaes";
 import SocialLinks from "../../../components/SocialLinks/SocialLinks";
 import Button from "../../../components/Button/Button";
+import TypingLoop from "../../../components/componentsText/TypingText/TypingText";
 
 const DevIntro = () => {
   return (
@@ -67,13 +68,15 @@ const DevIntro = () => {
               </div>
             </motion.div>
 
-            <h1 className="font-playfair text-3xl font-bold text-center">
-              Thịnh Nguyễn
+            <h1 className="font-playfair text-center text-3xl font-bold text-white">
+              <TypingLoop
+                words={["Thịnh Nguyễn", "Mobile Developer", "thjnh.dev"]}
+              />
             </h1>
 
             <div className="space-y-2 text-neutral-400 text-sm text-center">
               <p>
-                <span className="text-blue-400">role:</span> Mobile Developer
+                <span className="text-blue-400">role:</span> Mobile Develope
               </p>
               <p>
                 <span className="text-blue-400">also:</span> UI Designer

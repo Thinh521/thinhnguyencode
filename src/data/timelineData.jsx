@@ -59,7 +59,7 @@ export const timelineData = [
     title: "Ứng dụng truy xuất nguồn gốc nông sản",
     type: "Toàn thời gian",
     duration: "03.2021—09.2022",
-    images: [IMAGES.project2_1],
+    images: [IMAGES.project2_1, IMAGES.project2_1, IMAGES.project2_1],
     icon: QrCode,
     responsibilities: [
       "Phát triển ứng dụng di động truy xuất nguồn gốc nông sản bằng React Native.",
@@ -100,7 +100,7 @@ export const timelineData = [
     title: "Ứng dụng thống kê, quản lý và cập nhật thị trường nông sản",
     type: "Toàn thời gian",
     duration: "03.2021—09.2022",
-    images: [IMAGES.project3_1],
+    images: [IMAGES.project3_1, IMAGES.project3_1, IMAGES.project3_1],
     icon: BarChart3,
     responsibilities: [
       "Phát triển ứng dụng di động thống kê và quản lý thị trường nông sản bằng React Native.",
@@ -135,10 +135,10 @@ export const timelineData = [
   {
     id: "4",
     role: "Mobile App Developer (React Native)",
-    title: "Ứng dụng mua sắm quần áo",
+    title: "Apollo NFT dApp",
     type: "Toàn thời gian",
     duration: "03.2021—09.2022",
-    images: [IMAGES.project4_1],
+    images: [IMAGES.project4_1, IMAGES.project4_1, IMAGES.project4_1],
     icon: ShoppingBag,
     responsibilities: [
       "Phát triển ứng dụng mua sắm quần áo bằng React Native, giao diện trực quan và thân thiện với người dùng.",
@@ -174,18 +174,28 @@ export const timelineData = [
   },
   {
     id: "5",
-    role: "Senior Frontend Developer",
-    title: "Website giới thiệu nhà hàng",
+    role: "Mobile App Developer (React Native)",
+    title: "Ứng dụng mua sắm quần áo",
     type: "Toàn thời gian",
     duration: "10.2024—Present",
-    images: [IMAGES.project5_1],
+    images: [IMAGES.project5_1, IMAGES.project5_1, IMAGES.project5_1],
     icon: ShoppingBag,
     responsibilities: [
-      "Xây dựng website giới thiệu nhà hàng với HTML, CSS và JavaScript, tập trung vào giao diện trực quan và thân thiện với người dùng.",
-      "Thiết kế giao diện responsive, đảm bảo trải nghiệm tốt trên cả máy tính và thiết bị di động.",
-      "Quản lý và tối ưu mã nguồn, tuân thủ HTML semantic và CSS hiện đại.",
+      "Phát triển ứng dụng mua sắm quần áo bằng React Native, giao diện trực quan và thân thiện với người dùng.",
+      "Xây dựng các tính năng: danh mục sản phẩm, tìm kiếm, giỏ hàng, thanh toán, quản lý đơn hàng.",
+      "Tích hợp API backend để lấy dữ liệu sản phẩm, xử lý đăng nhập/đăng ký và quản lý người dùng.",
+      "Thiết kế responsive, tối ưu trải nghiệm trên Android và iOS.",
+      "Tối ưu hiệu năng, xử lý state management cho giỏ hàng và luồng đặt hàng.",
+      "Làm việc theo mô hình Agile, phối hợp team trong suốt quá trình phát triển.",
     ],
-    skills: ["HTML, CSS", "JavaScript"],
+    skills: [
+      "React Native",
+      "JavaScript",
+      "REST API",
+      "State Management",
+      "UI/UX",
+      "Figma",
+    ],
     links: [
       {
         label: "Chi tiết",
@@ -208,7 +218,7 @@ export const timelineData = [
     title: "Website giới thiệu các khóa học (TuHoc.CC Clone)",
     type: "Toàn thời gian",
     duration: "10.2022—Present",
-    images: [IMAGES.project6_1],
+    images: [IMAGES.project6_1, IMAGES.project6_1, IMAGES.project6_1],
     icon: GraduationCap,
     responsibilities: [
       "Xây dựng website giới thiệu các khóa học trực tuyến bằng HTML, CSS và JavaScript, giao diện dễ tiếp cận cho người học.",
@@ -235,7 +245,7 @@ export const timelineData = [
     title: "Website giới thiệu nhà hàng",
     type: "Toàn thời gian",
     duration: "10.2024—Present",
-    images: [IMAGES.project7_1],
+    images: [IMAGES.project7_1, IMAGES.project7_1, IMAGES.project7_1],
     icon: UtensilsCrossed,
     responsibilities: [
       "Xây dựng website giới thiệu nhà hàng với HTML, CSS và JavaScript, tập trung vào giao diện trực quan và thân thiện với người dùng.",
