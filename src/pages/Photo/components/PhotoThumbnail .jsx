@@ -18,7 +18,7 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
       {/* Image */}
       <div className="overflow-hidden rounded-xl">
         <img
-          src={photo.images[0]}
+          src={photo.images}
           alt={photo.title}
           loading="lazy"
           className="w-full h-auto object-cover block"

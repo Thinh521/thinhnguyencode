@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -11,7 +11,6 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import PhotoData from "../../data/PhotoData";
 import storiesData from "../../data/StoriesData";
 import { removeVietnameseTones } from "../../utils/stringUtils";
 import useViewedStories from "../../hooks/useViewedStories";
@@ -22,6 +21,7 @@ import StoryViewer from "./components/StoryViewer";
 import PhotoModal from "./components/PhotoModal";
 import PageHeader from "../../components/layout/PageHeader";
 import SectionLabel from "../../components/SectionLabel";
+import { getPhotos } from "../../api/photoApi";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -120,6 +120,7 @@ const ICONS = {
    MAIN
 ───────────────────────────────────────────── */
 export default function Photo() {
+  const [photos, setPhotos] = useState([]);
   const [open, setOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
   const [search, setSearch] = useState("");
@@ -127,6 +128,19 @@ export default function Photo() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const { markAsViewed, isViewed } = useViewedStories();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getPhotos();
+      console.log("data", data);
+
+      setPhotos(data);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log("photos", photos);
 
   const handleStoryClick = useCallback(
     (index) => {
@@ -139,20 +153,20 @@ export default function Photo() {
 
   const categories = useMemo(() => {
     const unique = new Set(["Tất cả"]);
-    for (const p of PhotoData) for (const c of p.category) unique.add(c);
+    for (const p of photos) for (const c of p.category) unique.add(c);
     return Array.from(unique);
-  }, []);
+  }, [photos]);
 
   const filteredPhotos = useMemo(() => {
     const q = removeVietnameseTones(search.toLowerCase());
-    return PhotoData.filter((p) => {
+    return photos.filter((p) => {
       const inCat =
         selectedCat === "Tất cả" || p.category.includes(selectedCat);
       const inSearch =
         !q || removeVietnameseTones(p.title.toLowerCase()).includes(q);
       return inCat && inSearch;
     });
-  }, [search, selectedCat]);
+  }, [photos, search, selectedCat]);
 
   const totalImages = useMemo(
     () => filteredPhotos.reduce((sum, p) => sum + p.images.length, 0),
@@ -180,7 +194,7 @@ export default function Photo() {
           subtitle="Những bức ảnh mình chụp qua ống kính nhiệm màu"
           rightContent={
             <span className="font-playfair text-5xl hidden sm:block">
-              {String(PhotoData.length).padStart(2, "0")}
+              {String(photos.length).padStart(2, "0")}
             </span>
           }
         />
