@@ -140,8 +140,6 @@ export default function Photo() {
     fetchData();
   }, []);
 
-  console.log("photos", photos);
-
   const handleStoryClick = useCallback(
     (index) => {
       markAsViewed(storiesData[index].id);
@@ -167,11 +165,6 @@ export default function Photo() {
       return inCat && inSearch;
     });
   }, [photos, search, selectedCat]);
-
-  const totalImages = useMemo(
-    () => filteredPhotos.reduce((sum, p) => sum + p.images.length, 0),
-    [filteredPhotos],
-  );
 
   const reset = () => {
     setSearch("");
@@ -285,15 +278,6 @@ export default function Photo() {
                 <span className="text-orange-400 ml-2">· "{search}"</span>
               )}
             </p>
-            <div className="flex items-center gap-1.5">
-              <ImageIcon
-                size={14}
-                className="text-neutral-900 dark:text-white"
-              />
-              <span className="text-xs text-neutral-900 dark:text-white">
-                {totalImages} ảnh
-              </span>
-            </div>
           </div>
 
           {/* Masonry Grid */}

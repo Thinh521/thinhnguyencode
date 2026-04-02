@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -16,7 +16,6 @@ import {
 import Divider from "../../components/Divider/Divider";
 import DevIntro from "./components/DevIntro";
 import { timelineData } from "../../data/timelineData";
-import PhotoData from "../../data/PhotoData";
 import PhotoThumbnail from "../Photo/components/PhotoThumbnail ";
 import PhotoModal from "../Photo/components/PhotoModal";
 import SectionLabel from "../../components/SectionLabel";
@@ -27,6 +26,7 @@ import BottomCTA from "./components/BottomCTA";
 import AboutSection from "./components/AboutSection";
 import StorytData from "../../data/StoryData";
 import Featuredwriting from "../../components/Project/Writing/Featuredwriting";
+import { getPhotos } from "../../api/photoApi";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -146,10 +146,22 @@ const STATS = [
    MAIN
 ───────────────────────────────────────────── */
 export default function Home() {
+  const [photos, setPhotos] = useState([]);
   const containerRef = useRef(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const featuredProjects = timelineData.slice(0, 3);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getPhotos();
+      console.log("data", data);
+
+      setPhotos(data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <article className="home-root noise-bg min-h-screen" ref={containerRef}>
@@ -335,7 +347,7 @@ export default function Home() {
           transition={{ duration: 0.3 }}
           className="columns-2 md:columns-3 gap-3"
         >
-          {PhotoData.slice(0, 6).map((photo, idx) => (
+          {photos.slice(0, 6).map((photo, idx) => (
             <PhotoThumbnail
               key={photo.id}
               photo={photo}

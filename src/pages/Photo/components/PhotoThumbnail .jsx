@@ -18,8 +18,8 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
       {/* Image */}
       <div className="overflow-hidden rounded-xl">
         <img
-          src={photo.images}
-          alt={photo.title}
+          src={photo?.images}
+          alt={photo?.title}
           loading="lazy"
           className="w-full h-auto object-cover block"
           style={{
@@ -49,12 +49,12 @@ const PhotoThumbnail = memo(({ photo, idx, onOpen }) => {
       >
         <div className="flex items-end justify-between gap-2">
           <p className="text-white text-xs font-semibold leading-snug line-clamp-2 flex-1">
-            {photo.title}
+            {photo?.title}
           </p>
         </div>
-        {photo.category?.length > 0 && (
+        {photo?.category?.length > 0 && (
           <div className="flex gap-1 mt-1 flex-wrap font-mono text-[0.54rem] tracking-[0.1em] uppercase text-white/60">
-            {photo.category.slice(0, 2).map((cat) => (
+            {photo?.category.slice(0, 2).map((cat) => (
               <span key={cat}>#{cat}</span>
             ))}
           </div>
