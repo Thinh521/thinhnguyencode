@@ -11,7 +11,6 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import storiesData from "../../data/StoriesData";
 import { removeVietnameseTones } from "../../utils/stringUtils";
 import useViewedStories from "../../hooks/useViewedStories";
 
@@ -21,7 +20,8 @@ import StoryViewer from "./components/StoryViewer";
 import PhotoModal from "./components/PhotoModal";
 import PageHeader from "../../components/layout/PageHeader";
 import SectionLabel from "../../components/SectionLabel";
-import { getPhotos } from "../../api/photoApi";
+import { subscribePhotos } from "../../api/photoApi";
+import { subscribeStories } from "../../api/storiesApi";
 
 /* ─────────────────────────────────────────────
    FONTS
@@ -121,6 +121,7 @@ const ICONS = {
 ───────────────────────────────────────────── */
 export default function Photo() {
   const [photos, setPhotos] = useState([]);
+  const [stories, setStories] = useState([]);
   const [open, setOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
   const [search, setSearch] = useState("");
@@ -130,19 +131,24 @@ export default function Photo() {
   const { markAsViewed, isViewed } = useViewedStories();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getPhotos();
-      console.log("data", data);
-
+    const unsubscribe = subscribePhotos((data) => {
       setPhotos(data);
-    };
+    });
 
-    fetchData();
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = subscribeStories((data) => {
+      setStories(data);
+    });
+
+    return () => unsubscribe(); // cleanup
   }, []);
 
   const handleStoryClick = useCallback(
     (index) => {
-      markAsViewed(storiesData[index].id);
+      markAsViewed(stories[index].id);
       setStartIndex(index);
       setOpen(true);
     },
@@ -196,13 +202,13 @@ export default function Photo() {
       <div className="space-y-12">
         {/* ── STORIES ── */}
         <section>
-          <SectionLabel icon={Camera} count={storiesData.length}>
+          <SectionLabel icon={Camera} count={stories.length}>
             Tin nổi bật
           </SectionLabel>
 
           <div className="story-strip overflow-x-auto pb-2">
             <div className="flex gap-4 min-w-max px-1">
-              {storiesData.map((story, index) => (
+              {stories.map((story, index) => (
                 <StoryAvatar
                   key={story.id}
                   story={story}
@@ -315,7 +321,7 @@ export default function Photo() {
 
       {open && (
         <StoryViewer
-          storyList={storiesData}
+          storyList={stories}
           onClose={() => setOpen(false)}
           initialIndex={startIndex}
           key={startIndex}

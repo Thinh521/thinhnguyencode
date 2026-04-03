@@ -26,7 +26,7 @@ import BottomCTA from "./components/BottomCTA";
 import AboutSection from "./components/AboutSection";
 import StorytData from "../../data/StoryData";
 import Featuredwriting from "../../components/Project/Writing/Featuredwriting";
-import { getPhotos } from "../../api/photoApi";
+import { subscribePhotos } from "../../api/photoApi";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -153,14 +153,11 @@ export default function Home() {
   const featuredProjects = timelineData.slice(0, 3);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getPhotos();
-      console.log("data", data);
-
+    const unsubscribe = subscribePhotos((data) => {
       setPhotos(data);
-    };
+    });
 
-    fetchData();
+    return () => unsubscribe();
   }, []);
 
   return (

@@ -9,22 +9,26 @@ import {
   ChevronRight,
 } from "lucide-react";
 import useViewedStories from "../../../hooks/useViewedStories";
+import { subscribeStories } from "../../../api/storiesApi";
+import { doc, increment, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 /* ─────────────────────────────────────────────
-   LOCAL STORAGE
+   LIKE STORAGE  (track which stories this device liked)
 ───────────────────────────────────────────── */
-const STORAGE_KEY = "storyLikes";
-const readStore = () => {
+const LIKED_KEY = "storyLikedIds";
+const getLikedIds = () => {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    return JSON.parse(localStorage.getItem(LIKED_KEY)) || [];
   } catch {
-    return {};
+    return [];
   }
 };
-const writeStore = (d) => localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+const saveLikedIds = (ids) =>
+  localStorage.setItem(LIKED_KEY, JSON.stringify(ids));
 
 /* ─────────────────────────────────────────────
-   PROGRESS BAR SEGMENTS
+   PROGRESS SEGMENTS
 ───────────────────────────────────────────── */
 function ProgressSegments({ total, current, progress }) {
   return (
@@ -35,7 +39,7 @@ function ProgressSegments({ total, current, progress }) {
           className="flex-1 rounded-full overflow-hidden"
           style={{ height: "2.5px", background: "rgba(255,255,255,0.2)" }}
         >
-          <motion.div
+          <div
             className="h-full rounded-full"
             style={{
               background:
@@ -52,17 +56,18 @@ function ProgressSegments({ total, current, progress }) {
 }
 
 /* ─────────────────────────────────────────────
-   MAIN COMPONENT
+   MAIN
 ───────────────────────────────────────────── */
 const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
   const [heartBurst, setHeartBurst] = useState(false);
   const [tapSide, setTapSide] = useState(null);
+  const [liking, setLiking] = useState(false); // debounce
+  /* realtime stories from Firestore — used to show live like count */
+  const [rtStories, setRtStories] = useState([]);
 
   const videoRef = useRef(null);
   const intervalRef = useRef(null);
@@ -70,19 +75,38 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
   const lastTapRef = useRef(0);
 
   const { markAsViewed } = useViewedStories();
-  const story = useMemo(
-    () => storyList[currentIndex],
-    [storyList, currentIndex],
+
+  /* ── Subscribe to Firestore realtime ── */
+  useEffect(() => {
+    const unsub = subscribeStories(setRtStories);
+    return () => unsub();
+  }, []);
+
+  /* ── Merge storyList prop with realtime likes ──
+       storyList comes from parent (may be stale),
+       rtStories has live likes field.
+       We display the story from storyList but read likes from rtStories.
+  ── */
+  const story = useMemo(() => {
+    const base = storyList[currentIndex];
+    if (!base) return null;
+    const live = rtStories.find((s) => s.docId === base.docId);
+    return live ? { ...base, likes: live.likes ?? 0 } : base;
+  }, [storyList, currentIndex, rtStories]);
+
+  /* ── Is this story liked by this device? ── */
+  const liked = useMemo(
+    () => (story ? getLikedIds().includes(story.docId) : false),
+    // Re-derive when story changes. The state is in localStorage so we
+    // force a re-render after every like/unlike via a local counter.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [story?.docId, liking],
   );
 
   /* ── Go to index ── */
   const goTo = useCallback(
     (n) => {
-      if (n < 0) {
-        onClose();
-        return;
-      }
-      if (n >= storyList.length) {
+      if (n < 0 || n >= storyList.length) {
         onClose();
         return;
       }
@@ -91,7 +115,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
     [storyList.length, onClose],
   );
 
-  /* ── Lock scroll ── */
+  /* ── Scroll lock ── */
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -99,24 +123,12 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
     };
   }, []);
 
-  /* ── Mark viewed + load likes ── */
+  /* ── Mark viewed ── */
   useEffect(() => {
-    if (!story) return;
-    markAsViewed(story.id);
+    if (story) markAsViewed(story.id ?? story.docId);
+  }, [story?.docId, markAsViewed]);
 
-    const store = readStore();
-    if (!store[story.id]) {
-      store[story.id] = {
-        liked: false,
-        count: Math.floor(Math.random() * 200) + 5,
-      };
-      writeStore(store);
-    }
-    setLiked(store[story.id].liked);
-    setLikeCount(store[story.id].count);
-  }, [story?.id, markAsViewed]);
-
-  /* ── Sync mute ── */
+  /* ── Sync mute to video ── */
   useEffect(() => {
     if (videoRef.current) videoRef.current.muted = isMuted;
   }, [isMuted]);
@@ -148,16 +160,13 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
     if (isVideo && video) {
       const onLoaded = () => {
         setIsLoading(false);
-        const dur = video.duration ? video.duration * 1000 : 10000;
-        startProgress(dur);
+        startProgress(video.duration ? video.duration * 1000 : 10000);
         video.play().catch(() => {});
       };
       const onEnd = () => goTo(currentIndex + 1);
-
       video.addEventListener("loadedmetadata", onLoaded);
       video.addEventListener("ended", onEnd);
       video.load();
-
       return () => {
         video.pause();
         video.removeEventListener("loadedmetadata", onLoaded);
@@ -165,7 +174,6 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
         clearInterval(intervalRef.current);
       };
     } else {
-      // image: fake load then start
       const t = setTimeout(() => {
         setIsLoading(false);
         startProgress(8000);
@@ -175,31 +183,40 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
         clearInterval(intervalRef.current);
       };
     }
-  }, [story?.id, currentIndex]);
+  }, [story?.docId, currentIndex]);
 
-  /* ── Like ── */
+  /* ── Like / Unlike ── */
   const handleLike = useCallback(
-    (e) => {
+    async (e) => {
       e?.stopPropagation();
-      const store = readStore();
-      const entry = store[story.id] || { liked: false, count: 0 };
-      entry.liked = !entry.liked;
-      entry.count = entry.liked
-        ? entry.count + 1
-        : Math.max(0, entry.count - 1);
-      store[story.id] = entry;
-      writeStore(store);
-      setLiked(entry.liked);
-      setLikeCount(entry.count);
-      if (entry.liked) {
-        setHeartBurst(true);
-        setTimeout(() => setHeartBurst(false), 700);
+      if (!story?.docId || liking) return;
+
+      const alreadyLiked = getLikedIds().includes(story.docId);
+      setLiking(true); // triggers re-derive of `liked`
+
+      try {
+        await updateDoc(doc(db, "storiesData", story.docId), {
+          likes: increment(alreadyLiked ? -1 : 1),
+        });
+
+        if (alreadyLiked) {
+          saveLikedIds(getLikedIds().filter((id) => id !== story.docId));
+        } else {
+          saveLikedIds([...getLikedIds(), story.docId]);
+          /* show heart burst only when liking */
+          setHeartBurst(true);
+          setTimeout(() => setHeartBurst(false), 700);
+        }
+      } catch (err) {
+        console.error("Like error:", err);
+      } finally {
+        setLiking(false);
       }
     },
-    [story?.id],
+    [story?.docId, liking],
   );
 
-  /* ── Touch ── */
+  /* ── Touch handlers ── */
   const onTouchStart = useCallback((e) => {
     const t = e.changedTouches[0];
     touch.current = {
@@ -219,34 +236,30 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
       const isSwipe = Math.abs(dx) > 50 || Math.abs(dy) > 50;
 
       if (!isSwipe && dt < 250) {
-        // Double-tap → like
         if (now - lastTapRef.current < 300) {
           handleLike();
           return;
         }
         lastTapRef.current = now;
       }
-
       if (Math.abs(dy) > Math.abs(dx) && dy > 60) {
         onClose();
         return;
       }
       if (Math.abs(dx) > 50) {
-        if (dx > 0) goTo(currentIndex + 1);
-        else goTo(currentIndex - 1);
+        dx > 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1);
       }
     },
     [currentIndex, goTo, onClose, handleLike],
   );
 
-  /* ── Click tap zones ── */
+  /* ── Tap zones ── */
   const handleTapZone = useCallback(
     (side, e) => {
       e.stopPropagation();
       setTapSide(side);
       setTimeout(() => setTapSide(null), 250);
-      if (side === "left") goTo(currentIndex - 1);
-      else goTo(currentIndex + 1);
+      side === "left" ? goTo(currentIndex - 1) : goTo(currentIndex + 1);
     },
     [currentIndex, goTo],
   );
@@ -254,6 +267,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
   if (!story) return null;
 
   const isVideo = !!(story.type === "video" || story.video);
+  const displayLikes = story.likes ?? 0;
 
   return (
     <motion.div
@@ -264,16 +278,16 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
       className="fixed inset-0 z-50 flex items-center justify-center"
       style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)" }}
     >
-      {/* ── Adjacent story previews (desktop) ── */}
+      {/* Desktop prev/next */}
       {currentIndex > 0 && (
         <motion.button
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
           onClick={() => goTo(currentIndex - 1)}
-          className="absolute left-4 xl:left-16 z-40 hidden md:flex items-center gap-2 group"
+          className="absolute left-4 xl:left-16 z-40 hidden md:flex"
         >
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 group"
             style={{
               background: "rgba(255,255,255,0.08)",
               border: "1px solid rgba(255,255,255,0.12)",
@@ -291,10 +305,10 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
           initial={{ opacity: 0, x: 16 }}
           animate={{ opacity: 1, x: 0 }}
           onClick={() => goTo(currentIndex + 1)}
-          className="absolute right-4 xl:right-16 z-40 hidden md:flex items-center gap-2 group"
+          className="absolute right-4 xl:right-16 z-40 hidden md:flex"
         >
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 group"
             style={{
               background: "rgba(255,255,255,0.08)",
               border: "1px solid rgba(255,255,255,0.12)",
@@ -327,22 +341,22 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        {/* ── MEDIA ── */}
+        {/* Media */}
         <AnimatePresence mode="wait">
           {isVideo ? (
             <video
-              key={`v-${story.id}`}
+              key={`v-${story.docId}`}
               ref={videoRef}
               src={story.video}
               className="absolute inset-0 w-full h-full object-cover"
+              style={{ zIndex: 0 }}
               autoPlay
               playsInline
               muted={isMuted}
-              style={{ zIndex: 0 }}
             />
           ) : (
             <motion.img
-              key={`i-${story.id}`}
+              key={`i-${story.docId}`}
               src={story.image}
               alt="story"
               initial={{ opacity: 0, scale: 1.03 }}
@@ -355,7 +369,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
           )}
         </AnimatePresence>
 
-        {/* ── LOADING SPINNER ── */}
+        {/* Loading spinner */}
         <AnimatePresence>
           {isLoading && (
             <motion.div
@@ -376,7 +390,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
           )}
         </AnimatePresence>
 
-        {/* ── TAP ZONES (left / right) ── */}
+        {/* Tap zones */}
         <div
           className="absolute inset-y-0 left-0 w-1/3 z-10 cursor-pointer"
           onClick={(e) => handleTapZone("left", e)}
@@ -410,18 +424,16 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
           </AnimatePresence>
         </div>
 
-        {/* ── TOP: PROGRESS + HEADER ── */}
-        <div className="absolute top-0 left-0 right-0 z-20 px-3 pt-3">
-          {/* Progress */}
+        {/* ── TOP BAR ── */}
+        <div className="absolute top-0 left-0 right-0 z-20 px-3 pt-3 space-y-3">
           <ProgressSegments
             total={storyList.length}
             current={currentIndex}
             progress={progress}
           />
 
-          {/* Top bar */}
-          <div className="flex justify-between items-start mt-3">
-            {/* LEFT: Avatar + username */}
+          <div className="flex justify-between items-start">
+            {/* Avatar + username */}
             <div className="flex items-center gap-2.5">
               <div
                 className="w-8 h-8 rounded-full overflow-hidden shrink-0"
@@ -439,21 +451,25 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
                   style={{ filter: "brightness(0.8)" }}
                 />
               </div>
-
-              <p className="text-white text-xs font-semibold">
-                {story.username}
-              </p>
+              <div>
+                <p
+                  className="text-white text-xs font-semibold leading-none"
+                  style={{ fontFamily: "'Syne', sans-serif" }}
+                >
+                  {story.username}
+                </p>
+              </div>
             </div>
 
-            {/* RIGHT: Vertical actions */}
-            <div className="flex flex-col items-center gap-3">
+            {/* Action buttons */}
+            <div className="flex flex-col items-center gap-2.5">
               {/* Close */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onClose();
                 }}
-                className="w-[34px] h-[34px] rounded-full flex items-center justify-center bg-black/45 backdrop-blur-md hover:bg-black/75 transition-all duration-200 border border-white/10"
+                className="w-8 h-8 rounded-full flex items-center justify-center bg-black/45 backdrop-blur-sm border border-white/10 hover:bg-black/70 transition-all duration-200"
               >
                 <X size={14} className="text-white" />
               </button>
@@ -465,7 +481,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
                     e.stopPropagation();
                     setIsMuted((m) => !m);
                   }}
-                  className="w-[34px] h-[34px] rounded-full flex items-center justify-center bg-black/45 backdrop-blur-md hover:bg-black/75 transition-all duration-200 border border-white/10"
+                  className="w-8 h-8 rounded-full flex items-center justify-center bg-black/45 backdrop-blur-sm border border-white/10 hover:bg-black/70 transition-all duration-200"
                 >
                   {isMuted ? (
                     <VolumeX size={14} className="text-white" />
@@ -478,67 +494,62 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
               {/* Like */}
               <button
                 onClick={handleLike}
-                className="flex flex-col items-center gap-1 transition-transform active:scale-90"
+                disabled={liking}
+                className="flex flex-col items-center gap-1 group disabled:opacity-70"
               >
-                <motion.div
-                  animate={liked ? { scale: [1, 1.35, 1] } : { scale: 1 }}
-                  transition={{ duration: 0.35 }}
-                  className="w-[34px] h-[34px] rounded-full flex items-center justify-center bg-black/45 backdrop-blur-md hover:bg-black/75 transition-all duration-200 border border-white/10"
+                <div
+                  className={`w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm border transition-all duration-200
+                  ${
+                    liked
+                      ? "bg-red-500/20 border-red-400/40"
+                      : "bg-black/45 border-white/10 hover:bg-black/70"
+                  }`}
                 >
-                  <Heart
-                    size={18}
-                    style={{
-                      color: liked ? "#ef4444" : "#fff",
-                      fill: liked ? "#ef4444" : "transparent",
-                      strokeWidth: 1.8,
-                    }}
-                  />
-                </motion.div>
+                  <motion.div
+                    animate={liked ? { scale: [1, 1.4, 1] } : { scale: 1 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <Heart
+                      size={14}
+                      style={{
+                        color: liked ? "#ef4444" : "#fff",
+                        fill: liked ? "#ef4444" : "transparent",
+                        filter: liked
+                          ? "drop-shadow(0 0 4px rgba(239,68,68,0.6))"
+                          : "none",
+                        strokeWidth: 1.8,
+                      }}
+                    />
+                  </motion.div>
+                </div>
 
-                {/* Like count */}
-                <span
+                {/* Live count — updates in realtime from Firestore */}
+                <motion.span
+                  key={displayLikes}
+                  initial={{ opacity: 0, y: -3 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.6rem",
+                    fontSize: "0.58rem",
                     letterSpacing: "0.05em",
                     color: liked ? "#ef4444" : "#fff",
+                    lineHeight: 1,
                   }}
                 >
-                  {likeCount}
-                </span>
+                  {displayLikes}
+                </motion.span>
               </button>
             </div>
           </div>
         </div>
 
-        {/* ── BOTTOM: LIKE ── */}
-        <div
-          className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-5 flex items-end justify-between"
-          style={{ pointerEvents: "none" }}
-        >
-          {/* Story title/caption if any */}
-          <div style={{ flex: 1 }}>
-            {story.caption && (
-              <p
-                className="text-white text-sm leading-snug line-clamp-2"
-                style={{
-                  fontFamily: "'Syne', sans-serif",
-                  textShadow: "0 1px 4px rgba(0,0,0,0.8)",
-                }}
-              >
-                {story.caption || "eututthu"}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* ── DOUBLE-TAP HEART BURST ── */}
+        {/* Double-tap heart burst */}
         <AnimatePresence>
           {heartBurst && (
             <motion.div
               key="burst"
-              initial={{ opacity: 1, scale: 0.4, y: 0 }}
-              animate={{ opacity: 0, scale: 1.6, y: -60 }}
+              initial={{ opacity: 1, scale: 0.5, y: 0 }}
+              animate={{ opacity: 0, scale: 1.7, y: -70 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
               className="absolute left-1/2 bottom-1/3 pointer-events-none z-30"
@@ -549,14 +560,13 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
                 style={{
                   color: "#ef4444",
                   fill: "#ef4444",
-                  filter: "drop-shadow(0 0 16px rgba(239,68,68,0.8))",
+                  filter: "drop-shadow(0 0 18px rgba(239,68,68,0.85))",
                 }}
               />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* ── CSS for spinner ── */}
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </motion.div>
     </motion.div>

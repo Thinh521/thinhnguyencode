@@ -161,8 +161,7 @@ const PhotoModal = ({ photo, onClose }) => {
             <button
               onClick={onClose}
               className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center
-                bg-black/55 backdrop-blur-sm border border-white/10
-                text-white/65 hover:text-white hover:bg-black/75 transition-all duration-200"
+                bg-black/45 backdrop-blur-sm border border-white/10 hover:bg-black/70 text-white transition-all duration-200"
             >
               <X size={14} />
             </button>
@@ -171,31 +170,45 @@ const PhotoModal = ({ photo, onClose }) => {
             <button
               onClick={handleLike}
               disabled={liking}
-              className={`absolute top-12 right-3 z-20 flex flex-col items-center gap-1
-                      px-2 py-2 rounded-full backdrop-blur-sm border
-                      transition-all duration-200 disabled:opacity-60
-                      ${
-                        liked
-                          ? "bg-red-500/20 border-red-500/50 text-red-500"
-                          : "bg-black/55 border-white/10 text-white/65 hover:text-white hover:border-white/25"
-                      }`}
+              className="absolute top-[3.25rem] right-3 z-20 flex flex-col items-center gap-1 disabled:opacity-60"
             >
-              <div>
-                <motion.span
+              {/* ICON */}
+              <div
+                className={`w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm border transition-all duration-200
+    ${
+      liked
+        ? "bg-red-500/20 border-red-500/50"
+        : "bg-black/55 border-white/10 hover:bg-black/75"
+    }`}
+              >
+                <motion.div
                   animate={liked ? { scale: [1, 1.4, 1] } : { scale: 1 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="flex items-center justify-center"
                 >
                   <Heart
                     size={14}
-                    style={{ fill: liked ? "currentColor" : "transparent" }}
+                    style={{
+                      color: liked ? "#ef4444" : "#fff",
+                      fill: liked ? "#ef4444" : "transparent",
+                      strokeWidth: 1.8,
+                    }}
                   />
-                </motion.span>
+                </motion.div>
               </div>
 
-              <span className="font-mono text-[0.55rem] tracking-wide leading-none tabular-nums">
+              {/* TEXT nằm ngoài */}
+              <motion.span
+                key={likes}
+                initial={{ opacity: 0, y: -3 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="text-[0.58rem] tracking-wide leading-none"
+                style={{
+                  color: liked ? "#ef4444" : "#fff",
+                }}
+              >
                 {likes}
-              </span>
+              </motion.span>
             </button>
 
             {/* ── PREV / NEXT ── */}

@@ -1,19 +1,15 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
-export const getPhotos = async () => {
-  try {
-    const snapshot = await getDocs(collection(db, "photosData"));
-    const data = snapshot.docs.map((doc) => {
-      const docData = doc.data();
-      return {
-        id: doc.id,
-        ...docData,
-      };
-    });
-    return data;
-  } catch (error) {
-    console.error("Lỗi khi lấy data từ Firebase:", error);
-    return [];
-  }
+export const subscribePhotos = (callback) => {
+  const unsubscribe = onSnapshot(collection(db, "photosData"), (snapshot) => {
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    callback(data);
+  });
+
+  return unsubscribe;
 };
