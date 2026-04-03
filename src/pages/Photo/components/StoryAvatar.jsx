@@ -19,7 +19,7 @@ const StoryAvatar = memo(({ story, index, onClick, viewed }) => {
           }}
         >
           <video
-            src={`/thinhnguyencode/videos/${story.video}`}
+            src={story.video}
             muted
             playsInline
             preload="metadata"

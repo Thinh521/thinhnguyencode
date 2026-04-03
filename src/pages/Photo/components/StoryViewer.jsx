@@ -61,8 +61,8 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const [heartBurst, setHeartBurst] = useState(false); // double-tap burst
-  const [tapSide, setTapSide] = useState(null); // "left" | "right" flash
+  const [heartBurst, setHeartBurst] = useState(false);
+  const [tapSide, setTapSide] = useState(null);
 
   const videoRef = useRef(null);
   const intervalRef = useRef(null);
@@ -333,7 +333,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
             <video
               key={`v-${story.id}`}
               ref={videoRef}
-              src={`/thinhnguyencode/videos/${story.video}`}
+              src={story.video}
               className="absolute inset-0 w-full h-full object-cover"
               autoPlay
               playsInline
@@ -343,7 +343,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
           ) : (
             <motion.img
               key={`i-${story.id}`}
-              src={`/thinhnguyencode/images/${story.image}`}
+              src={story.image}
               alt="story"
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -411,17 +411,18 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
         </div>
 
         {/* ── TOP: PROGRESS + HEADER ── */}
-        <div className="absolute top-0 left-0 right-0 z-20 px-3 pt-3 space-y-3">
+        <div className="absolute top-0 left-0 right-0 z-20 px-3 pt-3">
+          {/* Progress */}
           <ProgressSegments
             total={storyList.length}
             current={currentIndex}
             progress={progress}
           />
 
-          {/* User row */}
-          <div className="flex items-center justify-between">
+          {/* Top bar */}
+          <div className="flex justify-between items-start mt-3">
+            {/* LEFT: Avatar + username */}
             <div className="flex items-center gap-2.5">
-              {/* Avatar */}
               <div
                 className="w-8 h-8 rounded-full overflow-hidden shrink-0"
                 style={{
@@ -430,7 +431,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
                 }}
               >
                 <video
-                  src={`/thinhnguyencode/videos/${story.video}`}
+                  src={story.video}
                   muted
                   playsInline
                   preload="metadata"
@@ -439,58 +440,72 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
                 />
               </div>
 
-              <div>
-                <p
-                  className="text-white text-xs font-semibold leading-none"
-                  style={{
-                    fontFamily: "'Syne', sans-serif",
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  {story.username}
-                </p>
-              </div>
+              <p className="text-white text-xs font-semibold">
+                {story.username}
+              </p>
             </div>
 
-            {/* Action buttons */}
-            <div className="flex items-center gap-2">
+            {/* RIGHT: Vertical actions */}
+            <div className="flex flex-col items-center gap-3">
+              {/* Close */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClose();
+                }}
+                className="w-[34px] h-[34px] rounded-full flex items-center justify-center bg-black/45 backdrop-blur-md hover:bg-black/75 transition-all duration-200 border border-white/10"
+              >
+                <X size={14} className="text-white" />
+              </button>
+
+              {/* Mute */}
               {isVideo && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setIsMuted((m) => !m);
                   }}
-                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all"
-                  style={{
-                    background: "rgba(0,0,0,0.4)",
-                    backdropFilter: "blur(6px)",
-                  }}
+                  className="w-[34px] h-[34px] rounded-full flex items-center justify-center bg-black/45 backdrop-blur-md hover:bg-black/75 transition-all duration-200 border border-white/10"
                 >
                   {isMuted ? (
-                    <VolumeX size={14} className="text-white/60" />
+                    <VolumeX size={14} className="text-white" />
                   ) : (
-                    <Volume2 size={14} className="text-white/60" />
+                    <Volume2 size={14} className="text-white" />
                   )}
                 </button>
               )}
+
+              {/* Like */}
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onClose();
-                }}
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all"
-                style={{
-                  background: "rgba(0,0,0,0.4)",
-                  backdropFilter: "blur(6px)",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "rgba(249,115,22,0.3)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "rgba(0,0,0,0.4)")
-                }
+                onClick={handleLike}
+                className="flex flex-col items-center gap-1 transition-transform active:scale-90"
               >
-                <X size={14} className="text-white/70" />
+                <motion.div
+                  animate={liked ? { scale: [1, 1.35, 1] } : { scale: 1 }}
+                  transition={{ duration: 0.35 }}
+                  className="w-[34px] h-[34px] rounded-full flex items-center justify-center bg-black/45 backdrop-blur-md hover:bg-black/75 transition-all duration-200 border border-white/10"
+                >
+                  <Heart
+                    size={18}
+                    style={{
+                      color: liked ? "#ef4444" : "#fff",
+                      fill: liked ? "#ef4444" : "transparent",
+                      strokeWidth: 1.8,
+                    }}
+                  />
+                </motion.div>
+
+                {/* Like count */}
+                <span
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.05em",
+                    color: liked ? "#ef4444" : "#fff",
+                  }}
+                >
+                  {likeCount}
+                </span>
               </button>
             </div>
           </div>
@@ -511,45 +526,10 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
                   textShadow: "0 1px 4px rgba(0,0,0,0.8)",
                 }}
               >
-                {story.caption}
+                {story.caption || "eututthu"}
               </p>
             )}
           </div>
-
-          {/* Like button */}
-          <button
-            onClick={handleLike}
-            className="flex flex-col items-center gap-1 ml-3 shrink-0 transition-transform active:scale-90"
-            style={{ pointerEvents: "all" }}
-          >
-            <motion.div
-              animate={liked ? { scale: [1, 1.35, 1] } : { scale: 1 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-            >
-              <Heart
-                size={24}
-                className="transition-colors duration-200"
-                style={{
-                  color: liked ? "#ef4444" : "rgba(255,255,255,0.7)",
-                  fill: liked ? "#ef4444" : "transparent",
-                  filter: liked
-                    ? "drop-shadow(0 0 6px rgba(239,68,68,0.6))"
-                    : "none",
-                  strokeWidth: 1.8,
-                }}
-              />
-            </motion.div>
-            <span
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.58rem",
-                letterSpacing: "0.06em",
-                color: liked ? "#ef4444" : "rgba(255,255,255,0.4)",
-              }}
-            >
-              {likeCount}
-            </span>
-          </button>
         </div>
 
         {/* ── DOUBLE-TAP HEART BURST ── */}
