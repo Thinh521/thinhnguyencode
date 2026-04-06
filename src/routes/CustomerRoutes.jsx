@@ -30,7 +30,6 @@ const CustomerRoutes = () => {
           <Route path="contact" element={<Contact />} />
           <Route path="ratings" element={<Ratings />} />
         </Route>
-
         <Route element={<DetailLayout />}>
           <Route path="cv" element={<Cv />} />
           <Route path="/writing/:id" element={<WritingDetail />} />

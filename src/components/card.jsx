@@ -5,7 +5,7 @@ export const Card = ({ className, children, ...props }) => {
     <div
       className={cn(
         "rounded-xl backdrop-blur-md border border-gray-200 dark:border-neutral-700/50 bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-gray-100 shadow-sm",
-        className
+        className,
       )}
       {...props}
     >
