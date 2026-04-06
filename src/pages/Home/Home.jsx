@@ -35,17 +35,6 @@ const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .font-serif { font-family: 'Instrument Serif', serif; }
-    .font-mono  { font-family: 'JetBrains Mono', monospace; }
-
-    /* Noise texture */
-    .noise-bg::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-    }
-
     /* Section divider */
     .s-rule {
       height: 1px;
@@ -147,7 +136,7 @@ export default function Home() {
   }, []);
 
   return (
-    <article className="home-root noise-bg min-h-screen" ref={containerRef}>
+    <article className="min-h-screen" ref={containerRef}>
       <FontLoader />
 
       <motion.div
