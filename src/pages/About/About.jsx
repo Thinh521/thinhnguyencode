@@ -395,7 +395,7 @@ const EducationPanel = () => (
       <div className="space-y-0">
         {studyInfo.slice(0, 6).map((item, i) => (
           <div key={i} className="info-row">
-            <span className="text-[0.62rem] tracking-wide">{item.label}</span>
+            <span className="text-xs tracking-wide">{item.label}</span>
             <span className="text-neutral-900 dark:text-white text-xs font-bold text-right">
               {item.value}
             </span>
@@ -456,7 +456,7 @@ const ExperiencePanel = () => (
             </p>
 
             {/* Desc */}
-            <p className="text-xs leading-relaxed text-justify pt-1 text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm leading-relaxed text-justify pt-1 text-neutral-600 dark:text-neutral-400">
               {item.desc}
             </p>
           </div>
@@ -473,7 +473,7 @@ const ExperiencePanel = () => (
             borderStyle: "dashed",
           }}
         />
-        <p className="font-mono-code text-[0.58rem] text-neutral-700 tracking-widest uppercase ml-3">
+        <p className="text-[0.58rem] text-neutral-700 tracking-widest uppercase ml-3">
           Chương tiếp theo...
         </p>
       </div>
