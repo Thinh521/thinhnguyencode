@@ -1,6 +1,5 @@
 import { IMAGES } from "../../../public/images/imgaes";
 import BackButton from "../../components/Button/BackButton";
-import Divider from "../../components/Divider/Divider";
 
 const Cv = () => {
   return (
@@ -18,8 +17,7 @@ const Cv = () => {
         />
       </section>
 
-      <Divider className="mt-10" />
-      <BackButton className="mt-5 mb-10" />
+      <BackButton className="mt-10 mb-10" />
     </article>
   );
 };
