@@ -70,20 +70,6 @@ const FontLoader = () => (
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
     .cursor { animation: blink 1.1s step-end infinite; }
 
-    /* Resume btn */
-    .resume-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 11px 24px; border-radius: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: white; text-decoration: none; cursor: pointer;
-      transition: background 0.25s, box-shadow 0.25s;
-    }
-    .resume-btn:hover {
-      background: rgba(249,115,22,0.26);
-      box-shadow: 0 0 28px rgba(249,115,22,0.22);
-    }
-
     /* Avatar glow */
     @keyframes avatarPulse {
       0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); }
