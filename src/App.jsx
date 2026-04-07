@@ -3,6 +3,8 @@ import { Toaster } from "sonner";
 
 import CustomerRoutes from "./routes/CustomerRoutes";
 import Preloader from "./components/Preloader/Preloader";
+import BackToTop from "./components/BackToTop";
+import MessengerButton from "./components/MessengerButton";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -41,6 +43,9 @@ function App() {
           },
         }}
       />
+
+      <BackToTop />
+      <MessengerButton />
     </div>
   );
 }
