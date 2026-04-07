@@ -29,7 +29,7 @@ export default function BackToTop() {
     <button
       onClick={scrollTop}
       title="Lên đầu trang"
-      className={`fixed bottom-12 lg:right-14 right-[1.4rem] z-50 p-3 lg:p-4 rounded-full
+      className={`fixed bottom-[6.5rem] lg:bottom-[6.8rem] lg:right-14 right-[1.4rem] z-50 p-3 lg:p-4 rounded-full
                   backdrop-blur-[18px] saturate-[1.5]
                   border transition-all duration-300
                   hover:scale-110 active:scale-95
