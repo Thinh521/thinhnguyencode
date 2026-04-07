@@ -104,7 +104,7 @@ const PhotoModal = ({ photo, onClose }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.22 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
+        className="fixed inset-0 z-[99999999] flex items-center justify-center bg-black/95 backdrop-blur-md"
         onClick={onClose}
       >
         <motion.div
@@ -177,7 +177,7 @@ const PhotoModal = ({ photo, onClose }) => {
                 className={`w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm border transition-all duration-200
     ${
       liked
-        ? "bg-red-500/20 border-red-500/50"
+        ? "bg-red-600/20 border-red-600/50"
         : "bg-black/55 border-white/10 hover:bg-black/75"
     }`}
               >
@@ -202,7 +202,7 @@ const PhotoModal = ({ photo, onClose }) => {
                 initial={{ opacity: 0, y: -3 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2 }}
-                className="text-[0.58rem] tracking-wide leading-none"
+                className="text-[0.68rem] font-medium tracking-wide leading-none"
                 style={{
                   color: liked ? "#ef4444" : "#fff",
                 }}

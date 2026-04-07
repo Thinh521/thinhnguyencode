@@ -501,7 +501,7 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
                   className={`w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm border transition-all duration-200
                   ${
                     liked
-                      ? "bg-red-500/20 border-red-400/40"
+                      ? "bg-red-600/20 border-red-600/50"
                       : "bg-black/45 border-white/10 hover:bg-black/70"
                   }`}
                 >
@@ -529,11 +529,9 @@ const StoryViewer = ({ storyList = [], onClose, initialIndex = 0 }) => {
                   initial={{ opacity: 0, y: -3 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
+                  className="text-[0.68rem] font-medium tracking-wide leading-none"
                   style={{
-                    fontSize: "0.58rem",
-                    letterSpacing: "0.05em",
                     color: liked ? "#ef4444" : "#fff",
-                    lineHeight: 1,
                   }}
                 >
                   {displayLikes}
