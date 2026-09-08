@@ -111,10 +111,10 @@ const SERVICES = [
 ];
 
 const STATS = [
-  { value: "7+", label: "Dự án", sub: "completed" },
-  { value: "3.35", label: "GPA", sub: "out of 4.0" },
-  { value: "2+", label: "Năm", sub: "experience" },
-  { value: "100%", label: "Commitment", sub: "always" },
+  { value: "7+", label: "Dự án", sub: "Hoàn thành" },
+  { value: "3.35", label: "GPA", sub: "Thang điểm 4,0" },
+  { value: "2+", label: "Năm", sub: "Kinh nghiệm" },
+  { value: "100%", label: "Cam kết", sub: "Hoàn thành" },
 ];
 
 /* ─────────────────────────────────────────────
