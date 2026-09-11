@@ -56,7 +56,7 @@ const SocialLinks = () => {
               aria-label={`Visit ${label} profile`}
               className={`group relative block p-2.5 border border-neutral-300 dark:border-neutral-600 
                            transition-all duration-300 ease-in-out
-                           rounded-xl shadow-sm hover:shadow-md
+                           rounded-xl shadow-sm hover:shadow-md hover:bg-transparent
                            transform hover:scale-105 hover:-translate-y-0.5
                            ${color}`}
             >

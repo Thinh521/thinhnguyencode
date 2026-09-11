@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   FaReact,
   FaNodeJs,
@@ -23,30 +23,19 @@ import {
   SiAdobepremierepro,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
-import {
-  ExternalLink,
-  BookOpen,
-  Wrench,
-  GraduationCap,
-  Briefcase,
-} from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import { IMAGES } from "../../../public/images/imgaes";
 import Button from "../../components/Button/Button";
 import PageHeader from "../../components/layout/PageHeader";
 
 /* ─────────────────────────────────────────────
-   FONTS
+   FONTS + LOCAL STYLES
 ───────────────────────────────────────────── */
 const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none; 
-    }
-
-    /* Skill chip */
     .skill-item {
       display: flex; align-items: center; gap: 8px;
       padding: 8px 14px;
@@ -59,7 +48,6 @@ const FontLoader = () => (
       background: rgba(249,115,22,0.05);
     }
 
-    /* Info table row */
     .info-row {
       display: flex; justify-content: space-between; align-items: baseline;
       gap: 12px; padding: 10px 0;
@@ -67,7 +55,6 @@ const FontLoader = () => (
     }
     .info-row:last-child { border-bottom: none; }
 
-    /* Timeline dot */
     .tl-dot {
       position: absolute;
       left: -5px; top: 9px;
@@ -77,25 +64,7 @@ const FontLoader = () => (
       background: #0a0a0a;
     }
 
-    /* section rule */
-    .section-rule {
-      height: 1px;
-      background: linear-gradient(to right, rgba(249,115,22,0.4), rgba(255,255,255,0.04), transparent);
-      margin-bottom: 28px;
-    }
-
-    /* Image panel */
-    .img-panel {
-      position: relative; overflow: hidden;
-    }
-    .img-panel img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94),
-                  filter 0.5s ease;
-    }
-
-    /* grain */
+    .grain { position: relative; }
     .grain::after {
       content: '';
       position: absolute; inset: 0; pointer-events: none; z-index: 1;
@@ -103,10 +72,19 @@ const FontLoader = () => (
       background-size: 150px;
     }
 
-    /* scroll fade */
-    .content-scroll::-webkit-scrollbar { width: 3px; }
-    .content-scroll::-webkit-scrollbar-track { background: transparent; }
-    .content-scroll::-webkit-scrollbar-thumb { background: #f97316; border-radius: 99px; }
+    .chapter-img {
+      overflow: hidden;
+    }
+    .chapter-img img {
+      transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .chapter-img:hover img {
+      transform: scale(1.045);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
   `}</style>
 );
 
@@ -170,8 +148,6 @@ const studyInfo = [
   { label: "Bằng cấp", value: "Cử nhân Cao đẳng" },
   { label: "Tình trạng", value: "Đã tốt nghiệp" },
   { label: "GPA", value: "3.35 / 4.0" },
-  { label: "Xếp loại", value: "Giỏi" },
-  { label: "Thời gian", value: "2022 – 2025" },
 ];
 
 const experience = [
@@ -192,505 +168,343 @@ const experience = [
 ];
 
 const STATS = [
-  { value: "7+", label: "Dự án", sub: "completed" },
-  { value: "3.35", label: "GPA", sub: "out of 4.0" },
-  { value: "2+", label: "Năm", sub: "experience" },
-  { value: "100%", label: "Commitment", sub: "always" },
+  { value: "7+", label: "Dự án" },
+  { value: "3.35", label: "GPA / 4.0" },
+  { value: "2+", label: "Kinh nghiệm" },
+  { value: "100%", label: "Commitment" },
 ];
 
 /* ─────────────────────────────────────────────
-   CONTENT PANELS
+   CHAPTER LAYOUT
+   Ảnh "dính" (sticky) khi cuộn ở một bên, nội dung
+   cuộn tự nhiên ở bên còn lại — xen kẽ trái/phải
+   giữa các chương để tạo nhịp điệu thị giác.
 ───────────────────────────────────────────── */
-const StoryPanel = () => (
-  <div className="space-y-8">
-    <div>
-      {/* Section label */}
-      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-        <span className="w-5 h-px bg-primary-400 inline-block" /> Câu chuyện
-      </p>
-
-      {/* Title */}
-      <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
-        Xin chào, mình là
-        <span className="gradient-text"> Thịnh</span>
-        <span className="text-primary-500">.</span>
-      </h2>
-
-      {/* Story text */}
-      <div className="relative">
-        <p className="relative text-[0.95rem] leading-relaxed text-justify text-neutral-700 dark:text-neutral-300 first-letter:text-4xl first-letter:font-bold first-letter:text-primary-500 first-letter:mr-2 first-letter:float-left">
-          Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của mình.
-          Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết Kế Trang
-          Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC). Hiện tại
-          mình đang sinh sống và làm việc tại TP.HCM. Đây là giai đoạn mình đang
-          dồn hết tâm huyết của mình cho các dự án tốt nghiệp, mà Website cá
-          nhân này chính là một trong những dự án tâm đắc nhất của mình. Mục
-          tiêu của website này là một không gian toàn diện hiện đại, thân thiện
-          và đẹp mắt để: giới thiệu bản thân, trưng bày các dự án đã thực hiện,
-          chia sẻ học vấn, và đặc biệt là nơi lưu giữ những hình ảnh, âm nhạc,
-          những câu chuyện, thành tựu cá nhân mình đã trải qua và có được trong
-          hành trình của mình.
-        </p>
-
-        {/* Highlighted passion block */}
-        <div className="mt-4 border-l-2 border-primary-500/60 pl-4 italic text-[0.9rem] text-neutral-600 dark:text-neutral-400">
-          Mình có niềm yêu thích đặc biệt với lập trình giao diện (Frontend) và
-          đang không ngừng tự học thêm các ngôn ngữ lập trình chuyên sâu hơn để
-          có thể xây dựng những ứng dụng (App), website hoàn chỉnh, hiện đại và
-          độc đáo.
-        </div>
-
-        <p className="mt-4 text-[0.95rem] leading-relaxed text-justify text-neutral-700 dark:text-neutral-300">
-          Cùng với khát vọng trở thành một Frontend Developer chuyên nghiệp
-          trong tương lai. Bên cạnh kiến thức lập trình. Nhà trường cũng đã
-          trang bị thêm kiến thức nền tảng cho mình về thiết kế và sáng tạo.
-          Mình cũng học được các kỹ năng đủ để thiết kế được các Poster. Tuy
-          nhiên, Mình không ngừng tự thử thách bản thân. Mình đang trên hành
-          trình học hỏi không ngừng để hoàn thiện sâu hơn nữa kỹ năng chuyên môn
-          và tư duy thiết kế, nhằm tạo ra những sản phẩm không chỉ đẹp mà còn
-          mang tính ứng dụng cao và đột phá.
-        </p>
-
-        {/* Quote style ending */}
-        <blockquote className="mt-4 text-[0.9rem] leading-relaxed text-neutral-600 dark:text-neutral-400 border-l-2 border-neutral-300 dark:border-neutral-600 pl-4">
-          Ngoài ra, mình cực kỳ đam mê quay phim và chụp ảnh. Sở thích này không
-          chỉ là giải trí mà còn là cách mình lưu giữ trọn vẹn những khoảnh khắc
-          đáng nhớ nhất của bản thân, gia đình, bạn bè và người yêu của mình.
-          Mình muốn dùng "góc kính nhiệm màu" của mình để truyền tải đến mọi
-          người những gì mình thấy là đẹp đẽ, đáng yêu và ý nghĩa nhất trong
-          cuộc sống của mình.
-        </blockquote>
-      </div>
-    </div>
-
-    {/* Quick stats */}
-    <div className="grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 shadow-sm">
-      {STATS.map((s, i) => (
-        <div key={s.label} className="relative text-center p-4">
-          {i !== 0 && (
-            <span className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-10 bg-neutral-300 dark:bg-neutral-600" />
-          )}
-          <p className="text-2xl font-serif leading-none mb-1 text-neutral-900 dark:text-white">
-            {s.value}
-          </p>
-          <p className="text-[0.78rem] font-semibold tracking-wider uppercase text-neutral-500 dark:text-neutral-400">
-            {s.label}
-          </p>
-          <p className="text-[0.62rem] tracking-widest uppercase mt-0.5 text-black/30 dark:text-white/25">
-            {s.sub}
-          </p>
-        </div>
-      ))}
-    </div>
-
-    <div className="pt-2 flex flex-col gap-4">
-      <Button
-        to="/cv"
-        leftIcon={<ExternalLink size={13} />}
-        className="max-w-max"
+const Chapter = ({ number, title, image, imageOnRight = false, children }) => (
+  <section className="relative mb-28 md:mb-40">
+    <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+      <div
+        className={`${imageOnRight ? "md:order-2" : "md:order-1"} md:sticky md:top-28`}
       >
-        Resume / CV
-      </Button>
-      <SocialLinks />
-    </div>
-  </div>
-);
-
-const SkillsPanel = () => (
-  <div className="space-y-6">
-    <div>
-      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-        <span className="w-4 h-px bg-primary-400 inline-block" /> Tech Stack
-      </p>
-      <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
-        Kỹ năng<span className="text-primary-500">.</span>
-      </h2>
-      <p className="text-neutral-600 text-xs tracking-widest mb-5">
-        Luôn luôn học hỏi những công nghệ mới
-      </p>
-    </div>
-
-    <div className="space-y-5">
-      {skillGroups.map((group, gi) => (
-        <motion.div
-          key={group.title}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: gi * 0.07, duration: 0.4 }}
-        >
-          <p className="text-[0.58rem] tracking-[0.18em] uppercase text-neutral-900 dark:text-white font-bold mb-2">
-            {group.title}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {group.skills.map((skill) => (
-              <div
-                key={skill.name}
-                className="skill-item bg-neutral-200/20 dark:bg-neutral-700/20 border border-neutral-200/80 dark:border-neutral-700/80"
-              >
-                <span className="text-sm text-primary-400">{skill.icon}</span>
-                <p className="text-neutral-900 dark:text-white">{skill.name}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-);
-
-const EducationPanel = () => (
-  <div className="space-y-6">
-    <div>
-      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-        <span className="w-4 h-px bg-primary-400 inline-block" /> Đào tạo
-      </p>
-      <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
-        Học vấn<span className="text-primary-500">.</span>
-      </h2>
-    </div>
-
-    {/* School card */}
-    <div className="p-5 rounded-2xl space-y-5 bg-neutral-200/20 dark:bg-neutral-700/20 border border-neutral-200/80 dark:border-neutral-700/80">
-      <div className="flex items-start gap-3">
-        <div className="p-2 rounded-xl bg-primary-500/10 border border-primary-500/20 shrink-0 mt-0.5">
-          <FaGraduationCap size={16} className="text-primary-400" />
-        </div>
-        <div>
-          <p className="text-neutral-900 dark:text-white font-semibold text-sm leading-snug">
-            Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM
-          </p>
-          <p className="text-xs flex items-center gap-1.5 mt-1">
-            <MdSchool size={12} /> ITC — Thiết Kế Trang Web
-          </p>
-        </div>
-      </div>
-
-      {/* GPA highlight */}
-      <div className="flex items-center gap-4">
-        <div className="flex-1">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[0.6rem] uppercase tracking-wider text-neutral-500">
-              GPA
-            </span>
-            <span className="text-primary-400 text-xs">3.35 / 4.0</span>
-          </div>
-          <div className="w-full h-1.5 bg-white/6 rounded-full overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "83.75%" }}
-              transition={{ delay: 0.3, duration: 0.9, ease: "easeOut" }}
-              className="h-full bg-gradient-to-r from-primary-500 to-primary-300 rounded-full"
-            />
-          </div>
-        </div>
-        <div className="text-right shrink-0">
-          <p className="font-serif-display text-2xl text-primary-400 leading-none">
-            Giỏi
-          </p>
-        </div>
-      </div>
-
-      {/* Info grid */}
-      <div className="section-rule" style={{ margin: "4px 0 4px" }} />
-      <div className="space-y-0">
-        {studyInfo.slice(0, 6).map((item, i) => (
-          <div key={i} className="info-row">
-            <span className="text-xs tracking-wide">{item.label}</span>
-            <span className="text-neutral-900 dark:text-white text-xs font-bold text-right">
-              {item.value}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-const ExperiencePanel = () => (
-  <div className="space-y-6">
-    <div>
-      <p className="text-primary-400 text-xs font-semibold tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-        <span className="w-4 h-px bg-primary-400 inline-block" /> Career
-      </p>
-      <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-4">
-        Kinh nghiệm<span className="text-primary-500">.</span>
-      </h2>
-    </div>
-
-    <div className="relative pl-5 border-l border-white/8 space-y-8">
-      {experience.map((item, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, x: -12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: i * 0.12, duration: 0.5 }}
-          className="relative"
-        >
-          {/* dot */}
-          <div
-            className="tl-dot"
-            style={{ background: "#f97316", borderColor: "#f97316" }}
+        <div className="chapter-img grain relative rounded-2xl overflow-hidden aspect-[4/5] border border-neutral-200/80 dark:border-neutral-700/80">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+            loading="lazy"
           />
+        </div>
+      </div>
 
-          <div className="space-y-1.5 ml-4">
-            {/* Year badge */}
-            <span className="text-[0.6rem] tracking-widest text-primary-400 uppercase">
-              {item.year}
+      <div className={imageOnRight ? "md:order-1" : "md:order-2"}>
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="flex items-center gap-4 mb-5">
+            <span className="font-mono text-xs text-primary-400 tracking-widest">
+              {number}
             </span>
-
-            {/* Company */}
-            <div className="flex items-center gap-2">
-              <h3 className="text-neutral-900 dark:text-white font-bold text-base">
-                {item.company}
-              </h3>
-              {item.current && (
-                <span className="text-[0.5rem] tracking-widest uppercase px-2 py-0.5 bg-primary-500/15 border border-primary-500/30 text-primary-400 rounded-full">
-                  Now
-                </span>
-              )}
-            </div>
-
-            {/* Role */}
-            <p className="text-sm text-neutral-700 dark:text-neutral-200">
-              {item.role}
-            </p>
-
-            {/* Desc */}
-            <p className="text-sm leading-relaxed text-justify pt-1 text-neutral-600 dark:text-neutral-400">
-              {item.desc}
-            </p>
+            <span className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
           </div>
+          <h2 className="font-playfair text-4xl md:text-5xl text-black dark:text-white leading-tight mb-7">
+            {title}
+            <span className="text-primary-500">.</span>
+          </h2>
+          {children}
         </motion.div>
-      ))}
-
-      {/* future dot */}
-      <div className="relative pl-0">
-        <div
-          className="tl-dot"
-          style={{
-            background: "transparent",
-            borderColor: "rgba(255,255,255,0.1)",
-            borderStyle: "dashed",
-          }}
-        />
-        <p className="text-[0.58rem] text-neutral-700 tracking-widest uppercase ml-3">
-          Chương tiếp theo...
-        </p>
       </div>
     </div>
-  </div>
+  </section>
 );
-
-/* ─────────────────────────────────────────────
-   SLIDES CONFIG
-───────────────────────────────────────────── */
-const SLIDES = [
-  {
-    label: "Giới thiệu",
-    icon: BookOpen,
-    image: IMAGES.about_1,
-    Panel: StoryPanel,
-  },
-  { label: "Kỹ năng", icon: Wrench, image: IMAGES.about_2, Panel: SkillsPanel },
-  {
-    label: "Học vấn",
-    icon: GraduationCap,
-    image: IMAGES.about_3,
-    Panel: EducationPanel,
-  },
-  {
-    label: "Kinh nghiệm",
-    icon: Briefcase,
-    image: IMAGES.about_4,
-    Panel: ExperiencePanel,
-  },
-];
 
 /* ─────────────────────────────────────────────
    MAIN COMPONENT
 ───────────────────────────────────────────── */
 export default function About() {
-  const [active, setActive] = useState(0);
-  const touchStartX = useRef(0);
-
-  const goTo = (n) => {
-    if (n < 0 || n >= SLIDES.length) return;
-    setActive(n);
-  };
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "ArrowRight") goTo(active + 1);
-      if (e.key === "ArrowLeft") goTo(active - 1);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [active]);
-
-  const onTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const onTouchEnd = (e) => {
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (dx < -50) goTo(active + 1);
-    if (dx > 50) goTo(active - 1);
-  };
-
-  const CurrentPanel = SLIDES[active].Panel;
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroImgScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
+  const heroImgY = useTransform(scrollYProgress, [0, 1], [0, 60]);
 
   return (
     <article className="min-h-screen">
       <FontLoader />
 
-      {/* ── PAGE HEADER ── */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-5"
+        className="mb-14 md:mb-20"
       >
-        <PageHeader
-          title="Giới thiệu."
-          subtitle="Một chút thú vị về mình"
-          rightContent={
-            <span className="font-playfair text-5xl hidden sm:block">
-              {String(active + 1).padStart(2, "0")}
-            </span>
-          }
-        />
+        <PageHeader title="Giới thiệu." subtitle="Một chút thú vị về mình" />
       </motion.div>
 
-      {/* ── TAB NAV ── */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
-          {SLIDES.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <button
-                key={i}
-                onClick={() => goTo(i)}
-                className={`relative inline-flex items-center gap-2 py-2 px-5 text-xs cursor-pointer whitespace-nowrap bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700/50 rounded-xl text-neutral-900 dark:text-white transition-colors hover:border-primary-500 hover:bg-primary-500/10 [&:hover_svg]:text-primary-500
-                          ${
-                            active === i
-                              ? "border-primary-500/20 dark:border-primary-500/20 bg-primary-500/10 dark:bg-primary-500/10 [&_svg]:text-primary-500  dark:text-primary-400 text-primary-400"
-                              : ""
-                          }
-                        `}
-              >
-                <Icon size={12} />
-                {s.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      {/* ── HERO ── */}
+      <section
+        ref={heroRef}
+        className="relative grid md:grid-cols-[0.95fr_1.05fr] gap-10 md:gap-16 items-center mb-28 md:mb-40"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 1.06 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="grain relative rounded-2xl overflow-hidden aspect-[4/5] border border-neutral-200/80 dark:border-neutral-700/80 order-1"
+        >
+          <motion.img
+            src={IMAGES.about_1}
+            alt="Nguyễn Phúc Thịnh"
+            style={{ scale: heroImgScale, y: heroImgY }}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
 
-      {/* ── MAIN LAYOUT ── */}
-      <div className="pb-16">
-        <div className="grid md:grid-cols-[1fr_1.6fr] gap-0 rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-neutral-200/20 dark:bg-neutral-700/20 overflow-hidden">
-          {/* LEFT — Image */}
-          <div className="img-panel grain relative min-h-[320px] md:min-h-[600px]">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={active}
-                src={SLIDES[active].image}
-                alt={SLIDES[active].label}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="order-1 md:order-2"
+        >
+          <p className="text-[0.95rem] md:text-base leading-relaxed text-justify text-neutral-700 dark:text-neutral-300 max-w-lg mb-8">
+            Tôi là Thịnh là sinh viên đã tốt nghiệp ngành Thiết Kế Trang Web tại
+            Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC), đang theo đuổi
+            hành trình trở thành một Frontend Developer chuyên nghiệp
+          </p>
 
-            {/* slide label on image */}
-            <div className="absolute bottom-5 left-5 z-20">
-              <p className="font-serif-display text-white/30 text-5xl leading-none select-none">
-                {SLIDES[active].label}
-              </p>
-            </div>
-
-            {/* vertical dot nav */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-2.5">
-              {SLIDES.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  className="transition-all duration-300"
-                  style={{
-                    width: active === i ? "8px" : "6px",
-                    height: active === i ? "8px" : "6px",
-                    borderRadius: "50%",
-                    background:
-                      active === i ? "#f97316" : "rgba(255,255,255,0.2)",
-                    transform: active === i ? "scale(1)" : "scale(1)",
-                    border:
-                      active === i
-                        ? "none"
-                        : "1px solid rgba(255,255,255,0.15)",
-                  }}
-                  aria-label={SLIDES[i].label}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* RIGHT — Content */}
-          <div
-            className="content-scroll overflow-y-auto p-7 md:p-10"
-            style={{ maxHeight: "700px" }}
-            onTouchStart={onTouchStart}
-            onTouchEnd={onTouchEnd}
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -14 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <CurrentPanel />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* ── BOTTOM NAV ARROWS ── */}
-        <div className="flex items-center justify-between mt-5">
-          <button
-            onClick={() => goTo(active - 1)}
-            disabled={active === 0}
-            className="text-[0.62rem] tracking-widest uppercase text-neutral-900 dark:text-white hover:text-primary-400 transition-colors disabled:opacity-20 flex items-center gap-2"
-          >
-            ← {active > 0 ? SLIDES[active - 1].label : ""}
-          </button>
-
-          {/* progress bar */}
-          <div className="flex items-center gap-1.5">
-            {SLIDES.map((_, i) => (
-              <div
-                key={i}
-                onClick={() => goTo(i)}
-                className="cursor-pointer transition-all duration-400 rounded-full"
-                style={{
-                  width: active === i ? "24px" : "6px",
-                  height: "6px",
-                  background: active === i ? "#f97316" : "rgba(0, 0, 0, 0.2)",
-                }}
-              />
+          <div className="flex items-center gap-6 md:gap-8 mb-9 flex-wrap">
+            {STATS.map((s, i) => (
+              <div key={s.label} className="flex items-center gap-6 md:gap-8">
+                {i !== 0 && (
+                  <span className="h-8 w-px bg-neutral-200 dark:bg-neutral-700 hidden sm:block" />
+                )}
+                <div>
+                  <p className="font-playfair text-2xl text-black dark:text-white leading-none mb-1">
+                    {s.value}
+                  </p>
+                  <p className="text-[0.65rem] tracking-wide text-neutral-500 dark:text-neutral-400">
+                    {s.label}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
 
-          <button
-            onClick={() => goTo(active + 1)}
-            disabled={active === SLIDES.length - 1}
-            className="text-[0.62rem] tracking-widest uppercase text-neutral-900 dark:text-white hover:text-primary-400 transition-colors disabled:opacity-20 flex items-center gap-2"
-          >
-            {active < SLIDES.length - 1 ? SLIDES[active + 1].label : ""} →
-          </button>
+          <div className="flex flex-col gap-5">
+            <Button
+              to="/cv"
+              leftIcon={<ExternalLink size={13} />}
+              className="max-w-max"
+            >
+              Resume / CV
+            </Button>
+            <SocialLinks />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ── 01 · CÂU CHUYỆN ── */}
+      <Chapter number="01" title="Câu chuyện" image={IMAGES.about_2}>
+        <div className="space-y-5">
+          <p className="text-[0.95rem] leading-relaxed text-justify text-neutral-700 dark:text-neutral-300 first-letter:text-4xl first-letter:font-bold first-letter:text-primary-500 first-letter:mr-2 first-letter:float-left">
+            Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của
+            mình. Hiện tại, mình đang là sinh viên năm cuối chuyên ngành Thiết
+            Kế Trang Web tại Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC).
+            Hiện tại mình đang sinh sống và làm việc tại TP.HCM. Đây là giai
+            đoạn mình đang dồn hết tâm huyết của mình cho các dự án tốt nghiệp,
+            mà Website cá nhân này chính là một trong những dự án tâm đắc nhất
+            của mình. Mục tiêu của website này là một không gian toàn diện hiện
+            đại, thân thiện và đẹp mắt để: giới thiệu bản thân, trưng bày các dự
+            án đã thực hiện, chia sẻ học vấn, và đặc biệt là nơi lưu giữ những
+            hình ảnh, âm nhạc, những câu chuyện, thành tựu cá nhân mình đã trải
+            qua và có được trong hành trình của mình.
+          </p>
+
+          <div className="border-l-2 border-primary-500/60 pl-4 italic text-[0.9rem] text-neutral-600 dark:text-neutral-400">
+            Mình có niềm yêu thích đặc biệt với lập trình giao diện (Frontend)
+            và đang không ngừng tự học thêm các ngôn ngữ lập trình chuyên sâu
+            hơn để có thể xây dựng những ứng dụng (App), website hoàn chỉnh,
+            hiện đại và độc đáo.
+          </div>
+
+          <p className="text-[0.95rem] leading-relaxed text-justify text-neutral-700 dark:text-neutral-300">
+            Cùng với khát vọng trở thành một Frontend Developer chuyên nghiệp
+            trong tương lai. Bên cạnh kiến thức lập trình. Nhà trường cũng đã
+            trang bị thêm kiến thức nền tảng cho mình về thiết kế và sáng tạo.
+            Mình cũng học được các kỹ năng đủ để thiết kế được các Poster. Tuy
+            nhiên, Mình không ngừng tự thử thách bản thân. Mình đang trên hành
+            trình học hỏi không ngừng để hoàn thiện sâu hơn nữa kỹ năng chuyên
+            môn và tư duy thiết kế, nhằm tạo ra những sản phẩm không chỉ đẹp mà
+            còn mang tính ứng dụng cao và đột phá.
+          </p>
+
+          <blockquote className="text-[0.9rem] leading-relaxed text-neutral-600 dark:text-neutral-400 border-l-2 border-neutral-300 dark:border-neutral-600 pl-4">
+            Ngoài ra, mình cực kỳ đam mê quay phim và chụp ảnh. Sở thích này
+            không chỉ là giải trí mà còn là cách mình lưu giữ trọn vẹn những
+            khoảnh khắc đáng nhớ nhất của bản thân, gia đình, bạn bè và người
+            yêu của mình. Mình muốn dùng "góc kính nhiệm màu" của mình để truyền
+            tải đến mọi người những gì mình thấy là đẹp đẽ, đáng yêu và ý nghĩa
+            nhất trong cuộc sống của mình.
+          </blockquote>
         </div>
-      </div>
+      </Chapter>
+
+      {/* ── 02 · HỌC VẤN ── */}
+      <Chapter number="02" title="Học vấn" image={IMAGES.about_3} imageOnRight>
+        <div className="flex items-start gap-3 mb-6">
+          <div className="p-2 rounded-xl bg-primary-500/10 border border-primary-500/20 shrink-0 mt-0.5">
+            <FaGraduationCap size={16} className="text-primary-400" />
+          </div>
+          <div>
+            <p className="text-neutral-900 dark:text-white font-semibold text-sm leading-snug">
+              Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM
+            </p>
+            <p className="text-xs flex items-center gap-1.5 mt-1 text-neutral-500 dark:text-neutral-400">
+              <MdSchool size={12} /> ITC — Thiết Kế Trang Web
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 mb-6">
+          <div className="flex-1">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[0.6rem] uppercase tracking-wider text-neutral-500">
+                GPA
+              </span>
+              <span className="text-primary-400 text-xs">3.35 / 4.0</span>
+            </div>
+            <div className="w-full h-1.5 bg-neutral-200 dark:bg-white/6 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "83.75%" }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.9, ease: "easeOut" }}
+                className="h-full bg-gradient-to-r from-primary-500 to-primary-300 rounded-full"
+              />
+            </div>
+          </div>
+          <p className="font-playfair text-2xl text-primary-400 leading-none shrink-0">
+            Giỏi
+          </p>
+        </div>
+
+        <div className="border-t border-neutral-200 dark:border-neutral-700 pt-2">
+          {studyInfo.map((item, i) => (
+            <div key={i} className="info-row">
+              <span className="text-xs tracking-wide text-neutral-500 dark:text-neutral-400">
+                {item.label}
+              </span>
+              <span className="text-neutral-900 dark:text-white text-xs font-bold text-right">
+                {item.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      </Chapter>
+
+      {/* ── 03 · KINH NGHIỆM ── */}
+      <Chapter number="03" title="Kinh nghiệm" image={IMAGES.about_4}>
+        <div className="relative pl-5 border-l border-neutral-200 dark:border-white/10 space-y-9">
+          {experience.map((item, i) => (
+            <div key={i} className="relative">
+              <div className="tl-dot" />
+              <div className="space-y-1.5 ml-1">
+                <span className="text-[0.6rem] tracking-widest text-primary-400 uppercase">
+                  {item.year}
+                </span>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-neutral-900 dark:text-white font-bold text-base">
+                    {item.company}
+                  </h3>
+                  {item.current && (
+                    <span className="text-[0.5rem] tracking-widest uppercase px-2 py-0.5 bg-primary-500/15 border border-primary-500/30 text-primary-400 rounded-full">
+                      Now
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-neutral-700 dark:text-neutral-200">
+                  {item.role}
+                </p>
+                <p className="text-sm leading-relaxed text-justify pt-1 text-neutral-600 dark:text-neutral-400">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          <div className="relative">
+            <div
+              className="tl-dot"
+              style={{
+                background: "transparent",
+                borderColor: "rgba(120,120,120,0.35)",
+                borderStyle: "dashed",
+              }}
+            />
+            <p className="text-[0.58rem] text-neutral-500 tracking-widest uppercase ml-1">
+              Chương tiếp theo...
+            </p>
+          </div>
+        </div>
+      </Chapter>
+
+      {/* ── 04 · KỸ NĂNG ── */}
+      <Chapter number="04" title="Kỹ năng" image={IMAGES.about_1} imageOnRight>
+        <p className="text-neutral-600 dark:text-neutral-400 text-xs tracking-widest mb-6">
+          Luôn luôn học hỏi những công nghệ mới
+        </p>
+        <div className="space-y-6">
+          {skillGroups.map((group) => (
+            <div key={group.title}>
+              <p className="text-[0.58rem] tracking-[0.18em] uppercase text-neutral-900 dark:text-white font-bold mb-2.5">
+                {group.title}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {group.skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="skill-item bg-neutral-100 dark:bg-neutral-800/60 border border-neutral-200/80 dark:border-neutral-700/80"
+                  >
+                    <span className="text-sm text-primary-400">
+                      {skill.icon}
+                    </span>
+                    <p className="text-neutral-900 dark:text-white">
+                      {skill.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Chapter>
+
+      {/* ── CLOSING ── */}
+      <section className="pb-20 pt-4 border-t border-neutral-200 dark:border-neutral-700 text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="font-playfair text-3xl md:text-4xl text-black dark:text-white mb-8 max-w-xl mx-auto"
+        >
+          Cảm ơn vì đã đọc đến đây<span className="text-primary-500">.</span>
+        </motion.p>
+        <div className="flex flex-col items-center gap-5">
+          <Button
+            to="/cv"
+            leftIcon={<ExternalLink size={13} />}
+            className="max-w-max"
+          >
+            Resume / CV
+          </Button>
+          <SocialLinks />
+        </div>
+      </section>
     </article>
   );
 }
