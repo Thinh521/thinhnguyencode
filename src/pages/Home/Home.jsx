@@ -27,6 +27,7 @@ import AboutSection from "./components/AboutSection";
 import StorytData from "../../data/StoryData";
 import Featuredwriting from "../../components/Project/Writing/Featuredwriting";
 import { subscribePhotos } from "../../api/photoApi";
+import SpotlightCard from "./components/SpotlightCard ";
 
 /* ─────────────────────────────────────────────
    FONTS + GLOBAL STYLES
@@ -218,28 +219,47 @@ export default function Home() {
         className="mb-16"
       >
         <SectionLabel icon={Zap}>Dịch vụ</SectionLabel>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {SERVICES.map((svc, i) => (
-            <motion.div
+            <SpotlightCard
               key={svc.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.45 }}
-              className="p-5 rounded-xl group cursor-pointer border border-neutral-200/80 dark:border-neutral-700/80
-                        bg-neutral-200/20 dark:bg-neutral-700/20 hover:border-primary-400/50 hover:dark:border-primary-400/50
-                        hover:bg-primary-400/10 hover:dark:bg-primary-400/10 transition-all duration-300"
+              spotlightColor="rgba(249, 115, 22, 0.2)"
+              className="h-full"
             >
-              <div className="p-2.5 rounded-xl w-fit mb-4 border border-primary-500/20 bg-primary-500/10">
-                <svc.icon size={16} className="text-primary-500" />
-              </div>
-              <h3 className="text-neutral-900 dark:text-white font-semibold text-sm mb-1.5">
-                {svc.title}
-              </h3>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                {svc.desc}
-              </p>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.45 }}
+                className="
+          h-full p-5 rounded-xl group cursor-pointer
+          border border-neutral-200/80 dark:border-neutral-700/80
+          bg-neutral-200/20 dark:bg-neutral-700/20
+          hover:border-primary-400/50
+          dark:hover:border-primary-400/50
+          transition-all duration-300
+        "
+              >
+                <div
+                  className="
+          p-2.5 rounded-xl w-fit mb-4
+          border border-primary-500/20
+          bg-primary-500/10
+        "
+                >
+                  <svc.icon size={16} className="text-primary-500" />
+                </div>
+
+                <h3 className="text-neutral-900 dark:text-white font-semibold text-sm mb-1.5">
+                  {svc.title}
+                </h3>
+
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  {svc.desc}
+                </p>
+              </motion.div>
+            </SpotlightCard>
           ))}
         </div>
       </motion.section>
