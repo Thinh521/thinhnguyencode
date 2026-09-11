@@ -22,12 +22,14 @@ import {
   SiAdobeillustrator,
   SiAdobepremierepro,
 } from "react-icons/si";
+import { User } from "lucide-react";
 import { VscVscode } from "react-icons/vsc";
 import { ExternalLink } from "lucide-react";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import { IMAGES } from "../../../public/images/imgaes";
 import Button from "../../components/Button/Button";
 import PageHeader from "../../components/layout/PageHeader";
+import SectionLabel from "../../components/SectionLabel";
 
 /* ─────────────────────────────────────────────
    FONTS + LOCAL STYLES
@@ -61,7 +63,6 @@ const FontLoader = () => (
       width: 10px; height: 10px;
       border-radius: 50%;
       border: 2px solid #f97316;
-      background: #0a0a0a;
     }
 
     .grain { position: relative; }
@@ -181,10 +182,17 @@ const STATS = [
    giữa các chương để tạo nhịp điệu thị giác.
 ───────────────────────────────────────────── */
 const Chapter = ({ number, title, image, imageOnRight = false, children }) => (
-  <section className="relative mb-28 md:mb-40">
-    <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+  <section className="relative mb-20 md:mb-32">
+    <div
+      className={`grid md:grid-cols-[1.5fr_2fr] gap-10 md:gap-16 items-start ${
+        imageOnRight ? "md:[direction:rtl]" : ""
+      }`}
+    >
+      {/* IMAGE */}
       <div
-        className={`${imageOnRight ? "md:order-2" : "md:order-1"} md:sticky md:top-28`}
+        className={`md:sticky md:top-28 ${
+          imageOnRight ? "md:[direction:ltr]" : ""
+        }`}
       >
         <div className="chapter-img grain relative rounded-2xl overflow-hidden aspect-[4/5] border border-neutral-200/80 dark:border-neutral-700/80">
           <img
@@ -196,23 +204,30 @@ const Chapter = ({ number, title, image, imageOnRight = false, children }) => (
         </div>
       </div>
 
-      <div className={imageOnRight ? "md:order-1" : "md:order-2"}>
+      {/* CONTENT */}
+      <div className={imageOnRight ? "md:[direction:ltr]" : ""}>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          }}
         >
           <div className="flex items-center gap-4 mb-5">
             <span className="font-mono text-xs text-primary-400 tracking-widest">
               {number}
             </span>
+
             <span className="h-px flex-1 bg-neutral-200 dark:bg-neutral-700" />
           </div>
+
           <h2 className="font-playfair text-4xl md:text-5xl text-black dark:text-white leading-tight mb-7">
             {title}
             <span className="text-primary-500">.</span>
           </h2>
+
           {children}
         </motion.div>
       </div>
@@ -224,14 +239,6 @@ const Chapter = ({ number, title, image, imageOnRight = false, children }) => (
    MAIN COMPONENT
 ───────────────────────────────────────────── */
 export default function About() {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroImgScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
-  const heroImgY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-
   return (
     <article className="min-h-screen">
       <FontLoader />
@@ -240,75 +247,14 @@ export default function About() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-14 md:mb-20"
       >
         <PageHeader title="Giới thiệu." subtitle="Một chút thú vị về mình" />
       </motion.div>
 
-      {/* ── HERO ── */}
-      <section
-        ref={heroRef}
-        className="relative grid md:grid-cols-[0.95fr_1.05fr] gap-10 md:gap-16 items-center mb-28 md:mb-40"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 1.06 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="grain relative rounded-2xl overflow-hidden aspect-[4/5] border border-neutral-200/80 dark:border-neutral-700/80 order-1"
-        >
-          <motion.img
-            src={IMAGES.about_1}
-            alt="Nguyễn Phúc Thịnh"
-            style={{ scale: heroImgScale, y: heroImgY }}
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="order-1 md:order-2"
-        >
-          <p className="text-[0.95rem] md:text-base leading-relaxed text-justify text-neutral-700 dark:text-neutral-300 max-w-lg mb-8">
-            Tôi là Thịnh là sinh viên đã tốt nghiệp ngành Thiết Kế Trang Web tại
-            Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC), đang theo đuổi
-            hành trình trở thành một Frontend Developer chuyên nghiệp
-          </p>
-
-          <div className="flex items-center gap-6 md:gap-8 mb-9 flex-wrap">
-            {STATS.map((s, i) => (
-              <div key={s.label} className="flex items-center gap-6 md:gap-8">
-                {i !== 0 && (
-                  <span className="h-8 w-px bg-neutral-200 dark:bg-neutral-700 hidden sm:block" />
-                )}
-                <div>
-                  <p className="font-playfair text-2xl text-black dark:text-white leading-none mb-1">
-                    {s.value}
-                  </p>
-                  <p className="text-[0.65rem] tracking-wide text-neutral-500 dark:text-neutral-400">
-                    {s.label}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-5">
-            <Button
-              to="/cv"
-              leftIcon={<ExternalLink size={13} />}
-              className="max-w-max"
-            >
-              Resume / CV
-            </Button>
-            <SocialLinks />
-          </div>
-        </motion.div>
-      </section>
+      <SectionLabel icon={User}>Những điều thú vị</SectionLabel>
 
       {/* ── 01 · CÂU CHUYỆN ── */}
-      <Chapter number="01" title="Câu chuyện" image={IMAGES.about_2}>
+      <Chapter number="01" title="Câu chuyện" image={IMAGES.about_1}>
         <div className="space-y-5">
           <p className="text-[0.95rem] leading-relaxed text-justify text-neutral-700 dark:text-neutral-300 first-letter:text-4xl first-letter:font-bold first-letter:text-primary-500 first-letter:mr-2 first-letter:float-left">
             Xin chào, mình xin phép được chia sẻ nhiều hơn về hành trình của
@@ -350,11 +296,40 @@ export default function About() {
             tải đến mọi người những gì mình thấy là đẹp đẽ, đáng yêu và ý nghĩa
             nhất trong cuộc sống của mình.
           </blockquote>
+
+          <div className="flex items-center gap-6 md:gap-8 mb-9 flex-wrap">
+            {STATS.map((s, i) => (
+              <div key={s.label} className="flex items-center gap-6 md:gap-8">
+                {i !== 0 && (
+                  <span className="h-8 w-px bg-neutral-200 dark:bg-neutral-700 hidden sm:block" />
+                )}
+                <div>
+                  <p className="font-playfair text-2xl text-black dark:text-white leading-none mb-1">
+                    {s.value}
+                  </p>
+                  <p className="text-[0.65rem] tracking-wide text-neutral-500 dark:text-neutral-400">
+                    {s.label}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-5">
+            <Button
+              to="/cv"
+              leftIcon={<ExternalLink size={13} />}
+              className="max-w-max"
+            >
+              Resume / CV
+            </Button>
+            <SocialLinks />
+          </div>
         </div>
       </Chapter>
 
       {/* ── 02 · HỌC VẤN ── */}
-      <Chapter number="02" title="Học vấn" image={IMAGES.about_3} imageOnRight>
+      <Chapter number="02" title="Học vấn" image={IMAGES.about_2} imageOnRight>
         <div className="flex items-start gap-3 mb-6">
           <div className="p-2 rounded-xl bg-primary-500/10 border border-primary-500/20 shrink-0 mt-0.5">
             <FaGraduationCap size={16} className="text-primary-400" />
@@ -407,12 +382,12 @@ export default function About() {
       </Chapter>
 
       {/* ── 03 · KINH NGHIỆM ── */}
-      <Chapter number="03" title="Kinh nghiệm" image={IMAGES.about_4}>
+      <Chapter number="03" title="Kinh nghiệm" image={IMAGES.about_3}>
         <div className="relative pl-5 border-l border-neutral-200 dark:border-white/10 space-y-9">
           {experience.map((item, i) => (
             <div key={i} className="relative">
-              <div className="tl-dot" />
-              <div className="space-y-1.5 ml-1">
+              <div className="tl-dot bg-white" />
+              <div className="space-y-1.5 ml-4">
                 <span className="text-[0.6rem] tracking-widest text-primary-400 uppercase">
                   {item.year}
                 </span>
@@ -435,25 +410,11 @@ export default function About() {
               </div>
             </div>
           ))}
-
-          <div className="relative">
-            <div
-              className="tl-dot"
-              style={{
-                background: "transparent",
-                borderColor: "rgba(120,120,120,0.35)",
-                borderStyle: "dashed",
-              }}
-            />
-            <p className="text-[0.58rem] text-neutral-500 tracking-widest uppercase ml-1">
-              Chương tiếp theo...
-            </p>
-          </div>
         </div>
       </Chapter>
 
       {/* ── 04 · KỸ NĂNG ── */}
-      <Chapter number="04" title="Kỹ năng" image={IMAGES.about_1} imageOnRight>
+      <Chapter number="04" title="Kỹ năng" image={IMAGES.about_4} imageOnRight>
         <p className="text-neutral-600 dark:text-neutral-400 text-xs tracking-widest mb-6">
           Luôn luôn học hỏi những công nghệ mới
         </p>
@@ -482,29 +443,6 @@ export default function About() {
           ))}
         </div>
       </Chapter>
-
-      {/* ── CLOSING ── */}
-      <section className="pb-20 pt-4 border-t border-neutral-200 dark:border-neutral-700 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="font-playfair text-3xl md:text-4xl text-black dark:text-white mb-8 max-w-xl mx-auto"
-        >
-          Cảm ơn vì đã đọc đến đây<span className="text-primary-500">.</span>
-        </motion.p>
-        <div className="flex flex-col items-center gap-5">
-          <Button
-            to="/cv"
-            leftIcon={<ExternalLink size={13} />}
-            className="max-w-max"
-          >
-            Resume / CV
-          </Button>
-          <SocialLinks />
-        </div>
-      </section>
     </article>
   );
 }

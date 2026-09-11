@@ -8,15 +8,12 @@ export default function AboutSection() {
         {/* Left: Bio text */}
         <div>
           <h2 className="font-playfair text-4xl text-black dark:text-white leading-tight mb-5">
-            Xin chào, mình là
-            <br />
-            <span className="gradient-text">Thịnh</span>
-            <span className="text-primary-500">.</span>
+            Một chút về mình.
           </h2>
 
           <div className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400 leading-[1.85]">
             <p>
-              Hiện là sinh viên năm cuối chuyên ngành{" "}
+              Hiện là sinh viên đã tốt nghiệp ngành{" "}
               <span className="text-primary-400">Thiết Kế Trang Web</span> tại
               Trường Cao Đẳng Công Nghệ Thông Tin TP.HCM (ITC).
             </p>
